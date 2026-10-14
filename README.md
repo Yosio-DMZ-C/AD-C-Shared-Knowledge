@@ -37,6 +37,14 @@ Coreは別の知識コピーではなく、共有知から選ぶ小さな標準�
 
 [開発調査の共通実務ルール](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md) — 実装ゲート・進行スタイル・人間の承認との境界。
 
+## 開発調査の引継ぎ（Draft）
+
+- [調査チャット→リーダーの軽量引継ぎテンプレート](templates/DEVELOPMENT_RESEARCH_HANDOFF_TEMPLATE.md)
+- [初回事例：WorkのGoogle認証・接続失敗](docs/cases/WORK_GOOGLE_AUTH_FAILURE_20261014.md)
+- [外部連携・開発失敗の予防KB](docs/DEVELOPMENT_FAILURE_PREVENTION_KB.md)
+
+調査は事実・仮説・未検証を分離し、既存の最低限ルールを適用してなお失敗した件数と人間の解決負担を記録します。調査チャットは採否を決めず、リーダーが統合します。これらは**Draft資料**であり、Active Skillや自動同期機能の追加ではありません。
+
 ## 読む順序
 
 1. [対象分野と最初に作る範囲](docs/SCOPE.md)
