@@ -1,7 +1,7 @@
 {
   "schema_version": "0.2.0",
-  "catalog_version": "0.2.0",
-  "updated_at": "2026-10-09",
+  "catalog_version": "0.3.0",
+  "updated_at": "2026-10-17",
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
@@ -64,6 +64,12 @@
     {
       "id": "daily-living",
       "title": "生活基盤・人間関係",
+      "phase": "extension",
+      "status": "proposed"
+    },
+    {
+      "id": "organization-governance",
+      "title": "組織づくり・経営・ガバナンス",
       "phase": "extension",
       "status": "proposed"
     }
