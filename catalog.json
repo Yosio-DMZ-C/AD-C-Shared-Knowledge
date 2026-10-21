@@ -1,7 +1,7 @@
 {
   "schema_version": "0.2.0",
-  "catalog_version": "0.2.0",
-  "updated_at": "2026-10-09",
+  "catalog_version": "0.3.0",
+  "updated_at": "2026-10-17",
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
@@ -11,61 +11,135 @@
       "id": "parenting-education",
       "title": "子育て・教育",
       "phase": "initial",
-      "status": "planned"
+      "status": "planned",
+      "entry_label": "子どもを育てる・学ぶ",
+      "topic_label": "子育て・教育",
+      "academic_fields": [
+        "教育学",
+        "発達心理学"
+      ]
     },
     {
       "id": "health-navigation",
       "title": "健康・医療ナビゲーション",
       "phase": "initial",
-      "status": "planned"
+      "status": "planned",
+      "entry_label": "体の調子や受診を考える",
+      "topic_label": "健康・受診の準備",
+      "academic_fields": [
+        "医学",
+        "公衆衛生学"
+      ]
     },
     {
       "id": "mental-health",
       "title": "メンタルヘルス",
       "phase": "initial",
-      "status": "planned"
+      "status": "planned",
+      "entry_label": "心の調子を整える",
+      "topic_label": "ストレス・心の相談",
+      "academic_fields": [
+        "臨床心理学",
+        "精神医学"
+      ]
     },
     {
       "id": "money-housing",
       "title": "家計・投資・住宅",
       "phase": "initial",
-      "status": "planned"
+      "status": "planned",
+      "entry_label": "お金と住まいを考える",
+      "topic_label": "家計・投資・住宅",
+      "academic_fields": [
+        "経済学",
+        "金融論",
+        "住宅政策"
+      ]
     },
     {
       "id": "disaster-accident",
       "title": "災害・事故",
       "phase": "initial",
-      "status": "planned"
+      "status": "planned",
+      "entry_label": "もしもの時に備える",
+      "topic_label": "災害・事故への備え",
+      "academic_fields": [
+        "防災学",
+        "安全工学"
+      ]
     },
     {
       "id": "contracts-consumer",
       "title": "契約・法律・消費者",
       "phase": "initial",
-      "status": "planned"
+      "status": "planned",
+      "entry_label": "契約や買い物の困りごと",
+      "topic_label": "契約・消費者トラブル",
+      "academic_fields": [
+        "法学",
+        "消費者法"
+      ]
     },
     {
       "id": "digital-safety",
       "title": "デジタル安全",
       "phase": "initial",
-      "status": "planned"
+      "status": "planned",
+      "entry_label": "スマホ・PCを安全に使う",
+      "topic_label": "アカウント・データの安全",
+      "academic_fields": [
+        "情報科学",
+        "情報セキュリティ"
+      ]
     },
     {
       "id": "caregiving-aging",
       "title": "介護・加齢・生活支援",
       "phase": "extension",
-      "status": "proposed"
+      "status": "proposed",
+      "entry_label": "介護や老後の暮らしを考える",
+      "topic_label": "介護・高齢期の生活支援",
+      "academic_fields": [
+        "老年学",
+        "社会福祉学"
+      ]
     },
     {
       "id": "work-learning",
       "title": "仕事・学び直し",
       "phase": "extension",
-      "status": "proposed"
+      "status": "proposed",
+      "entry_label": "働く・学び直す",
+      "topic_label": "仕事・転職・学習",
+      "academic_fields": [
+        "労働経済学",
+        "成人教育学"
+      ]
     },
     {
       "id": "daily-living",
       "title": "生活基盤・人間関係",
       "phase": "extension",
-      "status": "proposed"
+      "status": "proposed",
+      "entry_label": "暮らしと人間関係を整える",
+      "topic_label": "家事・引越し・人間関係",
+      "academic_fields": [
+        "生活科学",
+        "社会学"
+      ]
+    },
+    {
+      "id": "organization-governance",
+      "title": "組織づくり・経営・ガバナンス",
+      "phase": "extension",
+      "status": "proposed",
+      "entry_label": "活動を立ち上げる",
+      "topic_label": "組織の立ち上げ・運営",
+      "academic_fields": [
+        "経営学",
+        "組織論",
+        "公共政策学"
+      ]
     }
   ],
   "items": [],
