@@ -1,5 +1,7 @@
 # プレイブック記入用テンプレート
 
+> **修正時の必須参照**：この手順書を修正する前に、[AD&C共通実行標準 §6.3.2〜§6.3.3](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)の現行本文を**実取得**し、その品質基準に従うこと。軽微な修正は影響箇所だけ再検査する。
+
 種別：kind=playbook（行動推奨用）。主張の比較だけなら [主張比較テンプレート](CLAIM_MAP_TEMPLATE.md) を使う。
 
 状態：未記入テンプレート。助言として利用不可。空欄や例示を埋めただけでActiveにはしない。
