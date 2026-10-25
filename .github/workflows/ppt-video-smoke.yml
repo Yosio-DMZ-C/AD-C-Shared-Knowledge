@@ -30,6 +30,16 @@ jobs:
       - name: Generate, render and encode a three-slide test
         run: |
           python skills/video-production-setup/ppt_video_smoke.py --output smoke-output
+      - name: Test recorded-slide assembly with synthetic tones
+        run: |
+          mkdir -p fake-recordings
+          for n in 01 02 03; do
+            ffmpeg -nostdin -v error -y -f lavfi -i 'sine=frequency=400:duration=1.2' -ac 1 -ar 48000 fake-recordings/slide-$n.wav
+          done
+          python skills/video-production-setup/assemble_slide_voice.py --images smoke-output/rendered --audio fake-recordings --manifest skills/video-production-setup/NARRATION_PUBLIC_SAMPLE.json --output smoke-output/ADNC_PUBLIC_SYNTHETIC_VOICE_TEST.mp4
+          ffprobe -v error -show_entries stream=codec_type -of csv=p=0 smoke-output/ADNC_PUBLIC_SYNTHETIC_VOICE_TEST.mp4 | grep -q video
+          ffprobe -v error -show_entries stream=codec_type -of csv=p=0 smoke-output/ADNC_PUBLIC_SYNTHETIC_VOICE_TEST.mp4 | grep -q audio
+
       - name: Upload synthetic artifacts for human inspection
         if: always()
         uses: actions/upload-artifact@v4
