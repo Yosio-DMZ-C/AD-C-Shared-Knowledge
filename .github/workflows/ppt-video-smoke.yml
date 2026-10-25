@@ -40,6 +40,17 @@ jobs:
           ffprobe -v error -show_entries stream=codec_type -of csv=p=0 smoke-output/ADNC_PUBLIC_SYNTHETIC_VOICE_TEST.mp4 | grep -q video
           ffprobe -v error -show_entries stream=codec_type -of csv=p=0 smoke-output/ADNC_PUBLIC_SYNTHETIC_VOICE_TEST.mp4 | grep -q audio
 
+      - name: Missing recording must stop without producing video
+        run: |
+          mv fake-recordings/slide-03.wav fake-recordings/slide-03.not-recorded
+          set +e
+          python skills/video-production-setup/assemble_slide_voice.py --images smoke-output/rendered --audio fake-recordings --manifest skills/video-production-setup/NARRATION_PUBLIC_SAMPLE.json --output smoke-output/DO_NOT_CREATE.mp4 > smoke-output/missing-recording-result.json
+          code=$?
+          set -e
+          test "$code" -eq 2
+          test ! -f smoke-output/DO_NOT_CREATE.mp4
+          grep -q 'slide-03' smoke-output/missing-recording-result.json
+
       - name: Upload synthetic artifacts for human inspection
         if: always()
         uses: actions/upload-artifact@v4
