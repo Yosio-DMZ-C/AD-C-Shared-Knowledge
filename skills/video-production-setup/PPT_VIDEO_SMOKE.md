@@ -37,6 +37,24 @@ python skills/video-production-setup/ppt_video_smoke.py --output smoke-output
 
 依存が導入できない環境では、その時点で停止し`NOT_RUN`。公開素材に置き換えたり、AIの想像で出力を補完したりしない。
 
+## 1枚ずつ録音する動画制作フロー（任意）
+
+1. **シナリオ表示**：AIがスライドごとの音声原稿（見出し・番号・全文）を作成し、**チャットに直接表示**する。公開例は [NARRATION_PUBLIC_SAMPLE.json](NARRATION_PUBLIC_SAMPLE.json)。採用済みの台本があればそれを優先する。
+2. **人間が個別録音**：画面の第01スライドを読み、`slide-01.wav` として保存。第02・03も同様（WAV/MP3/M4A可）。途中中断したら受領済みファイルは保持し、未録音の番号から再開する。
+3. **AIが実尺で結合**：番号と件数を照合し、FFprobeで各音声の秒数を測る。[結合コード](assemble_slide_voice.py)で各スライド画像を録音尺に合わせて音声付きMP4へ組み立てる。未収録・重複・誤番号なら停止し、無音・合成音声で補完しない。
+4. **独立検収**：実映像・肉声の聞き取りやすさ・字形・画面との整合は視聴者が確認する。成功したのが合成テスト音だけなら「音声制作PASS」としない。本人音声を外部APIへ勝手に送らない。
+
+**必要資料・素材・ツール**：既存のPPTXから実レンダリングした `slide-01.png` 等、[原稿例](NARRATION_PUBLIC_SAMPLE.json)、本人が録音した同番号の各音声、[音声結合コード](assemble_slide_voice.py)、FFmpeg/ffprobe。個人素材は共有リポジトリには保存しない。
+
+```bash
+python skills/video-production-setup/assemble_slide_voice.py \
+  --images smoke-output/rendered --audio recordings \
+  --manifest skills/video-production-setup/NARRATION_PUBLIC_SAMPLE.json \
+  --output recorded-preview.mp4
+```
+
+**CIの範囲**：GitHub上では肉声を用いず、3件の架空のテスト音を生成して音声入りMP4を技術検査する。ファイル欠落時に出力せずNOT_RUNで止まることも検査する。正式動画の制作成功、友人の環境、本人収録は別判定。
+
 ## 友人に頼む検査（Gitの操作不要）
 
 1. [AD&C公式の「初めての方へ」](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/wiki/Getting-Started.md)から単一インストーラーをAIへ渡し、`実行`→保存先選択→`進めて`。動画制作を希望しない場合はここで終了。
