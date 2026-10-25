@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'skills/video-production-setup/ppt_video_smoke.py'
+      - 'skills/video-production-setup/assemble_slide_voice.py'
+      - 'skills/video-production-setup/NARRATION_PUBLIC_SAMPLE.json'
+      - 'skills/video-production-setup/SKILL.md'
       - 'skills/video-production-setup/PPT_VIDEO_SMOKE.md'
       - '.github/workflows/ppt-video-smoke.yml'
   workflow_dispatch:
