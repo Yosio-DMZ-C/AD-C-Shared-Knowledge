@@ -1,0 +1,37 @@
+name: Draft synthetic PPT-to-video smoke
+on:
+  pull_request:
+    paths:
+      - 'skills/video-production-setup/ppt_video_smoke.py'
+      - 'skills/video-production-setup/PPT_VIDEO_SMOKE.md'
+      - '.github/workflows/ppt-video-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-ppt-video:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install real render and encoder dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-impress fonts-noto-cjk ffmpeg
+          python -m pip install "python-pptx==1.0.2" "PyMuPDF==1.24.13"
+      - name: Generate, render and encode a three-slide test
+        run: |
+          python skills/video-production-setup/ppt_video_smoke.py --output smoke-output
+      - name: Upload synthetic artifacts for human inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: adnc-public-synthetic-ppt-video-smoke
+          path: smoke-output/
+          if-no-files-found: warn
+          retention-days: 7
