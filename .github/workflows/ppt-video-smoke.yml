@@ -1,0 +1,61 @@
+name: Draft synthetic PPT-to-video smoke
+on:
+  pull_request:
+    paths:
+      - 'skills/video-production-setup/ppt_video_smoke.py'
+      - 'skills/video-production-setup/assemble_slide_voice.py'
+      - 'skills/video-production-setup/NARRATION_PUBLIC_SAMPLE.json'
+      - 'skills/video-production-setup/SKILL.md'
+      - 'skills/video-production-setup/PPT_VIDEO_SMOKE.md'
+      - '.github/workflows/ppt-video-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-ppt-video:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install real render and encoder dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-impress fonts-noto-cjk ffmpeg
+          python -m pip install "python-pptx==1.0.2" "PyMuPDF==1.24.13"
+      - name: Generate, render and encode a three-slide test
+        run: |
+          python skills/video-production-setup/ppt_video_smoke.py --output smoke-output
+      - name: Test recorded-slide assembly with synthetic tones
+        run: |
+          mkdir -p fake-recordings
+          for n in 01 02 03; do
+            ffmpeg -nostdin -v error -y -f lavfi -i 'sine=frequency=400:duration=1.2' -ac 1 -ar 48000 fake-recordings/slide-$n.wav
+          done
+          python skills/video-production-setup/assemble_slide_voice.py --images smoke-output/rendered --audio fake-recordings --manifest skills/video-production-setup/NARRATION_PUBLIC_SAMPLE.json --output smoke-output/ADNC_PUBLIC_SYNTHETIC_VOICE_TEST.mp4
+          ffprobe -v error -show_entries stream=codec_type -of csv=p=0 smoke-output/ADNC_PUBLIC_SYNTHETIC_VOICE_TEST.mp4 | grep -q video
+          ffprobe -v error -show_entries stream=codec_type -of csv=p=0 smoke-output/ADNC_PUBLIC_SYNTHETIC_VOICE_TEST.mp4 | grep -q audio
+
+      - name: Missing recording must stop without producing video
+        run: |
+          mv fake-recordings/slide-03.wav fake-recordings/slide-03.not-recorded
+          set +e
+          python skills/video-production-setup/assemble_slide_voice.py --images smoke-output/rendered --audio fake-recordings --manifest skills/video-production-setup/NARRATION_PUBLIC_SAMPLE.json --output smoke-output/DO_NOT_CREATE.mp4 > smoke-output/missing-recording-result.json
+          code=$?
+          set -e
+          test "$code" -eq 2
+          test ! -f smoke-output/DO_NOT_CREATE.mp4
+          grep -q 'slide-03' smoke-output/missing-recording-result.json
+
+      - name: Upload synthetic artifacts for human inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: adnc-public-synthetic-ppt-video-smoke
+          path: smoke-output/
+          if-no-files-found: warn
+          retention-days: 7
