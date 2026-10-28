@@ -2,6 +2,8 @@
 
 Use this worksheet during the work, then reuse it as the final report. This is a format, not a decision procedure. Refer to the existing registry and operating rules for authoritative facts and approvals.
 
+**Execution model (2026-10-29 β):** Team members complete their authorized reversible changes through canonical writes, reference/Git integration and readback; the leader audits across changes and repairs scoped inconsistencies. Keep the existing three daily scheduled reviews and two-pass audit; this worksheet does not reschedule or weaken them. Audit significant dependencies and actual restorability, not just reported completion. Avoid new trackers and duplicate approval prompts.
+
 1. New changes: record only new facts, or 'no new changes'.
 2. Reconciliation: note sources checked, discrepancies, and unverified claims.
 3. Implementation: record actual writes, commits, readback, and PASS / FAIL / NOT_RUN.
@@ -20,6 +22,9 @@ Immediately before the final response, compare the user's requested outcome with
 A requested outcome remains one tracked item across its substeps. Never close or defer an unfinished substep merely by labeling it 'separate process', 'next time', 'handoff', or 'PR prepared'. Before reporting, enumerate every remaining substep and attempt each authorized, safe action now. For each unexecuted substep, name the exact blocker (specific missing approval, permission, unavailable tool, conflict, or failed recovery check), evidence, and the single action that would unblock it. A different workflow or repository is not itself a blocker. Keep the parent item OPEN until the requested canonical end state and readback are verified. Do not treat a general implementation request as approval for public-main merges or other restricted actions.
 
 ## Human-time principle (experimental)
+
+**Short rationale cue at a decision boundary (β, not evidence of effectiveness):** “Human time is limited; repeating approvals and deferring already authorized, reversible work create costs. After verifying actual authorization, pre-change state, conflicts and recovery path, finish safe steps through readback. Pause only for a new approval or unsafe/unrecoverable condition.” The cue never authorizes a write and never overrides a required approval or safety stop. Evaluate on existing T005 scenarios: A = safety baseline, B = exit check only, C = cue plus exit check; compare completion, extra questions, delays and safety violations. Do not add a third routine audit loop or a new checklist. Report all behavioral effects as NOT_RUN until observed.
+
 Human time is finite and nonrenewable: five minutes now matter as much as five minutes near the end of life. Unnecessary repeated approval requests, forgotten unfinished work, and vague deferrals waste that time. AD&C already defines safeguards for backups, recovery, conflict checks, and authorization; verify those safeguards rather than assuming either safety or danger. Once they pass, complete authorized reversible work without asking again. Never use this principle to override an actual safety boundary. If several genuine decisions remain, present only the highest-priority actionable decision, then continue after it is resolved. Record the others in the existing tracker, not a new list. Treat this wording as an interface hypothesis, not a validated behavioral effect.
 
 ## Pending-item provenance
