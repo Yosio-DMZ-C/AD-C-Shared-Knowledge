@@ -27,3 +27,6 @@ For every unfinished action, report: `NOT_RUN (origin: original parent request; 
 
 ## Unfinished work and retry
 Every action not performed must be labeled `未実施（元工程：...／理由：...）`. Keep its parent task OPEN. A different workflow is not a reason to omit this label. For a transient tool failure, retry once after checking whether the first attempt succeeded, to avoid duplicate writes. Do not retry authorization denials, irreversible actions, or safety blocks automatically. Record the outcome of both attempts.
+
+## Entry-first creation and acceptance
+Before creating or substantially revising a playbook or worksheet, check existing shared/personal KB procedures and Skills for equivalent purpose; distinguish Active, Draft, superseded, and withdrawn. Define a natural-language request that should lead to the procedure, its directly fetchable canonical source, version and applicability. Treat `request → discover → fetch → execute in specified order → inspect required output → present useful result` as one deliverable. A README link alone is not automatic discovery. Map evidence to existing Q1 (entry and document), Q2 (independent cold-start interpretation), Q3 (actual sequence and safety gates), and Q4 (user-facing result); untested stages remain `未実施（元工程：...／理由：...）`. Avoid creating another registry or gate. Preserve private identifiers outside public KB.
