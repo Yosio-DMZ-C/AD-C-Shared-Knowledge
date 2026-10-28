@@ -5,7 +5,7 @@
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
-  "repository": "https://github.com/Yosio-DMZ-C/AgentOS-C-Shared-Knowledge",
+  "repository": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge",
   "domains": [
     {
       "id": "parenting-education",
