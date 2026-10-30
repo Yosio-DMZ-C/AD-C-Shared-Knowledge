@@ -44,13 +44,18 @@ An offset/tilt adapter between an existing wall plate and the original toilet-pa
 
 Confirm screw diameter, length, head/washer footprint, nut/tool access, the orientation of the wall plate, and the available holder slots on **your own** fitting. Do not assume another brand uses the same geometry. Material choice, layer orientation and load behavior have not been independently tested. This model is an example of user-directed, measured-and-iterated DIY—not a universal replacement part.
 
-## Ruler photographs: measuring succeeded, interpreting the constraints failed
+## Actual holder measurement photographs (corrected source selection)
 
-The two photographs below document the earlier **shim** inspection: the user placed a ruler directly against the original hardware, following the AI's measurement requests. The later wedge CAD error was not a failure to take these photos: it was the AI's failure to match the two different sets of screw/slot positions in a common coordinate system.
+**Correction (2026-10-30):** The first publication mistakenly illustrated the wedge measurement with photos from the earlier **3 mm anti-shift shim** project. Those were the wrong source images. The following photos are from the separate **holder wedge** measurements in the earlier "angled adapter" conversation:
 
-![Ruler against metal bracket and resin frame, vertical measurement](wedge_measure_a.jpg)
+1. The original holder measured across the front before removal, with a ruler on the holder top.
+2. The detached holder underside with its two elongated mounting slots, screw hardware and ruler visible together. This is the decisive photo of the *holder-side* connection.
 
-![Ruler against metal bracket and resin frame, horizontal measurement](wedge_measure_b.jpg)
+![Ruler measuring the original holder width, before removal](holder_ruler_front.jpg)
+
+![Underside of original holder showing both mounting slots, screws and ruler](holder_ruler_back.jpg)
+
+The user measured according to the AI-guided process, but the AI later treated the wall-side mounting coordinates and holder-side adjustable slots inconsistently. This illustrates the failure: **a correct measurement workflow is not enough without an explicit fastener/slot correspondence check in the assembled coordinate system**. The original shim ruler photos are retained as historical artifacts only; do not mistake them for the wedge evidence.
 
 ## Installation photos — user-confirmed 15°
 
