@@ -12,6 +12,12 @@ Use this worksheet during the work, then reuse it as the final report. This is a
 
 Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never report a draft or unverified change as DONE.
 
+## Purpose cue (lightweight β)
+
+At the **start** of a leader review, connect the work to AD&C's higher purpose in one sentence: **“玄人の当たり前はAIが案内し、人間はその先の判断に集中する。”** Then state this review's mission: reduce human re-explanation by turning authorized AI work into verified, recoverable outcomes. At the **end**, briefly check whether the work advanced that purpose without unnecessary human burden. Do not repeat the cue in every step or every layer; reuse the canonical philosophy rather than copying lengthy statements into each task.
+
+**Review watchpoint:** Monitor prompt length, duplicated WHY statements across layers, unnecessary approvals, completion rate, and safety/recovery violations. If overhead or duplication rises without practical benefit, shorten or remove the cue. This is an unproven hypothesis; evaluate within existing T005, without adding routine loops, trackers, or a new schedule.
+
 ## Implementation-first policy
 When the user requests implementation, carry the approved, reversible work through the canonical source, necessary references, Git, and readback. Do not stop at a proposal, worksheet, or PR and call it done. Avoid repeated approval questions for the same authorized scope. Stop and ask only for a genuinely new approval boundary, an irreversible action, a public disclosure, or a blocked operation. Record remaining work in the existing tracker rather than creating duplicate open items.
 
