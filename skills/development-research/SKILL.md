@@ -65,7 +65,6 @@
 | 道具 | 基準の実体 | 向く場面・境界 |
 |---|---|---|
 | OneShot | [macOS OneShot共有用要約 v0.1（Draft）](standards/OneShot_Standard_v1.md) | macOS実機の環境調査や小修正を「最小操作→結果返送」で行う場合。**標準と実行ZIPは別**で、個人用キットは公開・同梱していない。案件で実在・承認済みのキットを別途取得・検証する |
-
 | Windows PowerShell / Pester CI（**実装済み・Draft PR #45／main未導入**） | [実行方法・検収条件](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/test/add-powershell-pester-ci-20261031/tests/powershell/README.md)、[GitHub Actions 実行 #12](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/actions/runs/41244161437)、[PR #45](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/pull/45) | AI製PowerShellのWindows 5.1/7互換性とPesterの実行確認。2026-11-01時点で両環境各20件PASS。**mainにあると誤認しない**。Muse等の別AIが探せるか／実行できるかは独立試験NOT_RUN |
 
 ### ツールの入口とPlaybookの接続（Draft／2026-11-01）
