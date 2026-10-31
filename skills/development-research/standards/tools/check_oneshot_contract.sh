@@ -14,10 +14,12 @@ script_name=$2
 report=${3:-}
 [ -f "$zip_file" ] || fail 'ZIP not found'
 case "$script_name" in ''|/*|*'../'*) fail 'Pass the exact relative script path inside ZIP' ;; esac
+case "$script_name" in *'*'*|*'?'*|*'['*|*']'*) fail 'ZIP script name must not contain wildcard characters' ;; esac
 command -v unzip >/dev/null 2>&1 || fail 'unzip is unavailable'
 command -v bash >/dev/null 2>&1 || fail 'bash is unavailable'
 unzip -tqq "$zip_file" >/dev/null || fail 'ZIP integrity check failed'
-unzip -Z -1 "$zip_file" | grep -Fqx -- "$script_name" || fail 'SCRIPT does not match a ZIP entry'
+member_count=$(unzip -Z -1 "$zip_file" | awk -v target="$script_name" '$0==target {n++} END {print n+0}')
+[ "$member_count" -eq 1 ] || fail 'Expected exactly one matching ZIP script member'
 unzip -p "$zip_file" "$script_name" | bash -n || fail 'Shell syntax failed'
 
 if [ -n "$report" ]; then
@@ -36,4 +38,4 @@ if [ -n "$report" ]; then
   ' "$report" || fail 'REPORT format failed'
 fi
 
-echo 'PASS: ZIP integrity, entry name, bash syntax; report format checked only if supplied.'
+echo 'PASS: ZIP integrity, unique entry name, bash syntax; report format checked only if supplied.'
