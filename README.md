@@ -23,6 +23,12 @@
 
 **状態の区別**：山歩きPlaybook本文は**利用者採用のActive**だが、共有知全体の正式配布カタログ `catalog.json` は依然として `design_only`・`items: []`。**公開審査済みのActive配布項目とは別**であり、配布・自動インストール・独立チャットでの自動発見成功を主張しない。README自体は公開の参照入口であり、ChatGPT等の新規チャットへ自動で読み込まれる機能ではない。
 
+### ツールを見つける：使い所と実行手順（Draft）
+
+**「PowerShellをWindowsでテストしたい」「AIが作ったスクリプトを検査したい」**ときは、[開発調査Skillの道具棚とツール接続規則](skills/development-research/SKILL.md)を参照してください。例：GitHubの[PowerShell 5.1／7 Pester CI（PR #45、Draft）](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/pull/45)は、[実際の起動・利用方法](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/test/add-powershell-pester-ci-20261031/tests/powershell/README.md)と[実行 #12（各20テストPASS）](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/actions/runs/41244161437)が参照できます。**本体mainへはまだ未導入**であり、別AI・Museの自動発見／実行能力は未検証です。
+
+ツールを追加したら、**本体に自然言語の1入口 → 既存Playbookの「必要資料・素材・ツール」→ 道具棚からの目的検索**をつなぎます。固定検査は適切なコードで、創作・デザインの裁量は自然言語で扱います。すべてのツールに新しい`.py`や専用Playbookを作る規則ではありません。正式カタログのActive数は変更しません。
+
 ## 現在地
 
 基本設計 v0.2.0。対象分野、知識の記録契約、レビュー、更新・撤回、AD&Cからの参照方法を定義しています。
