@@ -82,7 +82,9 @@ Coreは別の知識コピーではなく、共有知から選ぶ小さな標準�
 
 ## 動画を作るときの初期設定（Draft）
 
-- [PPT基準の動画制作・初期設定 Skill v0.1.0-preview](skills/video-production-setup/SKILL.md)：**採用見本PPT・色調・公式素材・音声方式を、利用者の非公開KBに復元可能な形で保存する**参考手順。シリーズArea Contextと案件Project Contextを既存の位置づけで使い、同じ一行依頼から続けられるか検証します。
+- [動画制作・初期設定Skill（Draft）](skills/video-production-setup/SKILL.md)：**採用見本PPT・色調・公式素材・音声方式を非公開KBに復元できる形で保持**し、個別Runbookがない一般的な動画制作では「目的・背景3行→映像・音声・字幕→サムネイル→実物検収」までの最小実行ルートを案内します。個別Runbookがある場合はそちらを優先します。
+- [動画制作の一工程：サムネイル作成Playbook（Draft）](skills/video-production-setup/THUMBNAIL_PRODUCTION.md)：簡単な画像はまず普通に生成。採用済みの公式素材・確定文面を守る案件は初回から生成／非生成合成／組版を分離し、忠実性と訴求力を別検収します。AD&C個別の「末尾貼付・登録後に完成」は全案件へは強制しません。
+- [画像生成の手法見直し補助ガイド（Draft）](docs/IMAGE_GENERATION_RETRY_GUIDE.md)：単純な「画像生成」依頼では自動起動の重い工程を増やさず、反復失敗時だけ背景・ツールへの実指示・参照画像・Python等での保証を再検討する選択肢です。
 - 個別のPPT・ロゴ・本人音声・Voice ID・保存先IDは共有KBへ送らない。一般向け既定音声は本人朗読、ElevenLabs等は任意方式。**正式Active Skillではなく、実動画完成と別AI再現の試験は未実施**です。カタログは変更しません。
 
 ## 読む順序
