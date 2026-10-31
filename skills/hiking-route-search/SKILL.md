@@ -5,6 +5,7 @@
 - 旧稿：チャット内の v0.1 Draft（未Git反映）。現行の公開編集対象はこのファイルとする。
 - 個人向けの非公開設定・出発地・同行者等は本ファイルに保存しない。
 
+> **【目的】・【背景】共通契約**：このプレイブックの目的は、本人の希望に合う実在の安全な歩行コースを判断すること。計画を他AIへ引き継ぐ場合は対象（山域・コース）、狙い（時間・見どころ）、位置づけ（同行条件・安全優先）を確認できる2〜3行で渡す。不明は `BACKGROUND_MISSING`。利用者向けの固定ワークシート順序・YAMAP先行・表構成を変えず、背景を追加欄として増殖させない。詳細は[本体の背景契約](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)。
 > **修正時の必須参照**：[AD&C共通実行標準 §6.3.2〜§6.3.3](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)の現行本文を実取得してから影響範囲を検査する。**変更依頼の出口**：本人の明示承認済み範囲は正本・必要参照・Gitへ実反映して読戻す。新たな承認境界は本人確認し、Draft／PRのみの状態を完成と呼ばない。
 
 ## 目的・適用
