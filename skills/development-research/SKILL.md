@@ -3,8 +3,8 @@
 - **名称**：Development Research & Integration Selection
 - **識別子**：`sk:development-research:minimum-viable-investigation`（暫定。正式カタログ未登録）
 - **種別**：playbook相当の利用者向け実行手順
-- **版**：0.1.2-preview / **状態**：Draft（**直接読んで試せる先行版。Active/正式リリースではない**）
-- **日付**：2026-10-09（最終更新：2026-10-29）
+- **版**：0.1.3-preview / **状態**：Draft（**直接読んで試せる先行版。Active/正式リリースではない**）
+- **日付**：2026-10-09（最終更新：2026-11-01）
 - **ライセンス**：CC BY-SA 4.0（この文書の独自部分）
 - **対象**：AIを使って既存のアプリ・クラウドサービス・API・情報管理の仕組みを組み合わせたい人。プログラミング経験は問わない。
 - **目的**：すでに分かっている仕様を使い、実際に足りない部分だけ確かめて、使える構成・費用・復旧条件を早く判断する。
@@ -65,6 +65,11 @@
 | 道具 | 基準の実体 | 向く場面・境界 |
 |---|---|---|
 | OneShot | [macOS OneShot共有用要約 v0.1（Draft）](standards/OneShot_Standard_v1.md) | macOS実機の環境調査や小修正を「最小操作→結果返送」で行う場合。**標準と実行ZIPは別**で、個人用キットは公開・同梱していない。案件で実在・承認済みのキットを別途取得・検証する |
+| Windows PowerShell / Pester CI（**実装済み・Draft PR #45／main未導入**） | [実行方法・検収条件](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/test/add-powershell-pester-ci-20261031/tests/powershell/README.md)、[GitHub Actions 実行 #12](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/actions/runs/41244161437)、[PR #45](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/pull/45) | AI製PowerShellのWindows 5.1/7互換性とPesterの実行確認。2026-11-01時点で両環境各20件PASS。**mainにあると誤認しない**。Muse等の別AIが探せるか／実行できるかは独立試験NOT_RUN |
+
+### ツールの入口とPlaybookの接続（共通正式運用規則）
+
+ツールの作成・重要改訂時は、[共有プラクティス §1「ツールの1入口・発見可能性・創造性」（2026-11-01正式採用）](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)に従う。**自然言語の1実行入口は必須**、Python等の言語や追加のカスタムPlaybookは必要な場合だけ選ぶ。Playbookの「必要資料・素材・ツール」欄と道具棚の双方から実体へ辿り、機械検査と創作品質を分ける。実体・リンクの読戻しと、別AIからの発見は別検収とする。
 
 使った理由、または適用せず他の方法を選んだ理由は案件記録へ1行残す。特に`設定反映`・`再起動`・`機能確認`を同じPASSにまとめない。
 
