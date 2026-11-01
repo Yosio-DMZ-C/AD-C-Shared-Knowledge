@@ -3,7 +3,7 @@
 - 版：0.1.5（2026-11-01：ツールの自然言語入口・発見経路・機械化と創造性の分離を正式運用規則として追加。v0.1.4を維持）
 - 状態：**共有KBの運用ルールとして公開。個別SkillのActive認定ではない**
 - 対象：開発調査、実装支援、KB整備、成果物レビュー
-- 上位の進行契約：[AgentOS-C本体の共通標準](https://github.com/Yosio-DMZ-C/AgentOS-C/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)。本書は共有KBで利用する具体化であり、個人KBの非公開内容を共有へ移さない。
+- 上位の進行契約：[AD&C本体の共通標準](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)。本書は共有KBで利用する具体化であり、個人KBの非公開内容を共有へ移さない。
 
 ## 1. 先人の定石を、利用者の通常作業へ埋め込む
 
@@ -70,7 +70,7 @@
 
 **文末のコピー用表示**：短いMD・スクリプト・指示文（目安4,000文字まで）は、可能なUIで全文をコピーできるブロックを回答末尾に置く。長文は保存・読戻し確認済みの**個別ファイルリンクを主経路**とし、末尾には短い再利用用指示のみ置く。省略・抜粋であることを表示し、全文が必要なら分割して提示する。利用者がクラウド経由の受取成功を報告した場合、その経路だけをPASSに更新する。
 
-詳細な品質ゲートと公式ヘルプは[本体の共通標準](https://github.com/Yosio-DMZ-C/AgentOS-C/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)に置き、同じ文章を各Skillへ重複展開しない。
+詳細な品質ゲートと公式ヘルプは[本体の共通標準](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)に置き、同じ文章を各Skillへ重複展開しない。
 
 ## 4. 共有KBの記録方法
 
