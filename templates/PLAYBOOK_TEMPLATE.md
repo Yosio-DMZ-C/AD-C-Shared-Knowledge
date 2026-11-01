@@ -36,6 +36,10 @@
 
 背景が未確定なら `BACKGROUND_MISSING`／`UNVERIFIED`。新規Playbook、作業指示、成果報告、別AIへの受渡しにも**背景本文を継承**し、参照リンクだけで済ませない。背景は理解用であり、必須の成果物文面や表示内容とは別。個人・機密背景は非公開側で保持。固定出力契約に余計な行を追加しない。詳しい規則は [AD&C本体の背景契約](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md) に従う。
 
+## 行き詰まり時の更新推薦（全Playbookへ継承）
+
+通常は個人の採用済み手順を維持する。以前の成功手順が動かなくなった／通常の1回の再試行でも回復しない場合だけ、共有KBの新版・既知の失敗事例を確認し、条件が合う更新を推薦する。**自動採用せず、本人の判断と旧版へ戻る経路を守る**。スケジュール機能は不要。詳細は[AD&C共通実行標準の「行き詰まり時の共有KB更新推薦」](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)を継承し、個別手順に繰り返し書かない。
+
 ## 制作・改訂時の情報引継ぎ品質（全Playbookへ継承）
 
 **SOURCE_ANCHOR（背景とは別）**：同名別物・誤情報により成果物が変わる場合、軽い前工程で正式名称、提供元・分類、確認済み一次URLと確認日、混同対象を確定し、既存の案件正本に置く。未確認の公式性は `UNVERIFIED`。URLだけではなく「何の対象か」を1文で渡す。
