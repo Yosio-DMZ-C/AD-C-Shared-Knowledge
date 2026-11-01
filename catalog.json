@@ -94,7 +94,7 @@
       "title": "山歩きルート検索・交通3方式・服装ワークシート",
       "kind": "playbook",
       "domain_id": "outdoor-recreation",
-      "version": "0.3.9",
+      "version": "0.4.0",
       "path": "skills/hiking-route-search/SKILL.md",
       "status": "user_adopted_trial",
       "visibility": "public_manual_reference",
@@ -102,7 +102,7 @@
       "auto_install": false,
       "risk": "physical_safety_route_planning",
       "scope": "日本の初心者・一般登山者の現地コース探索。利用時に公式規制・気象・登山道を再確認",
-      "review_status": "user_approved; author_self_review; independent_cold_start=NOT_RUN; formal_distribution_review=NOT_RUN",
+      "review_status": "user_approved; author_self_review; python_qa_beta_added; python_runtime_test=NOT_RUN; independent_cold_start=NOT_RUN; formal_distribution_review=NOT_RUN",
       "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/pull/26",
       "review_due": "2026-12-01",
       "license": "CC-BY-SA-4.0"
