@@ -29,8 +29,14 @@
 
 フィードバックの投稿は、利用の必須条件ではありません。投稿するときは本人が対象と公開先を選び、必要部分の匿名化・再同定リスク・権利を確認します。相談の全文や利用ログの自動アップロードは行いません。
 
+## 試用目録と正式配布目録の分離（schema_version 0.3.0、2026-11-01）
+
+`catalog.json`の`preview_items`は**人間・AIが任意に実取得して試せる公開手順書の索引**であり、利用者による採用があっても、正式配布 `items` や `core` に自動昇格させません。`draft_candidates`は**未マージPR等の審査待ちの所在**を示すだけで、実行正本ではありません。正式ゲート（独立レビュー、安全・権利・期限検査、manifest、リリース承認）が不足している項目は `distribution_ready=false` を維持します。
+
+試用の利用者は本文を直接開いて適用条件・最新の公式安全情報を確認し、危険な条件や不足のある案は中断します。試用版のURLをAIに渡して読ませることはできますが、**既定での自動実行・無条件の推奨・自動更新は禁止**。新しいスキーマv0.3.0に未対応の既存消費側は互換性を推測して読み進めず停止します。正式配布側の`items`、`core`、`advisories`と旧版との区別を保持します。
+
 ## 初期カタログ契約
 
-`catalog.json`の`schema_version`はこの契約の版です。`supported_kinds`はclaim_mapとplaybook、`domains`は候補分野、`items`は正式配布対象、`core`はその中から選ぶIDと版、`advisories`は影響ID・版範囲・状態・理由・確認日を持つ訂正情報です。初期値はitems/core/advisoriesとも空で、`distribution_ready=false`です。ライセンスはCC-BY-SA-4.0を採用済みですが、コンテンツは未制作です。空のadvisoriesは、将来の項目の安全性を保証しません。
+`catalog.json`の`schema_version`はこの契約の版です。`supported_kinds`はclaim_mapとplaybook、`domains`は候補分野、`items`は正式配布対象、`core`はその中から選ぶIDと版、`advisories`は影響ID・版範囲・状態・理由・確認日を持つ訂正情報です。設計初期値はitems/core/advisoriesとも空です。現在も**正式配布のitems/core/advisoriesは空**で、`distribution_ready=false`です。一方、`preview_items`に公開試用Playbook 1件、`draft_candidates`に未マージの旅行草案1件があります。ライセンスはCC-BY-SA-4.0を採用済みですが、正式配布コンテンツは未審査です。空のadvisoriesは、将来の項目の安全性を保証しません。
 
 itemsを追加する時点で、固定ID、kind（claim_map / playbook）、domain_id、version、本文パス、完全なコミットSHA、SHA-256、status、risk、対象条件、reviewed_at、review_due、license、レビュー証拠参照を必須化します。coreはitemsに存在する同じID・版だけを参照します。配布manifestとカタログの循環hashを避け、manifestは対象本文・メタデータのhashを保持し、manifest自身の固定先はリリースコミットにします。

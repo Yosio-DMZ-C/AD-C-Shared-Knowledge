@@ -1,7 +1,7 @@
 {
-  "schema_version": "0.2.0",
-  "catalog_version": "0.2.0",
-  "updated_at": "2026-10-09",
+  "schema_version": "0.3.0",
+  "catalog_version": "0.3.0",
+  "updated_at": "2026-11-01",
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
@@ -66,6 +66,18 @@
       "title": "生活基盤・人間関係",
       "phase": "extension",
       "status": "proposed"
+    },
+    {
+      "id": "outdoor-recreation",
+      "title": "山歩き・アウトドア",
+      "phase": "pilot",
+      "status": "user_adopted_trial"
+    },
+    {
+      "id": "travel-planning",
+      "title": "旅行の計画・移動",
+      "phase": "candidate",
+      "status": "draft"
     }
   ],
   "items": [],
@@ -75,5 +87,38 @@
   "supported_kinds": [
     "claim_map",
     "playbook"
+  ],
+  "preview_items": [
+    {
+      "id": "PB-HIKING-ROUTE-001",
+      "title": "山歩きルート検索・交通3方式・服装ワークシート",
+      "kind": "playbook",
+      "domain_id": "outdoor-recreation",
+      "version": "0.3.9",
+      "path": "skills/hiking-route-search/SKILL.md",
+      "status": "user_adopted_trial",
+      "visibility": "public_manual_reference",
+      "distribution_ready": false,
+      "auto_install": false,
+      "risk": "physical_safety_route_planning",
+      "scope": "日本の初心者・一般登山者の現地コース探索。利用時に公式規制・気象・登山道を再確認",
+      "review_status": "user_approved; author_self_review; independent_cold_start=NOT_RUN; formal_distribution_review=NOT_RUN",
+      "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/pull/26",
+      "review_due": "2026-12-01",
+      "license": "CC-BY-SA-4.0"
+    }
+  ],
+  "draft_candidates": [
+    {
+      "id": "PB-TRAVEL-FIRST-001",
+      "title": "旅行の玄人が最初に見る5項目",
+      "kind": "playbook",
+      "domain_id": "travel-planning",
+      "version": "0.1.1-preview",
+      "status": "draft_pr_unmerged",
+      "pull_request_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/pull/15",
+      "review_status": "independent_review=NOT_RUN; simulation=NOT_RUN; human_evaluation=NOT_RUN",
+      "distribution_ready": false
+    }
   ]
 }
