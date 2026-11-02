@@ -39,3 +39,25 @@ Every action not performed must be labeled `未実施（元工程：...／理由
 
 ## Entry-first creation and acceptance
 Before creating or substantially revising a playbook or worksheet, check existing shared/personal KB procedures and Skills for equivalent purpose; distinguish Active, Draft, superseded, and withdrawn. Define a natural-language request that should lead to the procedure, its directly fetchable canonical source, version and applicability. Treat `request → discover → fetch → execute in specified order → inspect required output → present useful result` as one deliverable. A README link alone is not automatic discovery. Map evidence to existing Q1 (entry and document), Q2 (independent cold-start interpretation), Q3 (actual sequence and safety gates), and Q4 (user-facing result); untested stages remain `未実施（元工程：...／理由：...）`. Avoid creating another registry or gate. Preserve private identifiers outside public KB.
+
+## Markdown-embedded Python pilot (candidate; not adopted in main)
+
+Human-editable purpose, authorization, stop conditions, and recovery rules remain authoritative prose. A trusted runner MAY extract the fenced block labeled `python adnc-generated-steps`, execute it only in an isolated no-network test environment, and replace only text between the two AUTO markers. Never execute arbitrary downloaded Markdown code or silently overwrite human prose. For production use, require approved runtime, exact pre-write SHA, conflict check, backup and restore test, and readback. Thumbnail/image composition remains excluded pending separate specialist review.
+
+<!-- ADNC:AUTO:BEGIN -->
+1. Read current canonical source and record its revision.
+2. Check authorization, conflict and recovery evidence.
+3. Execute only authorized reversible actions; read back and report.
+<!-- ADNC:AUTO:END -->
+
+```python adnc-generated-steps
+STEPS = [
+    "Read current canonical source and record its revision.",
+    "Check authorization, conflict and recovery evidence.",
+    "Execute only authorized reversible actions; read back and report.",
+]
+def render_steps():
+    return "\\n".join(f"{i}. {step}" for i, step in enumerate(STEPS, 1))
+```
+
+Pilot acceptance: preserve all text outside AUTO markers byte-for-byte, compare expected SHA before write, verify idempotence, and restore from a verified backup. A successful isolated pilot does not prove a Drive write, an AI cold start, or production execution.
