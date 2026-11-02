@@ -62,6 +62,13 @@ def render_steps():
 
 Pilot acceptance: preserve all text outside AUTO markers byte-for-byte, compare expected SHA before write, verify idempotence, and restore from a verified backup. A successful isolated pilot does not prove a Drive write, an AI cold start, or production execution.
 
+
+## Completion-through-repair rule (2026-11-02, user-approved)
+
+When asked to **修正・検証する**, do not stop at inspecting, proposing, drafting, opening a PR, or recording NOT_RUN. Attempt every remaining in-scope, authorized, safe step **in this execution**: resolve the correct canonical document and registry entry, obtain pre-edit bytes/ID/version and recovery copy, diagnose write-interface and conflict failures, modify the original canonical file (same ID when required), update dependent links/indexes and required Git/main, then re-fetch each destination and compare intended content. A failed first attempt is a reason for targeted diagnosis and one safe retry after checking whether the first write took effect, not an automatic end of work. Seek an equivalent supported write mechanism when the initially selected connector cannot complete the operation; avoid duplicate or replacement files presented as original changes.
+
+**Exit decision is based on the user's outcome, not on the amount of work performed.** Only report completed when every required canonical and downstream acceptance check is PASS. A file being fetched, a draft being made, or a blocker being described is not the requested completion. If—and only if—a concrete permission, safety, irreversibility, exhausted technical route, or verified external-dependency boundary actually prevents completion, record the exact parent/step, observed cause, attempted recovery, and specific unblock action in the existing tracker, plus FAIL/NOT_RUN; do not conceal, downgrade, or forget the unfinished parent. Routine Git changes/merge are within the user-approved scope when needed for the intended result, but this does not authorize leaking private KB into public GitHub, deletion, privilege changes or unreviewed production effects.
+
 ## Scheduled leader execution contract (2026-11-02)
 
 This section is the external operational contract for the existing three-times-daily leader automation; the worksheet above remains its report template. Follow private START_HERE → registry → current leader Playbook → 80_reviews, Context, BUILD_PLAN and OPERATING_RULES before relying on this public summary. Never copy private KB content or identifiers into public GitHub. If a required source cannot be fetched, label that branch NOT_RUN rather than inventing its state.
