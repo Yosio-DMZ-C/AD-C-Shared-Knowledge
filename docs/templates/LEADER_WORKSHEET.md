@@ -65,7 +65,7 @@ STEPS = [
     "Execute only authorized reversible actions; read back and report.",
 ]
 def render_steps():
-    return "\\n".join(f"{i}. {step}" for i, step in enumerate(STEPS, 1))
+    return "\n".join(f"{i}. {step}" for i, step in enumerate(STEPS, 1))
 ```
 
 Pilot acceptance: preserve all text outside AUTO markers byte-for-byte, compare expected SHA before write, verify idempotence, and restore from a verified backup. A successful isolated pilot does not prove a Drive write, an AI cold start, or production execution.
