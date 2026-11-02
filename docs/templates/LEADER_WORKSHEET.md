@@ -12,7 +12,7 @@ Use this worksheet during the work, then reuse it as the final report. This is a
 
 Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never report a draft or unverified change as DONE.
 
-## Data-write propagation gate for all agents (2026-11-02; proposed)
+## Data-write propagation gate for all agents (2026-11-02; approved)
 
 This is a **cross-agent acceptance check**, not a second private-KB playbook. Before the secretary, leader, scheduled task, or delegated AI writes into an existing KB, fetch its CURRENT entry → registry/INDEX → canonical write/update procedure **in full**, from within the authorized environment. Do not substitute this public worksheet for private KB write instructions. Reading a link or an old summary is not receipt of the current procedure.
 
