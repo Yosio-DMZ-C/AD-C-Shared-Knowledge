@@ -93,7 +93,9 @@ Historical anchors are not live facts: recheck merged PR #50/#38, installer v1.5
 
 ## Markdown-embedded Python: single-Playbook operational acceptance gate (2026-11-02)
 
-**Decision ①: test only this leader Playbook first. Do not roll out to all Playbooks.** The human-readable instructions above remain authoritative. Python is limited to bounded, mechanical regeneration of an explicitly marked AUTO section, not policy decisions, external writes, status promotion, or silent repairs.
+**Decision ①: test only this leader Playbook first. Do not roll out to all Playbooks.**
+
+**Pilot-specific choice display (user correction):** ① Test and verify this one Playbook **(recommended; selected)**; ② Roll out to all Playbooks despite known risk **(not recommended, not authorized)**; ③ Explain the approach; ④ Hold. Never omit option ② merely because it is unsafe to execute automatically. Showing an option is not approval to perform it. This pilot-specific four-way comparison takes precedence over the generic delegate option for this particular question. The human-readable instructions above remain authoritative. Python is limited to bounded, mechanical regeneration of an explicitly marked AUTO section, not policy decisions, external writes, status promotion, or silent repairs.
 
 Acceptance procedure: (1) fetch the current main file and record Git blob SHA and original bytes; (2) create an isolated candidate, retaining all human-authored text and markers; (3) run the embedded or accompanying Python on that candidate twice and verify byte-for-byte idempotence; (4) verify unchanged human regions, correct AUTO boundaries, valid UTF-8, and no duplicated sections; (5) test malformed/missing markers, stale input SHA, and recovery from an immutable backup; (6) compare candidate to intended requirements and write only after all gates pass; (7) re-fetch the same canonical file and compare content, then verify any required registry/links. **A local pilot is not an operational PASS** until the actual current source, execution log, failures and post-write readback are recorded. Never invoke arbitrary Python from untrusted documents without inspection.
 
