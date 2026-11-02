@@ -12,6 +12,14 @@ Use this worksheet during the work, then reuse it as the final report. This is a
 
 Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never report a draft or unverified change as DONE.
 
+## Data-write propagation gate for all agents (2026-11-02; approved)
+
+This is a **cross-agent acceptance check**, not a second private-KB playbook. Before the secretary, leader, scheduled task, or delegated AI writes into an existing KB, fetch its CURRENT entry → registry/INDEX → canonical write/update procedure **in full**, from within the authorized environment. Do not substitute this public worksheet for private KB write instructions. Reading a link or an old summary is not receipt of the current procedure.
+
+Treat a write as one dependency chain: determine authorized scope and exact existing ID/current raw SHA → verify a byte-matching pre-write recovery source and conflicts → apply the minimum same-ID write → independently re-fetch raw bytes → recompute SHA and update existing registry entries and affected INDEX/context/reverse links → re-fetch all affected destinations. If a dependency remains stale or unknown, record the original parent as OPEN with observed failure, cause investigation and concrete unblock step. A successful Drive upload alone is never registry-sync PASS. Do not mask unresolved causes with an invented explanation.
+
+Keep human-readable purpose/decisions/stop rules in the existing natural-language procedure; use tested adapters or Python only for bounded mechanical checks. Respect separate permissions and public-main approval. Never copy private registry contents, Drive IDs/URLs, client data, or credentials to this public GitHub repo. Passing the rule to a task prompt is not proof a different chat or AI actually complied; independently exercised receipt and behavior are separate gates.
+
 ## Implementation-first policy
 When the user requests implementation, carry the approved, reversible work through the canonical source, necessary references, Git, and readback. Do not stop at a proposal, worksheet, or PR and call it done. Avoid repeated approval questions for the same authorized scope. Stop and ask only for a genuinely new approval boundary, an irreversible action, a public disclosure, or a blocked operation. Record remaining work in the existing tracker rather than creating duplicate open items.
 
