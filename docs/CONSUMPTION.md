@@ -37,6 +37,6 @@
 
 ## 初期カタログ契約
 
-`catalog.json`の`schema_version`はこの契約の版です。`supported_kinds`はclaim_mapとplaybook、`domains`は候補分野、`items`は正式配布対象、`core`はその中から選ぶIDと版、`advisories`は影響ID・版範囲・状態・理由・確認日を持つ訂正情報です。設計初期値はitems/core/advisoriesとも空です。現在も**正式配布のitems/core/advisoriesは空**で、`distribution_ready=false`です。一方、`preview_items`に公開試用Playbook 1件、`draft_candidates`に未マージの旅行草案1件があります。ライセンスはCC-BY-SA-4.0を採用済みですが、正式配布コンテンツは未審査です。空のadvisoriesは、将来の項目の安全性を保証しません。
+`catalog.json`の`schema_version`はこの契約の版です。`supported_kinds`はclaim_mapとplaybook、`domains`は候補分野、`items`は正式配布対象、`core`はその中から選ぶIDと版、`advisories`は影響ID・版範囲・状態・理由・確認日を持つ訂正情報です。設計初期値はitems/core/advisoriesとも空です。現在も**正式配布のitems/core/advisoriesは空**で、`distribution_ready=false`です。一方、`preview_items`に公開試用Playbook 2件（山歩き・共通チャット引継ぎ）、`draft_candidates`に未マージの旅行草案1件があります。ライセンスはCC-BY-SA-4.0を採用済みですが、正式配布コンテンツは未審査です。空のadvisoriesは、将来の項目の安全性を保証しません。
 
 itemsを追加する時点で、固定ID、kind（claim_map / playbook）、domain_id、version、本文パス、完全なコミットSHA、SHA-256、status、risk、対象条件、reviewed_at、review_due、license、レビュー証拠参照を必須化します。coreはitemsに存在する同じID・版だけを参照します。配布manifestとカタログの循環hashを避け、manifestは対象本文・メタデータのhashを保持し、manifest自身の固定先はリリースコミットにします。
