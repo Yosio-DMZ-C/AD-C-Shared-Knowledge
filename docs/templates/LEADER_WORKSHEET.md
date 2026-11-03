@@ -62,21 +62,9 @@ When a human changes the natural-language part: (1) compare it against a verifie
 
 Human-editable purpose, authorization, stop conditions, and recovery rules remain authoritative prose. A trusted runner MAY extract the fenced block labeled `python adnc-generated-steps`, execute it only in an isolated no-network test environment, and replace only text between the two AUTO markers. Never execute arbitrary downloaded Markdown code or silently overwrite human prose. For production use, require approved runtime, exact pre-write SHA, conflict check, backup and restore test, and readback. Thumbnail/image composition remains excluded pending separate specialist review.
 
-<!-- ADNC:AUTO:BEGIN -->
-1. Read current canonical source and record its revision.
-2. Check authorization, conflict and recovery evidence.
-3. Execute only authorized reversible actions; read back and report.
-<!-- ADNC:AUTO:END -->
+The executable/checkable AUTO region and literal Python STEPS source are located together in the final AI appendix. Human instructions above remain authoritative.
 
-```python adnc-generated-steps
-STEPS = [
-    "Read current canonical source and record its revision.",
-    "Check authorization, conflict and recovery evidence.",
-    "Execute only authorized reversible actions; read back and report.",
-]
-def render_steps():
-    return "\n".join(f"{i}. {step}" for i, step in enumerate(STEPS, 1))
-```
+
 
 Pilot acceptance: preserve all text outside AUTO markers byte-for-byte, compare expected SHA before write, verify idempotence, and restore from a verified backup. A successful isolated pilot does not prove a Drive write, an AI cold start, or production execution.
 
@@ -173,3 +161,25 @@ If a required runtime or safe write interface is unavailable, record the precise
 ## Chat handoff / context compression (shared user-adopted trial; 2026-11-03)
 
 When an explicit leader-chat or cross-AI handoff is requested, refer to [the U-shaped context handoff Playbook](../../skills/chat-handoff/SKILL.md): retain the old role/contract and newest status, heavily trim routine middle dialogue, but preserve any middle decisions, approvals, safety constraints, evidence, and unresolved original-parent steps regardless of position. This creates a handoff *packet*, not a replacement for the current leader worksheet, private START_HERE/registry/write contract, or actual canonical evidence. Check source retrieval and real recipient restart separately; do not report receipt or execution PASS without observing it. Creative/video/thumbnail content and exact approved assets are not subject to mechanical bulk compression. This shared handoff procedure is user-adopted for manual trial by all roles, including secretary and scheduled-review handoffs, but formal distribution and independently verified recipient restart remain NOT_RUN. Do not change any recurring schedule merely by preparing a packet.
+
+---
+
+## AI execution appendix — machine-checkable STEPS (human instructions above take precedence)
+
+This appendix is for bounded mechanical validation. If a human changes the natural-language procedure, review that diff first, update this appendix to match the intended local customization, and test before reporting PASS. The runner never executes downloaded Python from Markdown and never rewrites human prose. No automatic upstream proposal or publication.
+
+<!-- ADNC:AUTO:BEGIN -->
+1. Read current canonical source and record its revision.
+2. Check authorization, conflict and recovery evidence.
+3. Execute only authorized reversible actions; read back and report.
+<!-- ADNC:AUTO:END -->
+
+```python adnc-generated-steps
+STEPS = [
+    "Read current canonical source and record its revision.",
+    "Check authorization, conflict and recovery evidence.",
+    "Execute only authorized reversible actions; read back and report.",
+]
+def render_steps():
+    return "\n".join(f"{i}. {step}" for i, step in enumerate(STEPS, 1))
+```
