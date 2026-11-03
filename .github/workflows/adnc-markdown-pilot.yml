@@ -1,0 +1,46 @@
+name: ADNC Markdown AUTO single-Playbook pilot
+on:
+  push:
+    paths:
+      - '.github/workflows/adnc-markdown-pilot.yml'
+      - 'skills/markdown-auto-pilot/runner.py'
+      - 'docs/templates/LEADER_WORKSHEET.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Exercise actual current worksheet in disposable copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/adnc"
+          cp docs/templates/LEADER_WORKSHEET.md "$RUNNER_TEMP/adnc/LEADER_WORKSHEET.md"
+          target="$RUNNER_TEMP/adnc/LEADER_WORKSHEET.md"
+          before="$(sha256sum "$target" | cut -d' ' -f1)"
+          python skills/markdown-auto-pilot/runner.py "$target" --expected-sha256 "$before"
+          python skills/markdown-auto-pilot/runner.py "$target" --expected-sha256 "$before" --write
+          after="$(sha256sum "$target" | cut -d' ' -f1)"
+          python skills/markdown-auto-pilot/runner.py "$target" --expected-sha256 "$after"
+          cmp "$target.adnc-backup" docs/templates/LEADER_WORKSHEET.md
+          python - "$target" <<'PY'
+          import sys
+          from pathlib import Path
+          original = Path('docs/templates/LEADER_WORKSHEET.md').read_bytes()
+          updated = Path(sys.argv[1]).read_bytes()
+          begin, end = b'<!-- ADNC:AUTO:BEGIN -->', b'<!-- ADNC:AUTO:END -->'
+          assert original.split(begin,1)[0] == updated.split(begin,1)[0]
+          assert original.split(end,1)[1] == updated.split(end,1)[1]
+          assert updated.decode('utf-8')
+          print('HUMAN_REGION PASS')
+          PY
+          cp "$target.adnc-backup" "$target"
+          cmp "$target" docs/templates/LEADER_WORKSHEET.md
+          echo "RESTORE PASS"
+          echo "ACTUAL_WORKSHEET_ISOLATED_PILOT PASS"
