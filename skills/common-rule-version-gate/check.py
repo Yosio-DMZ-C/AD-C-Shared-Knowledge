@@ -30,7 +30,7 @@ STATE_VERSION = 1
 
 def blob_sha(content):
     data = content.encode("utf-8")
-    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\\0" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\0" + data).hexdigest()
 
 
 def fetch(owner, repo, path, timeout=12):
@@ -58,7 +58,7 @@ def save_state(path, reviewed):
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:
             json.dump({"version": STATE_VERSION, "reviewed": reviewed}, f, ensure_ascii=False, indent=2)
-            f.write("\\n")
+            f.write("\n")
         os.replace(name, path)
     finally:
         if os.path.exists(name):
@@ -66,7 +66,7 @@ def save_state(path, reviewed):
 
 
 def self_test():
-    assert blob_sha("test content\\n") == hashlib.sha1(b"blob 13\\0test content\\n").hexdigest()
+    assert blob_sha("test content\n") == hashlib.sha1(b"blob 13\0test content\n").hexdigest()
     with tempfile.TemporaryDirectory() as directory:
         path = Path(directory) / "state.json"
         assert read_state(path) == {}
@@ -84,7 +84,7 @@ def self_test():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--state", type=Path, default=Path(".adnc-common-rule-state.json"))
-    parser.add_argument("--acknowledge", action="store_true", help="ONLY after reviewing full content of all changed sources")
+    parser.add_argument("--acknowledge-sha", action="append", default=[], metavar="KEY=SHA", help="Only after full human/AI review; repeat for changed sources")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
@@ -106,11 +106,22 @@ def main():
     result = {"status": "CHANGED" if changes else "SAME",
               "sources": {key: {"sha": value["sha"], "url": value["url"], "changed": key in changes}
                           for key, value in fetched.items()}}
-    if args.acknowledge:
-        if changes:
-            print(json.dumps({"status": "REVIEW_REQUIRED", "reason": "Fetch and read complete changed source before acknowledgment; no automatic approval"}, ensure_ascii=False))
-            return 10
-        result["acknowledged"] = True
+    if args.acknowledge_sha:
+        accepted = {}
+        try:
+            for item in args.acknowledge_sha:
+                key, sha = item.split("=", 1)
+                if key not in SOURCES or key in accepted or fetched[key]["sha"] != sha:
+                    raise ValueError("unknown key, duplicate, or mismatched SHA")
+                accepted[key] = sha
+            reviewed.update(accepted)
+            save_state(args.state, reviewed)
+        except (ValueError, OSError) as exc:
+            print(json.dumps({"status": "ACK_FAILED", "reason": str(exc)}, ensure_ascii=False))
+            return 30
+        changes = [key for key in SOURCES if reviewed.get(key) != fetched[key]["sha"]]
+        result["status"] = "CHANGED" if changes else "SAME"
+        result["acknowledged"] = sorted(accepted)
     print(json.dumps(result, ensure_ascii=False))
     return 10 if changes else 0
 
