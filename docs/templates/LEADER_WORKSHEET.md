@@ -109,6 +109,12 @@ Batch permission never bypasses separate explicit gates for new scope, irreversi
 
 **Pilot promotion gate:** isolated test PASS may authorize a *single-Playbook trial*, but production adoption requires a trusted installed runner, real-current-source write/readback, recovery proof, and independent operation evidence. Creative video/thumbnail Playbooks remain outside mechanical batch modification.
 
+### Single-Playbook runner implementation (2026-11-03)
+
+The bounded pilot runner is [skills/markdown-auto-pilot/runner.py](../../skills/markdown-auto-pilot/runner.py). It **does not execute** Markdown-embedded code; it parses the literal `STEPS` list, generates only the AUTO region, requires the exact input SHA-256, checks repeat rendering, and preserves a byte-identical backup on write. In a trusted checkout, compute the SHA-256 of the current local worksheet, then invoke `python skills/markdown-auto-pilot/runner.py docs/templates/LEADER_WORKSHEET.md --expected-sha256 <sha256>` for a read-only check. Add `--write` only after scope, recovery and conflict checks. A preexisting backup blocks overwrites; retain the backup until recovery has been checked.
+
+**Evidence status:** isolated Python fixture tests 3/3 PASS, current GitHub main AUTO block and literal steps independently compared PASS, runner GitHub main commit and readback PASS. Executing the runner against the complete current GitHub worksheet in a local checkout, performing an actual write/readback of that exact source, and independent recipient cold-start are **NOT_RUN**. Therefore this is a *single-Playbook candidate implementation*, not production adoption and not permission for rollout. No creative/thumbnail bulk application.
+
 ## Markdown-embedded Python: single-Playbook operational acceptance gate (2026-11-02)
 
 **Decision ①: test only this leader Playbook first. Do not roll out to all Playbooks.**
