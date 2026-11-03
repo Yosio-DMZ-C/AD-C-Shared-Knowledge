@@ -109,6 +109,22 @@ Batch permission never bypasses separate explicit gates for new scope, irreversi
 
 **Pilot promotion gate:** isolated test PASS may authorize a *single-Playbook trial*, but production adoption requires a trusted installed runner, real-current-source write/readback, recovery proof, and independent operation evidence. Creative video/thumbnail Playbooks remain outside mechanical batch modification.
 
+### Development conversation modes and bounded autonomy (2026-11-03)
+
+**Entry forecast:** For every development request, infer an end-to-end plan: outcome and Definition of Done → canonical discovery → design → implementation → test/diagnose/repair → Git/reference integration and readback → independent operational verification when needed. Show current phase, remaining estimated loops (a range), evidence needed, dependencies, and recommended next action. Skip irrelevant phases, preserve the original parent ID, and update forecasts when evidence changes.
+
+**Three interaction modes:** **逐次確認** executes one meaningful step, reports evidence, and waits for user input. **フェイズ完走** (default for reversible ordinary development) iterates diagnosis, safe correction and readback until the current phase exit criteria are satisfied or an enforceable cap/stop is reached, without repeated approvals. **完成まで委任** continues across phases only under a preauthorized, enforceable execution contract, with checkpoint and recovery records. Never imply that a normal chat runs unattended for 24 hours.
+
+**Execution contract:** record parent ID, exact scope and allowed write targets, acceptance criteria, mode, estimated loop count, hard limit on attempts/time and optionally measurable cost, checkpoint cadence, recovery path, reporting destination, and hard stops. 'Unlimited loops' requires an independent finite time or cost cap that the runtime can actually enforce. If a requested cap is not measurable, disclose that limitation and use an enforceable alternative or ask once. Stop at expiration; never auto-renew.
+
+**Recommended action controls:** When only one next meaningful action exists, show **one** action, such as 「独立検証を実行」. For a genuine iterative phase, offer **two primary choices**: 「このフェイズをクリアするまで進める」 (recommended for safe reversible work) and 「各ステップを確認しながら進める」. Add 「完成まで任せる（上限付き）」 only when relevant and a real persistent executor and enforceable limits are available. Use clickable controls only when supported; otherwise show concise numbered choices. A control must trigger its described action. Do not ask again after valid same-scope approval.
+
+**Safety and quality:** Mode selection never overrides existing approval gates, including the three-stage human approval protocol. Stop for new scope, unapproved public/production release, irreversible effects, deletion, permission changes, payments, disclosure of private data, missing rollback, conflict, or exceeded limits. Report observed facts, cause (proven/hypothesized/unknown), smallest safe fix and readback on each loop; no fabricated PASS or recipient behavior. At a limit, checkpoint and report remaining work. A phase completes only when its exit tests PASS.
+
+**Creative exception:** creative video, thumbnails, image generation, subjective design decisions and exact approved assets are excluded from bulk mechanical modification and autonomous approval. Specialist Playbooks govern those decisions; only separately scoped mechanical support work may be automated.
+
+**Independent acceptance cases:** one-action path, two-choice loop, bounded persistent delegation, no duplicate approvals, safety stops, creative exclusion, cause/readback reporting. Cross-AI behavior remains NOT_RUN until a separate recipient executes and reports evidence.
+
 ### Single-Playbook runner implementation (2026-11-03)
 
 The bounded pilot runner is [skills/markdown-auto-pilot/runner.py](../../skills/markdown-auto-pilot/runner.py). It **does not execute** Markdown-embedded code; it parses the literal `STEPS` list, generates only the AUTO region, requires the exact input SHA-256, checks repeat rendering, and preserves a byte-identical backup on write. In a trusted checkout, compute the SHA-256 of the current local worksheet, then invoke `python skills/markdown-auto-pilot/runner.py docs/templates/LEADER_WORKSHEET.md --expected-sha256 <sha256>` for a read-only check. Add `--write` only after scope, recovery and conflict checks. A preexisting backup blocks overwrites; retain the backup until recovery has been checked.
