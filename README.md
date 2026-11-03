@@ -25,6 +25,12 @@
 **独立試験の指示文は、1行目を必ず「対象名＋独立試験」とする。** 例：`AD&C 開発リーダーPlaybook 独立試験`、`AD&C 山歩きPlaybook 独立試験`。`独立試験｜対象名`や単独の`独立試験`を先頭に置かず、チャット一覧で対象が判別できるようにする。開発・秘書・調査・制作・一般のチャット引継ぎで共通適用し、個別Playbookへ同文を大量複製しない。**指示の提示／相手の取得／独立試験実行は別判定**。別AIへの自動適用は保証しない。
 
 
+### 全担当共通：共通規則の版確認ゲート（2026-11-03／限定試行）
+
+実行型Playbookの作業開始時に、共通規則の現行版を機械的に確認する。**共通規則の更新を検出したら、変更後の全文を実取得・再確認してから作業を続ける。** 新チャット・前回の取得証跡がない場合も全文取得する。未変更なら、当該チャット／実行環境で前回の全文取得・確認が証明できる場合だけ再利用する。別チャットのローカル状態を共通の既読証拠にしない。
+
+読取専用の限定試行ツール：[共通規則SHAゲート](skills/common-rule-version-gate/check.py)。対象は公開GitHub mainの共有READMEとAD&C本体の共通実行標準。`python check.py --state .adnc-common-rule-state.json` で現在のGit blob SHAを照会し、`SAME` (exit 0) / `CHANGED` (exit 10) / `UNKNOWN` (exit 20) / `INVALID_STATE` (exit 30) を返す。初回はCHANGEDとなる。**CHANGED時は更新後の正本全文を別途取得・確認**し、取得したSHAと一致するものだけ `--acknowledge-sha shared=SHA --acknowledge-sha execution=SHA` で記録する。ツール自体は全文読解もPlaybook実行も行わない。UNKNOWNや取得失敗時は更新を見落としたまま進まず、原因と未実施を報告する。Python/外部アクセス不能時はGitHub connector等で現行SHA・全文を直接取得する。GitHubのSHA確認とAIの実際の理解は別ゲート。Pythonが動く常駐ランナーのない通常チャットで自動起動する保証はない。
+
 ### 全Playbook共通：目的と背景の継承（2026-10-31採用）
 
 利用者に情報・結果を提示する場合、また調査・制作・引継ぎ指示を他のAIへ渡す場合、**【目的】1文 → 【背景】2〜3行（対象／狙い／位置づけ）→【必須条件】→【結果・検収】** を先頭近くの基本契約とする。各Skillは [AD&C本体の背景契約](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md) を継承する。案件背景は個人KBのProject/Area Context等を実取得し、背景情報を受け手に読める形で渡す。リンクのみで代用せず、背景が不明なら `BACKGROUND_MISSING`、未確認を事実に変えない。
