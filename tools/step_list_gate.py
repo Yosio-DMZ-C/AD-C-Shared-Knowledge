@@ -9,7 +9,7 @@ import sys
 
 BEGIN = "<!-- ADNC:AUTO:BEGIN -->"
 END = "<!-- ADNC:AUTO:END -->"
-FENCE = re.compile(r"^```python adnc-generated-steps[ \t]*\r?\n(.*?)^```[ \t]*$", re.M | re.S)
+FENCE = re.compile(r"^```python adnc-generated-steps[ \t]*\r?\n(.*?)^```[ \t]*\r?$", re.M | re.S)
 
 def verify(raw: bytes, expected_sha256: str) -> int:
     if hashlib.sha256(raw).hexdigest() != expected_sha256:
