@@ -99,6 +99,16 @@ This section is the external operational contract for the existing three-times-d
 
 Historical anchors are not live facts: recheck merged PR #50/#38, installer v1.5.6, PR #32, KB version choices and Muse receipt before reporting current state. Keep the existing T005 safety-comparison experiment separate; its effectiveness remains unproven until measured.
 
+## Development execution budget and approval cadence (2026-11-03; user-approved)
+
+Before a multi-step development or repair task, estimate the **number of verification/repair loops remaining** and state the estimate, scope, acceptance criteria and uncertainty in plain language. Offer two interaction modes **only when no valid mode authorization already covers the work**: (A) step-by-step, pause for a user decision after each loop; (B) delegated/batch, request **one explicit approval** for up to N loops and proceed autonomously through testing, diagnosis, safe repair, canonical integration and readback. A user may choose a different cap. Default recommendation: batch for routine reversible work; step-by-step for exploratory or high-impact choices. Do not ask again when the user has already authorized the same scope and loop budget; the current instruction to perform approximately three loops is such authorization.
+
+At each loop: (1) obtain newest canonical state and identify the smallest failure; (2) run the actual check and safe correction; (3) read back the changed state and log PASS/FAIL/NOT_RUN with the cause and next action. Count attempts explicitly (e.g. 1/3, 2/3, 3/3). A loop is not an unconditional retry of a failed write: inspect whether a previous attempt took effect first. If the estimate changes materially, report remaining loops and request additional authorization **only if the agreed budget or scope would be exceeded**. Do not silently expand from one Playbook to all Playbooks.
+
+Batch permission never bypasses separate explicit gates for new scope, irreversible changes, external publication, access/permission changes, payments, disclosure of private data, or required release approval. At the budget limit, deliver observed results and unresolved causes; never invent completion. A user selecting step-by-step must receive a real pause between loops. Keep this decision in natural-language Markdown; do not generate policy or approval decisions through Python.
+
+**Pilot promotion gate:** isolated test PASS may authorize a *single-Playbook trial*, but production adoption requires a trusted installed runner, real-current-source write/readback, recovery proof, and independent operation evidence. Creative video/thumbnail Playbooks remain outside mechanical batch modification.
+
 ## Markdown-embedded Python: single-Playbook operational acceptance gate (2026-11-02)
 
 **Decision ①: test only this leader Playbook first. Do not roll out to all Playbooks.**
