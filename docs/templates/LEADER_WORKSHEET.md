@@ -164,6 +164,12 @@ When an explicit leader-chat or cross-AI handoff is requested, refer to [the U-s
 
 ---
 
+### Human-edit detection: executable bounded gate (2026-11-03)
+
+The [single-Playbook runner](../../skills/markdown-auto-pilot/runner.py) accepts `--baseline PATH` in addition to the required current `--expected-sha256`. The baseline must be the verified previous complete worksheet. It computes **separate human-section SHA-256** values using the unique `## AI execution appendix` boundary, emits a unified human diff, and blocks writes on any human change with `REVIEW_REQUIRED`. Never automatically regenerate over a changed human section; AI must infer the intent, clarify only material ambiguity, update the machine section accordingly, and then rerun tests against an explicitly reviewed baseline. This gate detects **text changes**, not semantic intent or authorization. It does not automatically read Git history or automatically invoke Python in chat.
+
+**Acceptance:** current and baseline same → no human change; changed human wording → REVIEW_REQUIRED and no write; changed machine appendix only → human UNCHANGED; missing/duplicated appendix → error; stale full-file SHA → refuse. These behavior cases require execution evidence before marking operational PASS. The upstream opt-in rule above still applies; no automatic proposal or acceptance.
+
 ## AI execution appendix — machine-checkable STEPS (human instructions above take precedence)
 
 This appendix is for bounded mechanical validation. If a human changes the natural-language procedure, review that diff first, update this appendix to match the intended local customization, and test before reporting PASS. The runner never executes downloaded Python from Markdown and never rewrites human prose. No automatic upstream proposal or publication.
