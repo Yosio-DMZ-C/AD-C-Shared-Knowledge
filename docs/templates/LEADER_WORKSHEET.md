@@ -89,6 +89,21 @@ After the three-loop pre-question review, ask only about an unresolved item requ
 
 Use the latest user-corrected choice semantics: ① delegate to a verified active responsible leader **only if such a leader exists**, ② prepare a standalone new-chat delegation instruction, ③ explain in more detail, ④ hold. Automatic secretary/leader repairs belong **before** the question and are not an option. Show one question at a time, at most ten, and do not re-ask settled approvals. If no genuine human decision remains, report 「本人判断が必要な質問：0件」 and show no inert controls. Keep recipient acceptance, actual execution and readback as separate statuses. This is a presentation requirement, not authorization to alter private KB or bypass any existing gate.
 
+## DESIGNER'S NOTE — 人間が迷わず選べる一問一答UI（2026-11-05、利用者の設計知見）
+
+> 「ユーザーを事前にリードして、迷わせないためにボタンを表示するところの整理には特に時間をかけました」
+
+これは装飾の話ではない。AIにとっては複数行の文字列・分岐条件・状態遷移として表現しやすいが、人間は画面を視覚的に走査し、位置・形・強調・色・アイコン・押せることを手掛かりに判断する。**文章として正しいだけでは、使いやすいUIとは限らない。** 一問一答では①最新の状況、②今なぜ本人判断が必要か、③推奨案と理由、④明示的な質問文、⑤実際に押せる選択肢を、この順に配置する。AIの説明量より、人間が迷わず次の操作を選べることを優先する。
+
+設計・検収観点：
+- ボタンは文章中の番号の飾りではなく、対象親IDと選択意味を次のターンへ渡す**実際の動作**を持つ。操作できない環境では番号付きテキスト入力へ切替える。①稼働確認済み担当へ委任（いるときのみ）、②新チャット委任、③詳説、④保留の意味を保持し、選択だけで実行・受領・検収が済んだと誤表示しない。
+- 赤字などの警告色は危険・未解決・失敗等の**意味がある場合だけ**に使う。色だけに依存せず文字ラベルやアイコンも併用する。アイコンは意味の一貫性を保ち、飾りを増やさない。通常の見出し・情報は落ち着いた階層で示す。
+- 主操作の視認性、選択肢の間隔と押しやすさ、長文の折返し、画面サイズ、コントラスト、キーボード/読み上げ代替、誤操作の戻し方、操作後の状態表示を確認する。確定済みの選択を勝手に変更しない。
+- 新チャット委任の詳細はKBへ保存・読戻しし、画面の最終まとめには短い1行だけを案件別に集約する。押す前に何が起きるかを明確にし、押した後の委任・受領・実行・検収を別状態で表示する。
+- **研究メモ（未検証の仮説）**：文章だけの選択肢と、質問による事前誘導＋明確なラベルの操作ボタンを比較し、選択までの時間、誤選択、質問し直し、完了率、主観的な迷いを評価する。色・アイコン・位置・文面を一度に変えず、アクセシビリティ条件も含めて比較する。利用者の実体験を設計要件として記録するが、定量的な効果を実証済みとは扱わない。
+
+このノートは定例の表示・UXに関する知見であり、Work60第0工程、固定枠、KB書込ゲート、既存の権限・承認を変更しない。
+
 ## KB-backed short delegation and end-of-review summary (2026-11-05; user-approved)
 
 Adopt the useful **display and handoff pattern** of the existing private secretary half-monthly review Playbook; do not modify that secretary document or supersede private KB write contracts. First finish authorized work and the three-loop review. When the user actually selects new-chat delegation ②, save the **detailed, task-specific handoff inside the authorized private KB** under the original parent/review or its existing linked handoff location. Record the parent ID, latest verified facts and source links, decisions and approval limits, exact remaining work, blocker/cause status, acceptance/readback criteria and report destination. Preserve existing IDs and avoid parallel canonical Playbooks or duplicated trackers. Complete the full private KB gate (START_HERE → registry → SK-20261007-001 → backup/conflict → same-ID write → raw/SHA/INDEX/Context readback); if this cannot be completed, mark KB registration/entry as NOT_RUN with a specific unblock step. A newly stored file with no working entry is **not** a validated KB handoff.
