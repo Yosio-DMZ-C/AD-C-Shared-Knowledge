@@ -12,6 +12,17 @@ Use this worksheet during the work, then reuse it as the final report. This is a
 
 Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never report a draft or unverified change as DONE.
 
+## Execution estimate and approval modes (2026-11-05; user-directed)
+
+Before presenting an executable step list, state **estimated total steps N** (or a bounded range and why exact N is unknown), number already completed, remaining steps, dependencies and stopping gates. Distinguish the estimate from verified actual steps; update it after new findings. Do not invent steps merely to reach an approval quota. For a batch, show the complete currently known candidate list first and label each item as already done, reversible/authorized, decision required, blocked, or NOT_RUN.
+
+Offer exactly three approval modes when a user-facing choice is appropriate:
+1. **全てのステップを確認** — request confirmation before each executable step.
+2. **推奨5工程ずつ** — approve up to five currently listed, reversible, non-decision steps in sequence; verify and read back each, then report actual results and remaining estimate.
+3. **全部一括承認** — approve all currently listed reversible, non-decision steps, without a per-step confirmation; verification and readback are still mandatory. This is bounded by the shown list and existing execution limits, not an open-ended grant for new steps.
+
+In either batch mode, stop on failure, conflicting canonical state, ambiguous instruction, new decision, missing evidence or scope change. Exclude irreversible changes, deletion, public release, permissions, payment, PR merge and other separately gated actions. Never re-run completed checks solely to consume a batch. User's explicit choice takes precedence; do not silently interpret batch approval as authorization for a separate Work job or another AI. Record planned N, actual completed, remaining N, PASS/FAIL/NOT_RUN, exact changed IDs and readback. Preserve all existing canonical approval and Work60 A→B→Work/JOB_ID boundaries.
+
 ## Data-write propagation gate for all agents (2026-11-02; approved)
 
 This is a **cross-agent acceptance check**, not a second private-KB playbook. Before the secretary, leader, scheduled task, or delegated AI writes into an existing KB, fetch its CURRENT entry → registry/INDEX → canonical write/update procedure **in full**, from within the authorized environment. Do not substitute this public worksheet for private KB write instructions. Reading a link or an old summary is not receipt of the current procedure.
