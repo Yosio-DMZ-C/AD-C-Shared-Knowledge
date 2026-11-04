@@ -118,4 +118,7 @@ def main():
             os.unlink(tmp)
 
 if __name__=='__main__':
-    main()
+    try:
+        main()
+    except ValueError as exc:
+        raise SystemExit(f'ABORT: {exc}') from None
