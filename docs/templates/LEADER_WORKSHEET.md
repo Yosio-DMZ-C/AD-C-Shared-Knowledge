@@ -12,6 +12,16 @@ Use this worksheet during the work, then reuse it as the final report. This is a
 
 Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never report a draft or unverified change as DONE.
 
+## Work A/B/C reporting intake — leader read priority (user-approved 2026-11-05)
+
+For the dispatch-only Work flow, Work **sends task requests and stops**; the assigned chats execute and report for themselves. Do not make Work wait, collect responses, verify artifacts, or write Drive/GitHub reports. The existing scheduled leader patrol does retrieval and deduplication, without creating a new tracking system.
+
+- **A / strategic review — leader must read:** For every newly available A report, the leader retrieves and reads the **complete current report** before using its conclusions in the next strategic judgment. Read each JOB_ID + report version only once; carry its source link and the decisions adopted or rejected into the existing leader context. If the report cannot actually be retrieved, mark `LEADER_READ=NOT_RUN`, preserve the missing input, and never infer its contents.
+- **B / implementation — read on demand:** The scheduled patrol checks the minimum status for B (JOB_ID, artifact/revision, verification PASS/FAIL/NOT_RUN, blockers, next step). It fetches B's complete report and presents it to the leader **only** when relevant to that patrol's mission: an implementation/acceptance or release decision, a significant blocker/conflict, a safety/approval boundary, a strategic impact, or an unresolved dependency. Otherwise `B_DETAIL_READ=SKIP_NOT_NEEDED`, which is **not** `B_IMPLEMENTATION=NOT_RUN` or a failure.
+- **C / blog examples — optional receipt:** Once dispatched, do not chase or resubmit for missing reports. Consider a completion report only when it arrives or is independently available.
+
+Keep `DISPATCHED`, `AGENT_REPORTED`, `PATROL_RECEIVED`, `LEADER_READ`, and `IMPLEMENTATION_VERIFIED` distinct; neither a dispatch receipt nor a scheduled report update proves leader readback. Avoid re-reading identical evidence or escalating B by default. This changes report consumption, not the existing authorization, KB-write, publication, or material acceptance gates.
+
 ## Data-write propagation gate for all agents (2026-11-02; approved)
 
 This is a **cross-agent acceptance check**, not a second private-KB playbook. Before the secretary, leader, scheduled task, or delegated AI writes into an existing KB, fetch its CURRENT entry → registry/INDEX → canonical write/update procedure **in full**, from within the authorized environment. Do not substitute this public worksheet for private KB write instructions. Reading a link or an old summary is not receipt of the current procedure.
