@@ -23,6 +23,8 @@
 
 共通の判断・検査は [AD&C共通実行標準 §6.3.2〜§6.3.3](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md) に従う。
 
+**操作ワークシートを生成する場合の追加条件（該当時のみ）**：既存の[リーダー正本「Worksheet generation × execution — dual guarantee」](../docs/templates/LEADER_WORKSHEET.md#worksheet-generation--execution--dual-guarantee-for-secretary-ui-2026-11-06-user-directed)を参照し、人間操作が必要な項目について `コピー／次へ／新しいチャット／確認・選択` の実際の作用、引継ぎ元・先、未完了と検収条件を指定する。本文をコピーするだけの操作と次項目への状態遷移を混同しない。生成段階で抜けた操作は実行側が安全な範囲で補完するが、未承認の外部送信・チャット起動・書込・完了認定はしない。通常のPlaybook本文や固定形式の出力へ、不要なボタン欄・新しい台帳を追加しない。
+
 **実行指示書の品質基準（制作者チェック）**：現場用に仕立てるときは、重要な**完成条件→現行素材・正本の実取得先→実行工程→実物検収**が最後までつながっているか確認する。安全・費用・本人判断の境界も示す。新規採用・重要改訂では別の担当による実行解釈試験を行い、記述確認・理解・実作業・利用者の完成品評価を別々に `PASS/FAIL/NOT_RUN` で扱う。小変更では差分のみ確認し、10個の新章・毎回の重い審査は増やさない。
 
 ## 【目的】・【背景】（全Playbook共通・必須）
