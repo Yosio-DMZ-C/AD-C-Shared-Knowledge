@@ -22,6 +22,16 @@ For the dispatch-only Work flow, Work **sends task requests and stops**; the ass
 
 Keep `DISPATCHED`, `AGENT_REPORTED`, `PATROL_RECEIVED`, `LEADER_READ`, and `IMPLEMENTATION_VERIFIED` distinct; neither a dispatch receipt nor a scheduled report update proves leader readback. Avoid re-reading identical evidence or escalating B by default. This changes report consumption, not the existing authorization, KB-write, publication, or material acceptance gates.
 
+## Automations independent-chat delegation — report reception (2026-11-05; field-tested)
+
+For a one-off Automations delegation, the **requesting chat registers one task and stops**. Its registration receipt (TASK_CREATED) is not proof that the independent chat ran, delivered a report, or was read by the leader. Preserve unique JOB_ID, task ID and, when available, the independent chat URL. Do not create a second task for the same JOB_ID just because a result is pending. Do not restart paused Work dispatch.
+
+Every delegated A/B task must: (1) perform one authorized, independently checkable deliverable; (2) finish with a labeled LEADER_REPORT A/B plus JOB_ID, artifact/revision, actual PASS/FAIL/NOT_RUN, blocker and next action; (3) preserve the full report in that independent task's own chat; (4) use **only already authorized** outbound report channels. A native notification may be attempted once if officially available, but successful leader delivery cannot be claimed without confirmation. If delivery fails or is unavailable, report LEADER_DELIVERY=NOT_RUN. Never circumvent browser host restrictions or place private identifiers in public Issues.
+
+The existing scheduled patrol (not parent Work) retrieves the Automations result by **exact task ID**, compares the run ID and actual result, and deduplicates by JOB_ID plus artifact revision. The patrol transfers a source link and needed content to the established leader reporting context. The leader reads every new A report fully; B reports require status intake and detailed reading only if needed for acceptance, blockers or strategy; C remains optional. Patrol retrieval is not proof of leader reading. Record separately TASK_CREATED, TASK_RAN, AGENT_REPORTED, PATROL_RECEIVED, LEADER_READ and ARTIFACT_VERIFIED. Do not create another report tracker or recurring task.
+
+If cross-thread notification is unsupported, retain the durable independent-chat result for scheduled pickup, mark direct delivery NOT_RUN, and do not claim the leader was notified. Keep Work usage and Automations execution separate; no unverified usage-limit inference.
+
 ## Data-write propagation gate for all agents (2026-11-02; approved)
 
 This is a **cross-agent acceptance check**, not a second private-KB playbook. Before the secretary, leader, scheduled task, or delegated AI writes into an existing KB, fetch its CURRENT entry → registry/INDEX → canonical write/update procedure **in full**, from within the authorized environment. Do not substitute this public worksheet for private KB write instructions. Reading a link or an old summary is not receipt of the current procedure.
