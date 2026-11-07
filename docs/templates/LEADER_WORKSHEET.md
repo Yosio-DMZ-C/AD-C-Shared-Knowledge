@@ -23,11 +23,20 @@ Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never repo
 
 **リーダーの巡回**：既存周期を変更せず、成果・失敗・長期停滞を発見して、まず1件の修復または実務を進める。未検査の多さや報告書の形式だけで実務を停止しない。新DB/重複Issue/再承認ループを増やさない。
 
-## Work estimates and approvals: optional (2026-11-08)
-Estimate steps and ask for a per-step choice only when the user requests it or a new consequential approval is necessary. A user's existing explicit request authorizes in-scope reversible implementation. No mandated 3-option UI, pre-counted N, or five-step batching gate. Continue doing safe work after a recoverable failure and report what actually happened.
+## Work estimates and approvals: optional UI helper (2026-11-08)
+Use this **only when the human requests stepwise progress, bulk execution choices, or explicit control over execution**. Do not require it in ordinary authorized work. A user's existing explicit request authorizes in-scope reversible implementation, without routine reapproval.
+
+When needed, estimate total steps N (or a range), already completed, remaining, and real stopping conditions. Offer these established *working UI choices* with unchanged meaning:
+1. **全てのステップを確認** — pause for the user's decision before each executable step.
+2. **推奨5工程ずつ** — authorize up to five listed, reversible, non-decision steps, report actual results/readback, then request the next batch.
+3. **全部一括承認** — authorize the currently displayed reversible, non-decision steps together; not a blanket authorization of new tasks.
+
+Use actual interactive buttons when supported, passing the selected mode and known task scope into the next action. Otherwise show clearly numbered alternatives for a typed choice. Never render decorative inert controls. Public release, payment, deletion, permissions, merge and other separately gated actions are excluded. Do not repeat already completed steps to use a quota. Stop the affected high-risk or conflicted operation only, and continue independent safe work.
 
 ## KB write integration: leader post-audit (2026-11-08)
 Agents use the current canonical target and valid write permissions and avoid overwriting other people's changes. They should execute approved reversible updates, read back the changed target when feasible, and report any incomplete index/registry/hash propagation to the existing parent ID. A missing byte-perfect pre-write backup, all-source full-text fetch, or complete SHA graph must not prevent other safe work. The leader's existing scheduled review checks and repairs cross-reference, version, registry, and recovery issues afterwards. Never mark unverified propagation PASS. Never disclose private file IDs, registry data, or credentials in this public repository.
+
+**On-demand technical repair recipe, not a mandatory preflight:** When a real KB discrepancy or corruption risk is discovered, use the existing canonical IDs and relevant private procedure to check *only the affected chain*: current target and SHA/modified version → competing changes and recoverable history → authorized same-ID patch → raw readback → compare registry, INDEX, Context/reverse links → repair mismatches locally → read back again. Record what passed and what remains unknown. This recipe is available to the leader and specialist, not forced on every chat before useful work begins. A linked file or successful upload alone does not establish propagation or another AI's receipt.
 
 ## AD&C grand-design engineering principle (approved 2026-11-04)
 AD&C is a practical navigation system for imperfect humans and imperfect AI, not an attempt to attain 100% theoretical completeness. Select the context-appropriate scale of knowledge, show the next actionable turn, recalculate when reality changes, and preserve human control. Prefer small reversible implementations with measured user benefit over short-term logical elegance alone; use observed failures to revise hypotheses and procedures. Combine explicit rules with the empirically observed flexibility and behavior of each AI interface. Do not confuse an attractive theory with verified implementation, operation, effect, or independent test. Keep free/manual routes, bounded recovery, and evidence-based corrections. This principle guides design tradeoffs but never overrides existing permissions, private-KB write gates, or publication approvals.
