@@ -72,7 +72,7 @@ For every unfinished action, report: `NOT_RUN (origin: original parent request; 
 Every action not performed must be labeled `未実施（元工程：...／理由：...）`. Keep its parent task OPEN. A different workflow is not a reason to omit this label. For a transient tool failure, retry once after checking whether the first attempt succeeded, to avoid duplicate writes. Do not retry authorization denials, irreversible actions, or safety blocks automatically. Record the outcome of both attempts.
 
 ## Entry-first creation and acceptance
-Before creating or substantially revising a playbook or worksheet, check existing shared/personal KB procedures and Skills for equivalent purpose; distinguish Active, Draft, superseded, and withdrawn. Define a natural-language request that should lead to the procedure, its directly fetchable canonical source, version and applicability. Treat `request → discover → fetch → execute in specified order → inspect required output → present useful result` as one deliverable. A README link alone is not automatic discovery. Map evidence to existing Q1 (entry and document), Q2 (independent cold-start interpretation), Q3 (actual sequence and safety gates), and Q4 (user-facing result); untested stages remain `未実施（元工程：...／理由：...）`. Avoid creating another registry or gate. Preserve private identifiers outside public KB.
+Before creating or substantially revising a playbook or worksheet, check existing shared/personal KB procedures and Skills for equivalent purpose; distinguish Active, Draft, superseded, and withdrawn. Define a natural-language request that should lead to the procedure, its directly fetchable canonical source, version and applicability. Treat `request → discover → fetch → execute in specified order → inspect required output → present useful result` as one deliverable. A README link alone is not automatic discovery. When a task actually calls for independent discovery or behavior verification, reuse existing Q1 (entry and document), Q2 (independent cold-start interpretation), Q3 (actual sequence and relevant safety boundaries), and Q4 (user-facing result). Do not require all four as a routine preflight for every minor change; mark untested stages as untested rather than stopping unrelated safe work. **Design for easy execution first, not more compulsory verification.** Avoid creating another registry or gate. Preserve private identifiers outside public KB.
 
 ## Human-first Playbook customization and upstream proposal (2026-11-03; user-approved design, pilot only)
 
@@ -112,6 +112,16 @@ Use the latest user-corrected choice semantics: ① delegate to a verified activ
 > 「ユーザーを事前にリードして、迷わせないためにボタンを表示するところの整理には特に時間をかけました」
 
 これは装飾の話ではない。AIにとっては複数行の文字列・分岐条件・状態遷移として表現しやすいが、人間は画面を視覚的に走査し、位置・形・強調・色・アイコン・押せることを手掛かりに判断する。**文章として正しいだけでは、使いやすいUIとは限らない。** 一問一答では①最新の状況、②今なぜ本人判断が必要か、③推奨案と理由、④明示的な質問文、⑤実際に押せる選択肢を、この順に配置する。AIの説明量より、人間が迷わず次の操作を選べることを優先する。
+
+### DESIGNER'S NOTE 追補｜「作り込みは濃く、運用は軽く」（2026-11-08）
+
+> 「作りこみ重視、ワークシートなどのツールで品質を担保、過剰品質・検査は避ける」
+
+**ワークシートはAIを規則で縛る審査票ではなく、必要なときに素早く正しい作業・画面・判断へ辿るための小型KB／実行ツール。** ボタンの意味、視覚的な見落とし防止、操作の流れ、分岐、機械化できる作業は、道具側に具体的に作り込む。使わない案件にその検査やフォームを課さない。作り込みの濃さと、利用者・担当AIの運用負担の軽さを**両立**させる。
+
+新しい改善を採用するときの設計軸は、**「次のAIはこれで実務をやりやすくなるか、それとも全員の義務が増えるだけか」**。局所改善にはまず局所適用を選ぶ。本人が一案件について「はい」と答えても、全担当への汎用必須ルールの承認と見なさない。共通化するなら便利な機能・検索入口・失敗回避の知見を先に共有し、一律の事前チェック・重複承認・詳細報告は増やさない。必要な重大安全・機密・権限・不可逆操作と本人が特に指定した条件は守る。
+
+この判断の**作成・更新側の正本**は[共有KB開発プラクティスのPlaybook・ワークシート作成更新節](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)。本ノートはUIと道具の「なぜ」を残し、下記の具体的なボタン設計契約は維持する。別の審査Playbookや新しい管理表を作らない。
 
 設計・検収観点：
 - ボタンは文章中の番号の飾りではなく、対象親IDと選択意味を次のターンへ渡す**実際の動作**を持つ。操作できない環境では番号付きテキスト入力へ切替える。①稼働確認済み担当へ委任（いるときのみ）、②新チャット委任、③詳説、④保留の意味を保持し、選択だけで実行・受領・検収が済んだと誤表示しない。
