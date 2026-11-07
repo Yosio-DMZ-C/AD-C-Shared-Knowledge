@@ -12,24 +12,20 @@ Use this worksheet during the work, then reuse it as the final report. This is a
 
 Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never report a draft or unverified change as DONE.
 
-## Execution estimate and approval modes (2026-11-05; user-directed)
+## 最新運用決定（2026-11-08）｜管理を減らし、先に実行する
+このワークシートは**担当を止める審査票ではない**。本人の明示決定により、全担当は権限内で低リスク・可逆な工程を即実行し、最低限の確認と短い事実報告を行う。障害・未検査・原因未特定でも成功部分を残す。リーダーは既存の定時点検で新着差分と問題を見て、参照・registry/INDEX/Context/SHA・重複や未完了を必要に応じ自ら事後修復する。担当に完全照合を要求して再停止させない。
 
-Before presenting an executable step list, state **estimated total steps N** (or a bounded range and why exact N is unknown), number already completed, remaining steps, dependencies and stopping gates. Distinguish the estimate from verified actual steps; update it after new findings. Do not invent steps merely to reach an approval quota. For a batch, show the complete currently known candidate list first and label each item as already done, reversible/authorized, decision required, blocked, or NOT_RUN.
+**担当に求めるのは4項目のみ**：①実際にしたこと ②現物・変更先の実リンク ③未解決/未確認 ④次の一手。詳細な表や全件PASSを必須にしない。原因不明は不明でよい。できなかった作業をDONEと表示しない。報告のみを成果と数えない。
 
-Offer exactly three approval modes when a user-facing choice is appropriate:
-1. **全てのステップを確認** — request confirmation before each executable step.
-2. **推奨5工程ずつ** — approve up to five currently listed, reversible, non-decision steps in sequence; verify and read back each, then report actual results and remaining estimate.
-3. **全部一括承認** — approve all currently listed reversible, non-decision steps, without a per-step confirmation; verification and readback are still mandatory. This is bounded by the shown list and existing execution limits, not an open-ended grant for new steps.
+**着手に必要なのは**対象、現行の実物、基本権限、明らかな重複と重大事故の回避。旧「全段階の見積N」「5工程ずつの定型承認」「全原本の完全保全」「全参照ハッシュ連鎖一致」「別AI受領確認」「形式別の原因必須欄」は低リスク実務の事前条件から撤廃。必要な読戻しは対象だけ1回を基本とし、実行環境で不可なら未検査として後で監査する。公表、mainマージ、課金、権限、削除、機密送信、不可逆操作、競合上書き、生命安全はその枝だけ停止。正式なWork60 HOLDは変えない。
 
-In either batch mode, stop on failure, conflicting canonical state, ambiguous instruction, new decision, missing evidence or scope change. Exclude irreversible changes, deletion, public release, permissions, payment, PR merge and other separately gated actions. Never re-run completed checks solely to consume a batch. User's explicit choice takes precedence; do not silently interpret batch approval as authorization for a separate Work job or another AI. Record planned N, actual completed, remaining N, PASS/FAIL/NOT_RUN, exact changed IDs and readback. Preserve all existing canonical approval and Work60 A→B→Work/JOB_ID boundaries.
+**リーダーの巡回**：既存周期を変更せず、成果・失敗・長期停滞を発見して、まず1件の修復または実務を進める。未検査の多さや報告書の形式だけで実務を停止しない。新DB/重複Issue/再承認ループを増やさない。
 
-## Data-write propagation gate for all agents (2026-11-02; approved)
+## Work estimates and approvals: optional (2026-11-08)
+Estimate steps and ask for a per-step choice only when the user requests it or a new consequential approval is necessary. A user's existing explicit request authorizes in-scope reversible implementation. No mandated 3-option UI, pre-counted N, or five-step batching gate. Continue doing safe work after a recoverable failure and report what actually happened.
 
-This is a **cross-agent acceptance check**, not a second private-KB playbook. Before the secretary, leader, scheduled task, or delegated AI writes into an existing KB, fetch its CURRENT entry → registry/INDEX → canonical write/update procedure **in full**, from within the authorized environment. Do not substitute this public worksheet for private KB write instructions. Reading a link or an old summary is not receipt of the current procedure.
-
-Treat a write as one dependency chain: determine authorized scope and exact existing ID/current raw SHA → verify a byte-matching pre-write recovery source and conflicts → apply the minimum same-ID write → independently re-fetch raw bytes → recompute SHA and update existing registry entries and affected INDEX/context/reverse links → re-fetch all affected destinations. If a dependency remains stale or unknown, record the original parent as OPEN with observed failure, cause investigation and concrete unblock step. A successful Drive upload alone is never registry-sync PASS. Do not mask unresolved causes with an invented explanation.
-
-Keep human-readable purpose/decisions/stop rules in the existing natural-language procedure; use tested adapters or Python only for bounded mechanical checks. Respect separate permissions and public-main approval. Never copy private registry contents, Drive IDs/URLs, client data, or credentials to this public GitHub repo. Passing the rule to a task prompt is not proof a different chat or AI actually complied; independently exercised receipt and behavior are separate gates.
+## KB write integration: leader post-audit (2026-11-08)
+Agents use the current canonical target and valid write permissions and avoid overwriting other people's changes. They should execute approved reversible updates, read back the changed target when feasible, and report any incomplete index/registry/hash propagation to the existing parent ID. A missing byte-perfect pre-write backup, all-source full-text fetch, or complete SHA graph must not prevent other safe work. The leader's existing scheduled review checks and repairs cross-reference, version, registry, and recovery issues afterwards. Never mark unverified propagation PASS. Never disclose private file IDs, registry data, or credentials in this public repository.
 
 ## AD&C grand-design engineering principle (approved 2026-11-04)
 AD&C is a practical navigation system for imperfect humans and imperfect AI, not an attempt to attain 100% theoretical completeness. Select the context-appropriate scale of knowledge, show the next actionable turn, recalculate when reality changes, and preserve human control. Prefer small reversible implementations with measured user benefit over short-term logical elegance alone; use observed failures to revise hypotheses and procedures. Combine explicit rules with the empirically observed flexibility and behavior of each AI interface. Do not confuse an attractive theory with verified implementation, operation, effect, or independent test. Keep free/manual routes, bounded recovery, and evidence-based corrections. This principle guides design tradeoffs but never overrides existing permissions, private-KB write gates, or publication approvals.
@@ -39,13 +35,13 @@ AD&C is a practical navigation system for imperfect humans and imperfect AI, not
 **Anti-local-optimization cue (use at the existing decision point; no new audit loop):** When you are about to add another abstract layer, reopen a settled decision, repeat a local check without progress, or delay an approved reversible implementation for theoretical elegance, ask: *“Which specific user outcome or required safety condition will this next step improve?”* If a concrete benefit is absent, stop optimizing that part and proceed with the smallest already-authorized, verifiable action through actual output and readback. If a safety, rights, accuracy, or approval constraint is real, meet it rather than bypassing it. Separate `implementation`, `operation`, and `effect` as PASS / FAIL / NOT_RUN; do not count a plausible theory or documentation alone as proof of user benefit. This is a **decision reminder**, not an additional checklist, process or deadline.
 
 
-## Implementation-first policy
-When the user requests implementation, carry the approved, reversible work through the canonical source, necessary references, Git, and readback. Do not stop at a proposal, worksheet, or PR and call it done. Avoid repeated approval questions for the same authorized scope. Stop and ask only for a genuinely new approval boundary, an irreversible action, a public disclosure, or a blocked operation. Record remaining work in the existing tracker rather than creating duplicate open items.
+## Implementation-first policy (updated 2026-11-08)
+Do the work first within the authorized, reversible scope. Report real changes and remaining work in existing records. Never stop at a proposal or a long procedural explanation when an executable safe action is available. If an isolated operation is blocked, perform another independent step instead.
 
-## Exit gate (before reporting)
-Immediately before the final response, compare the user's requested outcome with actual canonical writes, required Git state, reference updates, and readback evidence. If an approved, safe step remains, perform it rather than stopping to propose it. If blocked by a genuine approval or safety boundary, mark the exact step NOT_RUN and report the reason; do not mark the task DONE.
+## Exit gate: brief result check (2026-11-08)
+Before reporting, identify the actual deliverable or change, the target readback when available, and any unresolved work. Do not demand all ancillary checks before producing partial but usable results. Distinguish a completed subtask from the entire project's verification.
 
-### β is a release stage, not a completion status (2026-10-29)
+## β is a release stage, not a completion status (2026-10-29)
 
 At the exit gate, **never use “β”, “experimental”, “research”, “PR prepared”, or “next phase” to close or downgrade an originally requested implementation**. Check three independent facts only where they are part of the original acceptance criteria: **(1) implementation** = required canonical source, Git/main (if required), dependent references/settings, and readback actually match; **(2) operation** = requested working path or independent recipient actually ran; **(3) effect** = the requested outcome or comparative evidence was actually measured. Mark each `PASS / FAIL / NOT_RUN / N/A (reason)`, and keep the *original parent task OPEN* for missing required parts. A committed **instruction** is implementation PASS for that instruction, **not** proof that other AI agents obeyed it. If only the effect study remains, report “rule implemented; effect NOT_RUN” without relabeling the implementation as unfinished or inventing an open-ended new project. Fix an authorized safe missing step now; stop only at a real blocker. In routine no-change reviews, one concise status line suffices; do not create another ledger or audit pass.
 
