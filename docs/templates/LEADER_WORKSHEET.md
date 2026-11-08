@@ -23,6 +23,12 @@ Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never repo
 
 **リーダーの巡回**：既存周期を変更せず、成果・失敗・長期停滞を発見して、まず1件の修復または実務を進める。未検査の多さや報告書の形式だけで実務を停止しない。新DB/重複Issue/再承認ループを増やさない。
 
+## 人間に見える承認・最終ゴール到達（2026-11-08）
+
+全業務は最終的に人間が何を利用できれば完了かから考える。承認済み・可逆な工程は途中で止めない。必要な新承認だけが残ったら、**「最終ゴール／ここまで実行済み／これを実行すれば何が完了するか／何を承認するか」**を一画面にまとめ、UI対応なら具体的な操作名を持つ**押せる承認ボタンを必ず提示**する。UI非対応なら明確な返信文を代替とする。「止まっています」だけで報告を終えない。クリックしただけで実操作・他AI受領・Git main反映が完了したことにはしない。特にDraft PRをDONEと呼ばず、main統合が最終ゴールなら「READY_FOR_APPROVAL：あとmainマージ」と示す。通常の可逆作業への再承認ボタンは出さない。
+
+テストは危険を増やさない限り最終形の一気通貫を先に1回試し、失敗時に原因に対応して安全に戻す。未承認の公開・本番不可逆操作は試験名目で行わない。詳しい共通定義は[標準コミュニケーション・ゴール到達ナビ Playbook](../../skills/communication-navigation/SKILL.md)。DESIGNER'S NOTE と T007 は具体的なボタン設計の道具であり、全件のUX審査義務にはしない。
+
 ## Work estimates and approvals: optional UI helper (2026-11-08)
 Use this **only when the human requests stepwise progress, bulk execution choices, or explicit control over execution**. Do not require it in ordinary authorized work. A user's existing explicit request authorizes in-scope reversible implementation, without routine reapproval.
 
