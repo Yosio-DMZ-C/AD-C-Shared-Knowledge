@@ -11,7 +11,7 @@
 - ライセンス: 本文の独自記述はリポジトリのCC BY-SA 4.0。第三者CAD・写真・メーカー仕様を再配布する際は別途権利確認。
 
 > **【目的】・【背景】共通契約**：案件・出力物を渡す際、目的1文と背景2〜3行（対象部品／組付けの狙い／採用条件・役割）を案件正本から継承する。形状・寸法・穴の一致を推測で補わず、不明なら `BACKGROUND_MISSING`。背景は設計理解用で、CADの幾何条件・禁止事項とは区別。詳細は[本体の背景契約](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)。既存G2/G8ゲート・出力形式は維持する。
-> **修正時の必須参照**：この手順書を修正する前に、[AD&C共通実行標準 §6.3.2〜§6.3.3](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)の現行本文を**実取得**し、その品質基準に従うこと。軽微な修正は影響箇所だけ再検査する。
+> **修正時の参照**：安全・寸法・組付けに影響する範囲だけ[AD&C共通実行標準](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)を確認する。低リスクな軽微修正に全文再取得を強制しない。G2/G8と現物適合の必要検査は維持。
 > **変更依頼時の完了基準**：「直して」は原則として正本データと必要な派生物の修正・保存・読戻しまで求める指示。今回明示された承認済み範囲は再承認を繰り返さず実行し、未承認の公開・新しい費用・不可逆操作は該当工程だけ停止する。
 
 ## 0. 完成条件を先に固定する
