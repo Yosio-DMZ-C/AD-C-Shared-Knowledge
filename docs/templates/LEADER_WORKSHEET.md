@@ -2,7 +2,7 @@
 
 Use this worksheet during the work, then reuse it as the final report. This is a format, not a decision procedure. Refer to the existing registry and operating rules for authoritative facts and approvals.
 
-**Execution model (2026-10-29 β):** Team members complete their authorized reversible changes through canonical writes, reference/Git integration and readback; the leader audits across changes and repairs scoped inconsistencies. Keep the existing three daily scheduled reviews and two-pass audit; this worksheet does not reschedule or weaken them. Audit significant dependencies and actual restorability, not just reported completion. Avoid new trackers and duplicate approval prompts.
+**Execution model (2026-10-29 β):** Team members complete their authorized reversible changes through canonical writes, reference/Git integration and readback; the leader audits across changes and repairs scoped inconsistencies. Follow the actual enabled patrol schedule; this worksheet does not set its cadence or add preflight gates. Audit significant dependencies and actual restorability, not just reported completion. Avoid new trackers and duplicate approval prompts.
 
 1. New changes: record only new facts, or 'no new changes'.
 2. Reconciliation: note sources checked, discrepancies, and unverified claims.
@@ -23,9 +23,21 @@ Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never repo
 
 **リーダーの巡回**：既存周期を変更せず、成果・失敗・長期停滞を発見して、まず1件の修復または実務を進める。未検査の多さや報告書の形式だけで実務を停止しない。新DB/重複Issue/再承認ループを増やさない。
 
+## 半月次の運用品質点検｜ルールではなく「人間が得た成果」を見る（2026-11-08）
+
+**既存の1日・15日の半月次レビューのうち、リーダー担当の軽い定点観測**。毎巡回の全件採点・担当への追加報告義務・新タスク・新DBにはしない。既存Issue #13のT005/T007/T015、Work運行票、既存レビュー、秘書の差分から、**前期と同じ条件で比較できる範囲**を拾い、半月次につき一度だけ記録する。秘書の一問一答・顔文字・コピー／次へ／まとめなどのUIは改変せず、秘書は従来の日常業務を継続する。
+
+- **実務の完走**：最終ゴールまで利用可能になった案件数／比較対象の案件数。報告・PR・Draft・「できる見込み」は完走に含めない。長期案件や新規受付による母数の違いを明示。
+- **余計な停止**：危険性や明示HOLDの正当な停止と、形式・過剰承認・失った操作経路による不要なHOLDを区別して件数で見る。正当な人間の最終承認待ちは故障扱いにしない。
+- **人間の手戻り**：AIが自力で終えるべき作業について、利用者が追加で行った訂正・再依頼・コピペ橋渡しの回数を既存記録で観測する。データが無ければ未計測とする。
+
+**最重要の定性観測**：以前は利用できたWorkのチャット作成・実送信、秘書/リーダーの実動ボタン・コピー・次へなどの機能喪失があれば、件数の比較を待たずに通常巡回で実地再現→原因の切分け→安全な復旧を行う。Playbookの文章が存在するだけで機能PASSとしない。環境差（GUI権限など）と業務差を分けて記録する。
+
+**表示は原則1画面**：「何が良くなったか／悪化したか（前期→今期、比較できる場合だけ率も）／最も困る機能低下1件／修正済みか・次の一手」。増減率は同じ定義・母数と実測値が揃った場合だけ算出。小標本や比較不能は件数と事例で示し、架空の0%・100%を作らない。指標を改善するために仕事を細分化したり、HOLD理由の分類を増やしたりしない。
+
 ## 人間に見える承認・最終ゴール到達（2026-11-08）
 
-全業務は最終的に人間が何を利用できれば完了かから考える。承認済み・可逆な工程は途中で止めない。必要な新承認だけが残ったら、**「最終ゴール／ここまで実行済み／これを実行すれば何が完了するか／何を承認するか」**を一画面にまとめ、UI対応なら具体的な操作名を持つ**押せる承認ボタンを必ず提示**する。UI非対応なら明確な返信文を代替とする。「止まっています」だけで報告を終えない。クリックしただけで実操作・他AI受領・Git main反映が完了したことにはしない。特にDraft PRをDONEと呼ばず、main統合が最終ゴールなら「READY_FOR_APPROVAL：あとmainマージ」と示す。通常の可逆作業への再承認ボタンは出さない。
+全業務は最終的に人間が何を利用できれば完了かから考える。承認済み・可逆な工程は途中で止めない。必要な新承認だけが残ったら、**「最終ゴール／ここまで実行済み／これを実行すれば何が完了するか／何を承認するか」**を一画面にまとめ、UI対応なら具体的な操作名を持つ**押せる承認ボタンを必ず提示**する。UI非対応なら「最終ゴールへの承認指示文」を`text`コードブロックで示し、「これをチャットに投入いただければ実施します。」と案内する。「止まっています」だけで報告を終えない。クリックしただけで実操作・他AI受領・Git main反映が完了したことにはしない。特にDraft PRをDONEと呼ばず、main統合が最終ゴールなら「READY_FOR_APPROVAL：あとmainマージ」と示す。通常の可逆作業への再承認ボタンは出さない。
 
 テストは危険を増やさない限り最終形の一気通貫を先に1回試し、失敗時に原因に対応して安全に戻す。未承認の公開・本番不可逆操作は試験名目で行わない。詳しい共通定義は[標準コミュニケーション・ゴール到達ナビ Playbook](../../skills/communication-navigation/SKILL.md)。DESIGNER'S NOTE と T007 は具体的なボタン設計の道具であり、全件のUX審査義務にはしない。
 
