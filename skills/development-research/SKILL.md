@@ -1,5 +1,7 @@
 # 開発調査・技術選定 Skill（先行利用版）
 
+> **AD&C標準コミュニケーション継承**：新しい承認が必要なときだけ実動ボタンを提示。使えなければ「最終ゴールへの承認指示文」をコードブロックで示し、「これをチャットに投入いただければ実施します」と案内する。詳細は[共通Playbook](../communication-navigation/SKILL.md)。既承認の作業は止めず、専門安全条件を優先。
+
 - **名称**：Development Research & Integration Selection
 - **識別子**：`sk:development-research:minimum-viable-investigation`（暫定。正式カタログ未登録）
 - **種別**：playbook相当の利用者向け実行手順
