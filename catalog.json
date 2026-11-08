@@ -1,7 +1,7 @@
 {
   "schema_version": "0.3.0",
-  "catalog_version": "0.3.6",
-  "updated_at": "2026-11-05",
+  "catalog_version": "0.3.7",
+  "updated_at": "2026-11-08",
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
@@ -147,6 +147,24 @@
       "review_status": "user_approved_2026-11-05; live_conversation_failure_observations_E01-E10=PASS; q2_independent=NOT_RUN; q3_new_protocol_runtime=NOT_RUN; q4_user_effect=NOT_RUN; formal_distribution_review=NOT_RUN",
       "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/development-research/playbooks/ENVIRONMENT_SETUP.md",
       "review_due": "2026-12-05",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "id": "PB-COMM-APPROVAL-001",
+      "title": "AD&C標準コミュニケーション：ゴール承認ボタン／コードブロック回避",
+      "kind": "playbook",
+      "domain_id": "ai-operations",
+      "version": "0.1.1-preview",
+      "path": "skills/communication-navigation/SKILL.md",
+      "status": "user_adopted_trial",
+      "visibility": "public_manual_reference",
+      "distribution_ready": false,
+      "auto_install": false,
+      "risk": "approval_visibility_and_execution_boundary",
+      "scope": "追加承認が必要な時だけ実動ボタン。UI非対応時は最終ゴール承認指示文をtextコードブロックで提示。専門Playbookは短い参照で継承",
+      "review_status": "user_adopted_2026-11-08; markdown_readback=PASS; cross_client_button_runtime=NOT_RUN; formal_distribution_review=NOT_RUN",
+      "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/communication-navigation/SKILL.md",
+      "review_due": "2026-12-08",
       "license": "CC-BY-SA-4.0"
     }
   ],

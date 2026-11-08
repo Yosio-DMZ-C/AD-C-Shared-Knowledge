@@ -1,5 +1,7 @@
 # 開発調査・技術選定 Skill（先行利用版）
 
+> **AD&C標準コミュニケーション継承**：新しい承認が必要なときだけ実動ボタンを提示。使えなければ「最終ゴールへの承認指示文」をコードブロックで示し、「これをチャットに投入いただければ実施します」と案内する。詳細は[共通Playbook](../communication-navigation/SKILL.md)。既承認の作業は止めず、専門安全条件を優先。
+
 - **名称**：Development Research & Integration Selection
 - **識別子**：`sk:development-research:minimum-viable-investigation`（暫定。正式カタログ未登録）
 - **種別**：playbook相当の利用者向け実行手順
@@ -10,7 +12,7 @@
 - **目的**：すでに分かっている仕様を使い、実際に足りない部分だけ確かめて、使える構成・費用・復旧条件を早く判断する。
 
 > **【目的】・【背景】共通契約**：調査結果・提案・他AI／開発リーダーへの引継ぎは、冒頭近くに目的1文と背景2〜3行（対象／狙い／位置づけ）を示す。案件Contextの確定背景を継承し、不明なら `BACKGROUND_MISSING`。背景を操作指示や仕様事実と混同せず、未実施をPASSとしない。詳細は[本体の背景契約](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)。既存の簡潔な結論と品質検査は維持する。
-> **修正時の必須参照**：この実行型Skillを修正する前に、[AD&C共通実行標準 §6.3.2〜§6.3.3](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)の現行本文を実取得して品質基準を適用する。日常の参照・実行時の追加取得は必須ではない。
+> **修正時の参照**：変更と安全に関係する[AD&C共通実行標準](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)の必要箇所を確認する。日常業務や低リスクな小修正で全文取得を強制しない。
 > **変更依頼の実装終点**：「変更して」と言われたら、設計・提案・Draftで止めず、承認済みの担当範囲は対象正本・必要な台帳／参照／Git・読戻しと実物検査まで進める。**同一スコープの承認を重ねて求めない**。新たな許可範囲・重大変更・公開mainマージ・不可逆操作・実際の復旧不能などは、当該工程だけ停止して確認する。**個人KBの現行運用正本が別途直前確認を要求する場合は、それを黙って飛ばさず整合更新の対象にする**。未承認・書込不能をDONEにせず既存案件へ残し、新たな管理表を作らない。共通標準 §0・§6.3.2〜§6.3.3を参照。
 
 ### 環境構築・実行ナビゲーション（2026-11-05 本人採用・共通試用）
