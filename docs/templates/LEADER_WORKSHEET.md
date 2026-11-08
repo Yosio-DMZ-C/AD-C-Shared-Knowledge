@@ -12,16 +12,17 @@ Use this worksheet during the work, then reuse it as the final report. This is a
 
 Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never report a draft or unverified change as DONE.
 
-## 最新運用決定（2026-11-08）｜管理を減らし、先に実行する
-このワークシートは**担当を止める審査票ではない**。本人の明示決定により、全担当は権限内で低リスク・可逆な工程を即実行し、最低限の確認と短い事実報告を行う。障害・未検査・原因未特定でも成功部分を残す。リーダーは既存の定時点検で新着差分と問題を見て、参照・registry/INDEX/Context/SHA・重複や未完了を必要に応じ自ら事後修復する。担当に完全照合を要求して再停止させない。
+## 本人最終決定（2026-11-08）｜担当は実装、問題はリーダーが解消
 
-**必要時に取り出す実行補助（小型KB）**：このワークシートの機能的なUI設計・AI実行補助・プレイブック発見方法・画面の見落とし防止は削除しない。単純な実務や日報では読み込みを強制せず、本人がボタン・選択・GUI操作を求めるとき、または操作の迷いが起こるときに、既存の **DESIGNER'S NOTE／T007 actionable UI contract／該当する専門Playbook** を必要な範囲で参照する。AIは視覚的に重要な表示・隠れた操作・押せる領域・スクロール・小画面表示を原画面と突き合わせる。ボタンは実際に動作するものを使い、非対応環境では正直な代替操作を示す。「機能を適切なときに使うこと」は義務であり、「毎回全件検収すること」は義務ではない。秘書専用UIは秘書の既存Playbookを優先し、リーダーの4択を無関係な画面に強制しない。
+**AD&C独自のSTOP・HOLD・全PASS・事前承認待ちは撤廃する。** このワークシートは停止審査票ではなく、実施した結果と問題を短く受け渡す道具とする。既存のGit・Drive版履歴を復旧に使い、旧判定や古いHOLDを現在の停止命令として再適用しない。
 
-**担当に求めるのは4項目のみ**：①実際にしたこと ②現物・変更先の実リンク ③未解決/未確認 ④次の一手。詳細な表や全件PASSを必須にしない。原因不明は不明でよい。できなかった作業をDONEと表示しない。報告のみを成果と数えない。
+担当は既存正本に実装→可能なら実物を読戻し→「実施／現物リンク／問題と影響／次の一手」を既存案件に残す。問題があっても成功部分を保全する。`DONE`・`DONE_WITH_ISSUES`・`NOT_EXECUTED` を区別し、未検証をPASSと称さない。原因の解明・全件形式・SHA連鎖・第三者レビューは実装開始の前提としない。
 
-**着手に必要なのは**対象、現行の実物、基本権限、明らかな重複と重大事故の回避。旧「全段階の見積N」「5工程ずつの定型承認」「全原本の完全保全」「全参照ハッシュ連鎖一致」「別AI受領確認」「形式別の原因必須欄」は低リスク実務の事前条件から撤廃。必要な読戻しは対象だけ1回を基本とし、実行環境で不可なら未検査として後で監査する。公表、mainマージ、課金、権限、削除、機密送信、不可逆操作、競合上書き、生命安全はその枝だけ停止。正式なWork60 HOLDは変えない。
+**リーダー定時巡回**は新着の `DONE_WITH_ISSUES`・修復待ち・実環境制約を優先し、毎回可能な具体修正を1件以上実施して、同じ案件の実物へ保存・読戻しする。解決不能な問題のみ `本人判断事項＝何を判断してほしいか／選択肢・影響／推奨案` として本人に上げる。巡回のための新しいDB・管理Issue・承認ループは作らない。
 
-**リーダーの巡回**：既存周期を変更せず、成果・失敗・長期停滞を発見して、まず1件の修復または実務を進める。未検査の多さや報告書の形式だけで実務を停止しない。新DB/重複Issue/再承認ループを増やさない。
+`STOP` は外部の実制限・本人個別指示によって実行できなかったという事実表示のみ。`REQUIRED` は完成品の条件であって部分実装・試作の停止条件ではない。`OPTIONAL` は任意の品質・UX・監査補助。競合や欠落も問題を記録し、独立した作業は進める。AI／サービス規約・実権限・法令の条件は別途適用する。
+
+**オンデマンドの実行補助**：DESIGNER'S NOTE／T007／専門Playbookは実際にボタン・GUI・制作物で必要な場合にだけ参照する。新しい形式審査を増やさず、採用済み部分は勝手に作り直さない。
 
 ## 半月次の運用ふり返り｜見える化は軽く、評価より人間の判断を助ける（2026-11-08）
 
@@ -33,9 +34,9 @@ Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never repo
 | 使える機能 | Workの配送、操作ボタン、コピー、次へ等の実動例 | 機能喪失・再依頼・訂正の増減など |
 | 人間に求めること | 必要な最終承認や判断が残っているか | 不要な確認・再入力が増えていないか |
 
-数値・前後の変化率は**同じ定義で比較できる実測が既にある時だけ任意に添える**。数字がなくても具体例と所見で十分。測るための作業・母数調整・余分な報告を担当に課さない。正当な最終承認待ちや明示HOLDは、機能故障・無用な停止と区別する。
+数値・前後の変化率は**同じ定義で比較できる実測が既にある時だけ任意に添える**。数字がなくても具体例と所見で十分。測るための作業・母数調整・余分な報告を担当に課さない。本人の明示保留や実サービスの実行不可は、AD&C内製の停止判定とは分けて事実記録する。
 
-**原則は「問題がなければ継続」**。観測範囲で特段の問題がなければ「現状継続を推奨」と短く伝え、原則ボタンや回答要求は不要。実行されなくなった依頼、失われた機能、本人に繰返し訂正させる問題など、**見直す価値がある論点だけ**を提示し、必要なら実動する **［見直す］［保留］** の2択を示す。
+**原則は「問題があっても実施済み成果を保全して継続」**。観測範囲で特段の問題がなければ「現状継続を推奨」と短く伝え、原則ボタンや回答要求は不要。実行されなくなった依頼、失われた機能、本人に繰返し訂正させる問題など、**見直す価値がある論点だけ**を提示し、必要なら実動する **［見直す］［保留］** の2択を示す。
 
 - **［見直す］**：その具体的な問題（案件ID・現象・最終ゴール）に限定して、既存リーダーが原因確認→許可済みの小修正→結果確認まで進める依頼を次ターンへ送る。公開・権限・費用・不可逆など新しい承認が必要なら、最終操作を明示して改めて承認を求める。「見直す」を危険な操作の一括承認にしない。
 - **［保留］**：今回の**提案を採用しない／今はルールを変えない**。通常業務と既存の安全な復旧・定時巡回は継続。明示HOLDの解除、既存タスク停止、問題のDONE化を意味しない。同じ論点を毎回問い直さない。
@@ -59,8 +60,8 @@ When needed, estimate total steps N (or a range), already completed, remaining, 
 
 Use actual interactive buttons when supported, passing the selected mode and known task scope into the next action. Otherwise show clearly numbered alternatives for a typed choice. Never render decorative inert controls. Public release, payment, deletion, permissions, merge and other separately gated actions are excluded. Do not repeat already completed steps to use a quota. Stop the affected high-risk or conflicted operation only, and continue independent safe work.
 
-## KB write integration: leader post-audit (2026-11-08)
-Agents use the current canonical target and valid write permissions and avoid overwriting other people's changes. They should execute approved reversible updates, read back the changed target when feasible, and report any incomplete index/registry/hash propagation to the existing parent ID. A missing byte-perfect pre-write backup, all-source full-text fetch, or complete SHA graph must not prevent other safe work. The leader's existing scheduled review checks and repairs cross-reference, version, registry, and recovery issues afterwards. Never mark unverified propagation PASS. Never disclose private file IDs, registry data, or credentials in this public repository.
+## KB write integration: issue-first and leader post-audit (2026-11-08)
+Agents use the current canonical target and valid write permissions and avoid overwriting other people's changes. They should execute approved reversible updates, read back the changed target when feasible, and report any incomplete index/registry/hash propagation to the existing parent ID. A missing pre-write backup, full-source fetch, or complete SHA graph is an issue for the affected verification, not a reason for a new AD&C stop gate. Use existing history for recovery. The leader's existing scheduled review checks and repairs cross-reference, version, registry, and recovery issues afterwards. Never mark unverified propagation PASS. Never disclose private file IDs, registry data, or credentials in this public repository.
 
 **On-demand technical repair recipe, not a mandatory preflight:** When a real KB discrepancy or corruption risk is discovered, use the existing canonical IDs and relevant private procedure to check *only the affected chain*: current target and SHA/modified version → competing changes and recoverable history → authorized same-ID patch → raw readback → compare registry, INDEX, Context/reverse links → repair mismatches locally → read back again. Record what passed and what remains unknown. This recipe is available to the leader and specialist, not forced on every chat before useful work begins. A linked file or successful upload alone does not establish propagation or another AI's receipt.
 
