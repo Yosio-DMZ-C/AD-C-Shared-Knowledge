@@ -1,5 +1,7 @@
 # AD&C チャット引継ぎ・U字型コンテクスト圧縮 Playbook
 
+> **AD&C標準コミュニケーション継承**：新しい承認が必要なときだけ実動ボタンを提示。使えなければ「最終ゴールへの承認指示文」をコードブロックで示し、「これをチャットに投入いただければ実施します」と案内する。詳細は[共通Playbook](../communication-navigation/SKILL.md)。既承認の作業は止めず、専門安全条件を優先。
+
 - ID: PB-CHAT-HANDOFF-001
 - Version: 0.2.2-preview
 - Status: User adopted for common trial (2026-11-03) / formal distribution NOT_RUN / independent cold-start NOT_RUN / automatic activation NOT_RUN
