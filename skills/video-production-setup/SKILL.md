@@ -1,5 +1,7 @@
 # 動画制作・初期設定 Skill（PPT基準・素材復元の先行版）
 
+> **AD&C標準コミュニケーション継承**：新しい承認が必要なときだけ実動ボタンを提示。使えなければ「最終ゴールへの承認指示文」をコードブロックで示し、「これをチャットに投入いただければ実施します」と案内する。詳細は[共通Playbook](../communication-navigation/SKILL.md)。既承認の作業は止めず、専門安全条件を優先。
+
 - 名称：Video Production Setup — PPT-first, reusable project identity
 - 種別：低リスクの制作運用プレイブック相当／**Draft v0.1.0-preview（2026-10-25）**
 - 状態：**公開ドラフト。Active / Core / 正式配布ではない**。独立した新チャット・別AIでの再現試験、個別PPTのレンダリングと動画完成試験はNOT_RUN
