@@ -238,6 +238,12 @@ Use the latest user-corrected choice semantics: ① delegate to a verified activ
 
 このノートは定例の表示・UXに関する知見であり、Work60第0工程、固定枠、KB書込ゲート、既存の権限・承認を変更しない。
 
+### DESIGNER'S NOTE 追補｜通常対話の推奨0〜2件＋もう一声（2026-11-09、本人の設計決定）
+
+通常のAI対話では人間の満足地点をAIが推測する必要はない。AIは現在の根拠で結論と実行可能な推奨を0〜2件示し、その最後に**方向を変えて検討し直したいという人間の明示コマンド「もう一声」**を控えめな補助操作として原則1件出す（合計最大3件）。推奨がない場合も結論＋「もう一声」。人間が満足なら何も押さずに終了し、細かい希望があるなら通常のチャットで伝える。**押されない限りAIは勝手に別方向へ探し直さない。** 2件を埋めるための案の水増し・新たな満足推定・追加ゲートを作らない。
+
+本追補は上記2026-11-09「原則主ボタン1件」という先行設計の**通常対話における表示件数を更新**する。専門Playbookの操作UI（秘書の既存4択、結果提出・自由入力待ち、ボタン0件）はそのまま優先し、「もう一声」を重ねない。正式な機械的実行条件は[標準コミュニケーションPlaybook](../../skills/communication-navigation/SKILL.md)に置き、設計意図を通常実務の停止条件に変えない。
+
 ## T017 — three-character asset entry and independent Q2/Q3 acceptance (2026-11-05; approved local implementation)
 
 **Scope:** existing approved characters 私／ワタシ／専門家, records `VID-CHAR-01/02/03`. The 2026-11-03 human approval remains PASS; this checklist never asks for approval again and does not modify image masters, Drive permissions or published materials.
