@@ -100,7 +100,7 @@ SOFTWARE.
 <rect x="60" y="175" width="145" height="40" rx="10" fill="#2563eb"/>
 <text x="84" y="203" fill="#fff" font-family="Noto Sans JP,Arial,sans-serif" font-size="22" font-weight="bold">主推奨</text>
 <text x="61" y="256" fill="#172554" font-family="Arial,sans-serif" font-size="42" font-weight="bold">Lucide</text>
-<text x="235" y="248" fill="#334155" font-family="Arial,sans-serif" font-size="21">ISC / 일부 Feather由来はMIT</text>
+<text x="235" y="248" fill="#334155" font-family="Arial,sans-serif" font-size="21">ISC（Feather由来の一部はMIT）</text>
 <text x="61" y="293" fill="#1d4ed8" font-family="Arial,sans-serif" font-size="22">https://lucide.dev/icons/</text>
 <rect x="840" y="175" width="145" height="40" rx="10" fill="#0d9488"/>
 <text x="864" y="203" fill="#fff" font-family="Noto Sans JP,Arial,sans-serif" font-size="22" font-weight="bold">補助</text>
