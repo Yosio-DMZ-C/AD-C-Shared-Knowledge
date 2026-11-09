@@ -1,6 +1,6 @@
 # AD&C 標準コミュニケーション Playbook｜次の一手・実動ボタン・引継ぎ
 
-- 版：0.1.10-preview（2026-11-09：ゴール成立テストを短い計画入口へ集約）
+- 版：0.1.11-preview（2026-11-10：新規Playbook継承の適用範囲を限定）
 - 対象：通常のAD&C共通コミュニケーション操作。
 - 優先：本人の明示指示 ＞ 専門Playbookの固定手順・安全・専用UI ＞ この共通動作。
 - **本文は実行する操作だけ**。全体理念の正本は[共有KB README](../../README.md)、設計理由・仮説・人間の見え方は[リーダーワークシートのGrand Design／DESIGNER'S NOTE](../../docs/templates/LEADER_WORKSHEET.md)、改訂手順は[開発プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)。それらの理念文や仮説を、このPlaybookの着手・停止・承認要件にしない。
@@ -57,4 +57,4 @@
 
 ## 作成・改訂時の継承
 
-各専門Playbookは共通の実動作への**1行リンク**だけを保持する。改訂担当は[Playbookテンプレート](../../templates/PLAYBOOK_TEMPLATE.md)と[開発・更新プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)を参照し、**対象に既存のDesigner’s Noteがあれば変更前に必読**。共通の設計理由は[リーダーノート](../../docs/templates/LEADER_WORKSHEET.md)に置き、専門Playbookの採用済み手順・固定素材・独自UIを改訂なく残す。ノートを通常作業の事前審査に使わない。
+**新規のAD&C専門Playbook**には、この共通の実動作への**1行リンクを既定で継承**する。既存の専門Playbookは一斉改訂せず、改訂対象に必要な場合のみ1行を追加・維持する。[Playbookテンプレート](../../templates/PLAYBOOK_TEMPLATE.md)と[開発・更新プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)を参照し、**対象に既存のDesigner’s Noteがあれば変更前に必読**。共通の設計理由は[リーダーノート](../../docs/templates/LEADER_WORKSHEET.md)に置く。**サムネイル・動画の制作プロンプトと確定素材へボタン規則を自動注入しない**。専門UI・ボタン0件を優先し、既存の採用済み手順・固定素材を改訂なく残す。ノートを通常作業の事前審査に使わない。
