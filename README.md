@@ -141,7 +141,7 @@ Coreは別の知識コピーではなく、共有知から選ぶ小さな標準�
 ## 動画を作るときの初期設定（Draft）
 
 - [PPT基準の動画制作・初期設定 Skill v0.1.0-preview](skills/video-production-setup/SKILL.md)：**採用見本PPT・色調・公式素材・音声方式を、利用者の非公開KBに復元可能な形で保存する**参考手順。シリーズArea Contextと案件Project Contextを既存の位置づけで使い、同じ一行依頼から続けられるか検証します。
-- **通常のPPT／動画用PPTXのアイコン入口**：[制作素材 一般仕様表：表Dのテキスト探索ワークシート](skills/video-production-setup/PRODUCTION_ASSETS_GENERAL_SPEC_v0.1.md#表dppt動画pptxのアイコン探索ワークシートテキスト入口別ファイルの早見シート2026-11-10) → [Lucide＋Tablerの実SVG見本（文字ラベル付き・16点）](assets/ppt_icon_reference_sheet.svg)。**意味をテキスト検索→形を見るときだけ画像を開く→公式SVGを取得**。Featherは参照URLのみ、アイコンの使用は任意。
+- **通常のPPT／動画用PPTXのアイコン入口**：[制作素材 一般仕様表：表Dのテキスト探索ワークシート](skills/video-production-setup/PRODUCTION_ASSETS_GENERAL_SPEC_v0.1.md) → [Lucide＋Tablerの実SVG見本（文字ラベル付き・16点）](assets/ppt_icon_reference_sheet.svg)。**意味をテキスト検索→形を見るときだけ画像を開く→公式SVGを取得**。Featherは参照URLのみ、アイコンの使用は任意。
 - 個別のPPT・ロゴ・本人音声・Voice ID・保存先IDは共有KBへ送らない。一般向け既定音声は本人朗読、ElevenLabs等は任意方式。**正式Active Skillではなく、実動画完成と別AI再現の試験は未実施**です。カタログは変更しません。
 
 ## 読む順序
