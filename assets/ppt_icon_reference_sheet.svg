@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" role="img" aria-label="PPT用アイコン素材早見シート。LucideとTablerのSVG原本を分類した検索しやすい一覧。">
+<title>PPT用アイコン素材｜Lucide 主推奨・Tabler 補助</title>
+<desc>感情表現 smile sad neutral heart / 動作 search pencil download send refresh / 情報整理 folder calendar clock bell。各アイコンの正確な検索名と公式サイトURLを併記。Featherは参考URLのみ。</desc>
+<metadata><![CDATA[
+Single-file SVG reference sheet generated from original SVG source files (2026-11-10).
+SAMPLES ONLY; this does not include the entire Lucide or Tabler icon sets.
+Original SVG sources:
+1. Lucide/heart https://github.com/lucide-icons/lucide/blob/main/icons/heart.svg (source blob SHA 9e0ba0601acd8d872c1e31ab21bab3bee8f96feb)
+2. Lucide/check https://github.com/lucide-icons/lucide/blob/main/icons/check.svg (source blob SHA 5abe1527434e7b251bde0661f99af96178976d8c)
+3. Lucide/search https://github.com/lucide-icons/lucide/blob/main/icons/search.svg (source blob SHA 03e442a5440cff92c219fe3a3c1f2b0788d30701)
+4. Lucide/pencil https://github.com/lucide-icons/lucide/blob/main/icons/pencil.svg (source blob SHA 7384498e8679ff3c60effccb5723ed1672544e27)
+5. Lucide/download https://github.com/lucide-icons/lucide/blob/main/icons/download.svg (source blob SHA 5c75527bde1fe8259efb72c5b590bedfae28c05e)
+6. Lucide/folder https://github.com/lucide-icons/lucide/blob/main/icons/folder.svg (source blob SHA ef69b345f200f1542ad9a2dfca7d41d036910f4b)
+7. Lucide/calendar https://github.com/lucide-icons/lucide/blob/main/icons/calendar.svg (source blob SHA 4679497031a9540a311f6223da003ce26f638e24)
+8. Lucide/clock https://github.com/lucide-icons/lucide/blob/main/icons/clock.svg (source blob SHA b6ae2834e60fc09547007a89067994e8b5ea55b5)
+9. Tabler/mood-smile https://github.com/tabler/tabler-icons/blob/main/icons/outline/mood-smile.svg (source blob SHA 1efc73488f5370541aed670ec539f411daa15d58)
+10. Tabler/mood-sad https://github.com/tabler/tabler-icons/blob/main/icons/outline/mood-sad.svg (source blob SHA 1af3cd90ab9ab3a0ef13ef0d6d74e2a1b2bac2b1)
+11. Tabler/mood-neutral https://github.com/tabler/tabler-icons/blob/main/icons/outline/mood-neutral.svg (source blob SHA 66df51b98dc7713f96ef04ef4d97fadb477a5785)
+12. Tabler/bulb https://github.com/tabler/tabler-icons/blob/main/icons/outline/bulb.svg (source blob SHA 4483b64cd676b00773e42f2fdef474597a844fd0)
+13. Tabler/arrow-right https://github.com/tabler/tabler-icons/blob/main/icons/outline/arrow-right.svg (source blob SHA 658e5c4d13a51221f38bc07f4ebf0dfcd4d55260)
+14. Tabler/send https://github.com/tabler/tabler-icons/blob/main/icons/outline/send.svg (source blob SHA dc4e843ff3c36b4d1a915d0fe124459672dd894f)
+15. Tabler/refresh https://github.com/tabler/tabler-icons/blob/main/icons/outline/refresh.svg (source blob SHA 1760df7dd6f2beda98d240e11475187956cb4cb7)
+16. Tabler/bell https://github.com/tabler/tabler-icons/blob/main/icons/outline/bell.svg (source blob SHA 5d899224237cd3cdc252d9264639e98e6f96a3de)
+Licenses are reproduced below. Any reuse or redistribution must comply with those license notices.
+---- Lucide LICENSE ----
+ISC License
+
+Copyright (c) 2026 Lucide Icons and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+---
+
+The following Lucide icons are derived from the Feather project:
+
+airplay, alert-circle, alert-octagon, alert-triangle, aperture, arrow-down-circle, arrow-down-left, arrow-down-right, arrow-down, arrow-left-circle, arrow-left, arrow-right-circle, arrow-right, arrow-up-circle, arrow-up-left, arrow-up-right, arrow-up, at-sign, calendar, cast, check, chevron-down, chevron-left, chevron-right, chevron-up, chevrons-down, chevrons-left, chevrons-right, chevrons-up, circle, clipboard, clock, code, columns, command, compass, corner-down-left, corner-down-right, corner-left-down, corner-left-up, corner-right-down, corner-right-up, corner-up-left, corner-up-right, crosshair, database, divide-circle, divide-square, dollar-sign, download, external-link, feather, frown, hash, headphones, help-circle, info, italic, key, layout, life-buoy, link-2, link, loader, lock, log-in, log-out, maximize, meh, minimize, minimize-2, minus-circle, minus-square, minus, monitor, moon, more-horizontal, more-vertical, move, music, navigation-2, navigation, octagon, pause-circle, percent, plus-circle, plus-square, plus, power, radio, rss, search, server, share, shopping-bag, sidebar, smartphone, smile, square, table-2, tablet, target, terminal, trash-2, trash, triangle, tv, type, upload, x-circle, x-octagon, x-square, x, zoom-in, zoom-out
+
+The MIT License (MIT) (for the icons listed above)
+
+Copyright (c) 2013-present Cole Bemis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---- Tabler Icons LICENSE ----
+MIT License
+
+Copyright (c) 2020-2026 Paweł Kuna
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+]]></metadata>
+<rect width="1600" height="1050" fill="#f8fafc"/>
+<rect x="0" y="0" width="1600" height="14" fill="#2563eb"/>
+<text x="48" y="75" fill="#0f172a" font-family="Noto Sans JP,Arial,sans-serif" font-size="42" font-weight="bold">PPT用アイコン素材｜早見シート</text>
+<text x="50" y="121" fill="#475569" font-family="Noto Sans JP,Arial,sans-serif" font-size="22">テキストで名前を探す → 必要なら視覚で比較 → 公式SVGを取得。アイコンの使用は任意。</text>
+<rect x="40" y="159" width="740" height="725" rx="22" fill="#fff" stroke="#2563eb" stroke-width="4"/>
+<rect x="820" y="159" width="740" height="725" rx="22" fill="#fff" stroke="#0d9488" stroke-width="3"/>
+<rect x="60" y="175" width="145" height="40" rx="10" fill="#2563eb"/>
+<text x="84" y="203" fill="#fff" font-family="Noto Sans JP,Arial,sans-serif" font-size="22" font-weight="bold">主推奨</text>
+<text x="61" y="256" fill="#172554" font-family="Arial,sans-serif" font-size="42" font-weight="bold">Lucide</text>
+<text x="235" y="248" fill="#334155" font-family="Arial,sans-serif" font-size="21">ISC / 일부 Feather由来はMIT</text>
+<text x="61" y="293" fill="#1d4ed8" font-family="Arial,sans-serif" font-size="22">https://lucide.dev/icons/</text>
+<rect x="840" y="175" width="145" height="40" rx="10" fill="#0d9488"/>
+<text x="864" y="203" fill="#fff" font-family="Noto Sans JP,Arial,sans-serif" font-size="22" font-weight="bold">補助</text>
+<text x="841" y="256" fill="#134e4a" font-family="Arial,sans-serif" font-size="42" font-weight="bold">Tabler Icons</text>
+<text x="1139" y="248" fill="#334155" font-family="Arial,sans-serif" font-size="21">MIT</text>
+<text x="841" y="293" fill="#0f766e" font-family="Arial,sans-serif" font-size="22">https://tabler.io/icons</text><text x="61" y="336" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="bold" fill="#334155">感情・強調</text><g data-source="Lucide" data-icon="heart" id="sample-lucide-heart">
+ <rect x="61" y="348" width="162" height="128" rx="12" fill="#eff6ff"/>
+ <g transform="translate(110,359) scale(2.7)" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></g>
+ <text x="142" y="451" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">heart</text>
+ <text x="142" y="468" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">L-01</text>
+ </g><g data-source="Lucide" data-icon="check" id="sample-lucide-check">
+ <rect x="239" y="348" width="162" height="128" rx="12" fill="#eff6ff"/>
+ <g transform="translate(288,359) scale(2.7)" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></g>
+ <text x="320" y="451" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">check</text>
+ <text x="320" y="468" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">L-02</text>
+ </g><text x="61" y="526" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="bold" fill="#334155">動作</text><g data-source="Lucide" data-icon="search" id="sample-lucide-search">
+ <rect x="61" y="538" width="162" height="128" rx="12" fill="#eff6ff"/>
+ <g transform="translate(110,549) scale(2.7)" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" /></g>
+ <text x="142" y="641" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">search</text>
+ <text x="142" y="658" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">L-03</text>
+ </g><g data-source="Lucide" data-icon="pencil" id="sample-lucide-pencil">
+ <rect x="239" y="538" width="162" height="128" rx="12" fill="#eff6ff"/>
+ <g transform="translate(288,549) scale(2.7)" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+  <path d="m15 5 4 4" /></g>
+ <text x="320" y="641" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">pencil</text>
+ <text x="320" y="658" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">L-04</text>
+ </g><g data-source="Lucide" data-icon="download" id="sample-lucide-download">
+ <rect x="417" y="538" width="162" height="128" rx="12" fill="#eff6ff"/>
+ <g transform="translate(466,549) scale(2.7)" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3" />
+  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+  <path d="m7 10 5 5 5-5" /></g>
+ <text x="498" y="641" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">download</text>
+ <text x="498" y="658" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">L-05</text>
+ </g><text x="61" y="716" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="bold" fill="#334155">情報整理</text><g data-source="Lucide" data-icon="folder" id="sample-lucide-folder">
+ <rect x="61" y="728" width="162" height="128" rx="12" fill="#eff6ff"/>
+ <g transform="translate(110,739) scale(2.7)" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></g>
+ <text x="142" y="831" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">folder</text>
+ <text x="142" y="848" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">L-06</text>
+ </g><g data-source="Lucide" data-icon="calendar" id="sample-lucide-calendar">
+ <rect x="239" y="728" width="162" height="128" rx="12" fill="#eff6ff"/>
+ <g transform="translate(288,739) scale(2.7)" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v3" />
+  <path d="M16 2v3" />
+  <rect x="3" y="3" width="18" height="18" rx="2" />
+  <path d="M3 9h18" /></g>
+ <text x="320" y="831" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">calendar</text>
+ <text x="320" y="848" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">L-07</text>
+ </g><g data-source="Lucide" data-icon="clock" id="sample-lucide-clock">
+ <rect x="417" y="728" width="162" height="128" rx="12" fill="#eff6ff"/>
+ <g transform="translate(466,739) scale(2.7)" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <path d="M12 6v6l4 2" /></g>
+ <text x="498" y="831" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">clock</text>
+ <text x="498" y="848" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">L-08</text>
+ </g><text x="841" y="336" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="bold" fill="#334155">感情表現・アイデア</text><g data-source="Tabler" data-icon="mood-smile" id="sample-tabler-mood-smile">
+ <rect x="841" y="348" width="162" height="128" rx="12" fill="#f0fdfa"/>
+ <g transform="translate(890,359) scale(2.7)" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+  <path d="M9 10l.01 0" />
+  <path d="M15 10l.01 0" />
+  <path d="M9.5 15a3.5 3.5 0 0 0 5 0" /></g>
+ <text x="922" y="451" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">mood-smile</text>
+ <text x="922" y="468" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">T-01</text>
+ </g><g data-source="Tabler" data-icon="mood-sad" id="sample-tabler-mood-sad">
+ <rect x="1019" y="348" width="162" height="128" rx="12" fill="#f0fdfa"/>
+ <g transform="translate(1068,359) scale(2.7)" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+  <path d="M9 10l.01 0" />
+  <path d="M15 10l.01 0" />
+  <path d="M9.5 15.25a3.5 3.5 0 0 1 5 0" /></g>
+ <text x="1100" y="451" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">mood-sad</text>
+ <text x="1100" y="468" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">T-02</text>
+ </g><g data-source="Tabler" data-icon="mood-neutral" id="sample-tabler-mood-neutral">
+ <rect x="1197" y="348" width="162" height="128" rx="12" fill="#f0fdfa"/>
+ <g transform="translate(1246,359) scale(2.7)" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+  <path d="M9 10l.01 0" />
+  <path d="M15 10l.01 0" /></g>
+ <text x="1278" y="451" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">mood-neutral</text>
+ <text x="1278" y="468" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">T-03</text>
+ </g><g data-source="Tabler" data-icon="bulb" id="sample-tabler-bulb">
+ <rect x="1375" y="348" width="162" height="128" rx="12" fill="#f0fdfa"/>
+ <g transform="translate(1424,359) scale(2.7)" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+  <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+  <path d="M9.7 17l4.6 0" /></g>
+ <text x="1456" y="451" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">bulb</text>
+ <text x="1456" y="468" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">T-04</text>
+ </g><text x="841" y="526" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="bold" fill="#334155">動作</text><g data-source="Tabler" data-icon="arrow-right" id="sample-tabler-arrow-right">
+ <rect x="841" y="538" width="162" height="128" rx="12" fill="#f0fdfa"/>
+ <g transform="translate(890,549) scale(2.7)" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" />
+  <path d="M13 18l6 -6" />
+  <path d="M13 6l6 6" /></g>
+ <text x="922" y="641" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">arrow-right</text>
+ <text x="922" y="658" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">T-05</text>
+ </g><g data-source="Tabler" data-icon="send" id="sample-tabler-send">
+ <rect x="1019" y="538" width="162" height="128" rx="12" fill="#f0fdfa"/>
+ <g transform="translate(1068,549) scale(2.7)" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l11 -11" />
+  <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></g>
+ <text x="1100" y="641" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">send</text>
+ <text x="1100" y="658" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">T-06</text>
+ </g><g data-source="Tabler" data-icon="refresh" id="sample-tabler-refresh">
+ <rect x="1197" y="538" width="162" height="128" rx="12" fill="#f0fdfa"/>
+ <g transform="translate(1246,549) scale(2.7)" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+  <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></g>
+ <text x="1278" y="641" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">refresh</text>
+ <text x="1278" y="658" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">T-07</text>
+ </g><text x="841" y="716" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="bold" fill="#334155">通知</text><g data-source="Tabler" data-icon="bell" id="sample-tabler-bell">
+ <rect x="841" y="728" width="162" height="128" rx="12" fill="#f0fdfa"/>
+ <g transform="translate(890,739) scale(2.7)" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></g>
+ <text x="922" y="831" text-anchor="middle" fill="#0f172a" font-family="Arial,sans-serif" font-size="16" font-weight="bold">bell</text>
+ <text x="922" y="848" text-anchor="middle" fill="#64748b" font-family="Arial,sans-serif" font-size="12">T-08</text>
+ </g><rect x="40" y="906" width="1520" height="107" rx="16" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="60" y="942" fill="#334155" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="bold">参考：Feather Icons</text>
+<text x="340" y="942" fill="#1d4ed8" font-family="Arial,sans-serif" font-size="21">https://feathericons.com/</text>
+<text x="60" y="973" fill="#475569" font-family="Noto Sans JP,Arial,sans-serif" font-size="19">この画像は全件収録ではなく、実SVGから作った見本です。検索名は各サンプルに記載。権利表記はSVG内metadataに同梱。</text>
+<text x="60" y="1001" fill="#64748b" font-family="Noto Sans JP,Arial,sans-serif" font-size="17">2026-11-10 取得時点のサンプル。元SVGの選択・サイズ・色・配置は作品ごとに自由。</text>
+</svg>
