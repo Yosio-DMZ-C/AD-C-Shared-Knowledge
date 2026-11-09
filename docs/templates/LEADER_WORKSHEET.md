@@ -2,6 +2,8 @@
 
 Use this worksheet during the work, then reuse it as the final report. This is a format, not a decision procedure. Refer to the existing registry and operating rules for authoritative facts and approvals.
 
+**正本の役割分離（2026-11-09）**：AD&C全体の理念（WHY）の公開正本は[共有KB READMEの宣言・理念](../../README.md)。このワークシートのGrand Design・DESIGNER'S NOTEは設計背景と採用理由（WHY / design history）であり、普段の担当AIの着手可否や停止を判断させる実行契約ではない。共通の機械的な操作（HOW）は[標準コミュニケーションPlaybook](../../skills/communication-navigation/SKILL.md)、Playbook作成・改訂の手順は[共有KB開発プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)、専門固有の秘訣・安全・制作順序は各専門Playbookを正本とする。**Playbookの改訂担当は対象に存在するDesigner’s Noteを変更前に必読**。普通の実務担当にはノート全文の毎回取得を強制しない。
+
 **Execution model (2026-10-29 β):** Team members complete their authorized reversible changes through canonical writes, reference/Git integration and readback; the leader audits across changes and repairs scoped inconsistencies. Follow the actual enabled patrol schedule; this worksheet does not set its cadence or add preflight gates. Audit significant dependencies and actual restorability, not just reported completion. Avoid new trackers and duplicate approval prompts.
 
 1. New changes: record only new facts, or 'no new changes'.
@@ -115,6 +117,9 @@ Agents use the current canonical target and valid write permissions and avoid ov
 **On-demand technical repair recipe, not a mandatory preflight:** When a real KB discrepancy or corruption risk is discovered, use the existing canonical IDs and relevant private procedure to check *only the affected chain*: current target and SHA/modified version → competing changes and recoverable history → authorized same-ID patch → raw readback → compare registry, INDEX, Context/reverse links → repair mismatches locally → read back again. Record what passed and what remains unknown. This recipe is available to the leader and specialist, not forced on every chat before useful work begins. A linked file or successful upload alone does not establish propagation or another AI's receipt.
 
 ## AD&C grand-design engineering principle (approved 2026-11-04)
+
+> **設計理念の解説・採用理由（実行手順ではない）**。AD&Cの公開理念は[README](../../README.md)が正本。本節の示唆を理由に、既に承認された作業を停止、専門Playbookの固定工程を変更、追加の承認や検査を要求しない。通常の実行条件は共通・専門Playbookの具体的操作欄に置く。
+
 AD&C is a practical navigation system for imperfect humans and imperfect AI, not an attempt to attain 100% theoretical completeness. Select the context-appropriate scale of knowledge, show the next actionable turn, recalculate when reality changes, and preserve human control. Prefer small reversible implementations with measured user benefit over short-term logical elegance alone; use observed failures to revise hypotheses and procedures. Combine explicit rules with the empirically observed flexibility and behavior of each AI interface. Do not confuse an attractive theory with verified implementation, operation, effect, or independent test. Keep free/manual routes, bounded recovery, and evidence-based corrections. This principle guides design tradeoffs but never overrides existing permissions, private-KB write gates, or publication approvals.
 
 **Project mission / public-facing charter (2026-11-04, editorial clarification):** 「完成形のない仕組みで、完成する仕事を増やす。」 AD&C has no final perfected architecture; each user-requested deliverable still has a concrete acceptance and readback gate. Balance the useful features and limitations of an imperfect AI with safety, human understanding, time and continued user control. Aim for social benefit through actual usable outcomes, not through an unsupported claim of guaranteed success or measured QOL gains. Do not treat permanent evolution as permission to leave requested work unfinished.
@@ -184,6 +189,9 @@ After checking the current unresolved state and carrying out available safe work
 Use the latest user-corrected choice semantics: ① delegate to a verified active responsible leader **only if such a leader exists**, ② prepare a standalone new-chat delegation instruction, ③ explain in more detail, ④ hold. Automatic secretary/leader repairs belong **before** the question and are not an option. Show one question at a time, at most ten, and do not re-ask settled approvals. If no genuine human decision remains, report 「本人判断が必要な質問：0件」 and show no inert controls. Keep recipient acceptance, actual execution and readback as separate statuses. This is a presentation requirement, not authorization to alter private KB or bypass any existing gate.
 
 ## DESIGNER'S NOTE — 人間が迷わず選べる一問一答UI（2026-11-05、利用者の設計知見）
+
+**参照境界**：このノートは設計の原文・理由・失敗からの着想を保持する。**Playbook作成・改訂担当は対象に既存のDesigner’s Noteがあれば変更前に必ず読み、採用済み仕様と非採用の仮説を分ける**。本ノートを読むこと自体は実行・採用・承認ではない。一般利用時の実際のボタン、コピー、状態分岐は[標準コミュニケーションPlaybook](../../skills/communication-navigation/SKILL.md)の操作条件を用い、専門Playbookにより定められたUIと固定素材を優先する。通常の回答・業務にこのノートの全読取や追加の審査を課さない。
+
 
 > 「ユーザーを事前にリードして、迷わせないためにボタンを表示するところの整理には特に時間をかけました」
 
