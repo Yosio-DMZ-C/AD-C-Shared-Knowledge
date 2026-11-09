@@ -4,6 +4,8 @@ Use this worksheet during the work, then reuse it as the final report. This is a
 
 **正本の役割分離（2026-11-09）**：AD&C全体の理念（WHY）の公開正本は[共有KB READMEの宣言・理念](../../README.md)。このワークシートのGrand Design・DESIGNER'S NOTEは設計背景と採用理由（WHY / design history）であり、普段の担当AIの着手可否や停止を判断させる実行契約ではない。共通の機械的な操作（HOW）は[標準コミュニケーションPlaybook](../../skills/communication-navigation/SKILL.md)、Playbook作成・改訂の手順は[共有KB開発プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)、専門固有の秘訣・安全・制作順序は各専門Playbookを正本とする。**Playbookの改訂担当は対象に存在するDesigner’s Noteを変更前に必読**。普通の実務担当にはノート全文の毎回取得を強制しない。
 
+**リーダーの本人向け応答における実動ボタン（2026-11-10・既存共通規則の適用）**：通常の相談・進捗回答では、[標準コミュニケーションPlaybook](../../skills/communication-navigation/SKILL.md)の**推奨アクション0〜2件＋補助「もう一声」1件**を既定にする。結論・実装結果を先に返し、実行可能な次の一手があれば対象と動作を一致させてボタンに結ぶ。承認済みの可逆作業をボタン待ちで止めず、未送信を送信済みとしない。**定時巡回の定型報告、Work60の1行配送文・固定入力、独立試験の結果待ち、専門UI／ボタン0件の指定には汎用ボタンを足さない。** 既存の［見直す／保留］等の具体的な本人判断UIと安全・新承認境界を優先する。実ボタン非対応なら実際に使える短い返信またはコピー文にする。これは既存共通HOWへの参照であって、Work60固定契約や各担当への配送権限を変えない。
+
 **Execution model (2026-10-29 β):** Team members complete their authorized reversible changes through canonical writes, reference/Git integration and readback; the leader audits across changes and repairs scoped inconsistencies. Follow the actual enabled patrol schedule; this worksheet does not set its cadence or add preflight gates. Audit significant dependencies and actual restorability, not just reported completion. Avoid new trackers and duplicate approval prompts.
 
 1. New changes: record only new facts, or 'no new changes'.
