@@ -8,7 +8,7 @@ EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob
 EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
 ```
 
-- 版：0.1.8（2026-11-11：Playbook固有Designer’s Noteを日本語／Python領域末尾のコメントへ配置。通常読込不要・改訂と障害時の参照を分離）
+- 版：0.1.9（2026-11-11：対象近傍のテキスト正本・最小中央索引とAIナビPython適材適所を明確化）
 - 追補：2026-11-10／Playbookの道具化に関するWHYを既存Designer’s Noteへ移し、本文には発見・選択・取得・利用の操作だけを維持。
 - 状態：**共有KBの運用ルールとして公開。個別SkillのActive認定ではない**
 - 対象：開発調査、実装支援、KB整備、成果物レビュー
@@ -56,6 +56,10 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 **Playbook固有Designer’s Noteの現物配置（2026-11-11本人指示）**：新規作成・実質改訂するPlaybookは、**そのPlaybook自身**に採用理由・捨てた案・失敗の知見・変更時に守る固定仕様を保存する。**日本語本文の末尾（Python領域があればその直前）にMarkdownのHTMLコメント `<!-- ADNC:DESIGNER_NOTE:HUMAN:BEGIN ... ADNC:DESIGNER_NOTE:HUMAN:END -->`**、**Python領域がある場合はその領域の末尾にPythonの `# ADNC:DESIGNER_NOTE:PYTHON:BEGIN/END` コメント**を置く。後者には入出力・生成範囲・安全境界・同期時の注意だけを簡潔に書き、人間のノート全文を機械側へ二重複製しない。Pythonが外部`.py`なら当該実体末尾にも同形式のコメントを置けるが、未編集の別ツールへ一律追加しない。PythonがないPlaybookにダミーコードを作らない。既存の専門ノートが別位置にある場合は、改訂対象から重要部分を漏らさず、その局所コメントから原位置へ直接参照できるようにする。リーダーワークシートのDesigner’s Noteは全体の背景として保全するが、個別Playbookに固有の判断を**そこだけ**に置かない。通常の実務実行・創作ではノートを**読む必要がない**。不具合・方針の衝突・変更理由の確認では必要に応じて開いてよく、改訂者は対象ノートを読み、採用済みの条件と未採用仮説を区別する。コメントは実行命令・追加承認・停止ゲートではなく、非公開情報の公開コピーは禁止。既存全Playbookの一括書換えやPython化を要求しない。
 
+**対象近傍の正本と最小中央管理（2026-11-11本人方針）**：Linuxの設定ファイルやREADMEのように、専門手順・使い方・入力・関連ツール・局所Designer’s Noteを**当該Playbookと同じファイルまたは同じディレクトリの既存実体**に置く。中央READMEは発見・適用条件・現行版への短い参照、共通コミュニケーションは全員に共通のHOW、リーダーワークシートは**リーダー固有の判断・巡回・例外集約のみ**を持つ。専門の原文や過去の試行錯誤を無限にリーダーへ集積しない。局所に移した履歴はGit版履歴で保全し、旧見出しは必要なら短い参照だけにする。通常利用では設計理由の長文を読込まず、障害／改訂時だけ該当箇所を見る。実行時のPythonと自然言語は競合せず、能力や環境の差を隠さない。
+
+**AIナビゲーションの機械化境界（適用候補）**：ルーティング・固定入力・形式検証など**機械的に確定できるナビ**はPython（またはすでに使える同等のコード／ツール）を第一候補とし、人間の目標・専門判断・創作・承認は自然言語の正本に保持する。Pythonの実行環境がないAIには実行成功を仮定せず、日本語による案内を維持。既存の単一 `runner.py` 試用から全Playbookへ**自動展開しない**。動画／サムネイル等の創作部分へのPython統一や専門仕様の例外は、既存PR責任者と本人の一問一答で必要な範囲を決定する。未決論点は[既存Issue #13の分離候補](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/issues/13#issuecomment-6781760739)に残す。
+
 **配置の決め方**：
 - **全体理念／WHY**＝[READMEの宣言・理念](../README.md)（長期目的、社会的価値、人間の意思）。実行Playbookに全文を複製しない。
 - **設計者の思考・採用理由／DESIGN NOTE**＝対象Playbook自身の末尾コメントを第一参照に、必要時だけ既存[リーダーGrand Design／DESIGNER'S NOTE](templates/LEADER_WORKSHEET.md)や関連専門ノートで背景を確認する。未採用仮説や局所の同意は、全体の命令にしない。
@@ -66,7 +70,7 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 **編集の最小基準**：共通Playbookを変える場合は「いつ発火するか（状態・対象）／何をするか（実操作）／どう結果を見るか／操作不可なら何を返すか」だけを実行本文に残す。機械的に決まる箇所（ボタン、コピー、引継ぎ、送信状態）を定型化し、理念の抽象解釈を着手条件にしない。専門Playbookへ共通規則の長文を複写せず既存の1行継承リンクを保持する。
 
-**設計背景**：[既存リーダーDesigner’s Note「説明書から使える道具へ」](templates/LEADER_WORKSHEET.md)に保存。実行時は下記の操作規則と必要な専門Playbookを使い、理念を通常作業の条件にしない。
+**設計背景**：「説明書から使える道具へ」「AIと人間の二重インターフェース」は[作成・更新テンプレート末尾の局所Designer’s Note](../templates/PLAYBOOK_TEMPLATE.md)に移設済み。リーダーの固有判断は[ワークシート](templates/LEADER_WORKSHEET.md)。通常実行時はこの理由を全文読込・着手条件にしない。
 
 **Playbook作成・更新ツールの完成形（作成側の設計目安）**：`人間の目的 → 自然文の1入口 → 既存Playbook・素材・ツールを発見・選択・原本取得 → 実行・結果確認 → 人間が日本語で意味・現在地・判断・修正方法を理解 → 必要な場合だけ改善・再利用 → 共有可能な知見だけ任意で共有`。AIが操作できることと人間が理解して進歩できることを両立させる。利用するだけの人に学習・投稿・全文読解を課さない。
 
