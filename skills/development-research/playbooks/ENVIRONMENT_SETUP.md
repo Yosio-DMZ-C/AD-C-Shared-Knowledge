@@ -153,3 +153,10 @@
 | v0.1.0 / 2026-11-05 JST | 一歩ずつ／全体像2モード、実行中コマンド0件、1実動ボタン、末尾定型、実地失敗の是正 | 本人が共有標準化を指示。AIが会話実績から整理。独立Q2・適用Q3/Q4は未実施 |
 
 **参照元**：[開発調査Skill](../SKILL.md)、[開発調査共有プラクティス](../../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)、[Playbookテンプレート](../../../templates/PLAYBOOK_TEMPLATE.md)、[共通実行標準](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)。秘書の一問一答での一般原則を参照するが、個人KBの非公開本文・URLは公開しない。
+
+<!-- ADNC:DESIGNER_NOTE:HUMAN:BEGIN
+このPlaybook固有のDesigner’s Note。通常実行では読込不要。障害・仕様の衝突・実質改訂時だけ必要な範囲を参照。採用済みの実行条件・本人判断と、設計理由・未検証仮説を分ける。非公開情報を公開側へ移さない。
+設計の背景：人間が作業中の進捗表示をしている段階では新コマンド0件。検証済み媒体・既存ツールを優先し、少ない操作で安全な最終成果へ導く。「一歩ずつ」は不必要な確認作業を細切れにする意味ではない。
+変更時に守る点：進行中の待機、結果提出待ちのボタン0件、無出力時に結果を得る導線、保護対象のデータと復旧手段を優先。現場で確認できたこととAIの想定を区別する。
+Python領域を持たない本Playbookに、見栄えのための空のPythonは作らない。AIナビの機械化対象は別途用途・利用環境で判断する。
+ADNC:DESIGNER_NOTE:HUMAN:END -->
