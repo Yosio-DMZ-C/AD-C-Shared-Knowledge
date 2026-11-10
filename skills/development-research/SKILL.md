@@ -94,6 +94,7 @@
 |---|---|---|
 | OneShot | [macOS OneShot共有用要約 v0.1（Draft）](standards/OneShot_Standard_v1.md) | macOS実機の環境調査や小修正を「最小操作→結果返送」で行う場合。**標準と実行ZIPは別**で、個人用キットは公開・同梱していない。案件で実在・承認済みのキットを別途取得・検証する |
 | Windows PowerShell / Pester CI（**実装済み・Draft PR #45／main未導入**） | [実行方法・検収条件](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/test/add-powershell-pester-ci-20261031/tests/powershell/README.md)、[GitHub Actions 実行 #12](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/actions/runs/41244161437)、[PR #45](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/pull/45) | AI製PowerShellのWindows 5.1/7互換性とPesterの実行確認。2026-11-01時点で両環境各20件PASS。**mainにあると誤認しない**。Muse等の別AIが探せるか／実行できるかは独立試験NOT_RUN |
+| Google Apps Script（GAS・OPTIONAL候補／実動NOT_RUN） | [Google公式：インストール型トリガー](https://developers.google.com/apps-script/guides/triggers/installable)、[Google公式：サービス制限](https://developers.google.com/apps-script/guides/services/quotas) | 「フォームを受けて処理」「毎週Sheets集計」「Gmail通知」等、Google Workspace内の短いイベント・定時処理が必要なら比較する。実行者権限・認可・時間/日次枠・エラー復帰を案件ごとに確認。GASの導入やトリガー作成を標準で強制しない。単発の正本更新・ChatGPT等のGUI配送・長時間AI常駐は既存の接続/単発手段を優先。本環境でのGAS実起動・継続効果はNOT_RUN |
 
 ### ツールの入口とPlaybookの接続（共通正式運用規則）
 
