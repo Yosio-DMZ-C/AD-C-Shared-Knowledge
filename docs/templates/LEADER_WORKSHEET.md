@@ -450,6 +450,14 @@ The [single-Playbook runner](../../skills/markdown-auto-pilot/runner.py) accepts
 
 **Acceptance:** current and baseline same → no human change; changed human wording → REVIEW_REQUIRED and no write; changed machine appendix only → human UNCHANGED; missing/duplicated appendix → error; stale full-file SHA → refuse. These behavior cases require execution evidence before marking operational PASS. The upstream opt-in rule above still applies; no automatic proposal or acceptance.
 
+<!-- ADNC:DESIGNER_NOTE:HUMAN:BEGIN
+このリーダーワークシート固有の設計メモ。**通常の巡回・実務では読込不要**。仕様改訂・判断の衝突・不具合調査で必要なら参照する。内容はWHY／経緯であり実行命令・承認・停止ゲートではない。
+- 理由：作り込みは濃く運用は軽く。人間に伝わる本文を正本とし、AIに必要な固定動作は既存ツールへ移す。全欄検査や3巡・全SHA同期・毎回のDesigner’s Note取得を要求しない。
+- 既存の設計原文：このファイルのDESIGNER'S NOTE（「説明書から使える道具へ」「AIと人間の二重インターフェース」「次の一手」ほか）を原位置に保持。大きな変更時は変更対象に関係する部分だけ確認し、未採用仮説と利用者の確定判断を区別する。
+- 固定境界：人間が変更した自然言語の目的・手順を機械生成で戻さない。末尾のAUTOは限定的な定型工程で、別AIの自動実行・全Playbook展開・動画／サムネイルの機械的一括変更を意味しない。
+- Python側の詳細は直後のAI appendix末尾にある # ADNC:DESIGNER_NOTE:PYTHON コメントを参照。非公開情報を公開側へ出さない。
+ADNC:DESIGNER_NOTE:HUMAN:END -->
+
 ## AI execution appendix — machine-checkable STEPS (human instructions above take precedence)
 
 This appendix is for bounded mechanical validation. If a human changes the natural-language procedure, review that diff first, update this appendix to match the intended local customization, and test before reporting PASS. The runner never executes downloaded Python from Markdown and never rewrites human prose. No automatic upstream proposal or publication.
@@ -468,4 +476,11 @@ STEPS = [
 ]
 def render_steps():
     return "\n".join(f"{i}. {step}" for i, step in enumerate(STEPS, 1))
+
+# ADNC:DESIGNER_NOTE:PYTHON:BEGIN
+# 通常の実務では読込不要。改訂・不具合調査のときだけ参照。
+# このSTEPSはrunner.pyがast.literal_evalで読んでAUTO:BEGIN/END間だけ再生成する固定入力。
+# Markdown内のPythonを自由実行せず、Pythonコメントは生成対象外。人間本文は優先正本。
+# 人間本文の変更は意味をレビューしてからSTEPSと整合する。自動推測で本文・既存採用仕様を上書きしない。
+# ADNC:DESIGNER_NOTE:PYTHON:END
 ```
