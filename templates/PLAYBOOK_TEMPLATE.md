@@ -181,7 +181,7 @@ Python領域を設けるPlaybookでは、この人間側コメントをPython領
 `# ADNC:DESIGNER_NOTE:PYTHON:END`
 
 【設計原文の局所移設｜2026-11-11】
-<!-- ADNC:NOTE_MIGRATION:20261111:PLAYBOOK_AUTHOR -->
+ADNC:NOTE_MIGRATION:20261111:PLAYBOOK_AUTHOR
 出典：[移設前LEADER_WORKSHEET.md](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/5ba3a955b150d5443153dfee06ff94196e1cb54d/docs/templates/LEADER_WORKSHEET.md)。当時の採用済み判断／設計仮説／失敗の経緯を省略せず保持。通常動作時は読込不要で、改訂・障害時のみ必要な節を読む。下記は実行命令としての追加ではない。
 
 ### DESIGNER'S NOTE 追補｜「作り込みは濃く、運用は軽く」（2026-11-08）
