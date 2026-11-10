@@ -1,5 +1,13 @@
 # 開発調査の共有プラクティスとプロジェクト進行スタイル
 
+> **本書自身の改訂時に取得する正本（編集担当のみ）**：下記3参照を確認。3番目は**本書自身**なので、既に現行本文を取得済みなら再取得を繰り返さない。これは通常の開発・実行に追加する事前ゲートではない。
+
+```text
+EDIT_REF_PHILOSOPHY=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/README.md
+EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/templates/LEADER_WORKSHEET.md
+EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
+```
+
 - 版：0.1.7（2026-11-09：理念／設計ノート／共通実動作／専門手順の正本分離。改訂者のDesigner’s Note必読を明記）
 - 追補：2026-11-10／Playbookの道具化に関するWHYを既存Designer’s Noteへ移し、本文には発見・選択・取得・利用の操作だけを維持。
 - 状態：**共有KBの運用ルールとして公開。個別SkillのActive認定ではない**
@@ -41,6 +49,8 @@
 **採用の根拠と境界**：2026-11-01、利用者が原則の正式運用を明示承認。サムネイルCASE Aの「AIが背景・見出しの表現を創作 → Pythonが公式素材を原本合成 → 実物を検査」が具体例。ただし当該CASE Aの凍結原本と個人KBの非公開実体は変更しない。ツールの使い勝手や別AIの自動発見が実証済みという承認ではない。個別SkillのActive化・公開カタログ掲載は引き続き既存[更新・審査規則](GOVERNANCE.md)に従う。
 
 ### Playbook・ワークシートの作成・更新：作り込みは濃く、運用は軽く（2026-11-08 本人採用方針）
+
+**Playbook先頭の機械可読参照（2026-11-10）**：新規Playbookには[既存テンプレート](../templates/PLAYBOOK_TEMPLATE.md)先頭の `EDIT_REF_PHILOSOPHY`／`EDIT_REF_DESIGNER_NOTE`／`EDIT_REF_UPDATE_PLAYBOOK` という**固定キーと実取得URL**を置く。既存Playbookは別の理由で改訂するときに必要な範囲で追加し、**既存のカスタムPlaybook／個人KB優先分岐の直前**を定位置とする。編集担当が3参照の本文と対象に固有のDesigner’s Note（存在する場合）を読む。取得不能は未取得として記録し、無関係な許可済み作業を止めない。**通常利用ではキーを読解ゲートにしない**。3番目が現在の本書自身なら参照を再帰しない。設定するURLは公開正本だけにし、非公開の個人KBパスを共有ファイルへ複写しない。
 
 **改訂担当の入口（2026-11-09本人指定）**：①対象Playbook・ワークシートの現行本文を確認、②**対象に既存のDESIGNER'S NOTEや設計理由があれば編集前に必ず実取得して読む**、③[全体理念の正本](../README.md)の**理念本文を実取得して読む**、④変更が必要な**実行条件・UI操作・出力契約だけ**を差分編集し、変更箇所を読戻す。Designer’s Noteが存在しない対象に新設を一律強制せず、取得不能は「未取得」と明記して重要な採用済み仕様を推測変更しない。ノートを読んだことは実行仕様の採用・承認ではない。**この必読はPlaybookを作成・改訂する担当の仕事だけ**であり、利用者の普通の依頼・専門手順の実行を止めるゲートではない。
 
