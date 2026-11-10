@@ -1,6 +1,14 @@
 # AD&C 標準コミュニケーション Playbook｜次の一手・実動ボタン・引継ぎ
 
-- 版：0.1.13-preview（2026-11-10：自由入力にも適用する共通の出口処理を既存の操作規則へ統合）
+> **改訂時の取得先（編集担当のみ）**：次の3正本を実取得し、対象に固有のDesigner’s Noteがあればそれも読む。通常の応答時には読み直しを強制しない。
+
+```text
+EDIT_REF_PHILOSOPHY=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/README.md
+EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/templates/LEADER_WORKSHEET.md
+EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
+```
+
+- 版：0.1.14-preview（2026-11-10：編集時専用の3つの正本参照を先頭へ設置。出口処理は維持）
 - 対象：通常のAD&C共通コミュニケーション操作。
 - 優先：本人の明示指示 ＞ 専門Playbookの固定手順・安全・専用UI ＞ この共通動作。
 - **本文は実行する操作だけ**。全体理念の正本は[共有KB README](../../README.md)、設計理由・仮説・人間の見え方は[リーダーワークシートのGrand Design／DESIGNER'S NOTE](../../docs/templates/LEADER_WORKSHEET.md)、改訂手順は[開発プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)。それらの理念文や仮説を、このPlaybookの着手・停止・承認要件にしない。
