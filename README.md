@@ -130,6 +130,10 @@ Coreは別の知識コピーではなく、共有知から選ぶ小さな標準�
 
 - [旅行の玄人が最初に見る5項目｜PR #15](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/pull/15) は2026-10-24に草案化済み。**未マージ・未審査で、現行mainの実行Skillでも正式配布項目でもありません。** 移動・営業・取消条件・代替案などの初動判断の型を提案しています。架空ケースでの別担当レビュー、旅行者の利用評価は `NOT_RUN`。既存のPRを再利用し、同じ手順書を新規作成しません。
 
+## Word・Google Docsなどの文書を作るとき（試用）
+
+「Word文書／報告書／案内文／手順書を作って・直して」は、[Word・Google Docsなどの文書作成Playbook v0.1.0-preview](skills/document-authoring/SKILL.md)へ。**本文・見出し・表の編集可能性を優先し、アイコンは理解の助けになる場所だけ**。新たなアイコン集を作らず、既存の[表D（PPT・文書共通のテキスト探索）](skills/video-production-setup/PRODUCTION_ASSETS_GENERAL_SPEC_v0.1.md) → [16点SVG見本](assets/ppt_icon_reference_sheet.svg) → 公式の個別SVGを再利用します。Word／Docsの種類・利用者の採用テンプレートを優先し、単に文書を作る依頼で動画制作工程や非公開AD&C PPTを起動しません。正式Activeではなく、初見AIの自力利用・Word実機表示は未検証です。
+
 ## PPT資料・編集可能なスライドを作るとき（試用）
 
 「PPTを作って／既存PPTを直して」は、既存の[動画制作・初期設定Skill内の**PPTX制作／再利用の1入口**](skills/video-production-setup/SKILL.md#pptx資料制作採用済みキット再利用の1入口2026-11-10限定追補)へ進みます。**動画の依頼ではない限り、サムネイル・音声・MP4工程は開始しません。** AD&Cの採用済みPPTXを使う場合だけ、本人の非公開 `START_HERE → registry → A-VIDEO → VID-KIT-TEMPLATE-V12` から原本を取得し、コピーを編集します。一般の資料は本人指定のテンプレートを優先し、AD&C非公開素材を自動移植しません。PPTX・プレビュー・再読込を区別して確認し、実機PowerPointと独立AIの再現性は未検証です。正式Activeやカタログ件数は変更していません。
