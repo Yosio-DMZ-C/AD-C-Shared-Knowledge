@@ -1,6 +1,6 @@
 # Leader worksheet v0.1
 
-Use this worksheet during the work, then reuse it as the final report. This is a format, not a decision procedure. Refer to the existing registry and operating rules for authoritative facts and approvals.
+Use this worksheet for leader-only decisions, patrol, evidence and reports, not as a central storage dump for all specialist Designer’s Notes. Specialist reasons and tools belong next to their own Playbooks; keep a short link here when needed. This is a format, not a decision procedure. Refer to the existing registry and operating rules for authoritative facts and approvals.
 
 **正本の役割分離（2026-11-09）**：AD&C全体の理念（WHY）の公開正本は[共有KB READMEの宣言・理念](../../README.md)。このワークシートのGrand Design・DESIGNER'S NOTEは設計背景と採用理由（WHY / design history）であり、普段の担当AIの着手可否や停止を判断させる実行契約ではない。共通の機械的な操作（HOW）は[標準コミュニケーションPlaybook](../../skills/communication-navigation/SKILL.md)、Playbook作成・改訂の手順は[共有KB開発プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)、専門固有の秘訣・安全・制作順序は各専門Playbookを正本とする。**Playbookの改訂担当は対象に存在するDesigner’s Noteを変更前に必読**。普通の実務担当にはノート全文の毎回取得を強制しない。
 
