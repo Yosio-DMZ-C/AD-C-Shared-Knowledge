@@ -40,10 +40,14 @@ def split_human_machine(data):
     """Return stable, separate hashes; appendix is machine-only."""
     raw = data.decode('utf-8')
     boundary = '## AI execution appendix'
-    if raw.count(boundary) != 1:
+    # A human paragraph can quote the heading literally. Locate the Markdown
+    # heading line, not every mention of its text in explanations.
+    lines = raw.splitlines(keepends=True)
+    indices = [i for i, line in enumerate(lines) if line.startswith(boundary)]
+    if len(indices) != 1:
         raise ValueError('AI appendix boundary missing or duplicated')
-    human, machine = raw.split(boundary, 1)
-    return human, boundary + machine
+    pos = sum(len(line) for line in lines[:indices[0]])
+    return raw[:pos], raw[pos:]
 
 
 def human_digest(data):
