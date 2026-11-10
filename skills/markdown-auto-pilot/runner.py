@@ -126,3 +126,12 @@ if __name__=='__main__':
         main()
     except ValueError as exc:
         raise SystemExit(f'ABORT: {exc}') from None
+
+# ADNC:DESIGNER_NOTE:PYTHON:BEGIN
+# 通常利用では読込不要。Markdown AUTO領域の改訂・不具合調査時だけ参照。
+# 単一ワークシートのリテラル STEPS をASTで読み、AUTOマーカー間だけ再生成する限定試験器。
+# 人間が編集したMarkdown本文を上書きしない。fenced Pythonを自由実行する仕組みではない。
+# expected SHA、baseline人間差分、冪等性、backup/restore、readbackを維持。
+# 理由は docs/templates/LEADER_WORKSHEET.md のPython末尾注記と
+# docs/DEVELOPMENT_WORKFLOW_PRACTICES.md を参照。全Playbookへの無断展開をしない。
+# ADNC:DESIGNER_NOTE:PYTHON:END
