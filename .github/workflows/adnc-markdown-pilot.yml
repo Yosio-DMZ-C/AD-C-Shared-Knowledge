@@ -25,6 +25,9 @@ jobs:
           target="$RUNNER_TEMP/adnc/LEADER_WORKSHEET.md"
           before="$(sha256sum "$target" | cut -d' ' -f1)"
           python skills/markdown-auto-pilot/runner.py "$target" --expected-sha256 "$before"
+          # The current human prose quotes the appendix heading text. With a
+          # same-file baseline, the detector must find the real Markdown heading.
+          python skills/markdown-auto-pilot/runner.py "$target" --expected-sha256 "$before" --baseline docs/templates/LEADER_WORKSHEET.md
           python skills/markdown-auto-pilot/runner.py "$target" --expected-sha256 "$before" --write
           after="$(sha256sum "$target" | cut -d' ' -f1)"
           python skills/markdown-auto-pilot/runner.py "$target" --expected-sha256 "$after"
