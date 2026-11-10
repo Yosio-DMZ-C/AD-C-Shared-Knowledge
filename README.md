@@ -130,6 +130,10 @@ Coreは別の知識コピーではなく、共有知から選ぶ小さな標準�
 
 - [旅行の玄人が最初に見る5項目｜PR #15](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/pull/15) は2026-10-24に草案化済み。**未マージ・未審査で、現行mainの実行Skillでも正式配布項目でもありません。** 移動・営業・取消条件・代替案などの初動判断の型を提案しています。架空ケースでの別担当レビュー、旅行者の利用評価は `NOT_RUN`。既存のPRを再利用し、同じ手順書を新規作成しません。
 
+## PPT資料・編集可能なスライドを作るとき（試用）
+
+「PPTを作って／既存PPTを直して」は、既存の[動画制作・初期設定Skill内の**PPTX制作／再利用の1入口**](skills/video-production-setup/SKILL.md#pptx資料制作採用済みキット再利用の1入口2026-11-10限定追補)へ進みます。**動画の依頼ではない限り、サムネイル・音声・MP4工程は開始しません。** AD&Cの採用済みPPTXを使う場合だけ、本人の非公開 `START_HERE → registry → A-VIDEO → VID-KIT-TEMPLATE-V12` から原本を取得し、コピーを編集します。一般の資料は本人指定のテンプレートを優先し、AD&C非公開素材を自動移植しません。PPTX・プレビュー・再読込を区別して確認し、実機PowerPointと独立AIの再現性は未検証です。正式Activeやカタログ件数は変更していません。
+
 ## 動画を作るときの初期設定（Draft）
 
 - [PPT基準の動画制作・初期設定 Skill v0.1.0-preview](skills/video-production-setup/SKILL.md)：**採用見本PPT・色調・公式素材・音声方式を、利用者の非公開KBに復元可能な形で保存する**参考手順。シリーズArea Contextと案件Project Contextを既存の位置づけで使い、同じ一行依頼から続けられるか検証します。
