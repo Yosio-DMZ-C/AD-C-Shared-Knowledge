@@ -301,6 +301,8 @@ Use the latest user-corrected choice semantics: ① delegate to a verified activ
 
 本追補は上記2026-11-09「原則主ボタン1件」という先行設計の**通常対話における表示件数を更新**する。専門Playbookの操作UI（秘書の既存4択、結果提出・自由入力待ち、ボタン0件）はそのまま優先し、「もう一声」を重ねない。正式な機械的実行条件は[標準コミュニケーションPlaybook](../../skills/communication-navigation/SKILL.md)に置き、設計意図を通常実務の停止条件に変えない。
 
+**2026-11-10の出口処理の着想（設計理由・原因は仮説）**：本人の観察「結論が終わったらボタンを出せばいいだけ」「ボタン入力には次もボタンを出せとの指示を埋め込めるが、人間が書き込むと欠ける」。Work60の配送UNKNOWNを巡る対話で、AIが次の操作を文章で提案したのにボタンを表示しなかった事例が発端。**ボタン規則そのものの欠落ではなく、自由入力・長い調査や障害解析後に出口規則の適用が抜ける**可能性を扱う。ただし原因がコンテクスト長・AIの内部処理・UI制約のどれかは未検証。理念は「人間の再指示負担を減らす」ことであり、ボタンを表示するために作業を止めたり架空の仕事を作ることではない。製品側の将来改善で不要になり得る補助設計として、通常回答の最後に既存表示契約を適用するだけに留める。実装のHOWは[標準コミュニケーションPlaybookの共通出口](../../skills/communication-navigation/SKILL.md)に限定し、専門の固定UIやWork60の配送認可・UNKNOWNの重複防止条件は変えない。
+
 ## T017 — three-character asset entry and independent Q2/Q3 acceptance (2026-11-05; approved local implementation)
 
 **Scope:** existing approved characters 私／ワタシ／専門家, records `VID-CHAR-01/02/03`. The 2026-11-03 human approval remains PASS; this checklist never asks for approval again and does not modify image masters, Drive permissions or published materials.
