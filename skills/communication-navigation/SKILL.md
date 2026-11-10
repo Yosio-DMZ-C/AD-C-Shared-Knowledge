@@ -91,7 +91,7 @@ AD&C標準コミュニケーション固有の設計理由。通常の質問・�
 - Python領域はこのPlaybookには無い。Python化のためだけにコードや空の機械コメントを追加しない。
 
 【設計原文の局所移設｜2026-11-11】
-<!-- ADNC:NOTE_MIGRATION:20261111:COMM -->
+ADNC:NOTE_MIGRATION:20261111:COMM
 出典：[移設前LEADER_WORKSHEET.md](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/5ba3a955b150d5443153dfee06ff94196e1cb54d/docs/templates/LEADER_WORKSHEET.md)。当時の採用済み判断／設計仮説／失敗の経緯を省略せず保持。通常動作時は読込不要で、改訂・障害時のみ必要な節を読む。下記は実行命令としての追加ではない。
 
 ## DESIGNER'S NOTE — 人間が迷わず選べる一問一答UI（2026-11-05、利用者の設計知見）
