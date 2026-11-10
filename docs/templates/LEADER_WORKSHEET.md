@@ -93,6 +93,24 @@ Keep routine reports brief. Mark irrelevant checks N/A with a reason. Never repo
 | `REPORT_LABEL` | `【LEADER_REPORT <ロール>｜<個別JOB_ID>】` など既存ラベルに統一 |
 | `RECEIPT_STATE` | `NOT_SAVED / SAVED_READBACK / LEADER_READ / UNKNOWN`。保存確認と受領を混同しない |
 
+**生成時の1枚の埋込パケット（完成指示書の末尾に具体値で記入。別管理票ではない）**：
+
+```text
+JOB_ID: <既存JOB_ID／個別ID>
+PARENT: <既存親ID>
+REPORT_CANONICAL: <実取得した既存非公開Project・80_reviews・Work60運行票等の書込可能な実URLと追記位置／未確認ならUNVERIFIED>
+REPORT_PUBLIC_OPTIONAL: <公開可能な既存Issue等／なければNONE>
+LEADER_PICKUP: <既存リーダー/巡回が実取得する入口URL＋同一JOB_ID＋REPORT_LABELでの照合位置>
+REPORT_LABEL: 【LEADER_REPORT <A/B/C>｜<実個別JOB_ID>】
+RECEIPT_STATE: NOT_SAVED（生成時点。担当の保存・読戻し、リーダーの実取得によってのみ更新）
+```
+
+**具体化と動作の境界**：`REPORT_CANONICAL` は「Projectなど」と書く種類名ではなく、担当が実際にアクセス・追記できる**既存文書のURL／対象位置**。生成側は同じURLを直接取得して確認する。 `LEADER_PICKUP` は後で拾う人の希望ではなく、既存リーダー定期巡回が既に読む正本の入口・検索キー。生成・保存・巡回が動くことは別であり、ワークシートを記述しただけでチャット間通知や自動回収が始まったとは主張しない。保存不能なら `UNVERIFIED/DIRECT_REPORT_NOT_EXECUTED` を既存IDへ残し、他の実務を続ける。通常の1行Work配送文は**変更しない**。
+
+**読取側の実行**：既存巡回は `LEADER_PICKUP` の文書を正規コネクタで取得し、`JOB_ID+REPORT_LABEL` の一致する**新規または更新された成果版だけ**を読取る。A戦略は本文全文を取得して採否を検討、B実務は先に成果ID・版・検収・残件を短く読み、採否や重大阻害に関係するときだけ詳細本文を取得する（既存のA/B読取差を維持）。リーダーは実際に読んで判断し、同じ既存親へ「報告元・回収した版・判断・次の1操作」を記録。実取得前のIssue投稿・URL提示・コピー・担当の自己申告だけで `LEADER_READ` にしない。
+
+**過去報告の救済**：主報告先へ未保存の旧案件で、既存Issue等に取得可能な公開要旨があるなら、リーダーは元の成果を実取得し**「リーダーが既存公開報告から回収して主報告先へ保全した」**と出典・今回の読取証拠を付けて同一IDへ取り込める。これは当時の**担当自身の`SAVED_READBACK`を遡及して証明しない**。保存・受領の工程と、リーダーが次を判断した工程を別に記載する。再配送や人間による転送は要求しない。
+
 **ツール的な動作（生成→配送→保存→回収）**：
 
 1. リーダー/巡回は、案件に既にある保存先と巡回時の取得入口を**両方**取得して、指示書の `REPORT_CANONICAL` と `LEADER_PICKUP` に具体値を埋める。私的保存先の実URLを公開Issueへ置かず、確認できない値は `UNVERIFIED` とする。既存保存先が見つからなくても他の安全な実務は止めない。
