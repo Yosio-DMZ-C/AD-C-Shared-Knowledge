@@ -4,7 +4,7 @@
 
 ```text
 EDIT_REF_PHILOSOPHY=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/README.md
-EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/templates/LEADER_WORKSHEET.md
+EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/templates/PLAYBOOK_TEMPLATE.md
 EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
 ```
 
@@ -50,7 +50,7 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 ### Playbook・ワークシートの作成・更新：作り込みは濃く、運用は軽く（2026-11-08 本人採用方針）
 
-**Playbook先頭の機械可読参照（2026-11-10）**：新規Playbookには[既存テンプレート](../templates/PLAYBOOK_TEMPLATE.md)先頭の `EDIT_REF_PHILOSOPHY`／`EDIT_REF_DESIGNER_NOTE`／`EDIT_REF_UPDATE_PLAYBOOK` という**固定キーと実取得URL**を置く。既存Playbookは別の理由で改訂するときに必要な範囲で追加し、**既存のカスタムPlaybook／個人KB優先分岐の直前**を定位置とする。編集担当が3参照の本文と対象に固有のDesigner’s Note（存在する場合）を読む。取得不能は未取得として記録し、無関係な許可済み作業を止めない。**通常利用ではキーを読解ゲートにしない**。3番目が現在の本書自身なら参照を再帰しない。設定するURLは公開正本だけにし、非公開の個人KBパスを共有ファイルへ複写しない。
+**Playbook先頭の機械可読参照（2026-11-10）**：新規Playbookには[既存テンプレート](../templates/PLAYBOOK_TEMPLATE.md)先頭の `EDIT_REF_PHILOSOPHY`／`EDIT_REF_DESIGNER_NOTE`／`EDIT_REF_UPDATE_PLAYBOOK` という**固定キーと実取得URL**を置く。既存Playbookは別の理由で改訂するときに必要な範囲で追加し、**既存のカスタムPlaybook／個人KB優先分岐の直前**を定位置とする。編集担当が3参照の本文と対象に固有のDesigner’s Note（存在する場合）を読む。取得不能は未取得として記録し、無関係な許可済み作業を止めない。**通常利用ではキーを読解ゲートにしない**。 **`EDIT_REF_DESIGNER_NOTE` のURLは原則その対象Playbook自身の現行URL**（末尾の局所ノート）にする。原本を既に取得済みなら同じURLを再取得せず、必要部分だけ参照する。テンプレートを新規Playbookへ複製するときは自分の作成対象URLへ書き換え、リーダーの全体ノートは関連する場合だけ追加参照する。3番目が現在の本書自身なら参照を再帰しない。設定するURLは公開正本だけにし、非公開の個人KBパスを共有ファイルへ複写しない。
 
 **改訂担当の入口（2026-11-09本人指定）**：①対象Playbook・ワークシートの現行本文を確認、②**対象に既存のDESIGNER'S NOTEや設計理由があれば編集前に必ず実取得して読む**、③[全体理念の正本](../README.md)の**理念本文を実取得して読む**、④変更が必要な**実行条件・UI操作・出力契約だけ**を差分編集し、変更箇所を読戻す。Designer’s Noteが存在しない対象に新設を一律強制せず、取得不能は「未取得」と明記して重要な採用済み仕様を推測変更しない。ノートを読んだことは実行仕様の採用・承認ではない。**この必読はPlaybookを作成・改訂する担当の仕事だけ**であり、利用者の普通の依頼・専門手順の実行を止めるゲートではない。
 
