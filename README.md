@@ -17,7 +17,7 @@
 
 **全体理念の公開正本は本READMEの冒頭宣言と「AD&Cの理念との関係」**です。長期目的・価値観・設計上のトレードオフは、[リーダーワークシートのGrand Design原則とDESIGNER'S NOTE](docs/templates/LEADER_WORKSHEET.md)に背景・設計理由として残します。理念・Designer’s Noteは**理解と改訂の参照資料**であり、その文章だけを根拠に通常実務を開始・停止・再承認させる実行命令ではありません。
 
-**機械的な共通操作の正本は[標準コミュニケーションPlaybook](skills/communication-navigation/SKILL.md)**（次の一手、実動ボタン、コピー、引継ぎ、送信と受領の区別）。**Playbookの作成・更新方法は[開発プラクティス](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)**に集約します。**分野固有の工程・安全・固定素材・創作の秘訣は各専門Playbookが正本**であり、共通ルールがその内容を上書きしません。参照は短いリンクで十分です。全理念・ノートを通常回答ごとに読み直す規則は作りません。
+**通常利用の3層**：①常時コア＝目的・必要な専門手順の選択・実権限・実行・現物・次の一手（本READMEの入口と[標準コミュニケーション](skills/communication-navigation/SKILL.md)）、②専門時だけ＝該当する専門Playbookの本文（固定仕様・安全・創作条件は専門側が優先）、③機械処理＝必要な場合に[開発調査Skillの道具棚](skills/development-research/SKILL.md)から既存ツールを選ぶ。**作成・改訂のときだけ**[開発プラクティス](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)と対象Designer’s Noteを参照し、通常回答に全文取得を要求しません。
 
 ### 全担当共通：ゴール到達と見える承認（2026-11-08）
 
