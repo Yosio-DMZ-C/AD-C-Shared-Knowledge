@@ -8,7 +8,7 @@ EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob
 EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
 ```
 
-- 版：0.1.7（2026-11-09：理念／設計ノート／共通実動作／専門手順の正本分離。改訂者のDesigner’s Note必読を明記）
+- 版：0.1.8（2026-11-11：Playbook固有Designer’s Noteを日本語／Python領域末尾のコメントへ配置。通常読込不要・改訂と障害時の参照を分離）
 - 追補：2026-11-10／Playbookの道具化に関するWHYを既存Designer’s Noteへ移し、本文には発見・選択・取得・利用の操作だけを維持。
 - 状態：**共有KBの運用ルールとして公開。個別SkillのActive認定ではない**
 - 対象：開発調査、実装支援、KB整備、成果物レビュー
@@ -54,9 +54,11 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 **改訂担当の入口（2026-11-09本人指定）**：①対象Playbook・ワークシートの現行本文を確認、②**対象に既存のDESIGNER'S NOTEや設計理由があれば編集前に必ず実取得して読む**、③[全体理念の正本](../README.md)の**理念本文を実取得して読む**、④変更が必要な**実行条件・UI操作・出力契約だけ**を差分編集し、変更箇所を読戻す。Designer’s Noteが存在しない対象に新設を一律強制せず、取得不能は「未取得」と明記して重要な採用済み仕様を推測変更しない。ノートを読んだことは実行仕様の採用・承認ではない。**この必読はPlaybookを作成・改訂する担当の仕事だけ**であり、利用者の普通の依頼・専門手順の実行を止めるゲートではない。
 
+**Playbook固有Designer’s Noteの現物配置（2026-11-11本人指示）**：新規作成・実質改訂するPlaybookは、**そのPlaybook自身**に採用理由・捨てた案・失敗の知見・変更時に守る固定仕様を保存する。**日本語本文の末尾（Python領域があればその直前）にMarkdownのHTMLコメント `<!-- ADNC:DESIGNER_NOTE:HUMAN:BEGIN ... ADNC:DESIGNER_NOTE:HUMAN:END -->`**、**Python領域がある場合はその領域の末尾にPythonの `# ADNC:DESIGNER_NOTE:PYTHON:BEGIN/END` コメント**を置く。後者には入出力・生成範囲・安全境界・同期時の注意だけを簡潔に書き、人間のノート全文を機械側へ二重複製しない。Pythonが外部`.py`なら当該実体末尾にも同形式のコメントを置けるが、未編集の別ツールへ一律追加しない。PythonがないPlaybookにダミーコードを作らない。既存の専門ノートが別位置にある場合は、改訂対象から重要部分を漏らさず、その局所コメントから原位置へ直接参照できるようにする。リーダーワークシートのDesigner’s Noteは全体の背景として保全するが、個別Playbookに固有の判断を**そこだけ**に置かない。通常の実務実行・創作ではノートを**読む必要がない**。不具合・方針の衝突・変更理由の確認では必要に応じて開いてよく、改訂者は対象ノートを読み、採用済みの条件と未採用仮説を区別する。コメントは実行命令・追加承認・停止ゲートではなく、非公開情報の公開コピーは禁止。既存全Playbookの一括書換えやPython化を要求しない。
+
 **配置の決め方**：
 - **全体理念／WHY**＝[READMEの宣言・理念](../README.md)（長期目的、社会的価値、人間の意思）。実行Playbookに全文を複製しない。
-- **設計者の思考・採用理由／DESIGN NOTE**＝既存[リーダーGrand Design／DESIGNER'S NOTE](templates/LEADER_WORKSHEET.md)および対象専門Playbookのノート。未採用仮説や局所の同意は、全体の命令にしない。
+- **設計者の思考・採用理由／DESIGN NOTE**＝対象Playbook自身の末尾コメントを第一参照に、必要時だけ既存[リーダーGrand Design／DESIGNER'S NOTE](templates/LEADER_WORKSHEET.md)や関連専門ノートで背景を確認する。未採用仮説や局所の同意は、全体の命令にしない。
 - **標準行動／HOW（共通）**＝[標準コミュニケーションPlaybook](../skills/communication-navigation/SKILL.md)。入力・発動条件・実操作・失敗時の代替・確認できる結果で書く。「良さそう」「適切なら」だけで着手や表示可否が変わる抽象的な理念文は移さず、理由はノートに置く。
 - **専門固有のHOW**＝各専門Playbook。動画サムネの採用済み素材・順序・ノウハウ、山歩きの安全な経路、装置の寸法等を無断で一般化・削除・短縮しない。専門定義の例外は共通より優先する。
 
