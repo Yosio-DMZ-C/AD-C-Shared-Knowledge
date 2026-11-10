@@ -353,3 +353,11 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+# ADNC:DESIGNER_NOTE:PYTHON:BEGIN
+# 通常の実行では読込不要。修正・不具合調査時だけ参照。
+# この検査器は山歩きPlaybookの数値・必須欄・経由地順序・服装区分の機械検収を支援する。
+# 外部の登山道・気象・通行規制を検索せず、実地安全の保証や利用者の最終判断には代わらない。
+# 結果が UNKNOWN/SAFETY_STOP なら専門Playbook側の安全な停止・相談条件を維持し、PASSに書き換えない。
+# 詳細な採用理由は同じディレクトリの SKILL.md 末尾HTMLコメントを参照。構文・入出力仕様を無断変更しない。
+# ADNC:DESIGNER_NOTE:PYTHON:END
