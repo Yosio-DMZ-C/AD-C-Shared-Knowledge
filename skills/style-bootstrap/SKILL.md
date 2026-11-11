@@ -1,10 +1,10 @@
 # AD&C｜Style Bootstrap（初期スタイル・素材キット構築）
 
-> **改訂担当のみの3参照**：本Playbookを更新するとき、現行本文・末尾Designer’s Noteと下記を実取得する。普通の制作時に3文書の読込みを要求しない。
+> **改訂担当のみの3参照**：本Playbookを更新するとき、現行本文・同一フォルダのDesigner’s Noteと下記を実取得する。普通の制作時に3文書の読込みを要求しない。
 
 ~~~text
 EDIT_REF_PHILOSOPHY=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/README.md
-EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/style-bootstrap/SKILL.md
+EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/style-bootstrap/DESIGNER_NOTE.md
 EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
 ~~~
 
@@ -20,11 +20,12 @@ AI_NAV_PY_PATH=NONE
 > **改訂時の変更検出だけ**：[共通開発プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)に従い、Git前版等の確認済み原本と変更後の日本語差分・SHAを照合し、変更部分のナビのみ局所整合する。通常制作へハッシュ確認や新しい承認ゲートを課さない。
 
 - ID：PB-STYLE-BOOTSTRAP-001
-- Version：0.1.0-preview（2026-11-11）
-- 状態：**任意の初期スタイル構築Playbook／Draft**。正式Active・インストーラー配布ではない。
+- Version：0.1.1-preview（2026-11-11／本人採用・Style Bootstrapの作成時オプション化・Q7外部ノート整合）
+- 状態：**本人採用の任意初期工程／共通試用（preview）**。作成・更新Playbookからの正式な選択肢として採用。ただし実制作の独立再現が未検証のため正式Active・インストーラー配布とは区別する。
 - 目的：**最初に良い代表作品を作り、その見本から実素材と最小のスタイルを抽出し、次回以降の制作を軽くする**。抽象的な仕様書やJSONを作っただけで完了とはしない。
 - 自然文入口：「新シリーズの動画／ブログを始めたい」「今後の挿絵の画風を統一したい」「ブランドの見本と編集可能な素材を最初に整えたい」「最初にスタイルを作って、その後は再利用したい」。
 - **起動しない場合**：「ブログ記事1本を書いて」「PPTを1件作って」「この文字だけ直して」。本人がスタイル構築を明示しない限り、採用済みの素材を使う通常制作へ直行する。
+- **カスタムPlaybook作成時の位置づけ（2026-11-11本人採用）**：動画シリーズ、サムネイル、ブログ挿絵、PPTX等で**新しい共通作風・ブランド見本・継続再利用する素材が必要な場合だけ**、既存[Playbook作成・更新プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)の**任意の初期スタイル工程**として本Skillを使う。スタイルキットの採用・保存後は利用者の個人KB／既存シリーズAreaの**カスタムPlaybook・Runbookへ実体と固定/可変条件を接続**し、通常制作はそちらを使用する。一般的なPlaybook新設・軽微改訂にデザイン工程を要求せず、個人設定や素材IDを公開共有KBへ逆送信しない。
 
 ## 1. 起動時の分岐：新しい基準が必要なときだけ
 
@@ -73,9 +74,11 @@ AI_NAV_PY_PATH=NONE
 
 **発想の根拠（報告ベース／本Playbook作成担当による現物未取得）**：2026-11-11に共有された別担当の報告では、ブログに挿絵3枚を追加し、編集可能なPPTX4枚とデザイン仕様JSON試作品を作ったという。記事の保存後再取得・PPTX再読込と描画試験は報告者の主張であり、**ここでは記事・画像3枚・PPTX4枚・JSONの実体を取得していない**。本実装での現物検証は REPORT_ONLY、当該JSONは試作であって媒体横断の正式生成エンジンではない。KOF企画は今後の実使用機会であり、成功済みとは記さない。
 
-<!-- ADNC:DESIGNER_NOTE:HUMAN:BEGIN
-**局所WHY（通常利用時に読込不要）**：
-人間は画面を視覚的に読むため、AIがテキスト仕様だけで十分と判断しても、良い実物・視線の手がかり・少数の適切なアイコンは作品への理解と満足感を助ける可能性がある。最初に手間をかけて高品質な見本と素材を作り、後続制作の再説明・再配置を減らす仮説。品質向上や時間削減の因果効果は未検証。
+## 設計上の重要点（本人採用・2026-11-11）
 
-2026-11-11本人共有の「挿絵3枚・編集可能PPTX4枚・JSON試作」から、**良い作品→媒体共通の作風と素材→編集可能原本／自由な画像制作の二経路**を整理した。万能JSON、汎用コンパイラ、全員の必須起動ではない。過去のMUSE CASE Aや採用PPTキットは保全し、過適合や創造性の低下・初期コストの過大化を避ける。採用・報告のみ・現物確認の差を残し、本人が固定した部分を無断再生成しない。
-ADNC:DESIGNER_NOTE:HUMAN:END -->
+- **採用理由**：良い代表作品を先に実際に制作し、そこからスタイルと使える素材を抽出すると、次回以降の再説明・素材再作成を減らせる可能性がある。品質・時間削減効果の実測は別判定。
+- **変更禁止**：既存の採用済みロゴ・原画・台本・構図・文字・CASE A・専門Runbook・権利条件を、この初期工程を理由に再生成・上書きしない。
+- **避ける失敗**：抽象JSONだけで完成扱いしない。見本1件と再利用1件で実物を確かめ、毎回の制作に重い初期工程を課さない。
+
+**設計原文**：[同じフォルダのDesigner’s Note](DESIGNER_NOTE.md)（改訂・障害時のみ実取得）。
+
