@@ -197,4 +197,16 @@ AI_NAV_PY_PATH=NONE
 設計の背景：最初の役割と最新状態だけでなく、中間にある採用済み決定・承認・撤回・復旧元も優先保持するためU字型＋MUST_KEEPを採用した。「パケットを作る／送る／受け手が取得する／実際に再開する」を別状態で扱う。
 変更時に守る点：非公開の元Context・採用済み素材・創作の固定仕様・既存Automationの稼働数を守る。通常の雑談や短い会話に全文圧縮を強制しない。トークン節約や別AIの実受領は実測があるときだけPASS。
 Python領域を持たない本Playbookに、見栄えのための空のPythonは作らない。AIナビの機械化対象は別途用途・利用環境で判断する。
+
+【Q3逐次分離・原文保全｜Q3-LOCAL-HANDOFF-20261111】
+出典：docs/templates/LEADER_WORKSHEET.md の2026-11-11変更前Git版。以下は移設前本文の原文保全であり、通常実行では既存の専門Playbook実行節と本人最新指示を優先する。歴史的な選択肢・古い制約を新たな承認・自動実行命令にしない。
+
+## Chat handoff / context compression (shared user-adopted trial; 2026-11-03)
+
+When an explicit leader-chat or cross-AI handoff is requested, refer to [the U-shaped context handoff Playbook](../../skills/chat-handoff/SKILL.md): retain the old role/contract and newest status, heavily trim routine middle dialogue, but preserve any middle decisions, approvals, safety constraints, evidence, and unresolved original-parent steps regardless of position. This creates a handoff *packet*, not a replacement for the current leader worksheet, private START_HERE/registry/write contract, or actual canonical evidence. Check source retrieval and real recipient restart separately; do not report receipt or execution PASS without observing it. Creative/video/thumbnail content and exact approved assets are not subject to mechanical bulk compression. This shared handoff procedure is user-adopted for manual trial by all roles, including secretary and scheduled-review handoffs, but formal distribution and independently verified recipient restart remain NOT_RUN. Do not change any recurring schedule merely by preparing a packet.
+
+---
+
+
+
 ADNC:DESIGNER_NOTE:HUMAN:END -->
