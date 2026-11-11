@@ -223,18 +223,6 @@ AIと人間の二重インターフェースの原文・採用理由は[Playbook
 
 次の一手・情報取得・ボタンに関する設計原文は[標準コミュニケーションPlaybook末尾Designer’s Note](../../skills/communication-navigation/SKILL.md)へ移設。通常の動作契約は同Playbook本文、リーダー固有の補助UIはT007節を使う。
 
-## T017 — three-character asset entry and independent Q2/Q3 acceptance (2026-11-05; approved local implementation)
-
-**Scope:** existing approved characters 私／ワタシ／専門家, records `VID-CHAR-01/02/03`. The 2026-11-03 human approval remains PASS; this checklist never asks for approval again and does not modify image masters, Drive permissions or published materials.
-
-1. **Q1 / inventory (leader):** for each of the three IDs, resolve the current canonical A-VIDEO record, the master asset file identity and revision, the index/manifest entry, the actual consumption URL or file path, and the Runbook instruction that points to it. Record source URLs privately when necessary; never invent a path or expose a private KB link in a public Issue. A missing source is `NOT_RUN`, not PASS.
-2. **Q2 / readback (separate reader):** independently fetch each permitted master and index entry; compare exact ID, file identity, revision, bytes/SHA-256 where supplied, and the Runbook link target. Distinguish `PASS` (all resolved and matching), `FAIL` (demonstrable mismatch), `NOT_RUN` (access or evidence missing). Do not regenerate an approved character to make a mismatch disappear.
-3. **Q3 / cold-start consumption (different chat/AI):** using only the published/authorized entry and Runbook, locate each of the three approved assets without a leader-supplied hidden path. Verify the target is retrievable and remains recognizable at intended thumbnail/video reduction. Log per-ID `PASS/FAIL/NOT_RUN`, consumer chat/AI and timestamp; mere acknowledgement is not a successful retrieval.
-4. **Receipt gate:** independently record owner assignment, actual receipt, Q2 result, Q3 result, and remaining blocker. A sent instruction is not an accepted handoff. Do not mark T017 or T016 DONE on Q1 alone, and do not infer Q2/Q3 PASS from existing adoption status.
-5. **Repair boundary:** if an index/Runbook pointer is stale, propose the smallest reversible pointer-only correction with before/after evidence and readback. Do not alter approved image masters, identifiers, wording or layout without an explicit change request. Preserve all previous approval and audit history.
-
-**Minimal evidence row:** `asset_id | approved=PASS | canonical_source | master_identity/revision | index_entry | runbook_entry | Q2 + evidence | Q3 + evidence | receiver + receipt | next_blocker`. Complete three rows, one per ID. Until independent fetches are performed, record Q2/Q3 as `NOT_RUN`; this written contract itself is only a local implementation PASS.
-
 ## T007 — actionable one-question UI contract (2026-11-05; approved local implementation)
 
 **Q3局所移管済み**：[専門正本](../../skills/communication-navigation/SKILL.md) の末尾Designer’s Noteに当時の原文を保全。実ボタンの具体操作・番号付き代替・状態区別の専門正本は標準コミュニケーション。リーダーは本人判断の対象・実権限・報告先のみ確定する。
