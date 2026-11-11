@@ -8,6 +8,18 @@ EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob
 EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
 ```
 
+<!-- ADNC:PLAYBOOK-STANDARD-20261111 -->
+> **カスタム手順書の優先分岐（通常利用時）**：本人の現行指示と専門安全条件を優先し、個人KBに採用済みカスタムPlaybookが存在する場合は権限内でその実体を優先参照する。未設定なら本書の日本語手順を使用。非公開のパスは公開正本に転記せず、取得不能な範囲だけ未確認として扱う。
+
+> **AI用Pythonナビのパス（通常利用時）**：論理的な分岐や選択肢IDのPythonナビが実在する場合に限り同一フォルダ基準の相対パスを指定。**ボタンの描画・押下は接続先UI**の担当、非対応なら日本語の番号付き選択肢を示す。Python実行不可でも日本語本文を利用する。
+
+```text
+AI_NAV_PY_PATH=NONE
+```
+
+> **改訂時の日本語変更検出（共通標準）**：検証済み変更前原本（Git前版等）と更新後を [読取専用差分ツール](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/markdown-auto-pilot/check_playbook_diff.py) またはGit差分で比較し、SHA-256と日本語変更箇所を確かめる。変更の発見と意味整合の保証は別。ナビの条件・選択肢ID・遷移に影響する差分だけ確認し、手書き本文は上書きしない。通常の応答にハッシュ検査は要求しない。
+
+
 - 版：0.1.14-preview（2026-11-10：編集時専用の3つの正本参照を先頭へ設置。出口処理は維持）
 - 対象：通常のAD&C共通コミュニケーション操作。
 - 優先：本人の明示指示 ＞ 専門Playbookの固定手順・安全・専用UI ＞ この共通動作。
