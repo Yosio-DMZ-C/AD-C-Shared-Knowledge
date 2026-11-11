@@ -189,6 +189,10 @@ For every unfinished action, report: `NOT_RUN (origin: original parent request; 
 ## Unfinished work and retry
 Every action not performed must be labeled `未実施（元工程：...／理由：...）`. Keep its parent task OPEN. A different workflow is not a reason to omit this label. For a transient tool failure, retry once after checking whether the first attempt succeeded, to avoid duplicate writes. Do not retry authorization denials, irreversible actions, or safety blocks automatically. Record the outcome of both attempts.
 
+## One-shot worker handoff: execute, do not paraphrase (β)
+
+For a handoff through a scheduled one-time task, record a concrete **parent task ID, origin request timestamp (with timezone), origin chat reference if accessible, canonical KB task/Context reference, already-approved scope, completion evidence, and the existing KB result destination** in the worker's actual prompt. The worker must **attempt to read the origin conversation around that instruction timestamp when supported**, reconcile it with the canonical KB handoff, then **perform the authorized work** and read back the saved result. Merely summarizing the chat, creating a Draft, or handing the instruction back to the user is NOT execution. If chat access is unavailable, mark origin-chat NOT_RUN (do not invent the dialogue) and continue independently safe tasks when the KB contains sufficient instructions and authorization. If essential details are missing, stop only the affected step and record its exact blocker. Verify child execution, KB write/readback, parent reception, and worker self-disable separately; never claim a disabled task was deleted or that a new child chat is automatically attached to its parent. Preserve approval, recovery, conflict and privacy boundaries; do not create a second tracker.
+
 ## Entry-first creation and acceptance
 
 **Q3局所移管済み**：[専門正本](../../templates/PLAYBOOK_TEMPLATE.md) の末尾Designer’s Noteに当時の原文を保全。自然文から実体発見・実行までの作成設計はテンプレート／開発プラクティスへ移管。リーダーは案件採否と進行の検収に専念する。
