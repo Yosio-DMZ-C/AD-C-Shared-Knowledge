@@ -10,6 +10,15 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 > **カスタムPlaybook／個人KBへの優先分岐（通常利用時）**：対象文書に固有の採用済みテンプレート、ブランド、編集ロック、機密区分、専門Playbookがあれば**その現行原本を先に使用**する。非公開URLや個人情報はこの公開Playbookへ書かず、本人の接続KBで解決する。未取得の素材を公式・採用済みと偽らない。
 
+<!-- ADNC:PLAYBOOK-STANDARD-20261111 -->
+> **AI用Pythonナビのパス（通常利用時）**：このPlaybookと同じフォルダを基準に、実在するナビだけ指定する（未実装は `NONE`、創作例外は `CREATIVE_EXEMPT`）。**Pythonは機械的な分岐・選択肢ID・遷移先のみ**を担当。ボタン表示・押下は各AIのUIに任せ、非対応時は日本語の番号付き選択肢。Pythonが使えない場合は日本語本文をそのまま利用する。パス指定は自動実行許可ではない。
+
+```text
+AI_NAV_PY_PATH=NONE
+```
+
+> **改訂時の日本語変更検出（共通標準）**：検証済みの変更前原本（Git前版等）と更新後の実体を、[読取専用差分ツール](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/markdown-auto-pilot/check_playbook_diff.py)の `--baseline` またはGit差分で比較する。SHA-256不一致は変更の発見であって意味不整合の証明ではない。ナビの条件・選択肢ID・遷移先に影響する差分だけ整合し、必要な範囲を再検査・読戻す。通常の利用者に常時検査は要求しない。動画／サムネイル創作工程の例外は変更しない。
+
 - ID：`PB-DOC-AUTHOR-001`
 - Version：`0.1.1-preview`（2026-11-11）
 - Status：**試用Draft**。正式Active／インストーラー自動配布ではない。実Word・Google Docs・LibreOffice Writer相互互換や別AIの独立初見試験は `NOT_RUN`。
