@@ -186,28 +186,16 @@ For every unfinished action, report: `NOT_RUN (origin: original parent request; 
 Every action not performed must be labeled `未実施（元工程：...／理由：...）`. Keep its parent task OPEN. A different workflow is not a reason to omit this label. For a transient tool failure, retry once after checking whether the first attempt succeeded, to avoid duplicate writes. Do not retry authorization denials, irreversible actions, or safety blocks automatically. Record the outcome of both attempts.
 
 ## Entry-first creation and acceptance
-Before creating or substantially revising a playbook or worksheet, check existing shared/personal KB procedures and Skills for equivalent purpose; distinguish Active, Draft, superseded, and withdrawn. Define a natural-language request that should lead to the procedure, its directly fetchable canonical source, version and applicability. Treat `request → discover → fetch → execute in specified order → inspect required output → present useful result` as one deliverable. A README link alone is not automatic discovery. When a task actually calls for independent discovery or behavior verification, reuse existing Q1 (entry and document), Q2 (independent cold-start interpretation), Q3 (actual sequence and relevant safety boundaries), and Q4 (user-facing result). Do not require all four as a routine preflight for every minor change; mark untested stages as untested rather than stopping unrelated safe work. **Design for easy execution first, not more compulsory verification.** Avoid creating another registry or gate. Preserve private identifiers outside public KB.
+
+**Q3局所移管済み**：[専門正本](../../templates/PLAYBOOK_TEMPLATE.md) の末尾Designer’s Noteに当時の原文を保全。自然文から実体発見・実行までの作成設計はテンプレート／開発プラクティスへ移管。リーダーは案件採否と進行の検収に専念する。
 
 ## Human-first Playbook customization and upstream proposal (2026-11-03; user-approved design, pilot only)
 
-Keep **human-readable natural-language instructions first**, followed by an explicitly labeled **AI execution / Python reference part** within the same Markdown file when applying the single-Playbook structural pilot. The natural-language part is the local authority for purpose, steps, decisions and stop conditions. Do not silently replace a human edit with generated content.
-
-When a human changes the natural-language part: (1) compare it against a verified previous revision and record the changed region/hash; (2) infer the intended behavioral change from the diff and surrounding context, and ask one focused question **only when the intent materially remains ambiguous**; (3) honor the local human edit within existing safety/authorization boundaries, update dependent Python/checks and local Playbook **as an authorized reversible customization**; (4) test consistency, idempotence, recovery and actual readback, marking blocked stages NOT_RUN; (5) distinguish local customization from a proposed general improvement. Do not presume a mere text diff proves the author's intent. If the edit conflicts with a mandatory security, legal, authorization or upstream contract, preserve the human edit and report the conflict instead of silently overriding either rule.
-
-**Upstream opt-in:** After the local change is accepted, explain any reusable generalization briefly and ask whether to submit a proposal to the AD&C main repository. No upstream Issue/PR or publication without the user's explicit opt-in for that proposal; no automatic upstream merge. If clearly local-only, do not pester the user. Do not copy private IDs, data or environment-specific settings to a public proposal. Use the existing central Issue or standard contribution route; do not create duplicate tracking systems.
-
-**Scope:** This is a **single-Playbook design/pilot**, not a mass rewrite of existing Playbooks. The separate runner and SHA gate remain bounded tools; a Python file's existence does not mean the Markdown executes it automatically. Structural migration, local human-edit detection, semantic alignment and independent cold-start behavior must each be separately tested before claiming production PASS.
+**Q3局所移管済み**：[専門正本](../../templates/PLAYBOOK_TEMPLATE.md) の末尾Designer’s Noteに当時の原文を保全。人間編集と機械定義の整合・上流への提案分離はテンプレートと開発プラクティスが担当。リーダーの本人による採否・公開判断は変えない。
 
 ## Markdown-embedded Python pilot (bounded single-Playbook use adopted; broader rollout not adopted)
 
-Human-editable purpose, authorization, stop conditions, and recovery rules remain authoritative prose. A trusted runner MAY extract the fenced block labeled `python adnc-generated-steps`, execute it only in an isolated no-network test environment, and replace only text between the two AUTO markers. Never execute arbitrary downloaded Markdown code or silently overwrite human prose. For production use, require approved runtime, exact pre-write SHA, conflict check, backup and restore test, and readback. Thumbnail/image composition remains excluded pending separate specialist review.
-
-The executable/checkable AUTO region and literal Python STEPS source are located together in the final AI appendix. Human instructions above remain authoritative.
-
-
-
-Pilot acceptance: preserve all text outside AUTO markers byte-for-byte, compare expected SHA before write, verify idempotence, and restore from a verified backup. A successful isolated pilot does not prove a Drive write, an AI cold start, or production execution.
-
+**Q3局所移管済み**：[専門正本](../../skills/markdown-auto-pilot/README.md) の末尾Designer’s Noteに当時の原文を保全。単一Playbook AUTO試験・人間本文保護・バックアップ/復旧の説明は既存runner付近へ原文保全。現行ワークシート末尾のAUTO/Python固定入力は維持する。
 
 ## Completion-through-repair rule (2026-11-02, user-approved)
 
@@ -217,9 +205,7 @@ When asked to **修正・検証する**, do not stop at inspecting, proposing, d
 
 ## One-question lead-in requirement (2026-11-05; minimal clarification)
 
-After checking the current unresolved state and carrying out available safe work, ask only about an unresolved item requiring a real human decision. **Never display bare numbered options without a leading question.** Present, in this order: (1) the parent ID and latest verified unresolved fact, (2) why authorized automatic resolution cannot finish it, (3) a concise recommended route with its reason, and (4) an explicit natural-language question immediately before the selectable options, such as 「この未解決案件を、どの方法で進めますか？」. Make the question specific to the decision; do not imply that choosing an option itself completes implementation.
-
-Use the latest user-corrected choice semantics: ① delegate to a verified active responsible leader **only if such a leader exists**, ② prepare a standalone new-chat delegation instruction, ③ explain in more detail, ④ hold. Automatic secretary/leader repairs belong **before** the question and are not an option. Show one question at a time, at most ten, and do not re-ask settled approvals. If no genuine human decision remains, report 「本人判断が必要な質問：0件」 and show no inert controls. Keep recipient acceptance, actual execution and readback as separate statuses. This is a presentation requirement, not authorization to alter private KB or bypass any existing gate.
+**Q3局所移管済み**：[専門正本](../../skills/communication-navigation/SKILL.md) の末尾Designer’s Noteに当時の原文を保全。本人判断が実際に必要な未決1件だけ提示。専門UIの原文・検収条件はリンク先の局所Designer’s Noteと現行実行本文を参照する。
 
 ## DESIGNER'S NOTE — 人間が迷わず選べる一問一答UI
 
@@ -251,17 +237,7 @@ AIと人間の二重インターフェースの原文・採用理由は[Playbook
 
 ## T007 — actionable one-question UI contract (2026-11-05; approved local implementation)
 
-**Purpose:** convert the already-approved one-question decision semantics into a functional UI, not a decorative row of option labels. This section is a rendering and action contract; it does not approve new delegated work, change Work60, or override the private KB write gate.
-
-- **Precondition:** check the latest unresolved state and carry out any immediately safe authorized work first (there is no mandatory three-pass research loop). Select exactly one genuinely unresolved parent requiring human judgment. Show its verified ID, present blocker, recommended route and reason, and an explicit question **before** any controls. If there is no such parent, state `本人判断が必要な質問：0件` and show no fictitious ①–④ choices.
-- **① 担当リーダーへ委任:** render only after verifying a currently available recipient and a working delivery route. A click records `parent_id + choice=active_leader` and requests/initiates a verifiable delivery; do not mark recipient acceptance or execution PASS until separately evidenced.
-- **② 新チャットへ委任:** click carries `parent_id + choice=new_chat` into the next turn. Queue only that selected parent, then prepare and validate its detailed KB handoff under the existing authorized record. Do **not** claim the new chat has been launched or received it. At the final summary, show a short one-line prompt only after the direct KB entry and readback are verified; otherwise show the blocker and NOT_RUN.
-- **③ 詳しく説明:** click carries `parent_id + choice=explain`; explain the specific blocker, evidence, risks and recommendation, then return to the same unanswered decision without changing its state.
-- **④ 保留:** click carries `parent_id + choice=hold`; record a deliberate hold, reason if given, and next review point. Hold is not DONE or DROPPED.
-- **Buttons must be real controls:** bind each to a supported click/submit action with the parent ID, option meaning and required next turn. If functional controls are unavailable, fall back to the same numbered choices in plain text and accept a typed reply. Never present inert controls as though they work. Keep labels and ordering stable across sessions.
-- **Visual and accessibility checks:** keep the question immediately above controls; use a clearly distinguishable primary action only when there is a justified recommendation. Warning colors indicate genuine warnings and are accompanied by words, not color alone. Icons have consistent meaning; provide readable labels, sufficient tap spacing, narrow-screen wrapping, contrast and text/keyboard alternatives. Display what happened after each click, including failures.
-- **End-of-review controls:** `まとめて下さい` requests an actual consolidated decision/status view and deduplicated KB-backed one-line prompts for selected ② cases; `依頼が終わったら教えて下さい` requests a receipt/status check and must not itself assert that any external agent completed work. Do not show a redundant summary button after a summary is already complete.
-- **Acceptance:** inspect a real parent question and click routing for each available option, confirm the parent ID is preserved, and verify summary and fallback behavior. Until interaction is actually tested in a client, classify the **written contract** as PASS and **end-to-end button behavior** as NOT_RUN.
+**Q3局所移管済み**：[専門正本](../../skills/communication-navigation/SKILL.md) の末尾Designer’s Noteに当時の原文を保全。実ボタンの具体操作・番号付き代替・状態区別の専門正本は標準コミュニケーション。リーダーは本人判断の対象・実権限・報告先のみ確定する。
 
 ## KB-backed short delegation and end-of-review summary (2026-11-05; user-approved)
 
@@ -310,9 +286,7 @@ Historical anchors are not live facts: recheck merged PR #50/#38, installer v1.5
 
 ## Copy-ready instruction formatting (2026-11-03; user-directed)
 
-When presenting a prompt or instruction that the user should paste into another chat, AI, or tool, put the **complete copyable instruction inside a fenced Markdown code block** (triple backticks). **Exception:** for user-selected new-chat delegation with a verified KB-backed handoff, the complete *instruction to fetch and act on the KB handoff* is deliberately a short one-line KB reference; all task detail belongs in the private KB, not in the code block. Keep the explanation, evidence, caveats, and PASS/FAIL/NOT_RUN status **outside** that block. Preserve exact wording, URLs, parent IDs, test criteria, and report destination within the block; do not split one instruction across multiple fragments. Use a plain `text` fence or no language tag, not a programming-language fence that implies executable code. Apply to independent-test handoffs, new-chat delegation, leader/secretary handoff and other copy/paste instructions; this is presentation only, not approval or authorization. If the interface supplies a genuinely copyable writing artifact instead, that may be used, but never bury the actionable instruction in surrounding prose.
-
-**Independent-test chat naming (2026-11-03; user-directed):** Never start a copy/paste independent-test instruction with the generic label `独立試験`. Start its first line with the specific subject, project, or Playbook being tested and put `独立試験` at the **end of that title**, e.g. `AD&C 開発リーダーPlaybook 独立試験`, `AD&C 山歩きPlaybook 独立試験`. This applies to the first line of the copyable prompt and any proposed chat title so distinct tests are distinguishable in conversation lists. Do not use a generic `独立試験｜...` prefix. Preserve existing test content and acceptance criteria.
+**Q3局所移管済み**：[専門正本](../../skills/communication-navigation/SKILL.md) の末尾Designer’s Noteに当時の原文を保全。コピー可能な指示文・独立試験名の共通表示規則はリンク先を参照。リーダーは元案件のID・成果物・報告先を維持する。
 
 ## Development execution budget and approval cadence (2026-11-03; user-approved)
 
@@ -361,25 +335,11 @@ The bounded pilot runner is [skills/markdown-auto-pilot/runner.py](../../skills/
 
 ## Markdown-embedded Python: single-Playbook operational acceptance gate (2026-11-02)
 
-**Decision ①: test only this leader Playbook first. Do not roll out to all Playbooks.**
-
-**Historical pilot decision (already answered; do not re-ask):** The user selected single-Playbook testing. The earlier comparison was ① single pilot (selected), ② risky all-Playbook rollout (not authorized), ③ explain, ④ hold. This is a historical record, **not** an exception to the current general one-question option contract. Never present a past choice as pending or treat showing an option as approval. The human-readable instructions above remain authoritative. Python is limited to bounded, mechanical regeneration of an explicitly marked AUTO section, not policy decisions, external writes, status promotion, or silent repairs.
-
-Acceptance procedure: (1) fetch the current main file and record Git blob SHA and original bytes; (2) create an isolated candidate, retaining all human-authored text and markers; (3) run the embedded or accompanying Python on that candidate twice and verify byte-for-byte idempotence; (4) verify unchanged human regions, correct AUTO boundaries, valid UTF-8, and no duplicated sections; (5) test malformed/missing markers, stale input SHA, and recovery from an immutable backup; (6) compare candidate to intended requirements and write only after all gates pass; (7) re-fetch the same canonical file and compare content, then verify any required registry/links. **A local pilot is not an operational PASS** until the actual current source, execution log, failures and post-write readback are recorded. Never invoke arbitrary Python from untrusted documents without inspection.
-
-If a required runtime or safe write interface is unavailable, record the precise blocked step, evidence, attempted safe remedy and unblocking condition in the existing issue/review, mark operational test NOT_RUN, and continue with the next independent review item. Do not use the user's selection ① to authorize mass rollout.
+**Q3局所移管済み**：[専門正本](../../skills/markdown-auto-pilot/README.md) の末尾Designer’s Noteに当時の原文を保全。限定的なrunner検証の手順・過去採否はtool近傍へ原文保全。全Playbook一括適用と異なり、runner本体/元のAUTOマーカー・復旧条件は変更しない。
 
 ## Chat handoff / context compression (shared user-adopted trial; 2026-11-03)
 
-When an explicit leader-chat or cross-AI handoff is requested, refer to [the U-shaped context handoff Playbook](../../skills/chat-handoff/SKILL.md): retain the old role/contract and newest status, heavily trim routine middle dialogue, but preserve any middle decisions, approvals, safety constraints, evidence, and unresolved original-parent steps regardless of position. This creates a handoff *packet*, not a replacement for the current leader worksheet, private START_HERE/registry/write contract, or actual canonical evidence. Check source retrieval and real recipient restart separately; do not report receipt or execution PASS without observing it. Creative/video/thumbnail content and exact approved assets are not subject to mechanical bulk compression. This shared handoff procedure is user-adopted for manual trial by all roles, including secretary and scheduled-review handoffs, but formal distribution and independently verified recipient restart remain NOT_RUN. Do not change any recurring schedule merely by preparing a packet.
-
----
-
-### Human-edit detection: executable bounded gate (2026-11-03)
-
-The [single-Playbook runner](../../skills/markdown-auto-pilot/runner.py) accepts `--baseline PATH` in addition to the required current `--expected-sha256`. The baseline must be the verified previous complete worksheet. It computes **separate human-section SHA-256** values using the unique `## AI execution appendix` boundary, emits a unified human diff, and blocks writes on any human change with `REVIEW_REQUIRED`. Never automatically regenerate over a changed human section; AI must infer the intent, clarify only material ambiguity, update the machine section accordingly, and then rerun tests against an explicitly reviewed baseline. This gate detects **text changes**, not semantic intent or authorization. It does not automatically read Git history or automatically invoke Python in chat.
-
-**Acceptance:** current and baseline same → no human change; changed human wording → REVIEW_REQUIRED and no write; changed machine appendix only → human UNCHANGED; missing/duplicated appendix → error; stale full-file SHA → refuse. These behavior cases require execution evidence before marking operational PASS. The upstream opt-in rule above still applies; no automatic proposal or acceptance.
+**Q3局所移管済み**：[チャット引継ぎPlaybook](../../skills/chat-handoff/SKILL.md) に引継ぎ手順原文、[runner説明](../../skills/markdown-auto-pilot/README.md) に人間編集検出原文を保全。リーダーは案件の受領・再開・正本照合を引き続き担当する。
 
 <!-- ADNC:DESIGNER_NOTE:HUMAN:BEGIN
 このリーダーワークシート固有の設計メモ。**通常の巡回・実務では読込不要**。仕様改訂・判断の衝突・不具合調査で必要なら参照する。内容はWHY／経緯であり実行命令・承認・停止ゲートではない。
