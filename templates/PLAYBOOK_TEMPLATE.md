@@ -17,13 +17,17 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 参照先を取得できなければ未取得と明記し、勝手に別手順を正本へ昇格させない。独立して可能な許可済み作業は継続し、実取得が必要な操作だけ未実行として報告する。
 ```
 
-> **AI用Pythonナビへのパス（通常利用時／カスタムPlaybook分岐の直後）**：AIが機械的な分岐・ボタン遷移を扱う場合だけ参照する。**存在する実体だけ**相対パスで指定し、存在しない `.py` を作ったことにしない。Python実行が不可能な環境では、上の日本語Playbookをそのまま使用する。動画・サムネイルの創作工程は現在の例外として保持する。
+> **AI用Pythonナビへのパス（通常利用時／カスタムPlaybook分岐の直後）**：AIが機械的な検索・条件分岐・選択肢の論理遷移を扱う場合だけ参照する。UIボタン自体はPythonの対象外とする。**存在する実体だけ**相対パスで指定し、存在しない `.py` を作ったことにしない。Python実行が不可能な環境では、上の日本語Playbookをそのまま使用する。動画・サムネイルの創作工程は現在の例外として保持する。
 
 ```text
 AI_NAV_PY_PATH=NONE
 ```
 
 > **パス規約**：対象の `SKILL.md` または実行Playbookと**同じディレクトリ**の実在するPythonナビなら `AI_NAV_PY_PATH=./navigation.py`。別名の既存ツールをそのまま使う場合は、その実在相対パスを指定し無断改名しない。`NONE`＝未実装／ナビPythonなし、`CREATIVE_EXEMPT`＝動画・サムネイルの創作工程など現行の適用除外。相対パスは**このPlaybookの所在ディレクトリ基準**。公開GitHubの参照ではこの本文のURLを基準に相対リンクを解決する。個人KBの非公開パスは公開Playbookへ記入しない。検査専用Pythonを未接続のナビ実装と偽らない。ナビの固定条件・選択肢ID・遷移先を局所の機械可読定義で検査し、**ボタン自体はコンパイルしない**。説明文・ボタン文言・配置・実押下は接続先AIのUI機能に委ね、UI非対応時は番号付き日本語選択肢で代替する。既存runnerの `--expected-sha256` は実行時の全ファイル一致を検査し、`--baseline` 指定時のみ人間本文の差分を検出する。ハッシュは意味の一致を証明せず、全Playbookの常時監視でもない。既存 `runner.py` の単一AUTO保護範囲を変更しない。
+
+> **AD&C新規・改訂Playbookの共通標準（2026-11-11 本人正式採用）**：この上部の「改訂時3参照→カスタム手順書→AI_NAV_PY_PATH→日本語本文」の順序を今後の標準とする。**人間が修正する日本語は正本として保護**し、機械ナビの条件・ID・遷移先だけPythonに寄せ、**ボタンの描画・押下はAI側のUI**で処理する。UIがなければ番号付き日本語選択肢。動画・サムネイルの創作工程は `CREATIVE_EXEMPT` として採用済み制作順序・固定素材等を保持し、移行は別途比較検証と本人判断による。
+
+> **日本語変更の検出（改訂担当）**：変更前の検証済みMarkdown（Git前版でも可）と変更後を、[読取専用diff検査](../skills/markdown-auto-pilot/check_playbook_diff.py)またはGit diffで比較してSHA-256／日本語差分を確認する。例：`python check_playbook_diff.py --baseline old.md new.md`。差分が検出されたら必要なナビ定義のみ整合・再検査し、手書き本文を上書きしない。ハッシュは意味整合の保証ではない。既存の `runner.py` は指定 `--baseline` がある場合のみ単一AUTO領域の日本語変更を保護し、全Playbook常時監視ではない。**通常利用時の事前検査は不要**。詳細は[開発プラクティスの共通標準](../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md#adc-playbook共通標準今後の作成改訂の既定2026-11-11-本人正式採用)を参照。
 
 > **修正時の参照**：変更対象に必要な範囲で[AD&C共通実行標準](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)を確認する。低リスクな軽微修正を全文取得・全項目検査で止めず、影響箇所のみ確認する。
 
