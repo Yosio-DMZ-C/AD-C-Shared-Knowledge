@@ -238,4 +238,24 @@ ADNC:NOTE_MIGRATION:20261111:PLAYBOOK_AUTHOR
 
 **実行への橋渡し**：Playbook／ワークシートの作成規則は[共有KB開発プラクティス](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)が正本。実例は[テキスト主体のPPTアイコン探索ワークシート](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/video-production-setup/PRODUCTION_ASSETS_GENERAL_SPEC_v0.1.md)を参照。このノートを制作時の全文必読・追加審査・公開義務に変えない。
 
+
+【Q3逐次分離・原文保全｜Q3-LOCAL-TEMPLATE-20261111】
+出典：docs/templates/LEADER_WORKSHEET.md の2026-11-11変更前Git版。以下は移設前本文の原文保全であり、通常実行では既存の専門Playbook実行節と本人最新指示を優先する。歴史的な選択肢・古い制約を新たな承認・自動実行命令にしない。
+
+## Entry-first creation and acceptance
+Before creating or substantially revising a playbook or worksheet, check existing shared/personal KB procedures and Skills for equivalent purpose; distinguish Active, Draft, superseded, and withdrawn. Define a natural-language request that should lead to the procedure, its directly fetchable canonical source, version and applicability. Treat `request → discover → fetch → execute in specified order → inspect required output → present useful result` as one deliverable. A README link alone is not automatic discovery. When a task actually calls for independent discovery or behavior verification, reuse existing Q1 (entry and document), Q2 (independent cold-start interpretation), Q3 (actual sequence and relevant safety boundaries), and Q4 (user-facing result). Do not require all four as a routine preflight for every minor change; mark untested stages as untested rather than stopping unrelated safe work. **Design for easy execution first, not more compulsory verification.** Avoid creating another registry or gate. Preserve private identifiers outside public KB.
+
+
+## Human-first Playbook customization and upstream proposal (2026-11-03; user-approved design, pilot only)
+
+Keep **human-readable natural-language instructions first**, followed by an explicitly labeled **AI execution / Python reference part** within the same Markdown file when applying the single-Playbook structural pilot. The natural-language part is the local authority for purpose, steps, decisions and stop conditions. Do not silently replace a human edit with generated content.
+
+When a human changes the natural-language part: (1) compare it against a verified previous revision and record the changed region/hash; (2) infer the intended behavioral change from the diff and surrounding context, and ask one focused question **only when the intent materially remains ambiguous**; (3) honor the local human edit within existing safety/authorization boundaries, update dependent Python/checks and local Playbook **as an authorized reversible customization**; (4) test consistency, idempotence, recovery and actual readback, marking blocked stages NOT_RUN; (5) distinguish local customization from a proposed general improvement. Do not presume a mere text diff proves the author's intent. If the edit conflicts with a mandatory security, legal, authorization or upstream contract, preserve the human edit and report the conflict instead of silently overriding either rule.
+
+**Upstream opt-in:** After the local change is accepted, explain any reusable generalization briefly and ask whether to submit a proposal to the AD&C main repository. No upstream Issue/PR or publication without the user's explicit opt-in for that proposal; no automatic upstream merge. If clearly local-only, do not pester the user. Do not copy private IDs, data or environment-specific settings to a public proposal. Use the existing central Issue or standard contribution route; do not create duplicate tracking systems.
+
+**Scope:** This is a **single-Playbook design/pilot**, not a mass rewrite of existing Playbooks. The separate runner and SHA gate remain bounded tools; a Python file's existence does not mean the Markdown executes it automatically. Structural migration, local human-edit detection, semantic alignment and independent cold-start behavior must each be separately tested before claiming production PASS.
+
+
+
 ADNC:DESIGNER_NOTE:HUMAN:END -->
