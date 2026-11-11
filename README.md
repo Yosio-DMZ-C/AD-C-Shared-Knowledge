@@ -17,6 +17,8 @@
 
 **全体理念の公開正本は本READMEの冒頭宣言と「AD&Cの理念との関係」**です。専門固有の設計理由・障害知見は各Playbook／隣接ツールの末尾コメントへ、共通の道具化と二重インターフェースの背景は[作成・更新テンプレートの局所Designer’s Note](templates/PLAYBOOK_TEMPLATE.md)へ、リーダー固有の判断と運用は[リーダーワークシート](docs/templates/LEADER_WORKSHEET.md)へ分離しました。理念・Designer’s Noteは**必要時の設計参照**であり、その文章だけを根拠に通常実務を開始・停止・再承認させる実行命令ではありません。
 
+**Playbook共通標準（2026-11-11・本人正式採用）**：新設・今後の実質改訂は、**日本語正本を保持／機械的ナビを段階的にPythonへ／ボタン実装は各AIのUI／変更前後のSHA-256・日本語差分を検知し局所整合**。新規Playbookは[テンプレートの上部参照・パス規約](templates/PLAYBOOK_TEMPLATE.md)を使用。実行・変更検知の具体手順は[開発プラクティス](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)を正本とし、ここに二重記載しない。**動画・サムネイルの創作工程は現行の採用済み方式を維持し、将来の移行は本人の別途判断**。既存ファイルの一括移行や通常利用者へのSHA検査はしない。
+
 **近傍配置・最小中央管理**：LinuxのREADME／設定ファイルと同様、各Playbookの使い方・設計理由・関連ツールは原則その対象のそばに置き、中央は発見用リンクと共通契約だけにする。全PlaybookのPython一括適用や設計理由の毎回読込はしない。
 
 **通常利用の3層**：①常時コア＝目的・必要な専門手順の選択・実権限・実行・現物・次の一手（本READMEの入口と[標準コミュニケーション](skills/communication-navigation/SKILL.md)）、②専門時だけ＝該当する専門Playbookの本文（固定仕様・安全・創作条件は専門側が優先）、③機械処理＝必要な場合に[開発調査Skillの道具棚](skills/development-research/SKILL.md)から既存ツールを選ぶ。**作成・改訂のときだけ**[開発プラクティス](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)と対象Designer’s Noteを参照し、通常回答に全文取得を要求しません。
