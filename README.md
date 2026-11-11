@@ -15,7 +15,7 @@
 
 ### 理念と実行Playbookの境界（2026-11-09）
 
-**全体理念の公開正本は本READMEの冒頭宣言と「AD&Cの理念との関係」**です。専門固有の設計理由・障害知見は各Playbook／隣接ツールの末尾コメントへ、共通の道具化と二重インターフェースの背景は[作成・更新テンプレートの局所Designer’s Note](templates/PLAYBOOK_TEMPLATE.md)へ、リーダー固有の判断と運用は[リーダーワークシート](docs/templates/LEADER_WORKSHEET.md)へ分離しました。理念・Designer’s Noteは**必要時の設計参照**であり、その文章だけを根拠に通常実務を開始・停止・再承認させる実行命令ではありません。
+**全体理念の公開正本は本READMEの冒頭宣言と「AD&Cの理念との関係」**です。専門固有の詳細な設計理由・障害知見は各Playbookと同じフォルダの外部Designer’s Noteへ、共通の道具化と二重インターフェースの背景は[作成・更新テンプレートの近傍Designer’s Note](templates/DESIGNER_NOTE.md)へ、リーダー固有の判断と運用は[リーダーワークシート](docs/templates/LEADER_WORKSHEET.md)へ分離しました。理念・Designer’s Noteは**必要時の設計参照**であり、その文章だけを根拠に通常実務を開始・停止・再承認させる実行命令ではありません。
 
 **Playbook共通標準（2026-11-11・本人正式採用）**：新設・今後の実質改訂は、**日本語正本を保持／機械的ナビを段階的にPythonへ／ボタン実装は各AIのUI／変更前後のSHA-256・日本語差分を検知し局所整合**。新規Playbookは[テンプレートの上部参照・パス規約](templates/PLAYBOOK_TEMPLATE.md)を使用。実行・変更検知の具体手順は[開発プラクティス](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)を正本とし、ここに二重記載しない。**動画・サムネイルの創作工程は現行の採用済み方式を維持し、将来の移行は本人の別途判断**。既存ファイルの一括移行や通常利用者へのSHA検査はしない。
 
