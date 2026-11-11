@@ -27,6 +27,8 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 この文書は引き続きDraftであり、追補のGit保存は独立した一行実制作試験のPASSではない。
 
+**任意の初期スタイル構築**：「新シリーズの作風を設計して」「PPTに使う見本と実素材を初めに作って」の場合だけ[Style Bootstrap](../style-bootstrap/SKILL.md)を参照。既存キットの通常再利用・個別動画の採用済み制作には追加しない。そこで完成したスタイルキットの具体的なPPTX生成・実機確認は**本Skill**の既存手順で扱う。
+
 ## PPTX資料制作・採用済みキット再利用の1入口（2026-11-10限定追補）
 
 **入口の分岐**：「PPTを作って／既存PPTを直して／スライド資料を作って」は**編集可能なPPTXを完成・渡す仕事**として扱う。本Skillの下記**PPT再利用手順**へ進み、動画用の音声・サムネイル・Q2/Q3・SHADOW・MP4工程は**依頼に動画が含まれない限り開始しない**。「動画の第X作を制作」なら従来どおり `START_HERE→registry→A-VIDEO→VID-RUNBOOK` へ移動し、そちらの採用決定を優先する。本節は個別動画Runbookを置換せず、普通のスライドを動画仕様へ強制しない。
