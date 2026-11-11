@@ -148,4 +148,38 @@ ADNC:NOTE_MIGRATION:20261111:COMM
 
 **2026-11-10の出口処理の着想（設計理由・原因は仮説）**：本人の観察「結論が終わったらボタンを出せばいいだけ」「ボタン入力には次もボタンを出せとの指示を埋め込めるが、人間が書き込むと欠ける」。Work60の配送UNKNOWNを巡る対話で、AIが次の操作を文章で提案したのにボタンを表示しなかった事例が発端。**ボタン規則そのものの欠落ではなく、自由入力・長い調査や障害解析後に出口規則の適用が抜ける**可能性を扱う。ただし原因がコンテクスト長・AIの内部処理・UI制約のどれかは未検証。理念は「人間の再指示負担を減らす」ことであり、ボタンを表示するために作業を止めたり架空の仕事を作ることではない。製品側の将来改善で不要になり得る補助設計として、通常回答の最後に既存表示契約を適用するだけに留める。実装のHOWは[標準コミュニケーションPlaybookの共通出口](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/communication-navigation/SKILL.md)に限定し、専門の固定UIやWork60の配送認可・UNKNOWNの重複防止条件は変えない。
 
+
+【Q3逐次分離・原文保全｜Q3-LOCAL-COMM-20261111】
+出典：docs/templates/LEADER_WORKSHEET.md の2026-11-11変更前Git版。以下は移設前本文の原文保全であり、通常実行では既存の専門Playbook実行節と本人最新指示を優先する。歴史的な選択肢・古い制約を新たな承認・自動実行命令にしない。
+
+## One-question lead-in requirement (2026-11-05; minimal clarification)
+
+After checking the current unresolved state and carrying out available safe work, ask only about an unresolved item requiring a real human decision. **Never display bare numbered options without a leading question.** Present, in this order: (1) the parent ID and latest verified unresolved fact, (2) why authorized automatic resolution cannot finish it, (3) a concise recommended route with its reason, and (4) an explicit natural-language question immediately before the selectable options, such as 「この未解決案件を、どの方法で進めますか？」. Make the question specific to the decision; do not imply that choosing an option itself completes implementation.
+
+Use the latest user-corrected choice semantics: ① delegate to a verified active responsible leader **only if such a leader exists**, ② prepare a standalone new-chat delegation instruction, ③ explain in more detail, ④ hold. Automatic secretary/leader repairs belong **before** the question and are not an option. Show one question at a time, at most ten, and do not re-ask settled approvals. If no genuine human decision remains, report 「本人判断が必要な質問：0件」 and show no inert controls. Keep recipient acceptance, actual execution and readback as separate statuses. This is a presentation requirement, not authorization to alter private KB or bypass any existing gate.
+
+
+## T007 — actionable one-question UI contract (2026-11-05; approved local implementation)
+
+**Purpose:** convert the already-approved one-question decision semantics into a functional UI, not a decorative row of option labels. This section is a rendering and action contract; it does not approve new delegated work, change Work60, or override the private KB write gate.
+
+- **Precondition:** check the latest unresolved state and carry out any immediately safe authorized work first (there is no mandatory three-pass research loop). Select exactly one genuinely unresolved parent requiring human judgment. Show its verified ID, present blocker, recommended route and reason, and an explicit question **before** any controls. If there is no such parent, state `本人判断が必要な質問：0件` and show no fictitious ①–④ choices.
+- **① 担当リーダーへ委任:** render only after verifying a currently available recipient and a working delivery route. A click records `parent_id + choice=active_leader` and requests/initiates a verifiable delivery; do not mark recipient acceptance or execution PASS until separately evidenced.
+- **② 新チャットへ委任:** click carries `parent_id + choice=new_chat` into the next turn. Queue only that selected parent, then prepare and validate its detailed KB handoff under the existing authorized record. Do **not** claim the new chat has been launched or received it. At the final summary, show a short one-line prompt only after the direct KB entry and readback are verified; otherwise show the blocker and NOT_RUN.
+- **③ 詳しく説明:** click carries `parent_id + choice=explain`; explain the specific blocker, evidence, risks and recommendation, then return to the same unanswered decision without changing its state.
+- **④ 保留:** click carries `parent_id + choice=hold`; record a deliberate hold, reason if given, and next review point. Hold is not DONE or DROPPED.
+- **Buttons must be real controls:** bind each to a supported click/submit action with the parent ID, option meaning and required next turn. If functional controls are unavailable, fall back to the same numbered choices in plain text and accept a typed reply. Never present inert controls as though they work. Keep labels and ordering stable across sessions.
+- **Visual and accessibility checks:** keep the question immediately above controls; use a clearly distinguishable primary action only when there is a justified recommendation. Warning colors indicate genuine warnings and are accompanied by words, not color alone. Icons have consistent meaning; provide readable labels, sufficient tap spacing, narrow-screen wrapping, contrast and text/keyboard alternatives. Display what happened after each click, including failures.
+- **End-of-review controls:** `まとめて下さい` requests an actual consolidated decision/status view and deduplicated KB-backed one-line prompts for selected ② cases; `依頼が終わったら教えて下さい` requests a receipt/status check and must not itself assert that any external agent completed work. Do not show a redundant summary button after a summary is already complete.
+- **Acceptance:** inspect a real parent question and click routing for each available option, confirm the parent ID is preserved, and verify summary and fallback behavior. Until interaction is actually tested in a client, classify the **written contract** as PASS and **end-to-end button behavior** as NOT_RUN.
+
+
+## Copy-ready instruction formatting (2026-11-03; user-directed)
+
+When presenting a prompt or instruction that the user should paste into another chat, AI, or tool, put the **complete copyable instruction inside a fenced Markdown code block** (triple backticks). **Exception:** for user-selected new-chat delegation with a verified KB-backed handoff, the complete *instruction to fetch and act on the KB handoff* is deliberately a short one-line KB reference; all task detail belongs in the private KB, not in the code block. Keep the explanation, evidence, caveats, and PASS/FAIL/NOT_RUN status **outside** that block. Preserve exact wording, URLs, parent IDs, test criteria, and report destination within the block; do not split one instruction across multiple fragments. Use a plain `text` fence or no language tag, not a programming-language fence that implies executable code. Apply to independent-test handoffs, new-chat delegation, leader/secretary handoff and other copy/paste instructions; this is presentation only, not approval or authorization. If the interface supplies a genuinely copyable writing artifact instead, that may be used, but never bury the actionable instruction in surrounding prose.
+
+**Independent-test chat naming (2026-11-03; user-directed):** Never start a copy/paste independent-test instruction with the generic label `独立試験`. Start its first line with the specific subject, project, or Playbook being tested and put `独立試験` at the **end of that title**, e.g. `AD&C 開発リーダーPlaybook 独立試験`, `AD&C 山歩きPlaybook 独立試験`. This applies to the first line of the copyable prompt and any proposed chat title so distinct tests are distinguishable in conversation lists. Do not use a generic `独立試験｜...` prefix. Preserve existing test content and acceptance criteria.
+
+
+
 ADNC:DESIGNER_NOTE:HUMAN:END -->
