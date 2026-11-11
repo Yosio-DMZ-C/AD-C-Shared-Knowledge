@@ -23,7 +23,7 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 AI_NAV_PY_PATH=NONE
 ```
 
-> **パス規約**：対象の `SKILL.md` または実行Playbookと**同じディレクトリ**の実在するPythonナビなら `AI_NAV_PY_PATH=./navigation.py`。別名の既存ツールをそのまま使う場合は、その実在相対パスを指定し無断改名しない。`NONE`＝未実装／ナビPythonなし、`CREATIVE_EXEMPT`＝動画・サムネイルの創作工程など現行の適用除外。相対パスは**このPlaybookの所在ディレクトリ基準**。公開GitHubの参照ではこの本文のURLを基準に相対リンクを解決する。個人KBの非公開パスは公開Playbookへ記入しない。検査専用Pythonを未接続のナビ実装と偽らない。ナビ・ボタンの固定ID／条件／遷移先を局所の機械可読宣言から生成し、説明文・ラベルの自然言語はAIが状況に応じて生成する。実ボタンの表示・押下は接続先UIで別途検証する。既存 `runner.py` の単一AUTO保護範囲を変更しない。
+> **パス規約**：対象の `SKILL.md` または実行Playbookと**同じディレクトリ**の実在するPythonナビなら `AI_NAV_PY_PATH=./navigation.py`。別名の既存ツールをそのまま使う場合は、その実在相対パスを指定し無断改名しない。`NONE`＝未実装／ナビPythonなし、`CREATIVE_EXEMPT`＝動画・サムネイルの創作工程など現行の適用除外。相対パスは**このPlaybookの所在ディレクトリ基準**。公開GitHubの参照ではこの本文のURLを基準に相対リンクを解決する。個人KBの非公開パスは公開Playbookへ記入しない。検査専用Pythonを未接続のナビ実装と偽らない。ナビの固定条件・選択肢ID・遷移先を局所の機械可読定義で検査し、**ボタン自体はコンパイルしない**。説明文・ボタン文言・配置・実押下は接続先AIのUI機能に委ね、UI非対応時は番号付き日本語選択肢で代替する。既存runnerの `--expected-sha256` は実行時の全ファイル一致を検査し、`--baseline` 指定時のみ人間本文の差分を検出する。ハッシュは意味の一致を証明せず、全Playbookの常時監視でもない。既存 `runner.py` の単一AUTO保護範囲を変更しない。
 
 > **修正時の参照**：変更対象に必要な範囲で[AD&C共通実行標準](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/PROJECT_EXECUTION_STANDARD.md)を確認する。低リスクな軽微修正を全文取得・全項目検査で止めず、影響箇所のみ確認する。
 
