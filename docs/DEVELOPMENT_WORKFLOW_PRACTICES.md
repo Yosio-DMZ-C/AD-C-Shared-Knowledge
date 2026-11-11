@@ -8,7 +8,7 @@ EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob
 EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
 ```
 
-- 版：0.1.15（2026-11-11：Q7でDesigner’s Noteの対象近傍外出しを採用）
+- 版：0.1.16（2026-11-11：Style BootstrapをカスタムPlaybook制作時の任意初期工程として採用）
 - 追補：2026-11-10／Playbookの道具化に関するWHYを既存Designer’s Noteへ移し、本文には発見・選択・取得・利用の操作だけを維持。
 - 状態：**共有KBの運用ルールとして公開。個別SkillのActive認定ではない**
 - 対象：開発調査、実装支援、KB整備、成果物レビュー
@@ -63,6 +63,10 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 **最小運用**：更新前を保全 → 実際に変更 → 差分/SHAを確認 → 必要な機械定義だけ同期 → 対象範囲の実検査・Git保存・読戻し → 未検証はそのまま既存案件へ記録。新しい必須の報告書・DB・全件CI・本番停止規則は作らない。
 
 ### Playbook・ワークシートの作成・更新：作り込みは濃く、運用は軽く（2026-11-08 本人採用方針）
+
+<!-- ADNC:STYLE-BOOTSTRAP-CUSTOM-PLAYBOOK-ADOPTED-20261111 -->
+**任意のスタイル初期工程（2026-11-11本人採用）**：動画シリーズ・サムネイル・ブログ挿絵・展示資料など、**新規カスタムPlaybookで作風やブランド見本を定義する／大きく刷新する必要があるときだけ**、既存の[Style Bootstrap](../skills/style-bootstrap/SKILL.md)を先行利用する。**良い代表作を先に制作 → 採用見本からスタイルと実素材を抽出 → 必要な編集可能原本（PPTX・DOCX等）／自由度の高い画像制作を用途で選ぶ → 別題材1件で再利用**し、完成したスタイル・固定／可変条件・原本の出典は**本人の個人KB／既存シリーズAreaのカスタムPlaybook・Runbook**に接続する。これまでの素材規格・PPTX制作キット・MUSE CASE A・動画個別Runbookを**置換・上書きせず包含する入口**とし、詳細な専門実行・制作順序は従来の正本を優先する。既存の採用スタイルがある制作・通常の記事1件・軽微改訂では起動しない。後続の「再利用素材を新規作成／変更した場合だけの任意検証」は本節の既存オプションを使い、**新しい検査制度・スタイルDB・必須JSON・全形式出力は作らない**。本方式は本人採用の**任意共通試用**であり、Playbookの正式Active配布・素材の実再現試験PASSを意味しない。
+
 
 
 <!-- ADNC:OPTIONAL-REUSABLE-ASSET-CHECK-20261111 -->
