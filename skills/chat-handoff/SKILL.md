@@ -1,5 +1,25 @@
 # AD&C チャット引継ぎ・U字型コンテクスト圧縮 Playbook
 
+<!-- ADNC:PLAYBOOK-STANDARD-20261111 -->
+> **改訂時の3参照（作成・編集担当だけ／通常利用では読まない）**：対象固有Designer’s Noteがあれば改訂時にその範囲を参照する。
+
+```text
+EDIT_REF_PHILOSOPHY=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/README.md
+EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/chat-handoff/SKILL.md
+EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
+```
+
+> **カスタム手順書の優先分岐（通常利用時）**：本人の現行指示と専門安全条件を優先し、個人KBにこの用途の採用済みカスタムPlaybookがある場合は権限内で実取得して適用する。未設定ならこの日本語Playbookを使用。非公開パス・個人設定は公開ファイルに埋め込まず、取得不能はその部分だけ未確認として扱う。
+
+> **AI用Pythonナビのパス（通常利用時）**：このPlaybookと同じフォルダを基準に、実在するナビだけ指定する（未実装は `NONE`、創作例外は `CREATIVE_EXEMPT`）。**Pythonは機械的な分岐・選択肢ID・遷移先のみ**を担当。ボタン表示・押下は各AIのUIに任せ、非対応時は日本語の番号付き選択肢。Pythonが使えない場合は日本語本文をそのまま利用する。パス指定は自動実行許可ではない。
+
+```text
+AI_NAV_PY_PATH=NONE
+```
+
+> **改訂時の日本語変更検出（共通標準）**：検証済みの変更前原本（Git前版等）と更新後の実体を、[読取専用差分ツール](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/markdown-auto-pilot/check_playbook_diff.py)の `--baseline` またはGit差分で比較する。SHA-256不一致は変更の発見であって意味不整合の証明ではない。ナビの条件・選択肢ID・遷移先に影響する差分だけ整合し、必要な範囲を再検査・読戻す。通常の利用者に常時検査は要求しない。動画／サムネイル創作工程の例外は変更しない。
+
+
 > **2026-11-08 最終決定**：AD&C独自の停止規則・全SHA/全参照同期PASSまで作業禁止・形式承認待ちを撤廃。正本の既存履歴を保全し、実装済み部分と未修復問題を同一案件で受け渡す。問題はリーダー定時巡回が修復、解決不能な判断だけ本人に上げる。`DONE_WITH_ISSUES` は実装成果を伴う未解決状態であり、`NOT_EXECUTED`・完成PASSと混同しない。AI・実権限・本人個別保留等の実制約は別に扱う。
 
 > **AD&C標準コミュニケーション継承**：新しい承認が必要なときだけ実動ボタンを提示。使えなければ「最終ゴールへの承認指示文」をコードブロックで示し、「これをチャットに投入いただければ実施します」と案内する。詳細は[共通Playbook](../communication-navigation/SKILL.md)。既承認の作業は止めず、専門安全条件を優先。
