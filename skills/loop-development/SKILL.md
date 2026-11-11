@@ -1,5 +1,27 @@
 # ループ方式選択・反復ナビ Playbook v0.2.0-preview
 
+<!-- ADNC:PLAYBOOK-STANDARD-20261111 -->
+> **改訂時の3参照（作成・編集担当だけ／通常利用では読まない）**：対象固有Designer’s Noteがあれば改訂時にその範囲を参照する。
+
+```text
+EDIT_REF_PHILOSOPHY=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/README.md
+EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/loop-development/SKILL.md
+EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
+```
+
+> **カスタム手順書の優先分岐（通常利用時）**：本人の現行指示と専門安全条件を優先し、個人KBにこの用途の採用済みカスタムPlaybookがある場合は権限内で実取得して適用する。未設定ならこの日本語Playbookを使用。非公開パス・個人設定は公開ファイルに埋め込まず、取得不能はその部分だけ未確認として扱う。
+
+> **AI用Pythonナビのパス（通常利用時）**：このPlaybookと同じフォルダを基準に、実在するナビだけ指定する（未実装は `NONE`、創作例外は `CREATIVE_EXEMPT`）。**Pythonは機械的な分岐・選択肢ID・遷移先のみ**を担当。ボタン表示・押下は各AIのUIに任せ、非対応時は日本語の番号付き選択肢。Pythonが使えない場合は日本語本文をそのまま利用する。パス指定は自動実行許可ではない。
+
+```text
+AI_NAV_PY_PATH=./navigation.py
+```
+
+> **単一ループナビの試用範囲**：同じフォルダの [navigation.py](navigation.py) は明示された入力条件を基に、内/外・開/閉の**単層のみ**をJSONで判定する補助ツール。試験は `python navigation.py --self-test`、例は `python navigation.py --layer internal --feedback adapt --metric Pester --revision-path code_fix --limit 3`。自然文の意味・入れ子・実権限を自動判定せず、送信・定時起動・UIボタンを実行しない。専門条件と日本語本文を優先。
+
+> **改訂時の日本語変更検出（共通標準）**：検証済みの変更前原本（Git前版等）と更新後の実体を、[読取専用差分ツール](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/markdown-auto-pilot/check_playbook_diff.py)の `--baseline` またはGit差分で比較する。SHA-256不一致は変更の発見であって意味不整合の証明ではない。ナビの条件・選択肢ID・遷移先に影響する差分だけ整合し、必要な範囲を再検査・読戻す。通常の利用者に常時検査は要求しない。動画／サムネイル創作工程の例外は変更しない。
+
+
 - 種別：共有KB／人間が読める試用Skill。正式Active配布や自動インストールは未検証。
 - 目的：「ループで」「できるまで試して」「毎週回して」等を、**新制度を増やさず**既存の実行環境と案件条件に合う最小反復へ結び、実測と次の一手を残す。
 - 位置づけ：AD&C共通の方式選択。専門Playbook・本人指定・既存実行契約・実権限を優先。継続実行を実際に起動する機能は本書にはない。
@@ -64,5 +86,5 @@
 このPlaybook固有のDesigner’s Note。通常実行では読込不要。障害・仕様の衝突・実質改訂時だけ必要な範囲を参照。採用済みの実行条件・本人判断と、設計理由・未検証仮説を分ける。非公開情報を公開側へ移さない。
 設計の背景：二軸（内／外と開／閉）を混同せず、実測によって同じ層の次行動が変わる場合だけ「閉」と呼ぶ。反復という語だけで定時タスクや別AI配送を自動新設しない。創作工程の自動自己採点を強制せず、専門側と本人指定を優先する。
 変更時に守る点：5段階の実行・安全境界・本人の明示意思・UNKNOWN再送防止を維持。Q1〜Q4の試験は必要時だけ、機械自動化は本人・実行環境の条件が成立した部分に限る。
-Python領域を持たない本Playbookに、見栄えのための空のPythonは作らない。AIナビの機械化対象は別途用途・利用環境で判断する。
+Python領域を本文へ埋め込まず、同じディレクトリの `navigation.py` は明示入力による単層の方式判定だけを補助する。自然言語の解釈・入れ子・実行権限は本Playbookと専門正本で判断する。
 ADNC:DESIGNER_NOTE:HUMAN:END -->
