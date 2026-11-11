@@ -141,6 +141,10 @@ Coreは別の知識コピーではなく、共有知から選ぶ小さな標準�
 
 - [旅行の玄人が最初に見る5項目｜PR #15](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/pull/15) は2026-10-24に草案化済み。**未マージ・未審査で、現行mainの実行Skillでも正式配布項目でもありません。** 移動・営業・取消条件・代替案などの初動判断の型を提案しています。架空ケースでの別担当レビュー、旅行者の利用評価は `NOT_RUN`。既存のPRを再利用し、同じ手順書を新規作成しません。
 
+## スタイルを最初に構築・刷新するとき（任意Draft）
+
+「新シリーズの作風を決めたい」「良い見本から再利用素材を作りたい」「ブログ／動画／資料のスタイルを揃えたい」場合だけ、[Style Bootstrap v0.1.0-preview](skills/style-bootstrap/SKILL.md)へ。**代表作を先に完成→実素材と短いスタイルカードを保存→編集可能原本／画像制作を用途で選択→別題材1件で再利用**する。採用済みスタイルがある通常のPPT・Word・ブログ・動画制作には追加工程を課さない。既存専門Runbookと公式素材・確定済み部分が優先。報告ベースの挿絵3枚／PPTX4枚／JSON試作は独立現物検証済みではない。
+
 ## Word・Google Docsなどの文書を作るとき（試用）
 
 「Word文書／報告書／案内文／手順書を作って・直して」は、[Word・Google Docsなどの文書作成Playbook v0.1.0-preview](skills/document-authoring/SKILL.md)へ。**本文・見出し・表の編集可能性を優先し、アイコンは理解の助けになる場所だけ**。新たなアイコン集を作らず、既存の[表D（PPT・文書共通のテキスト探索）](skills/video-production-setup/PRODUCTION_ASSETS_GENERAL_SPEC_v0.1.md) → [16点SVG見本](assets/ppt_icon_reference_sheet.svg) → 公式の個別SVGを再利用します。Word／Docsの種類・利用者の採用テンプレートを優先し、単に文書を作る依頼で動画制作工程や非公開AD&C PPTを起動しません。正式Activeではなく、初見AIの自力利用・Word実機表示は未検証です。
