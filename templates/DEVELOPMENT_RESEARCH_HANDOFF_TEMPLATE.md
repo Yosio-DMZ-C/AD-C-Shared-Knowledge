@@ -40,6 +40,8 @@
 - 出典の個別URL・確認日：
 - PASS / FAIL / NOT_RUN / N/A（理由）：
 - 保存・読戻し・第三者レビュー：
+- 成果物評価と工程評価は別判定：`ARTWORK / PIPELINE / CONTEXT / HANDOFF / ASSETS / QA / USER_ACCEPTANCE`（該当軸は `PASS / FAIL / NOT_RUN / UNVERIFIED`）。
+- 実際にツールへ送った指示と正本の差分、参照画像の出所、候補画像の生成ID／SHA、最終提示物と検収済み成果物の一致を必要に応じて確認する。作品が良ければ由来付きで保持するが、工程をPASSに書き換えない。
 - 【人間判断】リーダーによる採否：
 - 【未検証】残る確認事項：
 
