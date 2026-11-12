@@ -90,7 +90,7 @@ STATUS: READY | RUNNING | NEEDS_REVIEW
 
 **消費はリーダー巡回だけ**：REPORT_TOで当該JOBの結果と証拠・副作用の完了を確認し、報告を読戻した**完了確定のJOBのみ**最新キューから対象1件だけ削除する。RUNNING・FAIL/NOT_RUN/UNKNOWN・開始だけ・結果未読戻しは`RUNNING`/`NEEDS_REVIEW`へ状態更新して残し、再実行はしない。ほかのREADYは処理可能。元KBのREADY_FOR_TMPは履歴として残るため、開始・結果・消費記録のあるJOBを二重投入しない。REPORT_TOが別なら結果を混ぜない。
 
-**C 毎時tmp：未着手の先頭READYから最大1件だけ実行**。`Automations.peek`でqueueを読み取る。RUNNING/NEEDS_REVIEW/UNKNOWNをスキップし、READYでも同IDのTMP_START/TMP_RESULTがあるJOBは実行候補から除いて次のREADYに進む（実行対象は最大1件）。対象の元KB、実行条件、REPORT_TO上の既存`TMP_START`/`TMP_RESULT`と同JOBの実行中・報告・既済を確認。既存の開始記録だけで結果不明なら**再実行せず**巡回判断に委ねる。完了報告済みでもQUEUEがREADYのままなら再実行しない。
+**C 毎時tmp：未着手の先頭READYから最大1件だけ実行**。`Automations.peek`でqueueを読み取る。RUNNING/NEEDS_REVIEW/UNKNOWNをスキップし、READYでも同IDのTMP_START/TMP_RESULTがあるJOB、または指示原文やREPORT_TOの権限・条件付き開始記録が足りず着手不能なJOBは、その巡回の実行候補から除いて理由を既存記録へ可能な範囲で残し、次のREADYへ進む（候補の走査は可、実務を開始するのは最大1件）。対象の元KB、実行条件、REPORT_TO上の既存`TMP_START`/`TMP_RESULT`と同JOBの実行中・報告・既済を確認。既存の開始記録だけで結果不明なら**再実行せず**巡回判断に委ねる。完了報告済みでもQUEUEがREADYのままなら再実行しない。
 
 **永続実行開始と重複防止**：**すべてのJOBの実務開始前**に、JOB固有REPORT_TOの既存永続先へ`【TMP_START｜JOB_ID=<ID>｜PARENT_ID=<ID>｜STATUS=RUNNING｜開始日時・実行コンテクスト】`を保存・読戻す。Google Docsなら`batchUpdate`に`writeControl.requiredRevisionId`を指定したrevision一致時だけの追記で、競合なら再取得・重複照合し、別の開始があれば実行しない。REPORT_TOがCAS非対応なら、当該JOBの非公開メタデータ保全が許可され、指定REPORT_TOへ結果を保存できる場合に限り、**既存非公開リーダーレビュー（Google Doc ID=1DS9nj57MHqQ7D0e-I-fct5HAMsYbdRlnFvgK5_lg1rE）へJOB_ID・親ID・開始時刻だけを同じrevision guardで開始記録**する代替を用いる。実行前にはREPORT_TOとこの既存レビューの双方で同JOBの開始・結果の既存証拠を照合し、二重claimをしない。これは新管理台帳や他JOBへの成果転記を許すものではない。**開始記録を成功して一意と検証できる場合だけ**、実務へ進む。REPORT_TOと既存レビューのいずれにも条件付き開始記録を書込・一意検証できない場合、実務を実行せずNOT_RUN/NEEDS_REVIEWを既存親へ記録する。REPORT_TOへの結果保存権限がない場合も実行しない。なおGoogle Docsの条件付き更新とキューのAutomations設定は同一トランザクションではなく、外部の非CAS書込や重複実行環境まで無条件に排除するわけではない。
 
