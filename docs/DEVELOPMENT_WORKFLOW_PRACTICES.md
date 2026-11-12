@@ -8,7 +8,7 @@ EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob
 EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
 ```
 
-- 版：0.1.17（2026-11-11：開発実行・承認の詳細をリーダーWorksheetから移管）
+- 版：0.1.18（2026-11-12：外部MCPの既存実動済みChatGPT登録経路を優先し、接続ゲートを独立判定）
 - 追補：2026-11-10／Playbookの道具化に関するWHYを既存Designer’s Noteへ移し、本文には発見・選択・取得・利用の操作だけを維持。
 - 状態：**共有KBの運用ルールとして公開。個別SkillのActive認定ではない**
 - 対象：開発調査、実装支援、KB整備、成果物レビュー
@@ -36,6 +36,17 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 例：写真サービス間の移行では、年代別の集計結果だけを前提にコードを書かず、公式の写真取得・メタデータ・重複処理の制約と同種の移行事例を確かめ、少量の実測データで件数と取得経路を照合してから方式を決める。例は一般化した検証手順であり、個人写真や非公開ファイルを共有KBへ保存しない。
 
 参照：[Microsoft Azure Well-Architected（成熟した既製ツールの優先）](https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/tools-processes)、[Google Documentation Best Practices（最小で新鮮な文書と重複回避）](https://google.github.io/styleguide/docguide/best_practices.html)。両者が本βの具体的な4手順を定めているという意味ではない。
+
+### 外部MCP連携：利用するAIの実動済み接続経路を優先する（2026-11-12）
+
+**目的**：MCPサーバー／Cloudflare Workerの動作と、利用者が使うChatGPT等の画面での接続成功を混同せず、既存の成功例より先に別方式のパッケージングやOAuth設定変更へ進まない。**設計・接続依頼のときだけ**使う既存の先行事例優先・最小修正の具体例であり、新しい事前審査制度ではない。
+
+1. **先に同じ利用先の成功経路を探す**：既存KB／同一サービス・同一AI画面の成功記録 → 現行UIと公式接続手順 → 必要な差分の順に確認する。ChatGPT通常チャットで使う既存MCPには、実動済みの「Plugins → ＋ → カスタムMCPサーバーを追加 → エンドポイント指定 → OAuth認可 → 新規チャットで `@` 明示選択 → 読取ツール実呼出し」を第一候補とする。利用可能な画面・権限は実環境で確認し、過去の成功を別環境へ保証しない。
+2. **作成経路を区別する**：Plugin CreatorのZIPからの個人プラグイン作成、ChatGPT画面でのカスタムMCPサーバー登録、Codex向けの導線、Worker自身のMCP `tools/list` は**別の工程・証拠**。ZIP作成・有効化の成功を通常チャットの `@` 候補表示・OAuth成立・ツール実利用の証明に転用しない。「今すぐ試す」がCodexへ移る等の観測も、全アカウントで同じ仕様と断定しない。
+3. **出口は段階別に実測**：`server_works`／`connector_created`／`installed_enabled`／`oauth_authorized`／`chat_at_selectable`／`tools_visible`／`read_tool_called` を適用範囲で個別 `PASS / FAIL / NOT_RUN` とし、最後は実応答の対象・結果を照合。登録／認可／通常チャット実行は一括PASSにしない。読取試験で十分なときは課金・投稿・生成・変更ツールを呼ばない。接続用の秘密・トークン・非公開URLを公開Git／報告へ入れない。
+4. **不調時は観測→最小修正→実測**：最初に既知の成功登録経路との差と、チャット内の明示的 `@` 選択状態を照合する。未確認のOAuthエラーを想像してCIMD/DCRやWorkerコードを変更しない。実際の認可／発見／呼出しエラーが得られたときだけ当該段を修復。既存Worker・正常な旧プラグインは修復確認まで削除せず、余分なユーザー操作を要求しない。
+
+**検証の範囲**：過去に同一AI画面で成功した方式を優先する設計規則の導入であり、各MCPの再接続・全モデルでの `@` 選択・実呼出しが今回すべて成功したという意味ではない。既存の個別接続記録を正本とし、共通規則へ個人の接続情報や手順全文を複製しない。公式参照：[OpenAI・カスタムMCPサーバーの接続](https://help.openai.com/ja-jp/articles/12584461-connecting-custom-mcp-servers-in-chatgpt)。
 
 ### ツールの1入口・発見可能性・創造性（正式運用／2026-11-01採用）
 
