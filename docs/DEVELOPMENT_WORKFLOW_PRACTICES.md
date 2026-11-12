@@ -46,6 +46,8 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 3. **出口は段階別に実測**：`server_works`／`connector_created`／`installed_enabled`／`oauth_authorized`／`chat_at_selectable`／`tools_visible`／`read_tool_called` を適用範囲で個別 `PASS / FAIL / NOT_RUN` とし、最後は実応答の対象・結果を照合。登録／認可／通常チャット実行は一括PASSにしない。読取試験で十分なときは課金・投稿・生成・変更ツールを呼ばない。接続用の秘密・トークン・非公開URLを公開Git／報告へ入れない。
 4. **不調時は観測→最小修正→実測**：最初に既知の成功登録経路との差と、チャット内の明示的 `@` 選択状態を照合する。未確認のOAuthエラーを想像してCIMD/DCRやWorkerコードを変更しない。実際の認可／発見／呼出しエラーが得られたときだけ当該段を修復。既存Worker・正常な旧プラグインは修復確認まで削除せず、余分なユーザー操作を要求しない。
 
+**他AIからChatGPTへの接続引継ぎ（2026-11-12）**：Muse等の構築担当は、同一の既存構築記録に「対象アプリ名・既存Worker `/mcp` URL・認証方式・鍵の所在（項目名のみ）・Worker側の実測根拠・ChatGPTで試す読取ツールと期待結果・禁止操作・未実施状態」を非秘密情報だけで残す。ChatGPT側の担当はWP Posterで実動した**カスタムMCPサーバー追加→本人OAuth→新規通常チャットの `@` 選択→読取実呼出し**を優先し、Plugin CreatorのZIP作成を代用品にしない。画面操作・OAuthに権限がない場合はNOT_RUNとし、無用な新ZIPや接続キットを増やさない。別コンテクストのtmp検証は通常チャットの読取PASS後、既存案件KB経由で**既存リーダー巡回だけ**がキューに登録する。詳細の正本は個人KB `Playbook_Cloudflare_Design_Build_v1.6.md` とし、公開Gitに個人情報・鍵・サービス別の内部記録を重複掲載しない。
+
 **検証の範囲**：過去に同一AI画面で成功した方式を優先する設計規則の導入であり、各MCPの再接続・全モデルでの `@` 選択・実呼出しが今回すべて成功したという意味ではない。既存の個別接続記録を正本とし、共通規則へ個人の接続情報や手順全文を複製しない。公式参照：[OpenAI・カスタムMCPサーバーの接続](https://help.openai.com/ja-jp/articles/12584461-connecting-custom-mcp-servers-in-chatgpt)。
 
 ### ツールの1入口・発見可能性・創造性（正式運用／2026-11-01採用）
