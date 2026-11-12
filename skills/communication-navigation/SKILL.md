@@ -70,40 +70,32 @@ AI_NAV_PY_PATH=NONE
 
 - 実際に許されない操作を「承認文の入力だけで可能」と偽らない。既に許可された安全な独立作業まで承認待ちに巻き込まない。
 
-## 3. 別チャット委任・独立試験の共通キュー（2026-11-12単一書込・永続実行記録）
+## 3. 別チャット委任・独立試験の共通キュー（2026-11-13｜軽量な共用キュー）
 
-**目的と役割**：本人が許可し、別コンテクストが本当に必要な独立試験・委任だけ、**元案件KB → 既存リーダー巡回 → 既存毎時tmp → JOB固有REPORT_TO → 巡回回収**で実行する。説明だけの依頼、別担当不要な仕事を自動配送しない。専用Work60契約・本人の実権限・未送信確認なしの再配送禁止を優先する。人間の新チャット作成・コピーは既定にしない。新しいAutomation・管理台帳・親Issueは作らない。
+**目的**：人間が毎回コピー・新チャット作成をしなくても、許可済みの独立試験・別担当委任が実行され、元案件へ結果が戻る。**各AIが書ける共通キューに戻す**。排他・ロック・別の状態台帳を新設しない。tmpは既存毎時Automation `Automation_df1ba2b8e2a081919d93a828d2d5e421`、救済と差分回収は既存リーダー巡回 `6ae940cd74208191a8ff058f87c672cf`。双方の既存スケジュールを維持し、厳密な時刻連結を要求しない。専用Work60配送契約、本人の実権限と公開・課金・機密・削除の安全条件を優先する。
 
-**対象**：既存tmp `Automation_df1ba2b8e2a081919d93a828d2d5e421`（毎時有効）と既存定期巡回 `6ae940cd74208191a8ff058f87c672cf`。双方の時刻と有効設定は維持する。tmpの`<<<QUEUE_BEGIN>>>`～`<<<QUEUE_END>>>`は既存のまま。**tmp promptを変更できる唯一の担当はリーダー巡回**。各担当AI・tmp自身の`Automations.update`は禁止（従前の「各AIが直接追記、tmp自身が消費する」指示を失効）。
-
-**A 担当AI：元案件へ登録**。完成した指示文全文・再取得可能なURL・一意のJOB_ID・TYPE・PARENT_ID・許可条件・固有REPORT_TO・`READY_FOR_TMP`を**既存案件KB（既存レビュー・Issue等）へ保存し読戻す**。同一JOBの元報告・既受領・結果UNKNOWNを照合し、既済なら再登録しない。tmpのpromptは読み取るだけで直接編集しない。元KBへ書けないときだけNOT_RUNと理由を示し、必要なら全文コピーを補助にする（コピーは実配送ではない）。
-
-**B リーダー巡回：キューの唯一の書込・状態更新・消費者**。毎巡、既存KBの`READY_FOR_TMP`とtmpキュー、JOB別`TMP_START`／`TMP_RESULT`をJOB_ID単位で差分照合する。元指示文の保存・読戻しが済み、実施中・完了済み・他ルート配送・副作用UNKNOWNが否定できる未登録JOBのみ、現行キューの末尾へ追記。旧READYが報告済みなら再投入しない。書込直前に`Automations.peek`で最新prompt・全JOB・schedule・is_enabledを読み、他JOBと固定本文を保持して1 JOBだけ`Automations.update(prompt=全文)`、直後に再peekで無損失・時刻維持を確認。リーダー巡回の別インスタンスが同時に稼働中なら同じキューを編集しない。**Automations.updateにはrevision条件付きCASがない**ので、第三者や複数のリーダー実行の競合を絶対排除できない。競合疑いなら他者更新を上書きせず、元KBから安全に差分を再照合する。
+**担当AIの登録（直接追加が既定）**：別コンテクストが本当に必要なときだけ、①既存案件KBに完成指示全文・一意のJOB_ID・親ID・TYPE・INSTRUCTIONの直接URL・固有REPORT_TO・`READY_FOR_TMP`を保存・読戻し、②既存tmpのpromptとキューを`Automations.peek`で読み、同JOBの既存キュー・開始・結果・予約を照合、③未登録なら**既存キュー末尾へ1件だけ追記**し`Automations.update(prompt=現行全文)`、④再peekで自JOBと既存JOB、毎時有効状態が保持されたかを確認。登録できない／競合し疑わしい場合は元KBのREADYを保持し、既存巡回が回収する。**直接更新を特権的な単一担当だけに限定しない**。指示を引用しただけ・登録文を作っただけでは実配送ではない。
 
 ```text
 <<<JOB>>>
-JOB_ID: <既存親に属する一意ID>
+JOB_ID: <親に紐づく一意ID>
 TYPE: independent_test | chat_handoff | delegated_work
 PARENT_ID: <既存親ID>
-INSTRUCTION: <既存KBに保存・読戻し済みの完成指示文URL>
-REPORT_TO: <このJOB固有の既存の報告先>
-STATUS: READY | RUNNING | NEEDS_REVIEW
+INSTRUCTION: <元KBの読戻し済み完成指示URL>
+REPORT_TO: <指定された既存報告先>
+STATUS: READY
 <<<END_JOB>>>
 ```
 
-**消費はリーダー巡回だけ**：REPORT_TOで当該JOBの結果と証拠・副作用の完了を確認し、報告を読戻した**完了確定のJOBのみ**最新キューから対象1件だけ削除する。RUNNING・FAIL/NOT_RUN/UNKNOWN・開始だけ・結果未読戻しは`RUNNING`/`NEEDS_REVIEW`へ状態更新して残し、再実行はしない。ほかのREADYは処理可能。元KBのREADY_FOR_TMPは履歴として残るため、開始・結果・消費記録のあるJOBを二重投入しない。REPORT_TOが別なら結果を混ぜない。
+**既存形式の互換**：旧キュー内の`JOB_ID=... | STATUS=READY | TYPE=... | PARENT_ID=... | INSTRUCTION=... | REPORT_TO=...`の1行形式も有効な既存JOBとして扱い、勝手に消さず移行の必須条件にしない。
 
-**C 毎時tmp：未着手の先頭READYから最大1件だけ実行**。`Automations.peek`でqueueを読み取る。RUNNING/NEEDS_REVIEW/UNKNOWNをスキップし、READYでも同IDのTMP_START/TMP_RESULTがあるJOB、または指示原文やREPORT_TOの権限・条件付き開始記録が足りず着手不能なJOBは、その巡回の実行候補から除いて理由を既存記録へ可能な範囲で残し、次のREADYへ進む（候補の走査は可、実務を開始するのは最大1件）。対象の元KB、実行条件、REPORT_TO上の既存`TMP_START`/`TMP_RESULT`と同JOBの実行中・報告・既済を確認。既存の開始記録だけで結果不明なら**再実行せず**巡回判断に委ねる。完了報告済みでもQUEUEがREADYのままなら再実行しない。
+**毎時tmpの仕事（原則1件だけ）**：毎時起動で現行キューの先頭未処理READYを1件選択。対象JOBの元KBとREPORT_TOの**実際の独立結果記録**をJOB_IDで確認する。実行済み・処理中・副作用UNKNOWNは再実行せず、別のREADYへ進む。実務可能なJOBは権限内で実行し、固有REPORT_TOへ`TMP_RESULT`と実際の成果・時刻・PASS/FAIL/NOT_RUN・次の一手を保存・読戻す。必要に応じて`TMP_START`を同じ既存先へ記録してよいが、**開始記録/CAS/ロックを全JOBの開始必須条件にはしない**。公開・課金・削除・外部送信・Work60再送など、重複に実害がある操作は実施済み・UNKNOWNを確証なく再実行しない。安全な結果が確定したJOBだけ、tmpがその1件をキューから消費してよい。消費時は再peekで最新全文を取り、**対象IDだけ**を除き、他JOBやスケジュールを維持して再peekする。失敗/UNKNOWNは残して次のREADYを進める。消費できなければ次回の重複確認で対応し、実務全体を止めない。
 
-**永続実行開始と重複防止**：**すべてのJOBの実務開始前**に、JOB固有REPORT_TOの既存永続先へ`【TMP_START｜JOB_ID=<ID>｜PARENT_ID=<ID>｜STATUS=RUNNING｜開始日時・実行コンテクスト】`を保存・読戻す。Google Docsなら`batchUpdate`に`writeControl.requiredRevisionId`を指定したrevision一致時だけの追記で、競合なら再取得・重複照合し、別の開始があれば実行しない。REPORT_TOがCAS非対応なら、当該JOBの非公開メタデータ保全が許可され、指定REPORT_TOへ結果を保存できる場合に限り、**既存非公開リーダーレビュー（Google Doc ID=1DS9nj57MHqQ7D0e-I-fct5HAMsYbdRlnFvgK5_lg1rE）へJOB_ID・親ID・開始時刻だけを同じrevision guardで開始記録**する代替を用いる。実行前にはREPORT_TOとこの既存レビューの双方で同JOBの開始・結果の既存証拠を照合し、二重claimをしない。これは新管理台帳や他JOBへの成果転記を許すものではない。**開始記録を成功して一意と検証できる場合だけ**、実務へ進む。REPORT_TOと既存レビューのいずれにも条件付き開始記録を書込・一意検証できない場合、実務を実行せずNOT_RUN/NEEDS_REVIEWを既存親へ記録する。REPORT_TOへの結果保存権限がない場合も実行しない。なおGoogle Docsの条件付き更新とキューのAutomations設定は同一トランザクションではなく、外部の非CAS書込や重複実行環境まで無条件に排除するわけではない。
+**リーダー巡回の救済**：既存KBのREADY_FOR_TMP、tmpキュー、JOB別実TMP_RESULTを**ID差分で**比較し、登録漏れ・見失ったJOB・処理済み残留を修復する。元KBに残っており、実行済みでもUNKNOWNでもないJOBだけ再登録。報告済みJOBは再実行しない。キューが空でも、元KBの未処理READYを見ずに「仕事なし」と決めない。結果は既存案件へ回収する。追加台帳なし、厳密な巡回分単位の時間同期なし。
 
-実行後は**指定REPORT_TOだけに**`【TMP_RESULT｜JOB_ID=<ID>｜TYPE=<TYPE>】`・親ID・日時・成果の現物URL・証拠・PASS/FAIL/NOT_RUN・外部副作用の状態・残る問題・次の一手を保存・読戻す。失敗時は開始記録を残したまま次のREADYを次回以降に処理する。**tmpは自分のpromptを一切更新・削除・自己無効化・再予約しない**。リーダーチャットへの直接返送もしない。
+**同時更新の扱い（ベストエフォート）**：Automationsのprompt更新は**差分追記APIではなく全文上書き**のため、同時編集で最後の保存が他JOBを消す可能性は残る。これを防ぐための複雑な排他制御は設けず、**元KBの正本保全→更新直前peek→更新後peek→次回巡回での差分回収**という軽い復旧ループを採用する。失われた指示は元KBに残るが、完全無損失・exactly-onceは保証しない。安全上二重実行不可なJOBは外部の確かな実績と専門条件に従う。
 
-**開始・結果の実記録と指示文の引用を厳密に区別**：TMP_START/TMP_RESULT は、JOB_ID・状態/日時・実行根拠を持つ**既存REPORT_TOの独立した実行記録段落（段落先頭のタグ）**として保存・読戻されたものだけを数える。元のREADY_FOR_TMP完成指示文や引用中に「後で書く予定のTMP_START/TMP_RESULT」という文字列、JOB_IDを含むテンプレートや説明があっても実行済みと判定しない。単純な全文`includes`検索は偽陽性になる。曖昧な結果は再実行せず、レコードの実在と証拠を確認する。
-
-**安全な継続**：リーダーがTMP_STARTのみ発見ならRUNNING/NEEDS_REVIEWを保全、TMP_RESULTが確定・読戻し済みなら完了したJOBだけ消費。既存READYを再送許可と誤認しない。登録漏れ検出は元KBにREADY_FOR_TMPが存在する範囲でのみ可能で、どこにも記録のない仕事は検出不能。結果が不明のJOBは別のREADYを妨げない。空キューなら実務0件で毎時起動維持。
-
-**検収は分離**：①元KB登録、②巡回キュー追加、③毎時の実起動、④永続TMP_START（一意性）、⑤実仕事、⑥個別TMP_RESULT保存読戻し、⑦巡回の対象JOBだけ消費、⑧継続を個別PASS/FAIL/NOT_RUN。仕様文だけで二重実行防止・別コンテクスト実動をPASSにしない。危険な本番同時更新試験をしない。旧単発予約・5分再予約・機密送信・新規制度追加はしない。
+**実行証拠の誤認防止**：元のREADY_FOR_TMP指示文や予定テンプレートにTMP_START/TMP_RESULTが含まれていても実行証拠ではない。REPORT_TOに残るJOB_ID一致の**独立した結果段落と日時・現物**で判定する。仕様更新、キュー登録、実起動、実務成果、報告、消費は別々に数える。新規Automation・親Issue・新台帳・無承認の委任連鎖を作らない。
 
 
 ## 4. 資料取得と操作結果の表示
