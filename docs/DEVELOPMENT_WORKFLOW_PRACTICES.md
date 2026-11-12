@@ -169,6 +169,16 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 同一エラーの追加試行は「新しい情報を得られるか」「再試行が安全か」「人間の手戻りや有料実行を増やさないか」で判断する。権限と接続ツールの操作能力、コネクタとクラウドブラウザの認証状態は別に確認する。単発のUI操作は人間への切替も選択肢とする。参考：[Work→Google認証の調査事例](cases/WORK_GOOGLE_AUTH_FAILURE_20261014.md)、[予防KB](DEVELOPMENT_FAILURE_PREVENTION_KB.md)。
 
+### ChatGPT カスタム MCP 登録時の人間向け画面案内（2026-11-13観測、接続試験継続）
+
+**適用範囲**：既存の個人 Cloudflare 設計・構築 Playbook v1.6 に従う ChatGPT 接続担当の補助案内。WP Poster の実証経路を優先し、Plugin Creator ZIP を代替扱いしない。ChatGPT 画面・プランにより表示差があり、以下は本人提供の「プラグイン」画面で実際に見えたラベルに基づく。対象の通常チャット実動は別判定。
+
+1. 本人に `https://chatgpt.com/plugins` を開いてもらい、右上 **「追加」▼ → メニュー最下段「カスタム MCP サーバーを追加」** を選んでもらう。隣の **「プラグインを作成」**／**「プラグインアーカイブをアップロード」** は今回選ばない。曖昧な「プラグインを追加して」だけで済ませず、クリック位置・画面ラベル・選択しない項目を短く具体的に案内する。
+2. 登録フォームは、YouTube=`AD&C YouTube Poster`／`https://adnc-youtube-poster.yosio-hasenaka.workers.dev/mcp`、ElevenLabs=`AD&C ElevenLabs`／`https://adnc-elevenlabs.yosio-hasenaka.workers.dev/mcp`。**OAuth** を指定して登録する。URLは `/mcp` まで含め、WorkerのルートURLやZIPを投入しない。画面上の項目名称が違えば表示実物に合わせ、勝手に設定を補わない。
+3. 登録後に **「アプリを接続」** → スコープ確認 → Workerの認可画面で本人がアクセスキーを**直接入力**して承認する。チャット・公開GitHub・報告本文にキー／code／tokenを転記しない。登録・本人認可・会話での選択は別検収。認証が未成立なら実エラーを観測して局所修復し、連打しない。
+4. 通常の**新規チャット**で入力欄の `@` 候補から名前を**選択**（単なる文字列の手入力ではない）。YouTube は `get_channel_info` を読取り実行して正しいチャンネルIDと `expectedChannel=true` を照合。ElevenLabs は `get_user_info` と `list_voices` のみ実行し、契約・残量・声を読戻す。投稿・公開・更新・削除・音声生成はこの接続検収で行わない。
+5. **本人への案内はまず次の1クリックだけ**を示し、画面が進んだら次の入力を案内する（本人が一括手順を望む場合を除く）。完了判定は「MCP到達」「OAuth」「ChatGPT登録」「ChatGPT認可」「@ツール表示」「通常チャット実行」「値の照合」を独立に PASS / FAIL / NOT_RUN / UNKNOWN で記録。Worker側tools/listのみで完成扱いしない。登録メニュー欠落はUI/権限/プランを観測し、Worker不具合と混同しない。
+
 ## 2. 証拠レベル・検査名
 
 |種類|言えること|言えないこと|
