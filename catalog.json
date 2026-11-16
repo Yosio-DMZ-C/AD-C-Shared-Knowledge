@@ -1,7 +1,7 @@
 {
   "schema_version": "0.3.0",
-  "catalog_version": "0.3.8",
-  "updated_at": "2026-11-10",
+  "catalog_version": "0.3.9",
+  "updated_at": "2026-11-16",
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
@@ -165,6 +165,24 @@
       "review_status": "user_adopted_2026-11-08; markdown_readback=PASS; cross_client_button_runtime=NOT_RUN; formal_distribution_review=NOT_RUN",
       "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/communication-navigation/SKILL.md",
       "review_due": "2026-12-08",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "id": "PB-LEGACY-DATA-RECOVERY-001",
+      "title": "旧形式ファイル・レガシーデータ変換／データサルベージ",
+      "kind": "playbook",
+      "domain_id": "digital-safety",
+      "version": "1.0.0",
+      "path": "skills/legacy-data-recovery/SKILL.md",
+      "status": "user_adopted_active",
+      "visibility": "public_manual_reference",
+      "distribution_ready": false,
+      "auto_install": false,
+      "risk": "source_corruption_conversion_loss_private_data",
+      "scope": "古いソフト文書・JTD/JSD/JHD・旧Office・書庫・文字コードの調査、原本保全、複製からの変換と検証。JTDの本文抽出2件のみ実績",
+      "review_status": "user_approved_2026-11-16; jtd_original_copy_text_extraction=PASS_2; layout=NOT_RUN; jsd_jhd=NOT_RUN; production_auto_distribution=NOT_RUN",
+      "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/legacy-data-recovery/SKILL.md",
+      "review_due": "2026-12-16",
       "license": "CC-BY-SA-4.0"
     }
   ],
