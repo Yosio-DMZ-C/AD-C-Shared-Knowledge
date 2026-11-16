@@ -13,7 +13,7 @@
 
 - ID: `PB-LEGACY-DATA-RECOVERY-001`
 - 状態: **利用者正式採用・Active（2026-11-16）**。個別形式の対応は実績表に記載。公開カタログによる自動配布は別検証。
-- Version: 1.0.0
+- Version: 1.0.2
 - Language: ja-JP / domain: digital-safety, work-learning
 - Risk: データ破壊・誤変換・機密漏洩・誤った完全性判定
 - このPlaybookの正本: この `SKILL.md`。設計の実績・留保は近傍の `DESIGNER_NOTE.md`。
@@ -40,7 +40,7 @@
 ### JTD（一太郎）— Pythonを先行
 **実動済み（限定）**：1999年の `ＧＥＡＲスタッフマニュアル.jtd` と `ＧＥＡＲミーティング方式.jtd` の**コピー**を既存Python試作で読み取り、日本語本文を抽出（2026-11-16）。抽出前サイズ 34,816 / 20,480 bytes、抽出後 2,979 / 890文字。スタッフ文書は表に制御文字が混ざりレイアウト未保証。対象原本は非公開のためこの公開リポジトリに含めない。
 
-- **同梱の読取専用Python最小抽出器**：[`tools/jtd_text_extract.py`](tools/jtd_text_extract.py)。Python 3、標準ライブラリのみ。JTDのOLE2/CFB `DocumentText` ストリームから文字を推定抽出する実験的な補助ツール（形式上の完全互換を保証しない）。現在は個別ファイルのテキスト抽出のみ。
+- **同梱の読取専用Python最小抽出器**：[`tools/jtd_text_extract.py`](tools/jtd_text_extract.py)。Python 3、標準ライブラリのみ。JTDのOLE2/CFB `DocumentText` ストリームから文字を推定抽出する実験的な補助ツール（形式上の完全互換を保証しない）。従来の個別テキスト抽出に加え、オプションでJSSnapShot32の表示キャッシュから文字列を取得。表セル位置・計算式は未復元。
 - 実行例（**複製だけ**を入力）：
   ```bash
   python tools/jtd_text_extract.py "/path/to/copy/sample.jtd"
@@ -49,6 +49,17 @@
 - **上流Python候補**：[o2md（PyPI）](https://pypi.org/project/o2md/)／[GitHub](https://github.com/matsu582/o2md)。一太郎JTD→Markdown、表構造などの改善が必要なら候補。実行例 `python -m pip install o2md` の後、提供する `jtd2md` CLIの使い方を該当バージョンのREADMEで再確認。今回の制限環境ではpip取得できず**本体は未実行**。
 - **公式描画・原本照合**：[JustSystems 一太郎ビューア](https://www.justsystems.com/jp/download/viewer/ichitaro/)（Windows）。旧版のJTDを画面表示できる場合は印刷→PDF、ページ・表・字形を確認。閲覧ソフトによるレイアウト復元は今回未試験。
 - **他の解析候補**：[Tika-JTD](https://github.com/KHiyowa/Tika-JTD)（Apache Tika系、Java）／[ezpzfile-jtd](https://github.com/ezpzfile/ezpzfile-jtd)（Rust）。実データ互換性未検証。出典・READMEで最新版と実行方法を確認してから導入。
+
+### 2026-11-16 公式ビューアとの比較で改善した会計表・スタッフ表
+公式一太郎ビューアの表示画像を利用者が提供し、会計報告書の収入8,500円／支出8,180円／収支320円、年間収入22,525円／支出50,651円／差額-28,126円を検算。一太郎JTDの `DocumentText` だけでは会計表は取得できなかったが、埋込 `\x03EmbeddedPress` に `JSSnapShot32` 表示キャッシュが存在し、`--snapshot-text` により文字列の金額8,500・8,180・320・22,525・50,651を抽出できた。赤字の符号は公式画像と差額計算で確認した。**表セルや関数を機械復元したとは扱わない**。
+```bash
+python tools/jtd_text_extract.py --snapshot-text --enhance --inspect-embedded "原本コピー.jtd"
+```
+出力 `.snapshot.txt` は**表示内容の並びを近似した断片列**で、不要な描画コマンド・字体名や列結合が混在する。年度会計表や金額の正式な復元・自動集計には、公式アプリのPDFや画像との照合を要する。
+
+スタッフマニュアルの `.tables.md` は、受付5行と設営3行について公式表示画像の3列（内容・時間帯・備考）と照合。時間割の3列（時刻・会員・参加者）は未構造化で、改行・セル結合・位置の完全再現は未検証。
+
+**回帰試験**：当該機能追加後、1999〜2000年のJTDコピー29件で旧版の本文抽出結果が29/29一致。特に先行の非空26件に後退なし。別形式や異なる年代のJTDでの互換性・表示キャッシュの存在は未保証。
 
 ### JSD（三四郎）／JHD（花子）
 `.jtd` と同じ処理をかけない。三四郎表計算は**数式・セル・シートと値の違い**、花子図面は**線・文字・レイヤ・座標**を重視して別手段を調べる。花子ビューア：[公式配布案内](https://www.justsystems.com/jp/download/viewer/hanako/)（Windows対応版を必ず確認）。今回の原本では変換・完全性とも `NOT_RUN`。
@@ -64,5 +75,6 @@
 個人名・住所・会計・非公開素材は公開共有KBへ転載せず個人側に保持。一般化できる手順と非秘密の統計だけ共有する。
 
 ## 変更と改善
+- v1.0.2（2026-11-16）会計JSSnapShot32表示キャッシュの読取専用抽出を追加。会計5金額・差額検算、スタッフ受付5行・設営3行、旧版テキスト29/29回帰一致。セル・式・見た目の完全復元は未達。
 - v1.0.0（2026-11-16）本人の明示指示で正式採用。実データ2件のJTD抽出成功を核として、調査法・道具棚・実行・検収・改善ループを固定。変換器の互換は2件のみ実績。別AIでの自動認識・JSD/JHD・レイアウト完全復元は未実施。
 - 改善依頼では、本書と近傍[Designer’s Note](DESIGNER_NOTE.md)を実取得し、問題1件を複製で再現→最小修正→実測→本書とツールの差分反映。正常な枝は維持する。自動定期点検・大規模な全面移行は新設しない。
