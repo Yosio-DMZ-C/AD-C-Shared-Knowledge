@@ -126,28 +126,132 @@ def extract_text(stream):
     return "\n".join(lines)
 
 
-def main(argv):
-    if len(argv) < 2:
-        print("Usage: python jtd_text_extract.py COPY1.jtd [COPY2.jtd ...]", file=sys.stderr)
-        return 2
-    failed = 0
-    for name in argv[1:]:
-        src = pathlib.Path(name)
-        dest = src.with_suffix(".txt")
+
+# Conservative optional postprocessors; the original raw text is preserved.
+TABLE_SEPARATOR = re.compile(r'^\x8f\xa0(?:D\$\$|@@)\uffff$')
+
+
+def readable_lines(text):
+    """Viewing-only copy without known table tokens or observed binary trailer."""
+    lines = []
+    for line in text.splitlines():
+        if TABLE_SEPARATOR.fullmatch(line.strip()):
+            continue
+        if len(line) > 300 and line.count('Ȃ') > 20 and line.count('￿') > 20:
+            break
+        lines.append(line.rstrip())
+    return '\n'.join(lines).strip()
+
+
+def reconstruct_staff_tables(text):
+    """Tentatively reconstruct 1999 GEAR three-column staff tables by row markers."""
+    if '受　付　内　容' not in text or '設　営　内　容' not in text:
+        return ''
+    items = text.splitlines()
+    sections = [('受付', '受　付　内　容', '設　営　内　容'),
+                ('設営', '設　営　内　容', '設営する所')]
+    result = ['# 推定復元した三列表（原本との画像照合は未実施）',
+              '※線・セル結合・順序は確認できていない。数字と欄の対応は原本表示で照合。']
+    for title, start, end in sections:
         try:
-            if src.resolve() == dest.resolve():
-                raise ValueError("Input would equal output")
-            body = extract_text(get_stream(src))
-            if not body.strip():
-                raise ValueError("Empty text extraction")
-            with dest.open("x", encoding="utf-8") as file:
-                file.write(body)
-            print(f"PASS {src} -> {dest} {len(body)} chars, {len(body.splitlines())} lines")
+            a = next(i for i,v in enumerate(items) if start in v)
+            b = next(i for i,v in enumerate(items[a+1:], a+1) if end in v)
+        except StopIteration:
+            continue
+        rows, row = [], []
+        for value in items[a+3:b]:
+            v = value.strip()
+            if TABLE_SEPARATOR.fullmatch(v):
+                if row:
+                    rows.append(row)
+                    row = []
+                continue
+            if v:
+                row.append(v)
+        if row:
+            rows.append(row)
+        result += [f'\n## {title}', '| 内容 | 時間帯 | 備考 |', '|---|---|---|']
+        for row in rows:
+            row += [''] * (3-len(row))
+            result.append('| ' + ' | '.join(x.replace('|', '\\|') for x in row) + ' |')
+    return '\n'.join(result).strip() + '\n'
+
+
+def embed_inventory(path):
+    """Inventory binary Sanshiro OLE streams. No worksheet cell values decoded."""
+    import hashlib
+    import json
+    streams = {}
+    for name in ('EmbeddingInfo', 'Book', 'WorkSheet1', 'WorkSheet2', 'WorkSheet3'):
+        try:
+            blob = get_stream(path, name)
+        except ValueError:
+            continue
+        streams[name] = {'bytes': len(blob), 'sha256': hashlib.sha256(blob).hexdigest()}
+    if not streams:
+        return ''
+    marker = ('SNS.Worksheet.8' if 'EmbeddingInfo' in streams
+              and 'SNS.Worksheet.8' in get_stream(path, 'EmbeddingInfo').decode('utf-16le', 'ignore')
+              else 'unverified')
+    return json.dumps({'embedded_sheet_type': marker,
+                       'warning': 'Binary workbook streams found; sheet cell values NOT decoded',
+                       'streams': streams}, ensure_ascii=False, indent=2) + '\n'
+
+
+def fallback_text(stream):
+    """Last-resort UTF-16BE text fallback, potentially truncated/garbled."""
+    at = stream.find(b'TextV.01')
+    if at < 0:
+        return ''
+    data = stream[at+10:]
+    data = data[:len(data)//2*2]
+    decoded = data.decode('utf-16be', 'replace')
+    decoded = re.split(r'\x00[\x00-\x1f][\ue000-\uf8ff]', decoded, maxsplit=1)[0]
+    return decoded.split('\x00', 1)[0].strip()
+
+
+def main(argv=None):
+    import argparse
+    args = argparse.ArgumentParser(description='Read-only experimental JTD text extraction')
+    args.add_argument('files', nargs='+', help='JTD copies (not originals)')
+    args.add_argument('--fallback', action='store_true',
+                      help='Try incomplete UTF16BE fallback on empty JTD')
+    args.add_argument('--enhance', action='store_true',
+                      help='Also create cleaned text and tentative table Markdown')
+    args.add_argument('--inspect-embedded', action='store_true',
+                      help='Write inventory of embedded OLE worksheet streams')
+    ns = args.parse_args(argv)
+    failures = 0
+    for name in ns.files:
+        try:
+            p = pathlib.Path(name)
+            raw = extract_text(get_stream(p))
+            source = 'primary'
+            if not raw.strip() and ns.fallback:
+                raw = fallback_text(get_stream(p))
+                source = 'fallback_partial'
+            if not raw.strip():
+                raise ValueError('Empty raw extract')
+            with p.with_suffix('.txt').open('x', encoding='utf-8') as out:
+                out.write(raw)
+            if ns.enhance:
+                with p.with_suffix('.clean.txt').open('x', encoding='utf-8') as out:
+                    out.write(readable_lines(raw))
+                table = reconstruct_staff_tables(raw)
+                if table:
+                    with p.with_suffix('.tables.md').open('x', encoding='utf-8') as out:
+                        out.write(table)
+            if ns.inspect_embedded:
+                info = embed_inventory(p)
+                if info:
+                    with p.with_suffix('.embedded.json').open('x', encoding='utf-8') as out:
+                        out.write(info)
+            print('PASS', p.name, len(raw), 'characters', source)
         except Exception as exc:
-            failed += 1
-            print(f"FAIL {src}: {exc}", file=sys.stderr)
-    return 1 if failed else 0
+            failures += 1
+            print('FAIL', name, str(exc), file=sys.stderr)
+    return 1 if failures else 0
 
 
-if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+if __name__ == '__main__':
+    sys.exit(main())
