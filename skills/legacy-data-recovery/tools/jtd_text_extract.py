@@ -231,6 +231,94 @@ def fallback_text(stream):
     return decoded.split('\x00', 1)[0].strip()
 
 
+
+def _col_letters(num):
+    out = ''
+    while num:
+        num, rem = divmod(num - 1, 26)
+        out = chr(65 + rem) + out
+    return out
+
+
+def parse_worksheet_records(blob, sheet='WorkSheet1'):
+    """Partial Sanshiro worksheet cell TLV decoder (NOT full formula syntax).
+    0x1000 cell record: kind, reserved, 0-based row, 0-based column (all LE u16).
+    Kinds 2=integer, 5=UTF16LE label, 20=cached float64 plus opaque formula.
+    """
+    import math
+    cells, offset = [], 0
+    while offset + 4 <= len(blob):
+        tag, length = struct.unpack_from('<HH', blob, offset)
+        if length < 4 or offset + length > len(blob):
+            raise ValueError(f'Invalid worksheet TLV at byte {offset}')
+        data = blob[offset+4:offset+length]
+        if tag == 0x1000 and len(data) >= 8:
+            kind, _, row, col = struct.unpack_from('<HHHH', data)
+            entry = {'sheet': sheet, 'row': row + 1, 'col': col + 1,
+                     'cell': f'{_col_letters(col+1)}{row+1}',
+                     'kind': kind, 'record_offset': offset}
+            if kind == 2 and len(data) >= 10:
+                entry.update(value=struct.unpack_from('<h', data, 8)[0],
+                             value_type='integer')
+            elif kind == 5 and len(data) >= 14:
+                value = data[12:].decode('utf-16le', 'replace').split('\x00', 1)[0]
+                if not value or value[0] not in ('"', '^', "'"):
+                    for mark in ('"', '^', "'"):
+                        pos = value.find(mark)
+                        if pos >= 0:
+                            value = value[pos:]
+                            break
+                entry.update(value=value[1:] if value[:1] in ('"', '^', "'") else value,
+                             display_prefix=value[:1] if value[:1] in ('"', '^', "'") else '',
+                             value_type='string')
+            elif kind == 20 and len(data) >= 16:
+                cached = struct.unpack_from('<d', data, 8)[0]
+                entry.update(value=cached if math.isfinite(cached) else None,
+                             value_type='formula_cached',
+                             formula_hex=data[16:].hex(),
+                             formula_decoded=False)
+            elif kind == 1:
+                entry.update(value=None, value_type='empty_or_format')
+            else:
+                entry.update(value=None, value_type='unknown',
+                             raw_hex=data.hex())
+            cells.append(entry)
+        offset += length
+    if offset != len(blob):
+        raise ValueError(f'Worksheet trailing bytes at {offset}')
+    return cells
+
+
+def extract_sheet_cells(path):
+    cells = []
+    for i in range(1, 33):
+        try:
+            blob = get_stream(path, f'WorkSheet{i}')
+        except ValueError:
+            break
+        cells.extend(parse_worksheet_records(blob, f'WorkSheet{i}'))
+    if not cells:
+        raise ValueError('No Sanshiro worksheet cell records')
+    return cells
+
+
+def write_worksheet_exports(path, cells):
+    import csv
+    import json
+    p = pathlib.Path(path)
+    with p.with_suffix('.cells.json').open('x', encoding='utf-8') as f:
+        json.dump({'source': p.name,
+                   'warning': 'Formula syntax NOT decoded; result is cached.',
+                   'cells': cells}, f, ensure_ascii=False, indent=2)
+    with p.with_suffix('.cells.csv').open('x', encoding='utf-8-sig',
+                                          newline='') as f:
+        fields = ['sheet', 'cell', 'row', 'col', 'kind',
+                  'value_type', 'value', 'formula_decoded', 'formula_hex']
+        writer = csv.DictWriter(f, fieldnames=fields, extrasaction='ignore')
+        writer.writeheader()
+        writer.writerows(cells)
+
+
 def main(argv=None):
     import argparse
     args = argparse.ArgumentParser(description='Read-only experimental JTD text extraction')
@@ -242,6 +330,7 @@ def main(argv=None):
     args.add_argument('--inspect-embedded', action='store_true',
                       help='Write inventory of embedded OLE worksheet streams')
     args.add_argument('--snapshot-text', action='store_true', help='Write JSSnapShot32 displayed text; layout unverified')
+    args.add_argument('--worksheet-cells', action='store_true', help='Extract Sanshiro cells and formula cached values; original formula syntax NOT decoded')
     ns = args.parse_args(argv)
     failures = 0
     for name in ns.files:
@@ -273,6 +362,9 @@ def main(argv=None):
                 if info:
                     with p.with_suffix('.embedded.json').open('x', encoding='utf-8') as out:
                         out.write(info)
+            if ns.worksheet_cells:
+                cells = extract_sheet_cells(p)
+                write_worksheet_exports(p, cells)
             print('PASS', p.name, len(raw), 'characters', source)
         except Exception as exc:
             failures += 1
