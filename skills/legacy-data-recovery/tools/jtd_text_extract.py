@@ -12,7 +12,7 @@ FREE = 0xFFFFFFFF
 END = 0xFFFFFFFE
 
 
-def get_stream(path, wanted="DocumentText"):
+def get_stream(path, wanted="DocumentText", occurrence=0):
     data = pathlib.Path(path).read_bytes()
     if data[:8] != bytes.fromhex("D0CF11E0A1B11AE1"):
         raise ValueError("Not an OLE2 compound document")
@@ -58,7 +58,8 @@ def get_stream(path, wanted="DocumentText"):
         name = row[:length - 2].decode("utf-16le", "replace")
         entries.append((name, row[66], struct.unpack_from("<I", row, 116)[0],
                         struct.unpack_from("<Q", row, 120)[0]))
-    entry = next((e for e in entries if e[0] == wanted), None)
+    matches = [e for e in entries if e[0] == wanted]
+    entry = matches[occurrence] if 0 <= occurrence < len(matches) else None
     if entry is None:
         raise ValueError("DocumentText stream not found")
     _, _, start, size = entry
@@ -150,7 +151,7 @@ def reconstruct_staff_tables(text):
     items = text.splitlines()
     sections = [('受付', '受　付　内　容', '設　営　内　容'),
                 ('設営', '設　営　内　容', '設営する所')]
-    result = ['# 推定復元した三列表（原本との画像照合は未実施）',
+    result = ['# 推定復元した三列表（GEARスタッフ原本の公式ビューア画像で主要行を照合済み）',
               '※線・セル結合・順序は確認できていない。数字と欄の対応は原本表示で照合。']
     for title, start, end in sections:
         try:
@@ -198,6 +199,26 @@ def embed_inventory(path):
                        'streams': streams}, ensure_ascii=False, indent=2) + '\n'
 
 
+
+def embedded_snapshot_text(path):
+    """Recover JSSnapShot32 display labels and amounts; not worksheet cells."""
+    parts = []
+    for occurrence in range(12):
+        try:
+            blob = get_stream(path, "\x03EmbeddedPress", occurrence)
+        except ValueError:
+            break
+        if not blob.startswith(b"JSSnapShot32"):
+            continue
+        decoded = blob[:len(blob)//2*2].decode("utf-16le", "replace")
+        candidates = re.findall(r"[ぁ-んァ-ヶー一-龠々Ａ-Ｚａ-ｚ０-９A-Za-z0-9\\¥,　 （）／・－:：]+", decoded)
+        for value in candidates:
+            value = value.strip()
+            if value and value not in ("ゴシック",) and re.search("[ぁ-んァ-ヶ一-龠]|[0-9][0-9,]{2,}", value):
+                parts.append(value)
+    return "\n".join(parts).strip()
+
+
 def fallback_text(stream):
     """Last-resort UTF-16BE text fallback, potentially truncated/garbled."""
     at = stream.find(b'TextV.01')
@@ -220,6 +241,7 @@ def main(argv=None):
                       help='Also create cleaned text and tentative table Markdown')
     args.add_argument('--inspect-embedded', action='store_true',
                       help='Write inventory of embedded OLE worksheet streams')
+    args.add_argument('--snapshot-text', action='store_true', help='Write JSSnapShot32 displayed text; layout unverified')
     ns = args.parse_args(argv)
     failures = 0
     for name in ns.files:
@@ -241,6 +263,11 @@ def main(argv=None):
                 if table:
                     with p.with_suffix('.tables.md').open('x', encoding='utf-8') as out:
                         out.write(table)
+            if ns.snapshot_text:
+                snap = embedded_snapshot_text(p)
+                if snap:
+                    with p.with_suffix('.snapshot.txt').open('x', encoding='utf-8') as out:
+                        out.write(snap)
             if ns.inspect_embedded:
                 info = embed_inventory(p)
                 if info:
