@@ -1,5 +1,9 @@
 # 動画制作・初期設定 Skill（PPT基準・素材復元の先行版）
 
+<!-- ADNC-AGILE-EXECUTION-20261116 -->
+> **AD&Cはアジャイルで実施する。** Draftは試行を止める理由ではない。本人の依頼・専門条件の範囲で、小さな実物／実務から着手→実測→最小修正→成果の保存・読戻し→次の一手まで進める。安全・権限・公開・削除・課金・機密の外部送信など、承認が必要な枝だけ分ける。Draftと正式採用、未検証とPASSは混同しない。実行を他担当に任せる必要があれば既存の委任経路を使い、放置しない。
+
+
 > **本Skillを改訂するときだけ実取得する正本**（通常のPPT作成利用時は不要。対象に固有のDesigner’s Noteがあれば併読）：
 ```text
 EDIT_REF_PHILOSOPHY=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/README.md
