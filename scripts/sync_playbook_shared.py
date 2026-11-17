@@ -22,6 +22,11 @@ TARGETS = {
         "skills/video-production-setup/SKILL.md",
         "skills/style-bootstrap/SKILL.md",
     ),
+    "COMMON_EXIT": (
+        "skills/document-authoring/SKILL.md",
+        "skills/video-production-setup/SKILL.md",
+        "skills/style-bootstrap/SKILL.md",
+    ),
 }
 HASH_RE = re.compile(r"^<!-- ADNC:SYNC_SHA256:([0-9a-f]{64}) -->\n")
 
