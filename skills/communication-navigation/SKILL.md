@@ -147,7 +147,7 @@ STATUS: READY
 
 ## 作成・改訂時の継承
 
-**新規のAD&C専門Playbook**には、この共通の実動作への**1行リンクを既定で継承**する。既存の専門Playbookは一斉改訂せず、改訂対象に必要な場合のみ1行を追加・維持する。[Playbookテンプレート](../../templates/PLAYBOOK_TEMPLATE.md)と[開発・更新プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)を参照し、**対象に既存のDesigner’s Noteがあれば変更前に必読**。本Playbook固有の採用理由は**同一フォルダの[Designer’s Note](DESIGNER_NOTE.md)**を改訂時に第一参照とし、全体の背景のみ必要時に[リーダーノート](../../docs/templates/LEADER_WORKSHEET.md)を見る。**サムネイル・動画の制作プロンプトと確定素材へボタン規則を自動注入しない**。専門UI・ボタン0件を優先し、既存の採用済み手順・固定素材を改訂なく残す。ノートを通常作業の事前審査に使わない。
+**新規のAD&C専門Playbook**には、現場AIが別の共通手順書を開かず実行できる**短い共通出口の日本語本文**を、作成・更新規則の識別子 `COMMON_EXIT` の範囲として該当箇所に置く。詳細の根拠や例外を確認するときだけ本Playbookのリンクも使う。既存の専門Playbookは無差別に一斉改訂せず、変更する対象で局所導入・同期する。[Playbookテンプレート](../../templates/PLAYBOOK_TEMPLATE.md)と[開発・更新プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)を参照し、**対象に既存のDesigner’s Noteがあれば変更前に必読**。本Playbook固有の採用理由は**同一フォルダの[Designer’s Note](DESIGNER_NOTE.md)**を改訂時に第一参照とし、全体の背景のみ必要時に[リーダーノート](../../docs/templates/LEADER_WORKSHEET.md)を見る。**サムネイル・動画の制作プロンプトと確定素材へボタン規則を自動注入しない**。専門UI・ボタン0件を優先し、既存の採用済み手順・固定素材を改訂なく残す。ノートを通常作業の事前審査に使わない。
 
 ## 設計上の重要点（通常表示｜2026-11-11 Q7）
 - **採用理由**：AIが文章を理解するだけでは人間の視覚的な判断を助けられない。次の一手・押せるUI・明確な状態表示で迷いを減らす。
