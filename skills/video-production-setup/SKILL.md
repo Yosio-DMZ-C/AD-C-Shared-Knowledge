@@ -35,6 +35,23 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 **通常AD&C説明図の採用スタイル**：シリーズ固有の既存採用見本がない通常の図解・資料に限り、[共通グラフィックスタイル v1.0](../../assets/ADNC_COMMON_GRAPHIC_STYLE_v1.0.md)とそこに記載された実ファイルを任意参照。動画・サムネイル・MUSE CASE A・SHADOW・固定原画／既存キットを本リンクで置換しない。
 
+<!-- ADNC:SHARED:OUTPUT_5W2H:BEGIN -->
+<!-- ADNC:SYNC_SHA256:06f68e0b6fc050c40baeb53a0ad4d37e174da9f7a170f12db7e1b0b77ae26728 -->
+**制作設計ミニカード（5W2H）**
+
+| 軸 | 今回の作品で見ること |
+| --- | --- |
+| Who | 受け手・前提知識 |
+| Why | 伝えた後の理解・判断・行動 |
+| What | 中心メッセージ・本文と補足に含める範囲 |
+| When | 利用時期・情報の鮮度 |
+| Where | 利用環境・端末・会場など |
+| How | 資料単独・説明付き・動画などの伝達方法 |
+| How much | 読了・説明・再生・視認時間、情報量 |
+<!-- ADNC:SHARED:OUTPUT_5W2H:END -->
+
+**このPlaybookでの読み方**：PPTならWho＝聴衆・配布先、How＝説明者付きか単独閲覧か、How much＝説明／読了時間。動画ならWho＝対象視聴者、How＝音声と画面の役割、How much＝採用済みの予定尺。新シリーズ開始時はArea設定へ、各作品では差分のみ。MUSEなどの個別RunbookとQ2/Q3・サムネイル・音声等の固定仕様はこの表で変更しない。
+
 ## PPTX資料制作・採用済みキット再利用の1入口（2026-11-10限定追補）
 
 **入口の分岐**：「PPTを作って／既存PPTを直して／スライド資料を作って」は**編集可能なPPTXを完成・渡す仕事**として扱う。本Skillの下記**PPT再利用手順**へ進み、動画用の音声・サムネイル・Q2/Q3・SHADOW・MP4工程は**依頼に動画が含まれない限り開始しない**。「動画の第X作を制作」なら従来どおり `START_HERE→registry→A-VIDEO→VID-RUNBOOK` へ移動し、そちらの採用決定を優先する。本節は個別動画Runbookを置換せず、普通のスライドを動画仕様へ強制しない。
