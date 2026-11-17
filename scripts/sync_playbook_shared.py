@@ -52,25 +52,32 @@ def section(content: str, key: str, require_hash: bool):
 
 def sync(root: Path, apply: bool):
     src = (root / SOURCE).read_text(encoding="utf-8")
-    changes = []
+    plans = {}  # path -> (original bytes, accumulated edited text)
     for key, target_paths in TARGETS.items():
         _, _, canonical = section(src, key, require_hash=False)
         stamp = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
         replacement = f"<!-- ADNC:SYNC_SHA256:{stamp} -->\n" + canonical
         for relative in target_paths:
             path = root / relative
-            before = path.read_bytes()
-            text = before.decode("utf-8")
+            if path not in plans:
+                before = path.read_bytes()
+                plans[path] = (before, before.decode("utf-8"))
+            before, text = plans[path]
             left, right, current = section(text, key, require_hash=True)
             if current == canonical:
                 print(f"OK      {relative} [{key}]")
                 continue
             print(f"STALE   {relative} [{key}]")
-            changes.append((path, before, text[:left] + replacement + text[right:]))
+            plans[path] = (before, text[:left] + replacement + text[right:])
+    changes = [(path, before, after) for path, (before, after) in plans.items()
+               if after.encode("utf-8") != before]
     if not apply:
         return 1 if changes else 0
+    # Preflight all files before any write; never overwrite a different version.
+    for path, before, _ in changes:
+        if path.read_bytes() != before:
+            raise RuntimeError(f"concurrent edit detected: {path}")
     for path, before, after in changes:
-        # Refuse replacement if another process edited the file since inspection.
         if path.read_bytes() != before:
             raise RuntimeError(f"concurrent edit detected: {path}")
         fd, temp = tempfile.mkstemp(prefix=".adnc-sync-", dir=str(path.parent))
