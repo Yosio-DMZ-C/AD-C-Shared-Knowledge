@@ -34,8 +34,8 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 .diagram-legend{display:block;font-size:.79rem;color:#555;margin-top:4px}.diagram-legend b{font-weight:700;color:#167443}
 .contribution{border-top:3px solid #167443}.contribution .actions a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:700;border-radius:11px;padding:12px 17px;border:1px solid #167443;color:#167443;background:#fff}.contribution .actions a:hover{background:#f2f8f2}
 .contribution textarea{width:100%;min-height:105px;font:inherit;padding:12px;border:1px solid #adbfc8;border-radius:10px;resize:vertical}
-@media(max-width:660px){.comparison{padding:6px}.comparison figcaption{font-size:.8rem}.contribution .actions a{width:100%}}
-@media print{.comparison{break-inside:avoid;border-color:#888}.contribution textarea,.contribution .actions{display:none!important}}
+@media(max-width:660px){.comparison{padding:6px;overflow-x:auto;overscroll-behavior-x:contain}.comparison::before{content:"↔ 図は左右にスワイプして比較（左：変更前／右：変更後）";display:block;font-size:.83rem;font-weight:700;color:var(--teal);margin:4px 5px 8px}.comparison svg{width:940px;max-width:none}.comparison figcaption{font-size:.8rem}.contribution .actions a{width:100%}}
+@media print{.comparison{break-inside:avoid;border-color:#888;overflow:visible}.comparison svg{width:100%;max-width:940px}.comparison::before{display:none}.contribution textarea,.contribution .actions{display:none!important}}
 
 </style>
 </head>
@@ -242,7 +242,7 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
  </details>
  <p class="muted">GitHub公式案内：<a href="https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files" target="_blank" rel="noopener">Editing files</a> ／ <a href="https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request" target="_blank" rel="noopener">Creating a pull request</a></p>
 </section>
-<footer>AD&amp;C / Printing field guide · v1.0 · 2026-11-18<br>メーカーの公式マニュアルではありません。印刷品質と強度は実際のプリンター・材料・造形方向で検証してください。</footer>
+<footer>AD&amp;C / Printing field guide · v1.0.1 · 2026-11-19<br>メーカーの公式マニュアルではありません。印刷品質と強度は実際のプリンター・材料・造形方向で検証してください。</footer>
 </main>
 <script>
 (function(){
@@ -270,6 +270,8 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
    "用途："+g,
    "",
    "【正本と調査】",
+   "参考HTML（構成・図解・操作UIの参考。機種固有の数値や説明は転用せず再検証）：https://raw.githubusercontent.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/main/guides/3d-print/bambu-studio-print-guide.html",
+   "この参考HTMLを取得できない場合は未取得と明記し、以下の仕様と公式資料から独立して作成する。",
    "1. メーカー公式マニュアル、公式Wiki、公式リリースノート、ソフトウェア公式リポジトリを優先して最新対応を確認。必ず実際に取得した資料のURL・日付を明記する。",
    "2. 公式で確認できない操作・名称・数値は未確認と書く。機種名やスライサーが異なる場合、Bambu StudioのUI名称をそのまま転用せず対応する機能を調べる。",
    "3. メーカー固有の仕様、コミュニティで一般的な経験則、AIからの暫定提案、実機で試した事実を明確に分離する。",
@@ -287,7 +289,7 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
    "J. GitHubでHTMLの修正案をFork・PR提出できる改善導線を追加（GitHubの認証・承認を省略した自動PR送信を偽装しない）。",
    "",
    "【HTML納品条件】",
-   "スマホでも読める単一HTML（CSSとJavaScriptを内蔵し外部ライブラリ不要）。文字化け防止・見出し・表・アクセシビリティを確保。",
+   "スマホでも読める単一HTML（CSSとJavaScriptを内蔵し外部ライブラリ不要）。文字化け防止・見出し・表・アクセシビリティを確保。比較SVGは文字を極端に縮小せず、狭い画面では左右スクロールと操作案内で読めるようにする。",
    "ページ上部には『同じ構成のガイドを自分の3DプリンターでAIに作らせる』ための入力欄（機種・スライサー・素材・用途）と実動する『指示文を作成・全文コピー』ボタンを設置。",
    "コピーできない環境でも全文を一括表示し、手動コピーできるフォールバックを実装。ボタンは押したときに必ず適切な指示文を生成すること。",
    "すべての数値推奨は、公式の既定値か試験用の仮値かを区別。危険な温度変更・機種非対応の機能を断定しない。",
