@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>3Dプリント設定ガイド｜Bambu Studio | AD&amp;C</title>
+<style>
+:root{--ink:#172330;--sub:#4e6172;--bg:#f5f8fa;--paper:white;--line:#d7e1e7;--teal:#0f6d72;--soft:#e8f5f3;--warm:#fcf5e9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Noto Sans JP",sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 18px 80px}h1{font-size:clamp(25px,4.5vw,41px);line-height:1.3;margin:9px 0 12px}h2{font-size:1.45rem;line-height:1.4;margin:0 0 15px}h3{font-size:1.08rem;line-height:1.5;margin:18px 0 8px}p{margin:8px 0 12px}a{color:#126d79;text-decoration-thickness:1px;text-underline-offset:3px}a:hover{text-decoration-thickness:2px}
+.eyebrow{letter-spacing:.1em;font-size:.8rem;color:var(--teal);font-weight:700}.lead{font-size:1.1rem;color:var(--sub);max-width:840px}
+.hero{padding:28px;border-radius:20px;background:linear-gradient(135deg,#e9f5f3,#f5f8fa 70%);border:1px solid #c3e2db;margin-bottom:22px}
+.section{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0;box-shadow:0 2px 11px #142b3d08}
+.workflow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}.step{background:var(--soft);border-radius:14px;padding:16px;line-height:1.55;font-weight:650}.step small{display:block;color:var(--sub);font-weight:400;margin-top:5px}
+.pill{display:inline-block;background:#d3eae8;color:#17545b;padding:2px 11px;border-radius:50px;font-size:.75rem;font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-weight:650;font-size:.93rem}.field input,.field select{width:100%;background:#fff;border:1px solid #adbfc8;border-radius:10px;padding:11px;font:inherit;color:var(--ink)}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:11px;padding:12px 17px;border:1px solid var(--teal)}button.primary{background:var(--teal);color:white}button.secondary{background:white;color:var(--teal)}button:hover{filter:brightness(.94)}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f0ac3a;outline-offset:2px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 9px}.status{font-size:.88rem;color:var(--sub)}.prompt{width:100%;height:390px;max-height:70vh;padding:14px;border:1px solid #aebfc8;border-radius:11px;background:#f6f8fa;font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap}
+.nav{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0 3px}.nav a{padding:5px 11px;background:#e2edee;border-radius:8px;text-decoration:none;font-size:.86rem}
+table{width:100%;border-collapse:collapse;margin:12px 0 8px;font-size:.95rem}td,th{border-bottom:1px solid var(--line);text-align:left;padding:11px 9px;vertical-align:top}th{background:#edf3f6;font-weight:700}
+.note{background:var(--soft);padding:12px 16px;border-radius:12px;border-left:4px solid var(--teal);margin:14px 0}.warning{background:var(--warm);border-left-color:#b57625}
+.muted{color:var(--sub);font-size:.9rem}.tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.tags span{background:#edf1f4;border-radius:8px;padding:2px 9px;font-size:.81rem}
+details{border:1px solid var(--line);border-radius:12px;margin:9px 0;padding:9px 13px}summary{font-weight:700;cursor:pointer}
+.checklist label{display:block;margin:8px 0}.checklist input{margin-right:8px;accent-color:var(--teal)}
+footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
+@media(max-width:660px){.grid,.workflow{grid-template-columns:1fr}.section{padding:17px}.hero{padding:18px}table{font-size:.84rem}td,th{padding:8px 6px}.actions button{width:100%}}
+@media print{body{background:white}.section,.hero{box-shadow:none;break-inside:avoid}.actions,.grid,.prompt,.nav{display:none!important}.section{margin:10px 0}a{color:var(--ink)}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+ <span class="eyebrow">AD&amp;C / 3D PRINT PRACTICE</span>
+ <h1>3Dプリント設定ガイド</h1>
+ <p class="lead">Bambu Studioで「質感を付ける」「上面をきれいにする」「上の部分だけ充填率を上げる」を使い分ける。初心者が印刷前に迷わず判断できる現場向けガイド。</p>
+ <div class="tags"><span>Bambu Studio</span><span>A1 miniなどFDM向け</span><span>2026-11-18時点の調査</span><span>機種別の保証値ではありません</span></div>
+ <nav class="nav"><a href="#start">印刷の基本</a><a href="#fuzzy">ランダムな石肌</a><a href="#top">上面の密度</a><a href="#local">上だけ変える</a><a href="#finish">表面仕上げ</a><a href="#before">印刷前チェック</a><a href="#sources">資料</a></nav>
+</header>
+<section class="section" id="my-guide">
+ <span class="pill">このガイドを自分のプリンター用に作る</span>
+ <h2>AIに「同じ構成の印刷ガイド」を作らせる</h2>
+ <p>プリンター名などを入力し、下のボタンを押すと<strong>完全な指示文を作ってコピー</strong>します。別のAIチャットへ貼り付ければ、その機種・スライサーの公式資料を調べて、同じ使い方の独立HTMLガイドを作る指示になります。個人情報は送信・保存しません。</p>
+ <div class="grid">
+  <div class="field"><label for="printer">3Dプリンター</label><input id="printer" value="Bambu Lab A1 mini" autocomplete="off"></div>
+  <div class="field"><label for="slicer">スライサー</label><input id="slicer" value="Bambu Studio" autocomplete="off"></div>
+  <div class="field"><label for="filament">主に使うフィラメント</label><input id="filament" value="PLA / PLA Matte" autocomplete="off"></div>
+  <div class="field"><label for="goal">主な用途</label><select id="goal"><option value="装飾と嵌合を両立する小物・模型">装飾と嵌合を両立する小物・模型</option><option value="実用品・機械的な部品">実用品・機械的な部品</option><option value="表面の美観を優先する展示物">表面の美観を優先する展示物</option><option value="一般的な初心者向け">一般的な初心者向け</option></select></div>
+ </div>
+ <div class="actions">
+  <button type="button" class="primary" id="makePrompt">AI用の指示文を作成・全文コピー</button>
+  <button type="button" class="secondary" id="showPrompt">指示文の全文を確認</button>
+ </div>
+ <p class="status" id="copyStatus" role="status" aria-live="polite">コピーする内容はこの端末内で生成します。</p>
+ <div id="promptPanel" hidden><textarea id="promptText" class="prompt" readonly aria-label="生成した指示文の全文"></textarea><p class="muted">自動コピーがブロックされた場合は、この欄を全選択してコピーしてください。</p></div>
+</section>
+<section class="section" id="start">
+ <h2>1. 最初はメーカーのプリセットから</h2>
+ <div class="workflow">
+  <div class="step">① プリンターとノズルを指定<small>機種／ノズル径／造形範囲</small></div>
+  <div class="step">② 素材プロファイルを選ぶ<small>銘柄・素材ごとの温度、流量、冷却</small></div>
+  <div class="step">③ 印刷目的を一つ決める<small>見た目・強さ・寸法・速度の優先順位</small></div>
+ </div>
+ <p><strong>初回は温度・速度をまとめて弄らない。</strong> メーカー／素材の既定プロファイルを出発点に、気になる品質項目だけ一つずつ変えてスライス前後を比較します。ノズル・プレート・素材の組み合わせに合わない設定を他機種からコピーしません。</p>
+ <div class="note warning">設定値や表示位置はBambu Studioの版、プリンター、ノズル、フィラメントで変化します。ここでの数値は試験の出発点であり、「Bambu公式推奨値」や全機種共通の正解ではありません。</div>
+</section>
+<section class="section" id="fuzzy">
+ <h2>2. 外壁を石肌にする：Fuzzy Skin</h2>
+ <p><strong>Fuzzy Skin（ファジースキン）</strong>は外壁の経路にランダムな凹凸を付ける機能。ケルト風・石造風・木肌風の意匠や、積層線を目立ちにくくする用途に向きます。単なる「ランダムなZシーム」とは別設定です。</p>
+ <table><thead><tr><th>設定・操作</th><th>意味と使い方</th><th>注意</th></tr></thead><tbody>
+  <tr><td>Fuzzy Skin</td><td>Noneから必要なモードへ。基本は外壁側の装飾</td><td>上面の模様を作る機能とは区別</td></tr>
+  <tr><td>Fuzzy skin thickness</td><td>凹凸の強さを調整。小さいほど控えめ</td><td>嵌合寸法の外側へ影響しうる</td></tr>
+  <tr><td>Fuzzy skin point distance</td><td>凹凸の変化する間隔を調整</td><td>粗すぎ・細かすぎは実物で比較</td></tr>
+  <tr><td>Fuzzy Skin Painting</td><td>表面を選んで質感を塗り分ける（Studio 2.2.0で導入）</td><td>意匠面のみ。接触面・ネジ穴・差込面は避ける</td></tr>
+ </tbody></table>
+ <div class="note"><strong>小物での控えめな試験例（非公式）</strong>：厚み0.10mm前後、点間距離0.5mm前後から少しずつ調整。0.4mmノズル／PLAの試行を想定した例であり、0.2mmノズルや嵌合品にそのまま適用しない。凹凸が強いほど見た目は変わりますが、外形・隙間・引っ掛かりも変化します。</div>
+ <p><strong>ダイストレイの例：</strong>外側の石柱だけをFuzzy Skin Paintで加工し、柱が入り込む内側、スリット、ロゴ文字、底の合わせ面は滑らかに残します。実物を装飾前後で比べるまでは、嵌合が良くなるとは扱いません。</p>
+ <p class="muted">根拠：<a href="https://forum.bambulab.com/t/bambu-studio-release-release-note-2-2-0/188864" target="_blank" rel="noopener">Bambu Studio 2.2.0リリースノート（選択的Fuzzy Skin）</a>、<a href="https://wiki.bambulab.com/en/software/bambu-studio/parameter/fuzzy-skin" target="_blank" rel="noopener">Bambu WikiのFuzzy Skin項目</a>。</p>
+</section>
+<section class="section" id="top">
+ <h2>3. 「上面を密にする」は3種類ある</h2>
+ <p>混同しやすいのが<strong>トップシェルの積層数</strong>、<strong>上面の表面パターン／密度</strong>、<strong>上部空間の内部充填率</strong>です。目的に合ったものだけ変更します。</p>
+ <table><thead><tr><th>やりたいこと</th><th>触る設定</th><th>期待できること</th></tr></thead><tbody>
+  <tr><td>一番上の面を隙間なく覆いたい</td><td>Strength → Top/bottom shells → Top shell layers / Top shell thickness</td><td>上面のソリッド層を厚くして下の充填パターンが透ける・沈むのを抑える</td></tr>
+  <tr><td>上面の線の見た目を改善したい</td><td>Top surface pattern / Top surface density／Quality → Ironing</td><td>一番上の表面の線配置や平滑さを変える。内部の中身を密にする意味ではない</td></tr>
+  <tr><td>上側の内部だけ強くしたい</td><td>ModifierやHeight Range Modifier → Sparse infill density</td><td>上の特定領域に限って内部充填を増減できる</td></tr>
+ </tbody></table>
+ <div class="note"><strong>トップシェルの試行例（非公式）</strong>：積層0.20mmなら4〜6層（0.8〜1.2mm相当）を比較する。実際のトップシェル厚さの制御は設定項目・計算方法に依存し、0.20mm×5という単純化だけで全てが決まるとは限らない。重要なのはスライス後のプレビュー。</div>
+</section>
+<section class="section" id="local">
+ <h2>4. 上側だけ内部充填率を上げる：Modifier</h2>
+ <p>全体を高充填にするより、必要な場所だけ設定を変える方法。Bambu Studioの<strong>モディファイア（Modifier）</strong>は、指定領域だけスライス設定を上書きします。版によっては<strong>Height Range Modifier（高さ範囲）</strong>でZ範囲を直接指定できます。</p>
+ <ol>
+  <li>STLを配置し、対象のオブジェクトを選択。右クリックから<strong>Add modifier → Cube</strong>など、または高さ範囲のModifierを選ぶ。</li>
+  <li>キューブの場合は上部の指定範囲だけを覆うよう、位置・高さ・大きさを調整する。キューブ自体は追加の印刷物ではありません。</li>
+  <li>Objects／オブジェクト別設定でModifierを選び、<strong>Sparse infill density</strong>だけ上書き。まずは例えば基本15%→上部25%という<strong>比較試験用の仮値</strong>から。</li>
+  <li><strong>Slice → Preview</strong>で、その高さより上だけ充填パターンが変わっているか確かめる。目的のない全項目上書きはしない。</li>
+ </ol>
+ <div class="note warning"><strong>今回のダイストレイでは注意：</strong>柱やスリットのような薄い形状では「内部充填率」を上げても効果が小さい場合があります。柱の強度は壁の周回数・実肉厚・積層方向も重要です。まず外壁とトップ層、必要なら局所Modifierを検討してください。</div>
+ <p class="muted">根拠：<a href="https://forum.bambulab.com/t/bambu-studio-modifier-operation-guide/100352" target="_blank" rel="noopener">Bambu LabフォーラムのModifier公式Wiki案内</a>、<a href="https://forum.bambulab.com/t/using-modifiers-in-bambu-studio/111880" target="_blank" rel="noopener">Modifierによる充填率変更の解説</a>。</p>
+</section>
+<section class="section" id="finish">
+ <h2>5. 美観・強度・精度を分けて調整</h2>
+ <table><thead><tr><th>困りごと</th><th>まず確認する設定</th><th>確認すべき落とし穴</th></tr></thead><tbody>
+  <tr><td>上面の筋やザラつき</td><td>Top shell layers、Top surface pattern、Ironing</td><td>Ironingは平らな上面向き。細い刻印・凹部では悪化の可能性</td></tr>
+  <tr><td>小さな装飾が潰れる</td><td>Layer height、ノズル径、外壁速度、モデル実寸</td><td>スライサーにない細線は印刷できない。プレビューで線幅と経路を確認</td></tr>
+  <tr><td>柱が折れやすい</td><td>Wall loops、実肉厚、造形方向、材料</td><td>充填率だけで強度は決まらない</td></tr>
+  <tr><td>差し込みで引っ掛かる</td><td>Fuzzy Skinの適用面、Elephant Foot Compensation、クリアランス</td><td>設計上干渉ゼロでも造形誤差がある。最終形だけでなく挿入途中も見る</td></tr>
+  <tr><td>底が剥がれる／反る</td><td>ベッド清掃、素材とプレート適合、Brim</td><td>Brimが差込面へ残ると誤差になる。除去後に測る</td></tr>
+  <tr><td>縫い目（Zシーム）が目立つ</td><td>Seam position、Seam painting</td><td>Random seamはFuzzy Skinではない</td></tr>
+ </tbody></table>
+ <details><summary>Ironingはどんなときに使う？</summary><p>ノズルを最上面に再走査させ、平滑さを改善する選択肢です。上面の小さな文字や繊細な凹凸がある部分では、まず無効で比較してください。流量・間隔・速度は素材と表面形状に依存し、標準値を一律に増減させません。</p></details>
+ <details><summary>Variable Layer Heightは充填率と違う？</summary><p>はい。レイヤーの高さを部分的に変えて曲面や段差の見た目を調整します。内部充填率を上げる機能とは別です。小さなR面などに効果がある場合もありますが、印刷時間とのトレードオフを確認します。</p></details>
+ <details><summary>Fuzzy Skinと細かいロゴは両立する？</summary><p>可能性はありますが、ロゴ面を滑らかに残すのが優先。凹凸の境界を塗り分け、ロゴの溝や線が実際のノズル幅に対して細すぎないか確認します。画像上の高解像度とSTL・印刷解像度は別です。</p></details>
+</section>
+<section class="section" id="before">
+ <h2>6. 印刷開始前の6項目</h2>
+ <div class="checklist">
+  <label><input type="checkbox">機種・ノズル径・フィラメント・プレートの組み合わせが一致</label>
+  <label><input type="checkbox">必要な部品数と造形範囲を確認（2個同時ならBrimと移動余裕も）</label>
+  <label><input type="checkbox">Fuzzy Skinが嵌合面・穴・ロゴを壊さない範囲だけに適用</label>
+  <label><input type="checkbox">Top shell layersと上部Sparse infill densityを混同していない</label>
+  <label><input type="checkbox">スライス後のPreviewで断面・最上面・サポート・印刷時間を確認</label>
+  <label><input type="checkbox">一度に変更した設定を把握し、必要なら3MFプロジェクトとして保存</label>
+ </div>
+ <p class="muted">このチェック状態はブラウザー内だけの表示で、サーバーへの送信や記録は行いません。</p>
+</section>
+<section class="section" id="sources">
+ <h2>資料と適用上の注意</h2>
+ <p>記載した機能の存在・設定名はBambu Labの公開資料、公式GitHubソース、メーカーコミュニティで確認しています。個別の数値例は公式保証値ではなく比較試験の出発点です。画面操作の全クリック手順は、この資料作成時に実機のBambu Studioで再現試験したものではありません。</p>
+ <ol>
+ <li><a href="https://github.com/bambulab/BambuStudio" target="_blank" rel="noopener">Bambu Studio公式オープンソース</a>：設定名・現行機能の確認</li>
+ <li><a href="https://forum.bambulab.com/t/bambu-studio-release-release-note-2-2-0/188864" target="_blank" rel="noopener">Bambu Studio 2.2.0リリース案内</a>：Fuzzy Skin Paintingの導入</li>
+ <li><a href="https://forum.bambulab.com/t/bambu-studio-modifier-operation-guide/100352" target="_blank" rel="noopener">Bambu Studio Modifier Operation Guideの紹介</a>：部分的な充填率・速度の変更</li>
+ <li><a href="https://wiki.bambulab.com/en/software/bambu-studio/parameter/ironing" target="_blank" rel="noopener">Bambu Lab Wiki：Ironing</a>：トップ面の平滑化（リンク先は版によって閲覧条件あり）</li>
+ <li><a href="https://wiki.bambulab.com/en/software/bambu-studio/parameter/fuzzy-skin" target="_blank" rel="noopener">Bambu Lab Wiki：Fuzzy Skin</a>：ランダムな外壁テクスチャ</li>
+ <li><a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/3d-print-practical/SKILL.md" target="_blank" rel="noopener">AD&amp;C：3Dモデルづくり汎用Playbook</a>：設計・公差・現物評価の手順</li>
+ </ol>
+ <p class="muted">ライセンス：このHTML本文の独自記述は、AD&amp;C共有KBのライセンスに従います。リンク先の各メーカー資料・ソフトウェアは各権利者に帰属します。</p>
+</section>
+<footer>AD&amp;C / Printing field guide · v1.0 · 2026-11-18<br>メーカーの公式マニュアルではありません。印刷品質と強度は実際のプリンター・材料・造形方向で検証してください。</footer>
+</main>
+<script>
+(function(){
+ "use strict";
+ var printer=document.getElementById("printer");
+ var slicer=document.getElementById("slicer");
+ var filament=document.getElementById("filament");
+ var goal=document.getElementById("goal");
+ var panel=document.getElementById("promptPanel");
+ var output=document.getElementById("promptText");
+ var status=document.getElementById("copyStatus");
+ function value(el,fallback){return el.value.trim()||fallback;}
+ function buildPrompt(){
+  var p=value(printer,"機種未指定");
+  var s=value(slicer,"スライサー未指定");
+  var m=value(filament,"材料未指定");
+  var g=goal.value;
+  return [
+   "あなたは3Dプリントの実践技術編集者です。次の機種のユーザーに配布できる、実動する日本語HTMLの『3Dプリント設定ガイド』を作成してください。",
+   "",
+   "【対象】",
+   "プリンター："+p,
+   "スライサー："+s,
+   "主な材料："+m,
+   "用途："+g,
+   "",
+   "【正本と調査】",
+   "1. メーカー公式マニュアル、公式Wiki、公式リリースノート、ソフトウェア公式リポジトリを優先して最新対応を確認。必ず実際に取得した資料のURL・日付を明記する。",
+   "2. 公式で確認できない操作・名称・数値は未確認と書く。機種名やスライサーが異なる場合、Bambu StudioのUI名称をそのまま転用せず対応する機能を調べる。",
+   "3. メーカー固有の仕様、コミュニティで一般的な経験則、AIからの暫定提案、実機で試した事実を明確に分離する。",
+   "",
+   "【必要な記事構成】",
+   "A. 冒頭30秒の概要と、プリンター／ノズル／素材を先に選ぶ3手順",
+   "B. ランダムな表面テクスチャ／Fuzzy Skin相当（利用できない場合は代替機能と非対応を明記）",
+   "C. 最上面のソリッド層数・上面パターン・上面平滑化、内部充填密度の違い",
+   "D. 高さ範囲・オブジェクト別の局所設定と、上層だけ充填率を増やす操作",
+   "E. 積層高さ、外壁周回数、Zシーム、サポート、ブリム、寸法精度の基本",
+   "F. 使用目的ごとの判断表。どこを触るか、何が改善するか、副作用や印刷時間",
+   "G. 実物確認前のチェックリストと、スライス後プレビューでの確認場所",
+   "H. 公式ソース集、未確認・機種依存事項を分離した注記",
+   "",
+   "【HTML納品条件】",
+   "スマホでも読める単一HTML（CSSとJavaScriptを内蔵し外部ライブラリ不要）。文字化け防止・見出し・表・アクセシビリティを確保。",
+   "ページ上部には『同じ構成のガイドを自分の3DプリンターでAIに作らせる』ための入力欄（機種・スライサー・素材・用途）と実動する『指示文を作成・全文コピー』ボタンを設置。",
+   "コピーできない環境でも全文を一括表示し、手動コピーできるフォールバックを実装。ボタンは押したときに必ず適切な指示文を生成すること。",
+   "すべての数値推奨は、公式の既定値か試験用の仮値かを区別。危険な温度変更・機種非対応の機能を断定しない。",
+   "文章を完成させ、HTML現物を保存し、本文・リンク・ボタンの動作を検査した結果と未検証事項を添えてください。",
+   "",
+   "【参考構成】",
+   "AD&Cの公開Bambu Studio印刷ガイドと同じ構成・深さで作る。ただしメーカー固有の根拠は対象機種に合わせて再検証し、Bambu機能を捏造しない。"
+  ].join("\n");
+ }
+ function show(){output.value=buildPrompt();panel.hidden=false;return output.value;}
+ document.getElementById("showPrompt").addEventListener("click",function(){show();output.focus();status.textContent="指示文の全文を下に表示しました。";});
+ document.getElementById("makePrompt").addEventListener("click",async function(){
+  var txt=show();
+  try{if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error("clipboard unavailable");await navigator.clipboard.writeText(txt);status.textContent="指示文の全文をコピーしました。AIチャットへ貼り付けてください。";return;}catch(e){}
+  output.focus();output.select();
+  try{if(document.execCommand("copy")){status.textContent="指示文の全文をコピーしました。";return;}}catch(e){}
+  status.textContent="ブラウザーがコピーを制限しています。下の全文を選択したままCtrl+C（Macは⌘+C）を押してください。";
+ });
+})();
+</script>
+</body>
+</html>
