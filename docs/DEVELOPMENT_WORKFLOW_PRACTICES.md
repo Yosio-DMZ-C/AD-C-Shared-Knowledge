@@ -109,6 +109,8 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 **URL／見せ方のナビ（HTML・SVG等を「見て使う」公開物に限る）**：作成・改訂担当は、渡す相手の目的から次の経路を選ぶ。**人間が完成物を使う→実際に描画される閲覧URL**（公式公開ページ／GitHub Pages等、未整備なら外部HTMLプレビューやローカルHTMLを代替として明示）、**人間が修正・PRを提案する→GitHubの `blob`／`edit` URL**、**AIがソース本文を取得する→実取得できるraw URL／APIと該当Playbookの正本URL**。GitHubの `/blob/` は原則ソースコード表示であり、HTMLの完成ページを閲覧するURLではない。チャットのコードブロックも完成プレビューではない。外部プレビューは第三者サービス・更新遅延の可能性を示し、必要なら版固定URLまたはHTML本体を添える。
 
+**GitHub上のHTMLを出す場合の具体的URL経路**（GitHub Pages等の正式な公開URLがない場合）：編集対象は `https://github.com/<owner>/<repo>/blob/main/<path>.html`、AIの原文取得は `https://raw.githubusercontent.com/<owner>/<repo>/main/<path>.html`。**人に表示する**代替のHTMLプレビューは開発用 `https://raw.githack.com/<owner>/<repo>/main/<path>.html`、**同じ版を確実に指す配布スナップショット**は `https://rawcdn.githack.com/<owner>/<repo>/<commitSHA>/<path>.html`。前者は反映に遅延があり、後者は固定版なので後日の修正が自動反映されない。GitHackはGitHub非公式の外部サービスであり、HTML表示時に確認画面が出る場合がある。**URLの形式だけで表示PASSにはせず、実際にページ・差分を見られるかで判断する。** 通常の配布先を確保できたらそちらを最優先とする。
+
 **作成側の結果確認をワークシートに接続**：閲覧用URLを実際の利用画面（可能ならPC／スマホ）で開き、**本文・変更後の図・ボタンが読者に見えるか**を確認する。ソースの保存・SHA照合と閲覧画面の反映を別記し、`PASS / FAIL / NOT_RUN` を実測した範囲だけに付ける。閲覧できなければソースURLを「完成表示」として出さず、代替表示・画像プレビュー・ローカルHTMLを渡す。制作者用[Playbookテンプレートの作成・更新ワークシート](../templates/PLAYBOOK_TEMPLATE.md#作成更新ワークシート編集担当専用必要なときだけ)の「表示URL・実視認」欄でこの出口を確かめる。**利用者へGitHub・閲覧検収の作業を強制しない。** 同じ「誰が何を見る→正しい入口→見えた結果」のナビを人にもAIにも適用する。
 
 **実装例**：[人間向け3Dプリント設定ガイド](../guides/3d-print/bambu-studio-print-guide.html)／[人間向けAD&C導入ガイド](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/wiki/Getting-Started.md)。定型文を物理的に全ガイドへ一斉反映せず、今回のように改訂する対象へ最小差分で入れる。
