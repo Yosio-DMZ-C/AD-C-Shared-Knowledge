@@ -26,6 +26,17 @@ details{border:1px solid var(--line);border-radius:12px;margin:9px 0;padding:9px
 footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 @media(max-width:660px){.grid,.workflow{grid-template-columns:1fr}.section{padding:17px}.hero{padding:18px}table{font-size:.84rem}td,th{padding:8px 6px}.actions button{width:100%}}
 @media print{body{background:white}.section,.hero{box-shadow:none;break-inside:avoid}.actions,.grid,.prompt,.nav{display:none!important}.section{margin:10px 0}a{color:var(--ink)}}
+
+/* 図は独立したインラインSVG：黒白を基本に変更箇所だけ緑で示す。画像・外部ライブラリ不要 */
+.comparison{margin:18px 0 20px;padding:10px 12px;background:#fff;border:1px solid #d4d4d4;border-radius:13px}
+.comparison svg{display:block;width:100%;height:auto;max-width:940px;margin-inline:auto;font-family:"Noto Sans JP",system-ui,sans-serif}
+.comparison figcaption{margin:4px 4px 2px;font-size:.88rem;line-height:1.6;color:#333}
+.diagram-legend{display:block;font-size:.79rem;color:#555;margin-top:4px}.diagram-legend b{font-weight:700;color:#167443}
+.contribution{border-top:3px solid #167443}.contribution .actions a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:700;border-radius:11px;padding:12px 17px;border:1px solid #167443;color:#167443;background:#fff}.contribution .actions a:hover{background:#f2f8f2}
+.contribution textarea{width:100%;min-height:105px;font:inherit;padding:12px;border:1px solid #adbfc8;border-radius:10px;resize:vertical}
+@media(max-width:660px){.comparison{padding:6px}.comparison figcaption{font-size:.8rem}.contribution .actions a{width:100%}}
+@media print{.comparison{break-inside:avoid;border-color:#888}.contribution textarea,.contribution .actions{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -35,7 +46,7 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
  <h1>3Dプリント設定ガイド</h1>
  <p class="lead">Bambu Studioで「質感を付ける」「上面をきれいにする」「上の部分だけ充填率を上げる」を使い分ける。初心者が印刷前に迷わず判断できる現場向けガイド。</p>
  <div class="tags"><span>Bambu Studio</span><span>A1 miniなどFDM向け</span><span>2026-11-18時点の調査</span><span>機種別の保証値ではありません</span></div>
- <nav class="nav"><a href="#start">印刷の基本</a><a href="#fuzzy">ランダムな石肌</a><a href="#top">上面の密度</a><a href="#local">上だけ変える</a><a href="#finish">表面仕上げ</a><a href="#before">印刷前チェック</a><a href="#sources">資料</a></nav>
+ <nav class="nav"><a href="#start">印刷の基本</a><a href="#fuzzy">ランダムな石肌</a><a href="#top">上面の密度</a><a href="#local">上だけ変える</a><a href="#finish">表面仕上げ</a><a href="#before">印刷前チェック</a><a href="#sources">資料</a><a href="#contribute">改善提案・PR</a></nav>
 </header>
 <section class="section" id="my-guide">
  <span class="pill">このガイドを自分のプリンター用に作る</span>
@@ -56,6 +67,15 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 </section>
 <section class="section" id="start">
  <h2>1. 最初はメーカーのプリセットから</h2>
+ <figure class="comparison" data-visual="start">
+ <svg viewBox="0 0 940 207" role="img" aria-labelledby="viz-start-title viz-start-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="viz-start-title">不一致の設定を個別に選ぶ状態から、プリンター・ノズル・材料の組み合わせを確認した状態へ</title><desc id="viz-start-desc">変更する前に、機種・ノズル・素材の組み合わせをそろえる。既定値を出発点にする。</desc>
+  <rect x="8" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/><rect x="504" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/>
+  <text x="28" y="41" font-size="18" font-weight="700" fill="#181818">AS-IS</text><text x="524" y="41" font-size="18" font-weight="700" fill="#167443">TO-BE</text>
+  <line x1="451" y1="100" x2="482" y2="100" stroke="#181818" stroke-width="2" /><path d="M475 92 L485 100 L475 108" fill="none" stroke="#181818" stroke-width="2"/>
+  <rect x="27" y="81" width="109" height="61" fill="#fff" stroke="#181818" stroke-width="2" rx="9"/><text x="81" y="116" font-size="19" font-weight="650" fill="#181818" text-anchor="middle">機種？</text><rect x="164" y="81" width="109" height="61" fill="#fff" stroke="#181818" stroke-width="2" rx="9"/><text x="218" y="116" font-size="19" font-weight="650" fill="#181818" text-anchor="middle">素材？</text><rect x="301" y="81" width="109" height="61" fill="#fff" stroke="#181818" stroke-width="2" rx="9"/><text x="355" y="116" font-size="19" font-weight="650" fill="#181818" text-anchor="middle">ノズル？</text><text x="224" y="172" font-size="18" text-anchor="middle" fill="#333">組み合わせ未確認</text><rect x="524" y="81" width="109" height="61" fill="#fff" stroke="#167443" stroke-width="2" rx="9"/><text x="578" y="116" font-size="19" font-weight="650" fill="#167443" text-anchor="middle">機種 ✓</text><rect x="661" y="81" width="109" height="61" fill="#fff" stroke="#167443" stroke-width="2" rx="9"/><text x="715" y="116" font-size="19" font-weight="650" fill="#167443" text-anchor="middle">素材 ✓</text><rect x="798" y="81" width="109" height="61" fill="#fff" stroke="#167443" stroke-width="2" rx="9"/><text x="852" y="116" font-size="19" font-weight="650" fill="#167443" text-anchor="middle">ノズル ✓</text><text x="720" y="172" font-size="18" text-anchor="middle" fill="#167443">プロファイルを照合</text>
+ </svg><figcaption>変更する前に、機種・ノズル・素材の組み合わせをそろえる。既定値を出発点にする。 <span class="diagram-legend">■ 黒＝既存・共通　<span aria-hidden="true">■</span> <b>緑＝変更部分</b></span></figcaption>
+ </figure>
  <div class="workflow">
   <div class="step">① プリンターとノズルを指定<small>機種／ノズル径／造形範囲</small></div>
   <div class="step">② 素材プロファイルを選ぶ<small>銘柄・素材ごとの温度、流量、冷却</small></div>
@@ -66,6 +86,15 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 </section>
 <section class="section" id="fuzzy">
  <h2>2. 外壁を石肌にする：Fuzzy Skin</h2>
+ <figure class="comparison" data-visual="fuzzy">
+ <svg viewBox="0 0 940 207" role="img" aria-labelledby="viz-fuzzy-title viz-fuzzy-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="viz-fuzzy-title">滑らかな柱の壁面と、ファジースキンで外壁だけに小さな凹凸を付けた柱の壁面の比較</title><desc id="viz-fuzzy-desc">外壁にランダムな凹凸を付ける例。差し込み面やロゴは適用対象から外す。</desc>
+  <rect x="8" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/><rect x="504" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/>
+  <text x="28" y="41" font-size="18" font-weight="700" fill="#181818">AS-IS</text><text x="524" y="41" font-size="18" font-weight="700" fill="#167443">TO-BE</text>
+  <line x1="451" y1="100" x2="482" y2="100" stroke="#181818" stroke-width="2" /><path d="M475 92 L485 100 L475 108" fill="none" stroke="#181818" stroke-width="2"/>
+  <line x1="75" y1="80" x2="75" y2="155" stroke="#181818" stroke-width="2" /><line x1="145" y1="80" x2="145" y2="155" stroke="#181818" stroke-width="2" /><line x1="215" y1="80" x2="215" y2="155" stroke="#181818" stroke-width="2" /><line x1="285" y1="80" x2="285" y2="155" stroke="#181818" stroke-width="2" /><line x1="355" y1="80" x2="355" y2="155" stroke="#181818" stroke-width="2" /><text x="224" y="176" font-size="17" text-anchor="middle">通常の外壁</text><polyline points="556,80 560,87 552,94 561,101 554,108 559,115 551,122 558,130 552,137 560,145 556,155" stroke="#167443" stroke-width="2.5" fill="none" stroke-linejoin="round"/><polyline points="626,80 630,87 622,94 631,101 624,108 629,115 621,122 628,130 622,137 630,145 626,155" stroke="#167443" stroke-width="2.5" fill="none" stroke-linejoin="round"/><polyline points="696,80 700,87 692,94 701,101 694,108 699,115 691,122 698,130 692,137 700,145 696,155" stroke="#167443" stroke-width="2.5" fill="none" stroke-linejoin="round"/><polyline points="766,80 770,87 762,94 771,101 764,108 769,115 761,122 768,130 762,137 770,145 766,155" stroke="#167443" stroke-width="2.5" fill="none" stroke-linejoin="round"/><polyline points="836,80 840,87 832,94 841,101 834,108 839,115 831,122 838,130 832,137 840,145 836,155" stroke="#167443" stroke-width="2.5" fill="none" stroke-linejoin="round"/><text x="720" y="176" font-size="17" text-anchor="middle" fill="#167443">外壁だけ凹凸を追加</text>
+ </svg><figcaption>外壁にランダムな凹凸を付ける例。差し込み面やロゴは適用対象から外す。 <span class="diagram-legend">■ 黒＝既存・共通　<span aria-hidden="true">■</span> <b>緑＝変更部分</b></span></figcaption>
+ </figure>
  <p><strong>Fuzzy Skin（ファジースキン）</strong>は外壁の経路にランダムな凹凸を付ける機能。ケルト風・石造風・木肌風の意匠や、積層線を目立ちにくくする用途に向きます。単なる「ランダムなZシーム」とは別設定です。</p>
  <table><thead><tr><th>設定・操作</th><th>意味と使い方</th><th>注意</th></tr></thead><tbody>
   <tr><td>Fuzzy Skin</td><td>Noneから必要なモードへ。基本は外壁側の装飾</td><td>上面の模様を作る機能とは区別</td></tr>
@@ -79,6 +108,15 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 </section>
 <section class="section" id="top">
  <h2>3. 「上面を密にする」は3種類ある</h2>
+ <figure class="comparison" data-visual="top">
+ <svg viewBox="0 0 940 207" role="img" aria-labelledby="viz-top-title viz-top-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="viz-top-title">上面を薄いソリッド層で覆う例と、トップシェル層を増やして覆う例の比較</title><desc id="viz-top-desc">模式図：Top shell layersを増やすと上面のソリッド層が増える。内部のSparse infill densityとは別設定。</desc>
+  <rect x="8" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/><rect x="504" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/>
+  <text x="28" y="41" font-size="18" font-weight="700" fill="#181818">AS-IS</text><text x="524" y="41" font-size="18" font-weight="700" fill="#167443">TO-BE</text>
+  <line x1="451" y1="100" x2="482" y2="100" stroke="#181818" stroke-width="2" /><path d="M475 92 L485 100 L475 108" fill="none" stroke="#181818" stroke-width="2"/>
+  <line x1="60" y1="97" x2="92" y2="76" stroke="#444" stroke-width="2" /><line x1="118" y1="97" x2="150" y2="76" stroke="#444" stroke-width="2" /><line x1="176" y1="97" x2="208" y2="76" stroke="#444" stroke-width="2" /><line x1="234" y1="97" x2="266" y2="76" stroke="#444" stroke-width="2" /><line x1="292" y1="97" x2="324" y2="76" stroke="#444" stroke-width="2" /><rect x="46" y="128" width="335" height="8" fill="#181818" stroke="#181818" stroke-width="2" /><rect x="46" y="114" width="335" height="8" fill="#181818" stroke="#181818" stroke-width="2" /><text x="221" y="170" font-size="16" text-anchor="middle">上面のソリッド層：少なめ</text><line x1="556" y1="97" x2="588" y2="76" stroke="#444" stroke-width="2" /><line x1="614" y1="97" x2="646" y2="76" stroke="#444" stroke-width="2" /><line x1="672" y1="97" x2="704" y2="76" stroke="#444" stroke-width="2" /><line x1="730" y1="97" x2="762" y2="76" stroke="#444" stroke-width="2" /><line x1="788" y1="97" x2="820" y2="76" stroke="#444" stroke-width="2" /><rect x="542" y="128" width="335" height="8" fill="#167443" stroke="#167443" stroke-width="2" /><rect x="542" y="114" width="335" height="8" fill="#167443" stroke="#167443" stroke-width="2" /><rect x="542" y="100" width="335" height="8" fill="#167443" stroke="#167443" stroke-width="2" /><rect x="542" y="86" width="335" height="8" fill="#167443" stroke="#167443" stroke-width="2" /><rect x="542" y="72" width="335" height="8" fill="#167443" stroke="#167443" stroke-width="2" /><text x="718" y="170" font-size="16" text-anchor="middle" fill="#167443">上面の層だけ増やす</text>
+ </svg><figcaption>模式図：Top shell layersを増やすと上面のソリッド層が増える。内部のSparse infill densityとは別設定。 <span class="diagram-legend">■ 黒＝既存・共通　<span aria-hidden="true">■</span> <b>緑＝変更部分</b></span></figcaption>
+ </figure>
  <p>混同しやすいのが<strong>トップシェルの積層数</strong>、<strong>上面の表面パターン／密度</strong>、<strong>上部空間の内部充填率</strong>です。目的に合ったものだけ変更します。</p>
  <table><thead><tr><th>やりたいこと</th><th>触る設定</th><th>期待できること</th></tr></thead><tbody>
   <tr><td>一番上の面を隙間なく覆いたい</td><td>Strength → Top/bottom shells → Top shell layers / Top shell thickness</td><td>上面のソリッド層を厚くして下の充填パターンが透ける・沈むのを抑える</td></tr>
@@ -89,6 +127,15 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 </section>
 <section class="section" id="local">
  <h2>4. 上側だけ内部充填率を上げる：Modifier</h2>
+ <figure class="comparison" data-visual="local">
+ <svg viewBox="0 0 940 207" role="img" aria-labelledby="viz-local-title viz-local-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="viz-local-title">全体が同じ間隔の内部充填から、上部の指定範囲だけ充填パターンを細かくする比較</title><desc id="viz-local-desc">Modifierの範囲で上側だけ内部充填率を上げる例。壁・トップシェルへの効果は別に確認する。</desc>
+  <rect x="8" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/><rect x="504" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/>
+  <text x="28" y="41" font-size="18" font-weight="700" fill="#181818">AS-IS</text><text x="524" y="41" font-size="18" font-weight="700" fill="#167443">TO-BE</text>
+  <line x1="451" y1="100" x2="482" y2="100" stroke="#181818" stroke-width="2" /><path d="M475 92 L485 100 L475 108" fill="none" stroke="#181818" stroke-width="2"/>
+  <line x1="43" y1="109" x2="86" y2="66" stroke="#181818" stroke-width="2" /><line x1="121" y1="109" x2="164" y2="66" stroke="#181818" stroke-width="2" /><line x1="199" y1="109" x2="242" y2="66" stroke="#181818" stroke-width="2" /><line x1="277" y1="109" x2="320" y2="66" stroke="#181818" stroke-width="2" /><line x1="355" y1="109" x2="398" y2="66" stroke="#181818" stroke-width="2" /><line x1="43" y1="165" x2="86" y2="122" stroke="#181818" stroke-width="2" /><line x1="121" y1="165" x2="164" y2="122" stroke="#181818" stroke-width="2" /><line x1="199" y1="165" x2="242" y2="122" stroke="#181818" stroke-width="2" /><line x1="277" y1="165" x2="320" y2="122" stroke="#181818" stroke-width="2" /><line x1="355" y1="165" x2="398" y2="122" stroke="#181818" stroke-width="2" /><line x1="28" y1="111" x2="420" y2="111" stroke="#999" stroke-width="1" stroke-dasharray="5 6"/><text x="221" y="179" font-size="16" text-anchor="middle">全体を同じ密度で充填</text><line x1="528" y1="103" x2="561" y2="66" stroke="#167443" stroke-width="2" /><line x1="564" y1="103" x2="597" y2="66" stroke="#167443" stroke-width="2" /><line x1="600" y1="103" x2="633" y2="66" stroke="#167443" stroke-width="2" /><line x1="636" y1="103" x2="669" y2="66" stroke="#167443" stroke-width="2" /><line x1="672" y1="103" x2="705" y2="66" stroke="#167443" stroke-width="2" /><line x1="708" y1="103" x2="741" y2="66" stroke="#167443" stroke-width="2" /><line x1="744" y1="103" x2="777" y2="66" stroke="#167443" stroke-width="2" /><line x1="780" y1="103" x2="813" y2="66" stroke="#167443" stroke-width="2" /><line x1="816" y1="103" x2="849" y2="66" stroke="#167443" stroke-width="2" /><line x1="852" y1="103" x2="885" y2="66" stroke="#167443" stroke-width="2" /><line x1="539" y1="165" x2="582" y2="122" stroke="#181818" stroke-width="2" /><line x1="617" y1="165" x2="660" y2="122" stroke="#181818" stroke-width="2" /><line x1="695" y1="165" x2="738" y2="122" stroke="#181818" stroke-width="2" /><line x1="773" y1="165" x2="816" y2="122" stroke="#181818" stroke-width="2" /><line x1="851" y1="165" x2="894" y2="122" stroke="#181818" stroke-width="2" /><line x1="524" y1="111" x2="916" y2="111" stroke="#167443" stroke-width="2" stroke-dasharray="6 5"/><text x="718" y="179" font-size="16" text-anchor="middle" fill="#167443">上部の指定範囲だけ高密度</text>
+ </svg><figcaption>Modifierの範囲で上側だけ内部充填率を上げる例。壁・トップシェルへの効果は別に確認する。 <span class="diagram-legend">■ 黒＝既存・共通　<span aria-hidden="true">■</span> <b>緑＝変更部分</b></span></figcaption>
+ </figure>
  <p>全体を高充填にするより、必要な場所だけ設定を変える方法。Bambu Studioの<strong>モディファイア（Modifier）</strong>は、指定領域だけスライス設定を上書きします。版によっては<strong>Height Range Modifier（高さ範囲）</strong>でZ範囲を直接指定できます。</p>
  <ol>
   <li>STLを配置し、対象のオブジェクトを選択。右クリックから<strong>Add modifier → Cube</strong>など、または高さ範囲のModifierを選ぶ。</li>
@@ -101,6 +148,15 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 </section>
 <section class="section" id="finish">
  <h2>5. 美観・強度・精度を分けて調整</h2>
+ <figure class="comparison" data-visual="finish">
+ <svg viewBox="0 0 940 207" role="img" aria-labelledby="viz-finish-title viz-finish-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="viz-finish-title">噛み合う面に表面の凹凸が入り込む例と、接触面だけ滑らかに残してクリアランスを確保する比較</title><desc id="viz-finish-desc">装飾面と嵌合面を分けて調整する例。寸法や強度は試作で確認し、見た目だけで適合を保証しない。</desc>
+  <rect x="8" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/><rect x="504" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/>
+  <text x="28" y="41" font-size="18" font-weight="700" fill="#181818">AS-IS</text><text x="524" y="41" font-size="18" font-weight="700" fill="#167443">TO-BE</text>
+  <line x1="451" y1="100" x2="482" y2="100" stroke="#181818" stroke-width="2" /><path d="M475 92 L485 100 L475 108" fill="none" stroke="#181818" stroke-width="2"/>
+  <polyline points="171,74 175,84 168,94 176,104 167,114 174,124 167,134 171,145" stroke="#181818" stroke-width="3" fill="none"/><polyline points="201,74 205,84 198,94 206,104 197,114 204,124 197,134 201,145" stroke="#181818" stroke-width="3" fill="none"/><text x="222" y="172" font-size="16" text-anchor="middle">接触面に凹凸が入り込む</text><line x1="663" y1="75" x2="663" y2="145" stroke="#167443" stroke-width="3" /><line x1="717" y1="75" x2="717" y2="145" stroke="#167443" stroke-width="3" /><path d="M669 113 L711 113 M669 113 l7 -5 M669 113 l7 5 M711 113 l-7 -5 M711 113 l-7 5" stroke="#167443" fill="none" stroke-width="2"/><text x="720" y="172" font-size="16" text-anchor="middle" fill="#167443">接触面は平滑・隙間を維持</text>
+ </svg><figcaption>装飾面と嵌合面を分けて調整する例。寸法や強度は試作で確認し、見た目だけで適合を保証しない。 <span class="diagram-legend">■ 黒＝既存・共通　<span aria-hidden="true">■</span> <b>緑＝変更部分</b></span></figcaption>
+ </figure>
  <table><thead><tr><th>困りごと</th><th>まず確認する設定</th><th>確認すべき落とし穴</th></tr></thead><tbody>
   <tr><td>上面の筋やザラつき</td><td>Top shell layers、Top surface pattern、Ironing</td><td>Ironingは平らな上面向き。細い刻印・凹部では悪化の可能性</td></tr>
   <tr><td>小さな装飾が潰れる</td><td>Layer height、ノズル径、外壁速度、モデル実寸</td><td>スライサーにない細線は印刷できない。プレビューで線幅と経路を確認</td></tr>
@@ -115,6 +171,15 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 </section>
 <section class="section" id="before">
  <h2>6. 印刷開始前の6項目</h2>
+ <figure class="comparison" data-visual="before">
+ <svg viewBox="0 0 940 207" role="img" aria-labelledby="viz-before-title viz-before-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="viz-before-title">STLの外形だけを見て判断する例と、スライサーで断面と積層を確認する例の比較</title><desc id="viz-before-desc">STLの外観に加え、スライサーのプレビューで内部・支持・材料・配置を確認する。</desc>
+  <rect x="8" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/><rect x="504" y="12" width="428" height="184" fill="#fff" stroke="#b8b8b8" stroke-width="2" rx="12"/>
+  <text x="28" y="41" font-size="18" font-weight="700" fill="#181818">AS-IS</text><text x="524" y="41" font-size="18" font-weight="700" fill="#167443">TO-BE</text>
+  <line x1="451" y1="100" x2="482" y2="100" stroke="#181818" stroke-width="2" /><path d="M475 92 L485 100 L475 108" fill="none" stroke="#181818" stroke-width="2"/>
+  <path d="M96 140 L96 88 L181 67 L344 95 L344 148 L250 163 Z M96 88 L250 111 L344 95 M250 111 L250 163" stroke="#181818" stroke-width="2.5" fill="none"/><text x="220" y="183" font-size="16" text-anchor="middle">STLの外形のみ</text><path d="M577 145 L577 72 L850 72 L850 145 Z" stroke="#181818" stroke-width="2.5" fill="none"/><line x1="578" y1="83" x2="850" y2="83" stroke="#555" stroke-width="1.5" /><line x1="578" y1="92" x2="850" y2="92" stroke="#555" stroke-width="1.5" /><line x1="578" y1="101" x2="850" y2="101" stroke="#555" stroke-width="1.5" /><line x1="578" y1="110" x2="850" y2="110" stroke="#555" stroke-width="1.5" /><line x1="578" y1="119" x2="850" y2="119" stroke="#167443" stroke-width="2.8" /><line x1="578" y1="128" x2="850" y2="128" stroke="#167443" stroke-width="2.8" /><line x1="578" y1="137" x2="850" y2="137" stroke="#167443" stroke-width="2.8" /><text x="720" y="183" font-size="16" text-anchor="middle" fill="#167443">Previewで積層・断面を確認</text>
+ </svg><figcaption>STLの外観に加え、スライサーのプレビューで内部・支持・材料・配置を確認する。 <span class="diagram-legend">■ 黒＝既存・共通　<span aria-hidden="true">■</span> <b>緑＝変更部分</b></span></figcaption>
+ </figure>
  <div class="checklist">
   <label><input type="checkbox">機種・ノズル径・フィラメント・プレートの組み合わせが一致</label>
   <label><input type="checkbox">必要な部品数と造形範囲を確認（2個同時ならBrimと移動余裕も）</label>
@@ -137,6 +202,31 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
  <li><a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/3d-print-practical/SKILL.md" target="_blank" rel="noopener">AD&amp;C：3Dモデルづくり汎用Playbook</a>：設計・公差・現物評価の手順</li>
  </ol>
  <p class="muted">ライセンス：このHTML本文の独自記述は、AD&amp;C共有KBのライセンスに従います。リンク先の各メーカー資料・ソフトウェアは各権利者に帰属します。</p>
+</section>
+
+<section class="section contribution" id="contribute">
+ <span class="pill">使った人が直せるガイドへ</span>
+ <h2>不具合を見つけたら、AIと直してPRを送ってください</h2>
+ <p>このガイドは<strong>完成版を固定する資料ではなく、環境やスライサーの変化に合わせて改良できるサンプル</strong>です。HTML・CSS・JavaScriptもGitHubのプルリクエスト（PR）で変更提案できます。GitHubアカウントが必要ですが、元のリポジトリに直接書く権限は不要です。</p>
+ <div class="actions">
+  <a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/edit/main/guides/3d-print/bambu-studio-print-guide.html" target="_blank" rel="noopener">GitHubでこのHTMLを編集してPRを提案</a>
+  <a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/issues/new" target="_blank" rel="noopener">不具合・提案をIssueで伝える</a>
+ </div>
+ <p class="muted">編集リンクを開くと、GitHub側でログイン・Fork・変更保存・PR作成を案内します。<strong>このHTML自体がPRを自動送信するわけではありません。</strong></p>
+ <h3>AIに修正案を作らせる指示文</h3>
+ <label for="repairDescription"><strong>気になった点や直してほしいこと</strong>（任意）</label>
+ <textarea id="repairDescription" placeholder="例：最新版のBambu Studioでは設定名が変わった／SVG図の文字がスマホで小さい"></textarea>
+ <div class="actions">
+  <button type="button" class="primary" id="makeRepairPrompt">AI向けの修正・PR指示文を全文コピー</button>
+  <button type="button" class="secondary" id="showRepairPrompt">全文を確認</button>
+ </div>
+ <p id="repairStatus" class="status" role="status" aria-live="polite">元のHTMLを壊さず、必要な部分だけ直す指示文です。</p>
+ <div id="repairPromptPanel" hidden><textarea id="repairPromptText" class="prompt" readonly aria-label="HTML修正とPR作成の指示文全文"></textarea><p class="muted">コピーできない場合は全文を選択して手動コピーできます。</p></div>
+ <details><summary>初めてPRを送る場合の流れ</summary>
+ <ol><li>上のリンクからGitHubでHTMLを開き、編集（必要に応じてFork）する。</li><li>変更した箇所と、どの環境で確認したかを記載して保存する。</li><li>GitHubの画面で<strong>Propose changes → Create pull request</strong>を選ぶ。元の作者が差分を見て採否を判断する。</li></ol>
+ <p>AIにコード作成を任せても、GitHubでの認証・送信と変更承認は、その環境の権限に従います。不要なPRを送る前に内容を確認してください。</p>
+ </details>
+ <p class="muted">GitHub公式案内：<a href="https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files" target="_blank" rel="noopener">Editing files</a> ／ <a href="https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request" target="_blank" rel="noopener">Creating a pull request</a></p>
 </section>
 <footer>AD&amp;C / Printing field guide · v1.0 · 2026-11-18<br>メーカーの公式マニュアルではありません。印刷品質と強度は実際のプリンター・材料・造形方向で検証してください。</footer>
 </main>
@@ -179,6 +269,8 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
    "F. 使用目的ごとの判断表。どこを触るか、何が改善するか、副作用や印刷時間",
    "G. 実物確認前のチェックリストと、スライス後プレビューでの確認場所",
    "H. 公式ソース集、未確認・機種依存事項を分離した注記",
+   "I. 主要な設定項目には、AS-ISからTO-BEへの変化を示す白黒＋変更点のみ緑の小さなインラインSVG模式図を置く。数値や物理的形状を誤認させない。",
+   "J. GitHubでHTMLの修正案をFork・PR提出できる改善導線を追加（GitHubの認証・承認を省略した自動PR送信を偽装しない）。",
    "",
    "【HTML納品条件】",
    "スマホでも読める単一HTML（CSSとJavaScriptを内蔵し外部ライブラリ不要）。文字化け防止・見出し・表・アクセシビリティを確保。",
@@ -200,6 +292,44 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
   try{if(document.execCommand("copy")){status.textContent="指示文の全文をコピーしました。";return;}}catch(e){}
   status.textContent="ブラウザーがコピーを制限しています。下の全文を選択したままCtrl+C（Macは⌘+C）を押してください。";
  });
+ function repairPrompt(){
+  var problem=document.getElementById("repairDescription").value.trim() || "公開ガイドの現行仕様を確認し、必要な軽微修正のみ提案してください。";
+  return [
+    "あなたはオープンソースHTMLガイドの保守担当AIです。",
+    "修正対象：https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/guides/3d-print/bambu-studio-print-guide.html",
+    "変更したい内容："+problem,
+    "",
+    "【依頼】",
+    "1. 上記URLの現在のHTML正本を取得し、直近の差分や既存の動く機能を把握してください。取得できなければ未取得と報告し、ファイル提供を依頼。",
+    "2. 該当するプリンター・スライサーのメーカー公式情報を優先して確認し、根拠URLを添えてください。推測と実測を混同しない。",
+    "3. 既存の表示、スマホ対応、白黒＋変化点緑のインラインSVG図、プリンター別ガイド生成・全文コピー・フォールバック、改善提案入口を維持し、必要な範囲だけ改修。",
+    "4. HTML/CSS/JavaScriptを静的検査し、可能ならブラウザーで表示・クリック・コピー・モバイル表示を確認。未検証は未検証と記録。",
+    "5. GitHubに接続していて変更権限がある場合は、元リポジトリへ直接pushせず、Fork/作業ブランチで変更してPRを提案。PRには問題・変更点・根拠・確認結果を記載。認証・送信が利用できないときは、編集済みHTML全文と差分、PR作成手順を渡す。PR作成成功と本文作成を混同しない。",
+    "6. 新しい重複Playbookや台帳を作らず、元のファイルと既存の3DモデルづくりPlaybookへの参照を維持してください。",
+    "",
+    "重要：この指示文の取得だけでは、GitHubへの送信や公開は発生しません。"
+  ].join("\n");
+ }
+ function showRepair(){
+  var val=repairPrompt();
+  document.getElementById("repairPromptText").value=val;
+  document.getElementById("repairPromptPanel").hidden=false;
+  return val;
+ }
+ document.getElementById("showRepairPrompt").addEventListener("click",function(){
+  showRepair();document.getElementById("repairPromptText").focus();
+  document.getElementById("repairStatus").textContent="修正・PR指示文の全文を表示しました。";
+ });
+ document.getElementById("makeRepairPrompt").addEventListener("click",async function(){
+  var val=showRepair(),out=document.getElementById("repairPromptText"),s=document.getElementById("repairStatus");
+  try{if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error("not available");
+   await navigator.clipboard.writeText(val);s.textContent="修正・PR指示文の全文をコピーしました。";return;
+  }catch(e){}
+  out.focus();out.select();
+  try{if(document.execCommand("copy")){s.textContent="修正・PR指示文の全文をコピーしました。";return;}}catch(e){}
+  s.textContent="コピーが制限されました。表示した全文をCtrl+C（Macでは⌘+C）でコピーしてください。";
+ });
+
 })();
 </script>
 </body>
