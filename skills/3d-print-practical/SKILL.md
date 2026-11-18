@@ -77,7 +77,7 @@ AI_NAV_PY_PATH=NONE
 
 - **案件別の実取得先**：案件の実測写真／採用済みCAD／スライサー（いずれも案件の保存先から実取得）。未入手ならその工程を `NOT_RUN`。一般的なスライサーとして[Bambu Studio](https://bambulab.com/en/download/studio)や[OpenSCAD](https://openscad.org/)等を必要時だけ使う。採用・使用環境の可否は案件ごとに確認。
 
-- **印刷時の設定ガイド（必要時だけ）**：Fuzzy Skin、トップシェル、上層だけの充填率変更、Ironing、壁数などを案内するときは、既存の[3Dプリント設定ガイド（Bambu Studio版・HTML）](../../guides/3d-print/bambu-studio-print-guide.html)を参照する。利用者への説明は機種／スライサー／フィラメントの条件を優先し、HTML上部のボタンで他機種向けのガイド作成指示文を生成できる。**モデリングの正本と印刷操作ガイドは分け、新しいPlaybook・固定数値・追加の検査ゲートは設けない。**
+- **印刷時の設定ガイド（必要時だけ）**：Fuzzy Skin、トップシェル、上層だけの充填率変更、Ironing、壁数などを案内するときは、既存の[3Dプリント設定ガイド（Bambu Studio版・完成画面／GitHub Pages）](https://yosio-dmz-c.github.io/AD-C-Shared-Knowledge/guides/3d-print/bambu-studio-print-guide.html)（[HTML原本](../../guides/3d-print/bambu-studio-print-guide.html)）を参照する。利用者への説明は機種／スライサー／フィラメントの条件を優先し、HTML上部のボタンで他機種向けのガイド作成指示文を生成できる。**モデリングの正本と印刷操作ガイドは分け、新しいPlaybook・固定数値・追加の検査ゲートは設けない。**
 
 **取得済みとみなす条件**：写真・採用済CAD・スライサーのうち今回必要なものが実在し、参照できること。案件の保存先と版は個別正本に記し、共有Playbookに非公開IDを固定しない。資料なしの場合は当該工程のみ `NOT_RUN`。対象プリンタの実機検証は別ゲート。
 
