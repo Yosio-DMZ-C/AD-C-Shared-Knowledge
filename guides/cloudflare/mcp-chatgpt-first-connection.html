@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Cloudflare Workers等で構築された既存MCPをChatGPTへ接続するための、人間が行う画面操作・OAuth認可・最短復旧ガイド。">
+<title>はじめてのMCP接続｜Cloudflare × ChatGPT｜AD&amp;C</title>
+<style>
+:root{--ink:#183145;--muted:#4e6372;--bg:#f6f9fb;--paper:#fff;--line:#dbe6eb;--accent:#116b85;--soft:#eaf5f8;--warn:#fff6e7;--warnline:#e9b46d;--ok:#eaf7ef}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 "Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}
+a{color:#075d7b;text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #e19a2a;outline-offset:3px}
+header{background:linear-gradient(115deg,#102c41,#17647a);color:white;padding:3.6rem 1rem 2.8rem}header .inner,main,footer .inner{max-width:900px;margin:auto}
+.kicker{font-size:.82rem;letter-spacing:.08em;font-weight:750;color:#ace2ea}.eyebrow{font-size:.88rem;color:#cee7ed}h1{font-size:clamp(1.75rem,4vw,2.65rem);line-height:1.3;margin:.55rem 0 1rem}header p{max-width:760px;line-height:1.9;margin:0}main{padding:1.5rem 1rem 4rem}h2{font-size:1.43rem;line-height:1.45;margin:2.4rem 0 .8rem;padding-left:.7rem;border-left:4px solid var(--accent)}h3{font-size:1.08rem;margin:0 0 .35rem}
+.lead{font-size:1.08rem}.small{font-size:.89rem;color:var(--muted)}.muted{color:var(--muted)}
+.panel,.step,.glossary{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:1.15rem 1.25rem;margin:1rem 0;box-shadow:0 4px 18px #143c5108}
+.alert{background:var(--warn);border:1px solid var(--warnline);border-left:5px solid #bd751d;border-radius:12px;padding:1rem;margin:1rem 0}
+.note{background:var(--soft);border-left:4px solid var(--accent);padding:.85rem 1rem;border-radius:10px;margin:1rem 0}
+.good{background:var(--ok);border-left:4px solid #368659;padding:1rem;border-radius:10px}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:1rem 0}.flow div{border:1px solid #bcd9df;background:#f0f8fa;border-radius:12px;padding:.7rem;text-align:center;line-height:1.55;font-size:.92rem}.flow b{display:block}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.cards>div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1rem}
+.num{display:inline-block;border-radius:7px;background:#dcecf1;color:#14495b;font-size:.83rem;font-weight:750;padding:.1rem .55rem;margin-right:.4rem}
+button,.action{background:#116b85;border:2px solid #116b85;border-radius:10px;color:white;font-weight:700;font:inherit;padding:.65rem .85rem;display:inline-block;text-decoration:none;cursor:pointer;line-height:1.55;margin:.25rem .3rem .25rem 0}
+button:hover,.action:hover{background:#0c5268;color:white}.action.secondary{background:white;color:#075d7b}.action.secondary:hover{background:#eaf5f8}
+ul,ol{padding-left:1.35rem}li{padding:.14rem 0}li+li{margin-top:.28rem}code{overflow-wrap:anywhere;background:#eaf1f4;padding:.11rem .33rem;border-radius:4px;font-size:.94em}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:1rem;border-radius:10px;background:#102d42;color:white;font-size:.92rem}
+pre code{background:transparent;color:inherit;padding:0}details{border:1px solid var(--line);border-radius:11px;background:white;padding:.7rem 1rem;margin:.6rem 0}summary{cursor:pointer;font-weight:700}
+table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden}td,th{border-bottom:1px solid var(--line);padding:.7rem;text-align:left;vertical-align:top}th{background:#eaf4f7;width:30%}
+.mock{border:2px dashed #8bb5c4;border-radius:13px;background:#fcfeff;padding:1rem;margin:1rem 0}.mockhead{color:#3c6071;font-size:.8rem;font-weight:700;letter-spacing:.06em}.mockscreen{margin:.7rem 0;border:1px solid #cbdce2;border-radius:10px;background:white;padding:1rem}.mockline{border:1px solid #bed3dc;padding:.4rem .7rem;margin:.5rem 0;border-radius:7px}.mockbutton{display:inline-block;padding:.3rem .65rem;border-radius:7px;background:#dceaf0;border:1px solid #b3cad4;font-weight:700;font-size:.88rem}
+.tag{font-size:.74rem;display:inline-block;border-radius:6px;padding:.12rem .45rem;font-weight:700;background:#e0eff4;color:#17576a}
+nav{display:flex;gap:.4rem;flex-wrap:wrap;margin:1rem 0}nav a{border:1px solid #b5d1dc;border-radius:100px;padding:.24rem .75rem;background:white;text-decoration:none;font-weight:650;font-size:.9rem}
+footer{border-top:1px solid var(--line);background:white;padding:1.5rem 1rem 3rem}.check{display:flex;align-items:flex-start;gap:.6rem}.check input{margin-top:.53rem;transform:scale(1.15)}
+@media(max-width:640px){.flow{grid-template-columns:1fr}.cards{grid-template-columns:1fr}header{padding-top:2.4rem}.panel,.step{padding:1rem}h2{font-size:1.26rem}table,td,th{display:block}th{width:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="inner">
+<div class="kicker">AD&amp;C / 人間用ガイド / Cloudflare・MCP</div>
+<h1>はじめてのMCP接続</h1>
+<p class="lead">AIが用意した「接続用の道具」を、ChatGPTで使えるようにする手順です。<strong>既存のCloudflare Workerを作り直す説明書ではありません。</strong>画面で迷うところだけ、人間が操作します。</p>
+<p class="eyebrow">対象：ChatGPT Pluginsと、OAuth対応の既存MCPサーバー ／ 確認：2026年11月19日</p>
+</div></header>
+<main>
+<div class="panel">
+<h2 style="margin-top:0">まず全体像</h2>
+<div class="flow" aria-label="接続の3段階"><div><b>① AIが準備</b>MCPサーバーの稼働・接続URL・読み取り機能を確認</div><div><b>② あなたが接続</b>ChatGPTで登録・OAuth認可</div><div><b>③ AIが動作確認</b>読取ツールを1つ実行して結果を照合</div></div>
+<p><strong>完了すると：</strong>ChatGPTの通常会話から、接続したサービスの情報検索など、許可されたMCP機能が利用できます。<strong>「接続済み」と「実際に使えた」は別です。</strong></p>
+<div class="alert"><strong>秘密は貼らない。</strong>アクセスキー、パスワード、OAuthコード、トークン、個人情報をチャット・公開GitHub・スクリーンショットへ入力しないでください。認可を求める正式なサービス画面だけで入力します。</div>
+<nav aria-label="このガイドの目次"><a href="#before">始める前に</a><a href="#connect">画面操作</a><a href="#trouble">困ったら</a><a href="#return">AIに戻る</a><a href="#terms">言葉の意味</a></nav>
+</div>
+
+<section id="before">
+<h2>1. 始める前に：AIに任せること</h2>
+<div class="cards"><div><h3>AIが確認する</h3><ul><li>既存のMCPサーバーがあるか</li><li>HTTPSの接続先URL（末尾が通常 <code>/mcp</code>）</li><li>OAuthが動作するか、どんな読取ツールがあるか</li><li>既存Pluginの再利用が可能か</li></ul></div><div><h3>あなたが確認する</h3><ul><li>ChatGPTを使う正しいアカウントか</li><li>接続したいサービスが自分の管理対象か</li><li>認可画面で要求される権限が妥当か</li></ul></div></div>
+<p class="note"><strong>Cloudflare自体の更新は別工程。</strong>WorkerのデプロイやSecret設定は、既存のAPIトークン経由でAIが可能ならAIに任せます。Cloudflareダッシュボードへのログインやコード貼付を、毎回あなたへ要求する方式には戻しません。APIトークンを初回発行する必要がある場合だけ、<a href="https://developers.cloudflare.com/fundamentals/api/get-started/create-token/" target="_blank" rel="noopener noreferrer">Cloudflare公式の発行案内</a>から本人が実施します。発行した値は本ガイドに記録しません。</p>
+</section>
+
+<section id="connect">
+<h2>2. ChatGPT画面で接続する</h2>
+<div class="step"><h3><span class="num">STEP 1</span>Pluginsを開く</h3>
+<p>ブラウザーで <strong>ChatGPTのPlugins画面</strong>を開きます。スマートフォンのアプリで項目が見つからなければ、ブラウザーで開いてください。</p>
+<a class="action" href="https://chatgpt.com/plugins" target="_blank" rel="noopener noreferrer">ChatGPTのPluginsを開く</a>
+<p class="small">すでに対象Pluginがあるなら、新規作成をせず、その詳細を開いてください。</p>
+</div>
+<div class="step"><h3><span class="num">STEP 2</span>既存接続があれば再利用</h3>
+<p><strong>既存Pluginがある：</strong>詳細画面で状態やツールを確認。認証が切れていれば「接続」や再認可の操作だけ実施。サーバー側の機能が変更された場合は「Refresh（更新）」を使い、更新後のツール名を確認します。</p>
+<p><strong>まだ無い：</strong>Plugins画面の <strong>＋（追加）→ Add custom MCP server／カスタムMCPサーバーを追加</strong> を選びます。画面名は更新されることがあります。</p>
+<div class="mock" role="img" aria-label="概念図：Pluginsの追加メニュー"><div class="mockhead">画面の位置関係を示す模式図（実際のスクリーンショットではありません）</div><div class="mockscreen"><div>Plugins　 <span class="mockbutton">＋ 追加</span></div><div class="mockline">カスタムMCPサーバーを追加</div></div></div>
+<p class="small">「＋」が見つからない場合は、利用環境・ワークスペースの制限を確認。<a href="https://developers.openai.com/plugins/deploy/connect-chatgpt" target="_blank" rel="noopener noreferrer">OpenAI公式手順</a>では、必要に応じて設定の <strong>Security and login → Developer mode</strong> を有効化する経路が案内されています。表示・利用可否はプランやワークスペース設定で異なります。</p>
+</div>
+<div class="step"><h3><span class="num">STEP 3</span>MCPの名前と接続先を指定</h3>
+<p>新規追加画面で、<strong>わかりやすい表示名</strong>と、AIから受け取った<strong>既存のMCP HTTPS URL</strong>（通常は <code>https://.../mcp</code>）を入力。認証方式は<strong>そのサーバーの既存仕様に合わせて OAuth</strong>を選びます。別の認証方式を思いつきで選ばないでください。</p>
+<div class="mock" role="img" aria-label="概念図：接続フォームの項目"><div class="mockhead">入力する項目の表示例（実画面ではありません）</div><div class="mockscreen"><div class="mockline">名前：例「記事検索ツール」</div><div class="mockline">接続URL：https://example.workers.dev/mcp</div><div class="mockline">認証：OAuth（既存仕様に従う）</div><span class="mockbutton">作成／接続</span></div></div>
+<p><strong>ここではAPIトークンやアクセスキーをChatGPTの名前欄・URL欄へ貼りません。</strong></p>
+</div>
+<div class="step"><h3><span class="num">STEP 4</span>サービスの認可画面で承認</h3>
+<p>「Connect／接続する」などから、認可先の画面が開きます。<strong>接続先のドメイン</strong>と<strong>アクセス権限</strong>を確かめ、求められた本人認証だけ行います。自作WorkerのOAuth画面がアクセスキーを求める設計なら、<strong>その認可画面にだけ</strong>入力します。</p>
+<p class="alert">「何への読み取り・書き込みか」が分からない場合、いったん承認せず画面名と権限表示をAIへ伝えます。スクリーンショットを送る場合は機密値を隠してください。</p>
+<p class="small">OAuthは「特定のサービスに、許可した範囲で接続を認める仕組み」です。既存の認可方式自体を変更する手順ではありません。</p>
+</div>
+<div class="step"><h3><span class="num">STEP 5</span>登録と利用の成功を分けて確認</h3>
+<div class="check"><input id="ck1" type="checkbox"><label for="ck1">Pluginsの詳細に対象の名前が出る（登録状態）</label></div>
+<div class="check"><input id="ck2" type="checkbox"><label for="ck2">OAuth認可が完了し、接続状態が見える（認証状態）</label></div>
+<div class="check"><input id="ck3" type="checkbox"><label for="ck3">期待する読み取りツール名が表示される（発見状態）</label></div>
+<div class="check"><input id="ck4" type="checkbox"><label for="ck4">新しい通常チャットで<strong>対象Pluginをツールメニュー、または <code>@</code> 候補から実際に選択</strong>し、読み取りの依頼が成功した（実動）</label></div>
+<p>最初の試験は<strong>検索・一覧・情報取得など、読み取りだけ</strong>にします。下書き作成・公開・削除・課金などを接続テストのために行いません。</p>
+<div class="good"><strong>成功の見分け方：</strong>「認証しました」だけでは足りません。AIが対象の読取ツールを実際に呼び、対象データが返り、期待結果と一致したところまで確認できたら実動成功です。</div>
+</div>
+</section>
+
+<section id="trouble">
+<h2>3. 困ったとき：最短で戻る</h2>
+<details><summary>「＋」「カスタムMCPサーバーを追加」が見つからない</summary><p>まずブラウザーの <a href="https://chatgpt.com/plugins" target="_blank" rel="noopener noreferrer">Plugins</a> を開き直し、現在のワークスペースと権限を確認します。必要な環境ではDeveloper modeを確認。利用できない環境で同じ場所を何度も探す必要はありません。現在の画面名をAIへ伝えてください。</p></details>
+<details><summary>「接続できません」「URLが無効」</summary><p>URLが <code>https://</code> で始まり、正しい <code>/mcp</code> まで含むか確認。AIにサーバー応答、OAuthメタデータ、実際のエラーを調べてもらいます。<strong>Workerをいきなり作り直さない。</strong></p></details>
+<details><summary>OAuth画面に進まない／認証が失敗する</summary><p>本人が表示中のURL・画面名・エラー文（秘密なし）をAIへ伝えます。認可画面のドメイン、ログインアカウント、許可範囲とサーバー側の認証仕様を先に照合。推測でOAuth設定やSecretを改変しません。</p></details>
+<details><summary>接続済みだがツールが見えない／更新されない</summary><p>まず対象Pluginが現在の会話に<strong>本当に選択されているか</strong>確認します。サーバー側のツール変更後ならPlugin詳細の<strong>Refresh</strong>を一度実施し、表示された数と名前を確認。改善しなければ「サーバー側で見える数」「ChatGPT側で見える数」を分けてAIへ伝えます。既存の接続を削除して再登録する前に、どの段階が失敗したか判定します。</p></details>
+<details><summary>AIが「ツールを使えない」と言う</summary><p>新しい通常チャットでツールメニューまたは <code>@</code> 候補から<strong>対象Pluginを選択</strong>し、読取依頼をもう一度試します。単に文字でPlugin名を入力しただけでは選択されない場合があります。再選択しても不可なら、プラグイン詳細の接続とツール表示を確認します。</p></details>
+<details><summary>CloudflareのログインでTurnstileなどに止められる</summary><p>日常のデプロイ・Secret設定はCloudflare API経由が標準なので、まずAIに既存のAPI接続を確認させます。本人による初回操作が本当に必要なときのみ、本人のブラウザーで公式画面を使用。認証チャレンジの連打や回避は行いません。</p></details>
+</section>
+
+<section id="return">
+<h2>4. 途中からAIに戻る</h2>
+<p>全部終わるまで待つ必要はありません。<strong>今見えている段階</strong>をAIへ伝えれば、その位置から次の1操作を案内できます。秘密そのものは送らないでください。</p>
+<pre id="handoff">AD&amp;CのMCP接続ガイドを見ています。
+現在地：［例：Pluginsで登録済み／OAuth画面／認可済み／ツール未表示］
+対象：［Pluginの表示名だけ］
+画面に出た結果・エラー：［秘密を除いた文面］
+既存の接続・Workerは削除や再作成をせず、次に必要な人間の1操作を案内してください。読み取りテストを優先し、投稿・公開はしないでください。</pre>
+<button type="button" id="copy">AIに伝える文面をコピー</button><span class="small" id="copyresult" role="status" aria-live="polite"></span>
+<p class="small">コピーが動かない場合は、上の文を長押しして選択・コピーしてください。［ ］だけ現在の画面に合わせて書き換えます。</p>
+</section>
+
+<section id="terms">
+<h2>5. 用語の意味</h2>
+<table><tbody>
+<tr><th>Cloudflare Worker</th><td>インターネット上で動く小さなプログラム。AIと外部サービスの「中継役」にできる。</td></tr>
+<tr><th>MCP</th><td>AIが外部の道具の一覧を理解して呼び出すための接続ルール。</td></tr>
+<tr><th>エンドポイント</th><td>その中継役に接続するためのURL。通常は <code>/mcp</code> で終わる。</td></tr>
+<tr><th>OAuth</th><td>接続先へ許可する権限を確認して、承認する仕組み。</td></tr>
+<tr><th>APIトークン</th><td>Cloudflareなどの操作権限を持つ秘密の鍵。許可範囲を絞り、チャットや公開ファイルへは出さない。</td></tr>
+<tr><th>Secret</th><td>Workerに秘密情報を保持する設定。通常の画面や文書に書くものではない。</td></tr>
+<tr><th>Refresh</th><td>サーバー側のツール一覧などの最新情報を読み直す操作。実利用の成功は別に確認する。</td></tr>
+</tbody></table>
+</section>
+
+<section>
+<h2>6. 公式資料と改善の入口</h2>
+<p>実際の画面名が違う場合は、下の公式資料と現在表示されている画面を優先してください。模式図は配置を理解するための例であり、現在のChatGPT画面を撮影したものではありません。</p>
+<ul>
+<li><a href="https://developers.openai.com/plugins/deploy/connect-chatgpt" target="_blank" rel="noopener noreferrer">OpenAI公式：MCPサーバーの接続と検証</a></li>
+<li><a href="https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt" target="_blank" rel="noopener noreferrer">OpenAIヘルプ：カスタムMCP接続</a></li>
+<li><a href="https://developers.cloudflare.com/fundamentals/api/get-started/create-token/" target="_blank" rel="noopener noreferrer">Cloudflare公式：APIトークン発行</a></li>
+</ul>
+<div class="panel"><h3>AD&amp;Cのシカケは、皆さんの改善提案をお待ちしています。</h3>
+<p>「分かりにくい」「画面が変わって動かない」「もっと簡単な方法がある」など、気づいたことを改善につなげられます。いつものAIに相談しても構いません。協力は任意で、使うだけでも歓迎です。<strong>秘密情報や個人情報を公開Issueには載せないでください。</strong></p>
+<a class="action secondary" href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/issues" target="_blank" rel="noopener noreferrer">改善を伝える（既存GitHub Issues）</a>
+<a class="action secondary" href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge" target="_blank" rel="noopener noreferrer">AIが使うPlaybook・正本の入口</a>
+</div>
+</section>
+</main>
+<footer><div class="inner"><strong>AD&amp;C｜人間が読むガイド</strong><p class="small">公開可能な共通操作だけを記述。個別WorkerのURL、秘密、非公開KB、個人の接続履歴を含みません。操作完了は利用者と接続先の実際の結果で確認してください。</p></div></footer>
+<script>
+(function(){
+ var btn=document.getElementById('copy'),res=document.getElementById('copyresult'),pre=document.getElementById('handoff');
+ btn.addEventListener('click',async function(){
+   var value=pre.innerText||pre.textContent;
+   try{await navigator.clipboard.writeText(value);res.textContent='コピーしました。必要な箇所だけ書き換えてAIへ送ってください。';}
+   catch(e){res.textContent='コピーできませんでした。上の文を長押しして選択してください。';}
+ });
+})();
+</script>
+</body></html>
