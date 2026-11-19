@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>はじめての3Dプリント｜使い始めの基本ガイド | AD&amp;C</title>
+<style>
+:root{--ink:#192b39;--sub:#45596c;--accent:#136c73;--line:#d5e0e5;--bg:#f5f8fa;--soft:#e9f5f3;--warn:#fff5e5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Noto Sans JP",sans-serif}
+main{max-width:1020px;margin:auto;padding:22px 17px 70px}h1{font-size:clamp(1.7rem,5vw,2.65rem);line-height:1.32;margin:.2em 0}h2{font-size:1.45rem;line-height:1.42;margin:0 0 12px}h3{font-size:1.1rem;margin:18px 0 7px}p{margin:7px 0 13px}a{color:#086677;text-underline-offset:3px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #cb7711;outline-offset:3px}
+header,.panel{background:#fff;border:1px solid var(--line);border-radius:17px;padding:24px;margin-bottom:18px;box-shadow:0 2px 8px #1233}
+header{background:linear-gradient(125deg,#e5f4f1,#fff 74%)}.eyebrow{font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:.1em}.lead{font-size:1.1rem;color:var(--sub)}
+nav{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}nav a,.tag{font-size:.87rem;background:#e8f0f2;border-radius:7px;padding:4px 10px;text-decoration:none}.tag{display:inline-block;color:var(--accent);font-weight:700}
+.important{border-left:5px solid var(--accent);padding:12px 15px;background:var(--soft);border-radius:9px;margin:13px 0}.caution{border-left-color:#aa6500;background:var(--warn)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.tile{background:#f1f6f7;border:1px solid var(--line);padding:14px;border-radius:11px}.tile strong{display:block;color:var(--ink);font-size:1.03rem}
+.steps{list-style:none;counter-reset:steps;padding:0;margin:0}.steps li{counter-increment:steps;position:relative;padding:10px 12px 10px 52px;border-bottom:1px solid var(--line)}.steps li::before{content:counter(steps);position:absolute;left:8px;top:12px;display:grid;place-items:center;width:29px;height:29px;background:var(--accent);border-radius:50%;color:white;font-weight:700}
+.glossary{display:grid;grid-template-columns:1fr 2.4fr;border-top:1px solid var(--line)}.glossary dt,.glossary dd{border-bottom:1px solid var(--line);padding:7px 10px;margin:0}.glossary dt{font-weight:700;background:#f0f6f7}
+table{border-collapse:collapse;width:100%;font-size:.96rem}th,td{border-bottom:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{background:#e9f2f5}details{border:1px solid var(--line);border-radius:11px;padding:11px 14px;margin:9px 0}summary{font-weight:750;cursor:pointer}details p:first-of-type{margin-top:12px}
+.diagram{border:1px solid var(--line);padding:10px;background:white;border-radius:12px;margin:16px 0}.diagram svg{width:100%;height:auto;max-width:850px}.diagram figcaption{font-size:.9rem;color:var(--sub)}
+.group{margin:16px 0}.group h3{border-bottom:2px solid #c9e3e1;padding-bottom:4px}.small{font-size:.89rem;color:var(--sub)}.row{display:flex;flex-wrap:wrap;gap:9px}.action{display:inline-block;text-decoration:none;background:var(--accent);color:white;font-weight:700;border-radius:10px;padding:11px 15px}.action.alt{background:white;color:var(--accent);border:1px solid var(--accent)}button{background:var(--accent);color:white;border:0;border-radius:9px;padding:10px 15px;font:inherit;font-weight:700;cursor:pointer}button.secondary{background:white;color:var(--accent);border:1px solid var(--accent)}
+input,select,textarea{font:inherit;border:1px solid #879eab;border-radius:8px;padding:9px;width:100%;color:var(--ink)}textarea{min-height:260px;font:13px/1.55 ui-monospace,Consolas,monospace}label{font-weight:700;display:block;margin:7px 0 3px}.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.status{font-size:.9rem;color:var(--sub)}
+footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
+@media(max-width:700px){.tiles,.form{grid-template-columns:1fr}header,.panel{padding:17px}.diagram{overflow-x:auto;overscroll-behavior-x:contain}.diagram svg{width:760px;max-width:none}.diagram::before{content:"図は左右にスワイプできます";display:block;color:var(--accent);font-size:.8rem}.row>a,.row>button{width:100%;text-align:center}.glossary{grid-template-columns:1fr 2fr}table{font-size:.87rem}th,td{padding:6px}}
+@media print{body{background:white}main{padding:0}header,.panel{box-shadow:none;break-inside:avoid}.diagram{overflow:visible}.diagram svg{width:100%;max-width:850px}.diagram::before{display:none}nav,.form,button,textarea,.status{display:none}details{break-inside:avoid}details>*{display:block!important}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<span class="eyebrow">AD&amp;C / FIRST STEPS / FDM 3D PRINTING</span>
+<h1>はじめての3Dプリント</h1>
+<p class="lead">プリンターを買ったら、まずここから。部品の名前、板の掃除、材料の選び方、最初の1個を印刷する手順、失敗の見分け方を、実際に手を動かせる言葉で説明します。</p>
+<span class="tag">はじめの10分</span> <span class="tag">必要なら詳しく学べる</span> <span class="tag">FDM（樹脂の糸を溶かす方式）向け</span>
+<nav aria-label="このページの目次">
+<a href="#parts">部品の名前</a><a href="#clean">まず板を掃除</a><a href="#first-print">最初の1個</a><a href="#material">材料を選ぶ</a><a href="#trouble">困ったら</a><a href="#settings">設定の意味</a><a href="#design">設計のコツ</a><a href="#ai-help">AIに相談</a>
+</nav>
+<div class="important"><strong>次に読む応用編：</strong> <a href="./bambu-studio-print-guide.html">きれいに・正確に印刷するためのコツ（Bambu Studio版）</a>。Fuzzy Skin、上面仕上げ、嵌合、横筋、光沢の縞などは応用編へ。最初の印刷を始めるだけなら、このページの「最初の1個」までで十分です。</div>
+<p class="small">本ガイドはFDM方式を対象とします。光硬化樹脂（レジン）の洗浄・硬化・薬品取扱いは別手順です。機種別の取扱説明書と安全指示が優先します。</p>
+</header>
+
+<section class="panel" id="parts">
+<h2>1. 「プラットフォームをきれいに」と言われても、どこ？</h2>
+<p>3Dプリンターで「プラットフォーム」「ベッド」「ビルドプレート」「印刷台」と呼ばれるものは、まず<strong>造形物が最初にくっつく、下の平らな板の表面</strong>を指します。機種によっては、加熱台の上から薄いプレートだけを取り外せます。<strong>電気部品がある加熱台そのものを水洗いしないでください。</strong></p>
+<figure class="diagram">
+<svg viewBox="0 0 850 305" role="img" aria-labelledby="parts-title parts-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="parts-title">FDMプリンターの主要な部品とビルドプレート</title>
+<desc id="parts-desc">上部のノズルから樹脂が出て、下部のビルドプレート上に造形物を積み上げる構造の模式図。プレートと加熱台は別物。</desc>
+<rect x="80" y="22" width="360" height="238" fill="none" stroke="#273747" stroke-width="10" rx="9"/>
+<path d="M114 67 H408" stroke="#52677a" stroke-width="12"/>
+<rect x="221" y="53" width="95" height="61" rx="12" fill="#dbe7e9" stroke="#253f4b" stroke-width="3"/>
+<path d="M254 113 L283 113 L273 144 L262 144 Z" fill="#b16e2e" stroke="#593b21" stroke-width="2"/>
+<path d="M267 145 v24" stroke="#13805e" stroke-width="5" stroke-linecap="round"/>
+<path d="M186 218 L186 193 L352 193 L352 218" fill="#b8d6d3" stroke="#265e69" stroke-width="3"/>
+<path d="M186 193 L206 166 H333 L352 193" fill="#e5f6f2" stroke="#13805e" stroke-width="3"/>
+<path d="M150 229 H380" stroke="#173e4f" stroke-width="13" stroke-linecap="round"/>
+<path d="M154 244 H380" stroke="#7d9da9" stroke-width="7" stroke-linecap="round"/>
+<g stroke="#136c73" stroke-width="2" fill="none"><path d="M286 125 H480"/><path d="M349 191 H480"/><path d="M343 240 H480"/><path d="M260 178 H88"/></g>
+<g font-family="sans-serif" font-size="21" fill="#192b39"><text x="492" y="112" font-weight="700">ノズル</text><text x="492" y="137" font-size="16">溶けた樹脂が出る先（熱い）</text><text x="492" y="185" font-weight="700">ビルドプレート</text><text x="492" y="211" font-size="16">造形物がくっつく板</text><text x="492" y="237" font-weight="700">ヒートベッド</text><text x="492" y="261" font-size="16">プレートを加熱する台（洗わない）</text><text x="16" y="176" font-size="17">造形物</text></g>
+</svg>
+<figcaption>模式図。機種によって形状・板の取り外し方法が異なります。写真や取扱説明書で「どの板か」を確認してから作業します。</figcaption>
+</figure>
+<dl class="glossary">
+<dt>ノズル</dt><dd>樹脂の糸を溶かして出す金属の先端。動作中と直後は高温。</dd>
+<dt>フィラメント</dt><dd>リールに巻かれた樹脂の糸。PLAやPETGは材料の種類。</dd>
+<dt>ビルドプレート</dt><dd>印刷物を載せる表面の板。テクスチャーPEIなど表面材に種類がある。</dd>
+<dt>スライサー</dt><dd>3Dモデルを「1層ずつ、どう印刷するか」に変換するソフト。Bambu Studioなど。</dd>
+<dt>STL / 3MF</dt><dd>3D形状の受け渡し形式。3MFには印刷設定を含められる場合があるが、内容はファイル次第。</dd>
+<dt>Preview（プレビュー）</dt><dd>スライス後に、実際のノズルの動きや層・支えを印刷前に確認する画面。</dd>
+</dl>
+</section>
+
+<section class="panel" id="clean">
+<h2>2. 最初の基本は、印刷する板を清潔にすること</h2>
+<p>指の油や前回の樹脂が残ると、最初の層がくっつきにくくなります。以下は<strong>取り外し可能なPEI系プレートで、メーカーが水洗いを許可している場合</strong>の一般的な手順です。</p>
+<ol class="steps">
+<li><strong>印刷が終わって冷えたことを確認</strong>。熱いノズル・加熱台・造形物には触れない。プレートが外れる機種だけ、説明書どおりに取り外す。</li>
+<li><strong>印刷面を確認</strong>。前回の樹脂片、ブリム、のりの残り、指紋を探す。乾いた樹脂を金属工具で無理に削らない。</li>
+<li><strong>ぬるま湯＋少量の食器用中性洗剤</strong>で印刷面をやさしく洗う。清潔な柔らかいスポンジ等を使い、洗剤や油分を残さないよう十分にすすぐ。</li>
+<li><strong>水分を完全に拭き取って乾かす</strong>。清潔な、繊維や油分の残りにくい布を使う。電子部品・加熱台・プリンター本体へ水をかけない。</li>
+<li><strong>印刷面を指で触らず装着</strong>。板の方向・位置が合っているか、磁石や固定具が正しく収まったか確認する。</li>
+<li><strong>のりは必須ではない</strong>。使用する板・材料のメーカー指示を確認。特に滑らかなPEIへのPETGなど、接着が強すぎる組み合わせでは「剥がすための分離層」としてのりが必要なことがある。</li>
+</ol>
+<div class="important caution"><strong>ここを誤解しない：</strong>「毎回のりを塗る」「全プレートをアルコールで拭く」「水洗い後すぐ高温印刷」は共通ルールではありません。表面の材質・メーカーの指示で変わります。特殊なコーティング面、ガラス等はそれぞれの清掃方法を優先します。IPA等は使用を許可された冷えたプレートだけで、火気・高温部を避けます。</div>
+<p class="small">出典：<a href="https://wiki.bambulab.com/en/filament-acc/acc/pei-plate-clean-guide" target="_blank" rel="noopener">Bambu Lab公式PEI清掃ガイド</a> ／ <a href="https://help.prusa3d.com/ja/article/1%E5%B1%A4%E7%9B%AE%E3%81%AE%E5%95%8F%E9%A1%8C_1804" target="_blank" rel="noopener">Prusa公式：1層目の問題</a> ／ <a href="https://help.prusa3d.com/ja/article/print-surface-preparation_686951" target="_blank" rel="noopener">Prusa公式：プレートと材料の組み合わせ</a>。</p>
+</section>
+
+<section class="panel" id="first-print">
+<h2>3. 最初の1個を印刷する：この6手順で十分</h2>
+<ol class="steps">
+<li><strong>机と安全を確認：</strong>安定した水平な場所、十分な換気、機械の周囲に可動部分の邪魔になる物がないことを確認。取扱説明書の初期設定を完了する。</li>
+<li><strong>PLAを用意：</strong>最初はメーカー対応の一般的なPLAから。フィラメントを正しい経路へセットし、機械のロード手順に従う。</li>
+<li><strong>印刷したい物を選ぶ：</strong>メーカー付属の小さなテストモデル、または許可条件を確認したモデルサイトのデータを利用。最初からCADを習得する必要はない。</li>
+<li><strong>スライサーで機種・ノズル・プレート・材料を一致：</strong>基本的にはメーカーの既定プロファイルを使用。よく分からない温度や速度を一度に変更しない。</li>
+<li><strong>Slice → Preview：</strong>プリント範囲をはみ出さないか、底が板に接しているか、必要なサポートがあるか、所要時間が許容できるかを確認して開始する。</li>
+<li><strong>最初の層を観察、完成後は冷えるまで待つ：</strong>板から剥がれたり樹脂が絡んだりしたら停止手順に従う。完成品の取り外しはメーカーの指示どおり、プレートと部品が冷めてから行う。</li>
+</ol>
+<div class="tiles">
+<div class="tile"><strong>モデルを探す</strong><p>無料公開の3Dモデルから始められる。<a href="https://makerworld.com/" target="_blank" rel="noopener">MakerWorld</a> ／ <a href="https://www.printables.com/" target="_blank" rel="noopener">Printables</a></p></div>
+<div class="tile"><strong>モデルを作る</strong><p>寸法のある実用品ならパラメトリックCAD、自由造形ならBlender等。作りたい物によって選ぶ。</p></div>
+<div class="tile"><strong>上手くいかない</strong><p>最初の層・材料プロファイル・印刷姿勢を優先して見る。<a href="#trouble">症状別の原因を見る</a>。</p></div>
+</div>
+</section>
+
+<section class="panel" id="material">
+<h2>4. 材料はまずPLA。必要になってから選択肢を広げる</h2>
+<table><thead><tr><th>材料</th><th>向く用途</th><th>初めて使うときの注意</th></tr></thead><tbody>
+<tr><td><strong>PLA</strong></td><td>模型、小物、室内の整理用品、初回練習</td><td>比較的印刷しやすい。高温環境・屋外長期使用・強い荷重には向かないことがある。</td></tr>
+<tr><td><strong>PETG</strong></td><td>少し熱に強く、粘りが欲しい実用品など</td><td>吸湿や糸引きに注意。プレート表面によっては固着し過ぎるため、分離層の要否を確認。</td></tr>
+<tr><td><strong>TPU</strong></td><td>柔軟な部品、保護具</td><td>柔らかく送りにくい場合がある。対応フィーダーや速度条件を確認。</td></tr>
+<tr><td><strong>ABS / ASA / 強化材入り</strong></td><td>耐熱や特殊条件が必要な用途</td><td>換気・排気、筐体条件、反り、適合するノズルや温度が重要。初回の既定にはしない。</td></tr>
+</tbody></table>
+<details><summary>フィラメントの乾燥って何？</summary><p>樹脂が空気中の水分を吸うと、印刷中の泡、糸引き、表面不良につながる場合があります。密封・乾燥剤等で保管し、必要に応じて専用乾燥機とメーカー推奨温度・時間を使います。PLAも保管環境次第で吸湿します。「PLA以外だけ乾燥」とは限りません。<strong>熱いビルドプレートと自作カバーを乾燥機代わりにする方法は初学者には推奨しません。</strong></p></details>
+<details><summary>高価な材料や太いノズルは必要？</summary><p>通常は不要。カーボン繊維等を含む材料はノズルを摩耗させやすく、対応材質のノズルが必要になることがあります。ノズル径は一般に0.4mmなどの単位で選び、0.6mm／0.8mmが選択肢になる機種もあります。大きなノズルほど細かい文字や穴の表現に制約が出ます。</p></details>
+</section>
+
+<section class="panel" id="trouble">
+<h2>5. 失敗したら、まず起きた場所から調べる</h2>
+<p>結果だけで設定を何個も変えず、<strong>「いつ・どこで失敗したか」→「何が原因候補か」→「1つ変更して再確認」</strong>で切り分けます。</p>
+<table><thead><tr><th>症状</th><th>最初に確認</th><th>次の一手</th></tr></thead><tbody>
+<tr><td>最初の層が剥がれる／端が浮く</td><td>プレートの汚れ、材質、初層、材料プロファイル</td><td><a href="#clean">板を洗う</a>→冷却後の状態を確認。面積不足ならBrim等を検討。</td></tr>
+<tr><td>途中から糸の山になる</td><td>失敗した高さ、部品の剥がれ・転倒、サポート不足</td><td>Previewでその高さを確認。まず停止・安全確保。</td></tr>
+<tr><td>途中から樹脂が出ない／薄い</td><td>フィラメント残量・送り、詰まり、温度と速度</td><td>メーカーの詰まり解消・コールドプル手順に従う。加熱ノズルに素手で触れない。</td></tr>
+<tr><td>上面が荒い／空間が透ける</td><td>上面の層数、内部の支え、冷却</td><td>上面層や充填パターンをプレビューで比較。</td></tr>
+<tr><td>印刷物同士がはまらない</td><td>底の膨らみ、Zシーム、隙間、印刷方向</td><td>接触部を測り、<a href="./bambu-studio-print-guide.html#troubles">嵌合の小技</a>を見る。</td></tr>
+<tr><td>側面に筋や光沢の縞</td><td>内部の橋渡し、外壁速度、流量</td><td><a href="./bambu-studio-print-guide.html#troubles">症状別の5つの小技</a>へ。</td></tr>
+</tbody></table>
+<div class="important">機械をいじる前に、まず<strong>正常に印刷できる小さなモデル</strong>と問題モデルを比較すると切り分けやすくなります。ただし、テストモデルが成功したから機械側に問題がない、と断定はできません。</div>
+</section>
+
+<section class="panel" id="settings">
+<h2>6. よく触る設定の意味（ここから応用の入口）</h2>
+<div class="group"><h3>見た目・時間・強さ</h3>
+<details><summary>レイヤー高さ（Layer height）</summary><p>1層の厚み。小さくすると曲面や斜面の段差が減りやすい一方、時間は延びる。真っ直ぐな箱では違いが小さいこともある。必要な高さだけ薄くするVariable/Adaptive Layer Heightも選択肢。</p></details>
+<details><summary>壁の周回数（Wall loops / Perimeters）</summary><p>外壁を何周作るか。荷重のかかる実用品では、内部充填率だけでなく壁厚や造形方向が重要。壁を増やせば必ず十分な強度になるわけではない。</p></details>
+<details><summary>内部充填（Infill）と局所Modifier</summary><p>内部の網目の密度と形。動画中の「装飾なら5%」「強度なら15〜20%」は一人の経験例で、薄肉・支え・荷重によって変わる。必要な領域だけModifierで増やす方法もある。<a href="./bambu-studio-print-guide.html#local">図解：上側だけ充填を変える</a>。</p></details>
+<details><summary>線幅（Line width）とノズル径</summary><p>ノズル径と、実際に押し出す線の幅は別の設定。厚めの線幅で壁を少ない周回数にする工夫はあるが、流量限界・寸法・隙間・細部と交換条件になる。動画の0.75mm線幅は特定製品・設定の例。</p></details>
+</div>
+<div class="group"><h3>支える・分割する・装飾する</h3>
+<details><summary>サポート（Support）、ブリッジ（Bridge）、オーバーハング</summary><p>ノズルは空中に何でも印刷できるわけではない。宙にせり出す部分がオーバーハング、空間を橋渡しするのがブリッジ、必要な場所に付ける仮の支えがサポート。NormalとTree（木状）などをモデルで使い分け、支持する面と取り外しやすさをPreviewで確かめる。</p></details>
+<details><summary>Brim（ブリム）、角だけの補助（マウスイヤー）</summary><p>底の外周に薄い補助を付けて接地面積を増やす。剥がしづらい場合があり、角だけに付ける補助もある。ただしスライサーによって機能の名前や有無は異なる。</p></details>
+<details><summary>「分割」「切断」「コネクタ」</summary><p>大きすぎるモデルは複数パーツに切り、後で組み立てる方法がある。スライサーにはパーツ分割や切断面の位置合わせコネクタを作れるものもある。接着位置・公差・組立順は設計時に考える。</p></details>
+<details><summary>文字、ロゴ、手動色替え</summary><p>上面の色替えは層をまたぐ回数が少なく、側面に文字を配置すると色替え回数と材料ロスが増える場合がある。自動多色対応がなくても、機種・スライサーが対応すれば指定層で一時停止して色替えできる。<a href="./bambu-studio-print-guide.html#finish">ロゴと表面仕上げ</a>。</p></details>
+<details><summary>一つずつ印刷する（By object）</summary><p>同じプレートに置いた複数モデルを一つずつ完成させる方式。ヘッドと完成済み部品が衝突しない間隔・高さ・順番をスライサーで確認する。<a href="./bambu-studio-print-guide.html#troubles">詳しい注意</a>。</p></details>
+</div>
+</section>
+
+<section class="panel" id="design">
+<h2>7. 自分で設計するときの基本（読みたい人だけ）</h2>
+<p>設計まで始める場合は、印刷姿勢と組立方法から逆算します。以下は添付動画で紹介された多数の工夫を、用途別にまとめ直したものです。</p>
+<details><summary>底面の面取りと角丸を使い分ける</summary><p>底に接した大きなフィレット（角丸）は急なオーバーハングになることがある。まず底面の小さな面取り（Chamfer）で印刷しやすくし、必要なら上側で曲面へつなぐ。どんな形でも45°なら成功するという意味ではない。<a href="https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135" target="_blank" rel="noopener">Prusaの設計ガイド</a>。</p></details>
+<details><summary>印刷方向と積層の向きを考える</summary><p>同じモデルでも、寝かせるか立てるかで強さ・表面・サポート量が大きく変わる。引張力が層間の接合を剥がす向きに集中しないように置く。高荷重や安全に関わる部品は実測・適切な設計が必要。</p></details>
+<details><summary>必要な部分だけ試作する</summary><p>大きな部品の寸法や嵌合が心配なら、問題のある端・穴・差込部だけを切り出して試すと時間と材料を節約しやすい。単なる測定だけのために不要なゲージ印刷はしない。</p></details>
+<details><summary>市販のねじ・ナット・木ダボと組み合わせる</summary><p>樹脂だけで複雑な機構を作るより、市販のボルト・ナット・位置決めピン等を使うと簡単なことがある。横から挿入するナット用ポケットや熱圧入インサートも候補。穴寸法、工具の入る空間、印刷方向、金具の適合を必ず確認する。熱圧入は高温工具とメーカーの指示が必要。</p></details>
+<details><summary>ねじ穴・横向き穴は円以外も考える</summary><p>側面に水平な円穴を開けると、穴上側の印刷が宙に浮きやすい。涙滴（teardrop）型・上部を斜面にした形状が有効な場合があるが、ボルト軸や適合が必要な穴の寸法を勝手に変えない。後加工の穴仕上げも選択肢。</p></details>
+<details><summary>犠牲的な薄い橋渡しと、取り外す支え</summary><p>穴の下を一時的な薄い膜や壊せる補助で支える設計もある。動画の0.2mmは特定積層条件の事例。後から貫通させる穴なら、膜の除去方法や安全な工具が必要。</p></details>
+<details><summary>はめ込みの隙間は固定値で決めない</summary><p>「自由に動く」「軽くはまる」「圧入したい」で公差は異なる。材料・ノズル・方向・速度・表面によって誤差が変わる。動画の自動文字起こしにある「2mm」は一般的な精密嵌合の初期値として採用せず、小さな試験片または過去の実測で決める。</p></details>
+<details><summary>サポート不要の角度を探す</summary><p>印刷する向き・分割・形状の工夫でサポートが減る。45～60°は動画中の目安で、機種・材料・冷却・層高次第。橋渡し・オーバーハングの限界は必要なら小さなテストモデルで確かめる。</p></details>
+<details><summary>スナップ、しなる機構、印刷したまま動く構造</summary><p>材料の弾性を利用したスナップ嵌合や、組立を減らす印刷一体型の可動構造も可能。曲がる方向・公差・疲労・層間強度を設計する。動く保証は印刷前の図だけではできない。</p></details>
+<details><summary>射出成形と同じ肉抜きが最良とは限らない</summary><p>FDMでは外壁の増加が時間を増やす場合があり、一定形状＋スライサーの充填構造のほうが軽く速くなるケースもある。製造法に合う設計を比較する。</p></details>
+<details><summary>3Dプリンターを「型・治具」に使う</summary><p>3Dプリント品そのものが完成品でなくても、鋳型、穴あけ位置決め、木工加工テンプレート、接着治具などを作れる。高温・食品・荷重を扱う場合は材料の適合と安全条件が別途必要。</p></details>
+<details><summary>文字やラベルは印刷面と表現を選ぶ</summary><p>文字そのものを盛り上げる・へこませる方法のほか、文字の周囲を印刷して細い文字を抜く方法もある。裏面の向き、初層の潰れ、色替え回数、耐久性、ノズルの線幅で結果が変わる。</p></details>
+<div class="important"><strong>設計の相談はAIに任せてもよい：</strong>完成したい機能と現物寸法を伝えると、形状案、STLなどの作成、干渉・組立の確認へ進めます。ただし図面・STL・実印刷の成立は別々に確かめます。<a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/3d-print-practical/SKILL.md">3Dモデルづくり汎用Playbook</a>。</div>
+</section>
+
+<section class="panel" id="ai-help">
+<h2>8. AIに「自分の機種ではどうする？」と聞く</h2>
+<p>機種、印刷する材料、プレートの種類、困りごとを入力すると、AIに渡す相談文を作れます。生成処理はこのページ内だけで行い、サーバーへ送信しません。まずメーカーの操作説明を確認する指示を含みます。</p>
+<div class="form">
+<div><label for="printer">プリンター機種</label><input id="printer" value="Bambu Lab A1 mini"></div>
+<div><label for="plate">ビルドプレートの種類</label><input id="plate" value="テクスチャーPEI（不明なら不明）"></div>
+<div><label for="filament">使用する材料</label><input id="filament" value="PLA"></div>
+<div><label for="problem">知りたいこと</label><select id="problem"><option>最初の1個を印刷する</option><option>プレートをきれいにする</option><option>造形物が剥がれる</option><option>糸引き・筋・上面の荒れを直す</option><option>部品をぴったり組み立てる</option><option>自分で3Dモデルを設計する</option></select></div>
+</div>
+<div class="row" style="margin:13px 0"><button id="makePrompt" type="button">指示文を作成・全文コピー</button><button id="viewPrompt" class="secondary" type="button">全文を確認</button></div>
+<p id="copyStatus" class="status" role="status" aria-live="polite">このフォームの入力は送信されません。</p>
+<div id="promptPanel" hidden><label for="promptText">生成した指示文（全文）</label><textarea id="promptText" readonly></textarea><p class="small">ブラウザーがコピーを禁止するときは、全文を選択して手動コピーできます。</p></div>
+</section>
+
+<section class="panel" id="sources">
+<h2>参考資料・注意点</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=gPW_mitgosw" target="_blank" rel="noopener">Alexandre Chappel「Everything I know about 3D Printing」</a>：本ガイドで扱うトピックの出発点。提供された日本語文字起こしを基に要点を分類。</li>
+<li><a href="https://wiki.bambulab.com/en/filament-acc/acc/pei-plate-clean-guide" target="_blank" rel="noopener">Bambu Lab：PEIプレートの清掃</a>：Bambu対象の清掃手順。</li>
+<li><a href="https://help.prusa3d.com/ja/article/1%E5%B1%A4%E7%9B%AE%E3%81%AE%E5%95%8F%E9%A1%8C_1804" target="_blank" rel="noopener">Prusa：1層目の問題</a>：清掃・接着・のりの注意。</li>
+<li><a href="https://help.prusa3d.com/ja/article/print-surface-preparation_686951" target="_blank" rel="noopener">Prusa：印刷面の準備</a>：材料とプレート適合。</li>
+<li><a href="https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135" target="_blank" rel="noopener">Prusa：3Dプリントを考慮したモデリング</a>：サポートや角の設計。</li>
+<li><a href="https://help.prusa3d.com/article/infill_42" target="_blank" rel="noopener">Prusa：内部充填の役割</a>。</li>
+<li><a href="./bambu-studio-print-guide.html">AD&amp;C：きれいに・正確に印刷するためのコツ</a>：機種・設定の詳細例。</li>
+</ul>
+<p class="small">動画の「毎回のり」「PETGの耐熱数値」「全てのPLA以外は必ず乾燥」「固定の公差・充填率」等は、条件付き経験則として扱い、全機種共通の確定仕様にはしていません。字幕・自動文字起こしにはノズル径、寸法などの誤認識があり得ます。このガイドはメーカー公式マニュアルの代わりではありません。2026-11-19制作。</p>
+</section>
+<footer>AD&amp;C｜はじめての3Dプリント v1.0.0 · 2026-11-19。学習・実行・改善のための初回案内です。</footer>
+</main>
+<script>
+(function(){
+"use strict";
+var panel=document.getElementById("promptPanel"),out=document.getElementById("promptText"),status=document.getElementById("copyStatus");
+function v(id){return document.getElementById(id).value.trim()||"未確認";}
+function make(){return [
+"あなたはFDM式3Dプリンターの初心者サポート担当です。専門用語だけではなく、目に見える部品の位置と安全な手の動きで説明してください。",
+"使用機種："+v("printer"),"ビルドプレート："+v("plate"),"材料："+v("filament"),"今回の目的："+v("problem"),"",
+"参考：基本ガイド https://raw.githubusercontent.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/main/guides/3d-print/first-steps-guide.html",
+"設定の応用編 https://raw.githubusercontent.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/main/guides/3d-print/bambu-studio-print-guide.html",
+"",
+"最初に機種とプレートのメーカー公式マニュアルを実取得して確認し、取得できない資料は未取得と書いてください。",
+"専門語は部品の場所・目的に置き換えて説明し、作業を順番に一操作ずつ示してください。",
+"板の清掃では取り外し可否・冷却・洗えるプレート面・乾燥・のりの要否を確認し、熱い加熱台や電気部品を水洗いさせないでください。",
+"設定値は機種・材料・ノズル・プレート依存。初期プリセットを出発点とし、必要な1項目だけ変えてPreviewと実物で確認してください。",
+"最後に実際に見れば確認できる結果と、次の一操作だけ示してください。"
+].join("\n");}
+function show(){out.value=make();panel.hidden=false;return out.value;}
+document.getElementById("viewPrompt").addEventListener("click",function(){show();out.focus();status.textContent="指示文の全文を下に表示しました。";});
+document.getElementById("makePrompt").addEventListener("click",async function(){var txt=show();try{if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error("no clipboard");await navigator.clipboard.writeText(txt);status.textContent="指示文を全文コピーしました。AIチャットへ貼り付けてください。";return;}catch(e){}out.focus();out.select();try{if(document.execCommand("copy")){status.textContent="指示文を全文コピーしました。";return;}}catch(e){}status.textContent="コピーが制限されました。選択した全文をCtrl+C（Macでは⌘+C）でコピーしてください。";});
+})();
+</script>
+</body>
+</html>
