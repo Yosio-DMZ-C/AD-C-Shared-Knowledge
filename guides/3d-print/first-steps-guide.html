@@ -12,7 +12,7 @@ main{max-width:1020px;margin:auto;padding:22px 17px 70px}h1{font-size:clamp(1.7r
 header,.panel{background:#fff;border:1px solid var(--line);border-radius:17px;padding:24px;margin-bottom:18px;box-shadow:0 2px 8px #1233}
 header{background:linear-gradient(125deg,#e5f4f1,#fff 74%)}.eyebrow{font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:.1em}.lead{font-size:1.1rem;color:var(--sub)}
 nav{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}nav a,.tag{font-size:.87rem;background:#e8f0f2;border-radius:7px;padding:4px 10px;text-decoration:none}.tag{display:inline-block;color:var(--accent);font-weight:700}
-.important{border-left:5px solid var(--accent);padding:12px 15px;background:var(--soft);border-radius:9px;margin:13px 0}.caution{border-left-color:#aa6500;background:var(--warn)}
+.important{border-left:5px solid var(--accent);padding:12px 15px;background:var(--soft);border-radius:9px;margin:13px 0}.caution{border-left-color:#aa6500;background:var(--warn)}details.column{border-left:4px solid #7b92a1;background:#f5f8fa;padding:12px 16px;margin:18px 0}details.column summary{font-weight:750;color:#375366}details.column p{margin:10px 0}
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.tile{background:#f1f6f7;border:1px solid var(--line);padding:14px;border-radius:11px}.tile strong{display:block;color:var(--ink);font-size:1.03rem}
 .steps{list-style:none;counter-reset:steps;padding:0;margin:0}.steps li{counter-increment:steps;position:relative;padding:10px 12px 10px 52px;border-bottom:1px solid var(--line)}.steps li::before{content:counter(steps);position:absolute;left:8px;top:12px;display:grid;place-items:center;width:29px;height:29px;background:var(--accent);border-radius:50%;color:white;font-weight:700}
 .glossary{display:grid;grid-template-columns:1fr 2.4fr;border-top:1px solid var(--line)}.glossary dt,.glossary dd{border-bottom:1px solid var(--line);padding:7px 10px;margin:0}.glossary dt{font-weight:700;background:#f0f6f7}
@@ -72,16 +72,20 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 
 <section class="panel" id="clean">
 <h2>2. 最初の基本は、印刷する板を清潔にすること</h2>
-<p>指の油や前回の樹脂が残ると、最初の層がくっつきにくくなります。以下は<strong>取り外し可能なPEI系プレートで、メーカーが水洗いを許可している場合</strong>の一般的な手順です。</p>
+<p>指の油や前回の樹脂が残ると、最初の層がくっつきにくくなります。<strong>毎回洗う義務はありません。</strong>汚れが付いた、初層が剥がれるなど、清掃が必要なときに行います。以下は<strong>取り外し可能なPEI系プレートで、メーカーが水洗いを許可している場合</strong>の一般的な手順です。</p>
 <ol class="steps">
 <li><strong>印刷が終わって冷えたことを確認</strong>。熱いノズル・加熱台・造形物には触れない。プレートが外れる機種だけ、説明書どおりに取り外す。</li>
 <li><strong>印刷面を確認</strong>。前回の樹脂片、ブリム、のりの残り、指紋を探す。乾いた樹脂を金属工具で無理に削らない。</li>
 <li><strong>ぬるま湯＋少量の食器用中性洗剤</strong>で印刷面をやさしく洗う。清潔な柔らかいスポンジ等を使い、洗剤や油分を残さないよう十分にすすぐ。</li>
 <li><strong>水分を完全に拭き取って乾かす</strong>。清潔な、繊維や油分の残りにくい布を使う。電子部品・加熱台・プリンター本体へ水をかけない。</li>
 <li><strong>印刷面を指で触らず装着</strong>。板の方向・位置が合っているか、磁石や固定具が正しく収まったか確認する。</li>
-<li><strong>のりは必須ではない</strong>。使用する板・材料のメーカー指示を確認。特に滑らかなPEIへのPETGなど、接着が強すぎる組み合わせでは「剥がすための分離層」としてのりが必要なことがある。</li>
 </ol>
-<div class="important caution"><strong>ここを誤解しない：</strong>「毎回のりを塗る」「全プレートをアルコールで拭く」「水洗い後すぐ高温印刷」は共通ルールではありません。表面の材質・メーカーの指示で変わります。特殊なコーティング面、ガラス等はそれぞれの清掃方法を優先します。IPA等は使用を許可された冷えたプレートだけで、火気・高温部を避けます。</div>
+<div class="important caution"><strong>清掃の注意：</strong>すべてのプレートで水洗い・アルコール清掃が使えるわけではありません。表面の材質とメーカーの指示を優先し、特殊なコーティング面やガラス等はそれぞれの方法に従います。熱い加熱台や電子部品には水をかけません。</div>
+<details class="column"><summary>コラム｜スティックのりを使う方法もある（通常は不要）</summary>
+<p>これは<strong>基本の必須作業ではなく、条件が合うときの選択肢</strong>です。モデルが板から剥がれやすい場合、またはPETG等が特定のプレートに強く付きすぎる場合に、メーカーが指定する接着剤・分離剤としてスティックのり等を使用する方法があります。接着を助ける場合と、剥がしやすくするための分離層にする場合があり、目的が違います。</p>
+<p><strong>まずメーカーのプレート×材料の推奨を確認。</strong>対応する組み合わせなら、のりを使わずに印刷して問題ありません。「毎回塗る」はこのガイドの推奨ではありません。</p>
+<p class="small">同じくIPA（アルコール）を使う方法もありますが、全プレート向けではありません。メーカーが許可した冷えた印刷面でのみ使い、火気・高温部を避けます。</p>
+</details>
 <p class="small">出典：<a href="https://wiki.bambulab.com/en/filament-acc/acc/pei-plate-clean-guide" target="_blank" rel="noopener">Bambu Lab公式PEI清掃ガイド</a> ／ <a href="https://help.prusa3d.com/ja/article/1%E5%B1%A4%E7%9B%AE%E3%81%AE%E5%95%8F%E9%A1%8C_1804" target="_blank" rel="noopener">Prusa公式：1層目の問題</a> ／ <a href="https://help.prusa3d.com/ja/article/print-surface-preparation_686951" target="_blank" rel="noopener">Prusa公式：プレートと材料の組み合わせ</a>。</p>
 </section>
 
@@ -120,7 +124,7 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 <tr><td>印刷物同士がはまらない</td><td>底の膨らみ、Zシーム、隙間、印刷方向</td><td>接触部を測り、<a href="./bambu-studio-print-guide.html#troubles">嵌合の小技</a>を見る。</td></tr>
 <tr><td>側面に筋や光沢の縞</td><td>内部の橋渡し、外壁速度、流量</td><td><a href="./bambu-studio-print-guide.html#troubles">症状別の5つの小技</a>へ。</td></tr>
 </tbody></table>
-<div class="important">機械をいじる前に、まず<strong>正常に印刷できる小さなモデル</strong>と問題モデルを比較すると切り分けやすくなります。ただし、テストモデルが成功したから機械側に問題がない、と断定はできません。</div>
+<details class="column"><summary>コラム｜テストモデルを刷って原因を切り分ける方法もある</summary><p>すでに正常に印刷できる小さなモデルがあるなら、問題のあるモデルと結果を比較する方法があります。ただし追加印刷が必須ではなく、テストモデルが成功しても機械側の問題を完全には否定できません。まず現在の失敗位置とPreviewを確認しましょう。</p></details>
 </section>
 
 
@@ -209,7 +213,7 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 </ul>
 <p class="small">動画の「毎回のり」「PETGの耐熱数値」「全てのPLA以外は必ず乾燥」「固定の公差・充填率」等は、条件付き経験則として扱い、全機種共通の確定仕様にはしていません。字幕・自動文字起こしにはノズル径、寸法などの誤認識があり得ます。このガイドはメーカー公式マニュアルの代わりではありません。2026-11-19制作。</p>
 </section>
-<footer>AD&amp;C｜はじめての3Dプリント v1.0.1 · 2026-11-19。学習・実行・改善のための初回案内です。</footer>
+<footer>AD&amp;C｜はじめての3Dプリント v1.0.2 · 2026-11-19。学習・実行・改善のための初回案内です。</footer>
 </main>
 <script>
 (function(){
