@@ -69,8 +69,8 @@ footer{border-top:1px solid var(--line);background:white;padding:1.5rem 1rem 3re
 <p class="small">「＋」が見つからない場合は、利用環境・ワークスペースの制限を確認。<a href="https://developers.openai.com/plugins/deploy/connect-chatgpt" target="_blank" rel="noopener noreferrer">OpenAI公式手順</a>では、必要に応じて設定の <strong>Security and login → Developer mode</strong> を有効化する経路が案内されています。表示・利用可否はプランやワークスペース設定で異なります。</p>
 </div>
 <div class="step"><h3><span class="num">STEP 3</span>MCPの名前と接続先を指定</h3>
-<p>新規追加画面で、<strong>わかりやすい表示名</strong>と、AIから受け取った<strong>既存のMCP HTTPS URL</strong>（通常は <code>https://.../mcp</code>）を入力。認証方式は<strong>そのサーバーの既存仕様に合わせて OAuth</strong>を選びます。別の認証方式を思いつきで選ばないでください。</p>
-<div class="mock" role="img" aria-label="概念図：接続フォームの項目"><div class="mockhead">入力する項目の表示例（実画面ではありません）</div><div class="mockscreen"><div class="mockline">名前：例「記事検索ツール」</div><div class="mockline">接続URL：https://example.workers.dev/mcp</div><div class="mockline">認証：OAuth（既存仕様に従う）</div><span class="mockbutton">作成／接続</span></div></div>
+<p>新規追加画面で、<strong>わかりやすい表示名・短い説明</strong>と、AIから受け取った<strong>既存のMCP HTTPS URL</strong>（通常は <code>https://.../mcp</code>）を入力。認証方式は<strong>そのサーバーの既存仕様に合わせて OAuth</strong>を選びます。別の認証方式を思いつきで選ばないでください。</p>
+<div class="mock" role="img" aria-label="概念図：接続フォームの項目"><div class="mockhead">入力する項目の表示例（実画面ではありません）</div><div class="mockscreen"><div class="mockline">名前：例「記事検索ツール」</div><div class="mockline">説明：例「許可された記事を検索・読取する」</div><div class="mockline">接続URL：https://example.workers.dev/mcp</div><div class="mockline">認証：OAuth（既存仕様に従う）</div><span class="mockbutton">作成／接続</span></div></div>
 <p><strong>ここではAPIトークンやアクセスキーをChatGPTの名前欄・URL欄へ貼りません。</strong></p>
 </div>
 <div class="step"><h3><span class="num">STEP 4</span>サービスの認可画面で承認</h3>
