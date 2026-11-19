@@ -31,11 +31,11 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 <span class="eyebrow">AD&amp;C / FIRST STEPS / FDM 3D PRINTING</span>
 <h1>はじめての3Dプリント</h1>
 <p class="lead">プリンターを買ったら、まずここから。部品の名前、板の掃除、材料の選び方、最初の1個を印刷する手順、失敗の見分け方を、実際に手を動かせる言葉で説明します。</p>
-<span class="tag">はじめの10分</span> <span class="tag">必要なら詳しく学べる</span> <span class="tag">FDM（樹脂の糸を溶かす方式）向け</span>
+<span class="tag">まず全員に必要な基本</span> <span class="tag">後半に上級者向けを分離</span> <span class="tag">FDM（樹脂の糸を溶かす方式）向け</span>
 <nav aria-label="このページの目次">
-<a href="#parts">部品の名前</a><a href="#clean">まず板を掃除</a><a href="#first-print">最初の1個</a><a href="#material">材料を選ぶ</a><a href="#trouble">困ったら</a><a href="#settings">設定の意味</a><a href="#design">設計のコツ</a><a href="#ai-help">AIに相談</a>
+<a href="#parts">部品の名前</a><a href="#clean">まず板を掃除</a><a href="#first-print">最初の1個</a><a href="#material">最初はPLA</a><a href="#trouble">困ったら</a><a href="#ai-help">AIに相談</a><a href="#advanced">上級者向け</a>
 </nav>
-<div class="important"><strong>次に読む応用編：</strong> <a href="./bambu-studio-print-guide.html">きれいに・正確に印刷するためのコツ（Bambu Studio版）</a>。Fuzzy Skin、上面仕上げ、嵌合、横筋、光沢の縞などは応用編へ。最初の印刷を始めるだけなら、このページの「最初の1個」までで十分です。</div>
+<div class="important"><strong>次に読む応用編：</strong> <a href="./bambu-studio-print-guide.html">きれいに・正確に印刷するためのコツ（Bambu Studio版）</a>。Fuzzy Skin、上面仕上げ、嵌合、横筋、光沢の縞などは応用編へ。初めて使う方は「最初の1個」まで進めば十分です。材料の応用・細かい設定・3D設計はページ下部の「上級者向け」にまとめています。</div>
 <p class="small">本ガイドはFDM方式を対象とします。光硬化樹脂（レジン）の洗浄・硬化・薬品取扱いは別手順です。機種別の取扱説明書と安全指示が優先します。</p>
 </header>
 
@@ -102,18 +102,13 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 </div>
 </section>
 
-<section class="panel" id="material">
-<h2>4. 材料はまずPLA。必要になってから選択肢を広げる</h2>
-<table><thead><tr><th>材料</th><th>向く用途</th><th>初めて使うときの注意</th></tr></thead><tbody>
-<tr><td><strong>PLA</strong></td><td>模型、小物、室内の整理用品、初回練習</td><td>比較的印刷しやすい。高温環境・屋外長期使用・強い荷重には向かないことがある。</td></tr>
-<tr><td><strong>PETG</strong></td><td>少し熱に強く、粘りが欲しい実用品など</td><td>吸湿や糸引きに注意。プレート表面によっては固着し過ぎるため、分離層の要否を確認。</td></tr>
-<tr><td><strong>TPU</strong></td><td>柔軟な部品、保護具</td><td>柔らかく送りにくい場合がある。対応フィーダーや速度条件を確認。</td></tr>
-<tr><td><strong>ABS / ASA / 強化材入り</strong></td><td>耐熱や特殊条件が必要な用途</td><td>換気・排気、筐体条件、反り、適合するノズルや温度が重要。初回の既定にはしない。</td></tr>
-</tbody></table>
-<details><summary>フィラメントの乾燥って何？</summary><p>樹脂が空気中の水分を吸うと、印刷中の泡、糸引き、表面不良につながる場合があります。密封・乾燥剤等で保管し、必要に応じて専用乾燥機とメーカー推奨温度・時間を使います。PLAも保管環境次第で吸湿します。「PLA以外だけ乾燥」とは限りません。<strong>熱いビルドプレートと自作カバーを乾燥機代わりにする方法は初学者には推奨しません。</strong></p></details>
-<details><summary>高価な材料や太いノズルは必要？</summary><p>通常は不要。カーボン繊維等を含む材料はノズルを摩耗させやすく、対応材質のノズルが必要になることがあります。ノズル径は一般に0.4mmなどの単位で選び、0.6mm／0.8mmが選択肢になる機種もあります。大きなノズルほど細かい文字や穴の表現に制約が出ます。</p></details>
-</section>
 
+
+<section class="panel" id="material">
+<h2>4. 最初の材料はPLAから</h2>
+<p>初回は<strong>一般的なPLA</strong>を、メーカー指定の材料プロファイルで使います。小物・室内の収納用品・模型などに向き、最初の練習に適しています。ただし、高温の場所・長期間の屋外・大きな荷重に使う部品は、用途に合う材料・設計を別途確認します。</p>
+<div class="important"><strong>まずはこれだけ：</strong>フィラメントにPLAと書かれているか確認し、スライサーでもPLA用の設定を選びます。<strong>PETGやTPU、特殊材料、乾燥機、ノズル変更は最初の1個には必要ありません。</strong>必要になったら<a href="#advanced-materials">上級者向け：材料の選び分け</a>を参照してください。</div>
+</section>
 <section class="panel" id="trouble">
 <h2>5. 失敗したら、まず起きた場所から調べる</h2>
 <p>結果だけで設定を何個も変えず、<strong>「いつ・どこで失敗したか」→「何が原因候補か」→「1つ変更して再確認」</strong>で切り分けます。</p>
@@ -128,8 +123,31 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 <div class="important">機械をいじる前に、まず<strong>正常に印刷できる小さなモデル</strong>と問題モデルを比較すると切り分けやすくなります。ただし、テストモデルが成功したから機械側に問題がない、と断定はできません。</div>
 </section>
 
+
+
+
+
+
+
+<section class="panel" id="ai-help">
+<h2>6. AIに「自分の機種ではどうする？」と聞く</h2>
+<p>機種、印刷する材料、プレートの種類、困りごとを入力すると、AIに渡す相談文を作れます。生成処理はこのページ内だけで行い、サーバーへ送信しません。まずメーカーの操作説明を確認する指示を含みます。</p>
+<div class="form">
+<div><label for="printer">プリンター機種</label><input id="printer" value="Bambu Lab A1 mini"></div>
+<div><label for="plate">ビルドプレートの種類</label><input id="plate" value="テクスチャーPEI（不明なら不明）"></div>
+<div><label for="filament">使用する材料</label><input id="filament" value="PLA"></div>
+<div><label for="problem">知りたいこと</label><select id="problem"><option>最初の1個を印刷する</option><option>プレートをきれいにする</option><option>造形物が剥がれる</option><option>糸引き・筋・上面の荒れを直す</option><option>部品をぴったり組み立てる</option><option>自分で3Dモデルを設計する</option></select></div>
+</div>
+<div class="row" style="margin:13px 0"><button id="makePrompt" type="button">指示文を作成・全文コピー</button><button id="viewPrompt" class="secondary" type="button">全文を確認</button></div>
+<p id="copyStatus" class="status" role="status" aria-live="polite">このフォームの入力は送信されません。</p>
+<div id="promptPanel" hidden><label for="promptText">生成した指示文（全文）</label><textarea id="promptText" readonly></textarea><p class="small">ブラウザーがコピーを禁止するときは、全文を選択して手動コピーできます。</p></div>
+</section>
+
+<div class="important" id="advanced"><strong>ここから先は上級者向け：</strong>最初の印刷ができれば、今すぐ読む必要はありません。よりきれいに仕上げたい、寸法を合わせたい、特殊な材料を使いたい、自分で設計したいときに、必要な項目だけ開いてください。<nav aria-label="上級者向け項目"><a href="#settings">設定・仕上げ</a><a href="#design">設計のコツ</a><a href="#advanced-materials">特殊な材料</a></nav></div>
+
 <section class="panel" id="settings">
-<h2>6. よく触る設定の意味（ここから応用の入口）</h2>
+<span class="tag">上級者向け・必要になった人だけ</span>
+<h2>7. 仕上がり・速度・強度を調整する設定</h2>
 <div class="group"><h3>見た目・時間・強さ</h3>
 <details><summary>レイヤー高さ（Layer height）</summary><p>1層の厚み。小さくすると曲面や斜面の段差が減りやすい一方、時間は延びる。真っ直ぐな箱では違いが小さいこともある。必要な高さだけ薄くするVariable/Adaptive Layer Heightも選択肢。</p></details>
 <details><summary>壁の周回数（Wall loops / Perimeters）</summary><p>外壁を何周作るか。荷重のかかる実用品では、内部充填率だけでなく壁厚や造形方向が重要。壁を増やせば必ず十分な強度になるわけではない。</p></details>
@@ -146,7 +164,8 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 </section>
 
 <section class="panel" id="design">
-<h2>7. 自分で設計するときの基本（読みたい人だけ）</h2>
+<span class="tag">上級者向け・必要になった人だけ</span>
+<h2>8. 自分で設計するときのコツ</h2>
 <p>設計まで始める場合は、印刷姿勢と組立方法から逆算します。以下は添付動画で紹介された多数の工夫を、用途別にまとめ直したものです。</p>
 <details><summary>底面の面取りと角丸を使い分ける</summary><p>底に接した大きなフィレット（角丸）は急なオーバーハングになることがある。まず底面の小さな面取り（Chamfer）で印刷しやすくし、必要なら上側で曲面へつなぐ。どんな形でも45°なら成功するという意味ではない。<a href="https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135" target="_blank" rel="noopener">Prusaの設計ガイド</a>。</p></details>
 <details><summary>印刷方向と積層の向きを考える</summary><p>同じモデルでも、寝かせるか立てるかで強さ・表面・サポート量が大きく変わる。引張力が層間の接合を剥がす向きに集中しないように置く。高荷重や安全に関わる部品は実測・適切な設計が必要。</p></details>
@@ -163,18 +182,18 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 <div class="important"><strong>設計の相談はAIに任せてもよい：</strong>完成したい機能と現物寸法を伝えると、形状案、STLなどの作成、干渉・組立の確認へ進めます。ただし図面・STL・実印刷の成立は別々に確かめます。<a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/3d-print-practical/SKILL.md">3Dモデルづくり汎用Playbook</a>。</div>
 </section>
 
-<section class="panel" id="ai-help">
-<h2>8. AIに「自分の機種ではどうする？」と聞く</h2>
-<p>機種、印刷する材料、プレートの種類、困りごとを入力すると、AIに渡す相談文を作れます。生成処理はこのページ内だけで行い、サーバーへ送信しません。まずメーカーの操作説明を確認する指示を含みます。</p>
-<div class="form">
-<div><label for="printer">プリンター機種</label><input id="printer" value="Bambu Lab A1 mini"></div>
-<div><label for="plate">ビルドプレートの種類</label><input id="plate" value="テクスチャーPEI（不明なら不明）"></div>
-<div><label for="filament">使用する材料</label><input id="filament" value="PLA"></div>
-<div><label for="problem">知りたいこと</label><select id="problem"><option>最初の1個を印刷する</option><option>プレートをきれいにする</option><option>造形物が剥がれる</option><option>糸引き・筋・上面の荒れを直す</option><option>部品をぴったり組み立てる</option><option>自分で3Dモデルを設計する</option></select></div>
-</div>
-<div class="row" style="margin:13px 0"><button id="makePrompt" type="button">指示文を作成・全文コピー</button><button id="viewPrompt" class="secondary" type="button">全文を確認</button></div>
-<p id="copyStatus" class="status" role="status" aria-live="polite">このフォームの入力は送信されません。</p>
-<div id="promptPanel" hidden><label for="promptText">生成した指示文（全文）</label><textarea id="promptText" readonly></textarea><p class="small">ブラウザーがコピーを禁止するときは、全文を選択して手動コピーできます。</p></div>
+<section class="panel" id="advanced-materials">
+<span class="tag">上級者向け・必要になった人だけ</span>
+<h2>9. PLA以外の材料・乾燥・ノズルの選択</h2>
+<p>耐熱性・柔らかさ・特殊な強度が必要になった段階で検討します。最初の印刷では読み飛ばして構いません。</p>
+<table><thead><tr><th>材料</th><th>向く用途</th><th>初めて使うときの注意</th></tr></thead><tbody>
+<tr><td><strong>PLA</strong></td><td>模型、小物、室内の整理用品、初回練習</td><td>比較的印刷しやすい。高温環境・屋外長期使用・強い荷重には向かないことがある。</td></tr>
+<tr><td><strong>PETG</strong></td><td>少し熱に強く、粘りが欲しい実用品など</td><td>吸湿や糸引きに注意。プレート表面によっては固着し過ぎるため、分離層の要否を確認。</td></tr>
+<tr><td><strong>TPU</strong></td><td>柔軟な部品、保護具</td><td>柔らかく送りにくい場合がある。対応フィーダーや速度条件を確認。</td></tr>
+<tr><td><strong>ABS / ASA / 強化材入り</strong></td><td>耐熱や特殊条件が必要な用途</td><td>換気・排気、筐体条件、反り、適合するノズルや温度が重要。初回の既定にはしない。</td></tr>
+</tbody></table>
+<details><summary>フィラメントの乾燥って何？</summary><p>樹脂が空気中の水分を吸うと、印刷中の泡、糸引き、表面不良につながる場合があります。密封・乾燥剤等で保管し、必要に応じて専用乾燥機とメーカー推奨温度・時間を使います。PLAも保管環境次第で吸湿します。「PLA以外だけ乾燥」とは限りません。<strong>熱いビルドプレートと自作カバーを乾燥機代わりにする方法は初学者には推奨しません。</strong></p></details>
+<details><summary>高価な材料や太いノズルは必要？</summary><p>通常は不要。カーボン繊維等を含む材料はノズルを摩耗させやすく、対応材質のノズルが必要になることがあります。ノズル径は一般に0.4mmなどの単位で選び、0.6mm／0.8mmが選択肢になる機種もあります。大きなノズルほど細かい文字や穴の表現に制約が出ます。</p></details>
 </section>
 
 <section class="panel" id="sources">
@@ -190,7 +209,7 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 </ul>
 <p class="small">動画の「毎回のり」「PETGの耐熱数値」「全てのPLA以外は必ず乾燥」「固定の公差・充填率」等は、条件付き経験則として扱い、全機種共通の確定仕様にはしていません。字幕・自動文字起こしにはノズル径、寸法などの誤認識があり得ます。このガイドはメーカー公式マニュアルの代わりではありません。2026-11-19制作。</p>
 </section>
-<footer>AD&amp;C｜はじめての3Dプリント v1.0.0 · 2026-11-19。学習・実行・改善のための初回案内です。</footer>
+<footer>AD&amp;C｜はじめての3Dプリント v1.0.1 · 2026-11-19。学習・実行・改善のための初回案内です。</footer>
 </main>
 <script>
 (function(){
