@@ -1,7 +1,7 @@
 {
   "schema_version": "0.3.0",
-  "catalog_version": "0.3.11",
-  "updated_at": "2026-11-16",
+  "catalog_version": "0.3.12",
+  "updated_at": "2026-11-19",
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
@@ -183,6 +183,23 @@
       "review_status": "user_approved_2026-11-16; embedded_workSheet1_tlv_coordinates_and_integers=PASS_1; formula_cached_values=PASS_3; formula_original_expression=NOT_DECODED; jtd_text_regression=PASS_29_OF_29; other_embedded_sheets_and_layout=NOT_RUN; auto_distribution=NOT_RUN",
       "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/legacy-data-recovery/SKILL.md",
       "review_due": "2026-12-16",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "id": "PB-THIRD-PARTY-SELECT-001",
+      "title": "AD&Cサードパーティ選定：玄人の目利き・安全な最小試用",
+      "kind": "playbook",
+      "domain_id": "digital-safety",
+      "version": "0.1.0",
+      "path": "skills/third-party-selection/SKILL.md",
+      "status": "user_adopted_trial",
+      "visibility": "public_manual_reference",
+      "distribution_ready": false,
+      "auto_install": false,
+      "risk": "supply_chain_prompt_injection_permissions_external_transfer",
+      "scope": "外部Playbook・MCP・AIツール・フリーウェアの利用時だけ作者・実績・権限・外部送信・最小試用・撤退方法を評価。自由投稿の審査や自動導入には使わない",
+      "review_status": "user_requested_2026-11-19; markdown_readback=PASS; hypothetical_cases=DESIGN_ONLY; independent_ai=NOT_RUN; real_product_trial=NOT_RUN; formal_distribution_review=NOT_RUN",
+      "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/third-party-selection/SKILL.md",
       "license": "CC-BY-SA-4.0"
     }
   ],
