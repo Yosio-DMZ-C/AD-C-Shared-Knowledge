@@ -359,7 +359,7 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
   try{if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error("clipboard unavailable");await navigator.clipboard.writeText(txt);status.textContent="指示文の全文をコピーしました。AIチャットへ貼り付けてください。";return;}catch(e){}
   output.focus();output.select();
   try{if(document.execCommand("copy")){status.textContent="指示文の全文をコピーしました。";return;}}catch(e){}
-  status.textContent="ブラウザーがコピーを制限しています。下の全文を選択したままCtrl+C（Macは⌘+C）を押してください。";
+  status.textContent="コピーが制限されています。スマホでは下の全文を長押しして「コピー」、PCではCtrl+C（Macは⌘+C）を押してください。";
  });
  function repairPrompt(){
   var problem=document.getElementById("repairDescription").value.trim() || "公開ガイドの現行仕様を確認し、必要な軽微修正のみ提案してください。";
@@ -396,7 +396,7 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
   }catch(e){}
   out.focus();out.select();
   try{if(document.execCommand("copy")){s.textContent="修正・PR指示文の全文をコピーしました。";return;}}catch(e){}
-  s.textContent="コピーが制限されました。表示した全文をCtrl+C（Macでは⌘+C）でコピーしてください。";
+  s.textContent="コピーが制限されています。スマホでは下の全文を長押しして「コピー」、PCではCtrl+C（Macは⌘+C）を押してください。";
  });
 
 })();
