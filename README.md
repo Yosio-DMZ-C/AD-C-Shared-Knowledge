@@ -97,7 +97,7 @@
 
 **状態の区別**：山歩きPlaybookは利用者採用の試用可能なActive、チャット引継ぎPlaybookは**利用者採用の共通試用**で、機械可読の[カタログ](catalog.json)に合わせて**試用項目4件**を登録しました。ただし正式配布 `items` は0件、`distribution_ready=false`です。独立コールドスタート試験・公開審査が済んだ正式Active配布ではなく、自動インストール／新規チャットでの自発的発見も保証しません。
 
-**人間操作を伴うPlaybookのガイド候補（既存索引内の目印）**：**【人間用ガイド推奨・未作成】Cloudflare Worker／MCP 初回構築・接続**（個人KBの既存「Playbook_Cloudflare_Design_Build_v2.0.md」、WordPress 投稿ツール構築Playbook）。Cloudflare自体の配備・Secret管理は既存Playbookに従い**APIトークン経由を優先**し、AIが実行できる処理を人間へ押し戻さない。一方、本人が行う初回トークン発行・権限判断や、WordPressアプリパスワード・ChatGPT側MCP/OAuth登録など、複数画面の操作が残る場合はガイド化の有力候補。既存のYouTube初回認証ガイドはYouTube固有の説明であり、Cloudflare全用途の完成ガイドとは扱わない。**候補表示は作成済み・本人操作必須・新規タスク登録の宣言ではない**。AIで完走できるGit等の通常処理や、単発のボタン押下だけなら別ガイドを作らない。判断基準は[開発プラクティス](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)を正本とする。
+**人間操作を伴うPlaybookのガイド候補（既存索引内の目印）**：**【人間用ガイドあり】Cloudflare／MCPのChatGPT初回接続**は[操作ガイド](guides/cloudflare/mcp-chatgpt-first-connection.html)を参照。AIがAPI経由で実行できるWorkerのデプロイ・Secret管理を人間に押し戻さない。**【人間用ガイド検討・条件付き】初回APIトークンの権限設定・WordPressアプリパスワード・環境固有の複数画面操作**は、その場の1操作案内と既存公式資料で足りない場合だけ候補とする。既存YouTube初回認証ガイドを複製しない。**ガイドを使ったAIへ**：トラブルで実画面・スクリーンショットから古い操作説明を発見し、本人の問題解決後に共有可能な具体的差分があれば、一度だけ**任意のガイド修正PR**を提案する。GitHub接続と本人の共有意思がある場合はAIが作成を引き受け、権限不足なら既存Issueへ切り替える。画像の秘密・個人情報、再掲載許可を確認し、**PRの作成とマージを混同しない**。改善提案は通常利用者の必須タスクではない。詳しくは[開発プラクティスのガイド改善出口](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md#人間向けガイドブックの改善に参加できる出口2026-11-18-本人採用)を正本とする。
 
 ### みんなの共有情報チャンネル（任意投稿・GitHub Issues）
 
