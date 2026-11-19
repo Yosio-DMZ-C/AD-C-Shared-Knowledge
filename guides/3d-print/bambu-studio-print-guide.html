@@ -44,9 +44,9 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
 <header class="hero">
  <span class="eyebrow">AD&amp;C / 3D PRINT PRACTICE</span>
  <h1>3Dプリント設定ガイド</h1>
- <p class="lead">Bambu Studioで「質感を付ける」「上面をきれいにする」「上の部分だけ充填率を上げる」を使い分ける。初心者が印刷前に迷わず判断できる現場向けガイド。</p>
- <div class="tags"><span>Bambu Studio</span><span>A1 miniなどFDM向け</span><span>2026-11-18時点の調査</span><span>機種別の保証値ではありません</span></div>
- <nav class="nav"><a href="#start">印刷の基本</a><a href="#fuzzy">ランダムな石肌</a><a href="#top">上面の密度</a><a href="#local">上だけ変える</a><a href="#finish">表面仕上げ</a><a href="#before">印刷前チェック</a><a href="#sources">資料</a><a href="#contribute">改善提案・PR</a></nav>
+ <p class="lead">Bambu Studioで「質感を付ける」「上面をきれいにする」「上の部分だけ充填率を上げる」を使い分ける。初心者が印刷前に迷わず判断できる現場向けガイド。困ったときは「症状→原因候補→プレビュー→最小変更→実物確認」の順で調べる。</p>
+ <div class="tags"><span>Bambu Studio</span><span>A1 miniなどFDM向け</span><span>2026-11-19追補</span><span>機種別の保証値ではありません</span></div>
+ <nav class="nav"><a href="#start">印刷の基本</a><a href="#fuzzy">ランダムな石肌</a><a href="#top">上面の密度</a><a href="#local">上だけ変える</a><a href="#finish">表面仕上げ</a><a href="#troubles">症状別の小技5選</a><a href="#before">印刷前チェック</a><a href="#sources">資料</a><a href="#contribute">改善提案・PR</a></nav>
 <p class="muted"><strong>AIが使うプレイブックはこちら：</strong><a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/3d-print-practical/SKILL.md" target="_blank" rel="noopener">3Dモデルづくり汎用Playbook</a>。このページは人間向けの印刷設定ガイドです。</p>
 </header>
 <section class="section" id="my-guide">
@@ -181,8 +181,57 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
  <details><summary>Variable Layer Heightは充填率と違う？</summary><p>はい。レイヤーの高さを部分的に変えて曲面や段差の見た目を調整します。内部充填率を上げる機能とは別です。小さなR面などに効果がある場合もありますが、印刷時間とのトレードオフを確認します。</p></details>
  <details><summary>Fuzzy Skinと細かいロゴは両立する？</summary><p>可能性はありますが、ロゴ面を滑らかに残すのが優先。凹凸の境界を塗り分け、ロゴの溝や線が実際のノズル幅に対して細すぎないか確認します。画像上の高解像度とSTL・印刷解像度は別です。</p></details>
 </section>
+<section class="section" id="troubles">
+ <span class="pill">困った症状から探す / 実例で学ぶ</span>
+ <h2>6. 症状から解決する小技5選</h2>
+ <p>「設定名を覚える」よりも、<strong>①何が起こったか → ②原因候補 → ③スライスのPreviewでどの層・経路が違うか → ④設定を1つだけ変える → ⑤試し刷りで比較</strong>の順で考えます。以下は<a href="https://www.youtube.com/watch?v=rsleccn3eqM" target="_blank" rel="noopener">Age of 3DP / ウノケンの5つの小技の動画</a>で紹介された観察を起点に、既存ガイドとメーカー資料に照らして再編集したものです。<strong>動画の印刷例は特定条件の結果であり、すべての機種での再現保証ではありません。</strong></p>
+ <figure class="comparison" data-visual="troubles">
+  <svg viewBox="0 0 940 210" role="img" aria-labelledby="viz-troubles-title viz-troubles-desc" xmlns="http://www.w3.org/2000/svg">
+   <title id="viz-troubles-title">差し込み部品の下端の膨らみと、底面だけ補正した模式図</title>
+   <desc id="viz-troubles-desc">左は底部が外側に張り出し、角にシームの突起があり嵌合を妨げる例。右は底部の広がりを補正し、シームを嵌合面から離して確認する例。寸法精度を保証する図ではない。</desc>
+   <rect x="8" y="12" width="428" height="185" rx="12" fill="#fff" stroke="#aaa" stroke-width="2"/>
+   <rect x="504" y="12" width="428" height="185" rx="12" fill="#fff" stroke="#aaa" stroke-width="2"/>
+   <text x="28" y="42" font-size="18" font-weight="700" fill="#181818">AS-IS：底だけ太い</text>
+   <text x="524" y="42" font-size="18" font-weight="700" fill="#167443">TO-BE：底とシームを確認</text>
+   <path d="M132 70 H316 V145 H333 V166 H115 V145 H132 Z" fill="#eee" stroke="#171717" stroke-width="3"/>
+   <circle cx="334" cy="154" r="7" fill="#171717"/><text x="344" y="145" font-size="16" fill="#171717">シームの突起</text>
+   <text x="226" y="188" font-size="16" text-anchor="middle" fill="#181818">底部の張り出し＋突起</text>
+   <path d="M628 70 H812 V166 H628 Z" fill="#f0f8f2" stroke="#167443" stroke-width="3"/>
+   <path d="M628 146 H812" stroke="#167443" stroke-width="3" stroke-dasharray="6 5"/>
+   <text x="720" y="187" font-size="16" text-anchor="middle" fill="#167443">底部補正＋シーム位置変更</text>
+   <path d="M451 104 H483 M475 96 L483 104 L475 112" stroke="#181818" stroke-width="2" fill="none"/>
+  </svg>
+  <figcaption>底部の張り出し（Elephant Foot）とシームの突起は別原因。片方を直しても、もう片方が嵌合を妨げる場合があります。模式図は実寸やプリント結果ではありません。</figcaption>
+ </figure>
+ <details open><summary>① 側面に横筋やへこみが出る：内部ブリッジの引っ張りを疑う</summary>
+  <p><strong>症状：</strong>水平な底・棚の少し下に、外壁の横筋や内側へのへこみが現れる。<strong>原因候補：</strong>内部の橋渡し（ブリッジ）の収縮や支持構造が壁を引く可能性。動画の説明に基づく仮説であり、筋の原因はこれだけではありません。</p>
+  <p><strong>まず見る：</strong>Previewの対象高さでBridge／Internal solid infill／Sparse infillの経路を表示し、横筋の位置と橋渡しの接続位置が一致するか。<strong>小変更：</strong>内部充填パターン・密度を一つずつ変え、壁への接続と支持不足がどう変わるかを比較。必要なら設計形状を見直す。</p>
+  <p class="muted">副作用：内部充填やブリッジの変更は上面の支持・強度・印刷時間にも影響。パターン変更だけで「橋が壁に触れなくなる」とは限らない。<a href="#top">上面シェル</a>と<a href="#local">内部充填</a>の区別も参照。</p>
+ </details>
+ <details><summary>② 部品がはまらない：象の足とシームを別々に確認</summary>
+  <p><strong>症状：</strong>設計では入るはずの箱やトレイが、底付近や角で止まる。<strong>まず見る：</strong>部品の底の張り出しと、角・接触面のZシーム（層の開始・終了点）を分けて確認。まずベッドや初層の状態を点検する。</p>
+  <p><strong>小変更：</strong>Qualityの<strong>Elephant foot compensation</strong>で底層を少し内側へ補正し、Previewと実寸で比較する。シームが干渉する場合は<strong>Seam position／Seam painting</strong>で嵌合面の外へ逃がす。Randomで分散する方法もあるが、表面全体に細かな点が増えるため無条件には推奨しない。</p>
+  <p class="muted">副作用：底の補正量を増やしすぎると底面寸法が小さくなりすぎる。補正値0.2mmなどは動画の一事例で、普遍的な推奨値ではない。最終姿勢だけでなく挿入途中と保持感も評価。<a href="#finish">嵌合の基本</a>を参照。</p>
+ </details>
+ <details><summary>③ シルクPLAにうっすら縞：外壁の速度差を疑う</summary>
+  <p><strong>症状：</strong>形状の切替えやオーバーハング付近の高さに沿って光沢が変わる。<strong>まず見る：</strong>Previewの<strong>Speed／Flow</strong>表示で、縞の高さと外壁速度・流量の変化が一致するか。</p>
+  <p><strong>小変更：</strong>該当版にあれば<strong>Smoothing wall speed along Z</strong>（Z方向の外壁速度平滑化）などを比較。関連する<strong>Smooth speed discontinuity area</strong>の係数も別設定として確認する。改善しなければ外壁速度を全体的に下げ、極端な速度差を小さくする方法を試す。</p>
+  <p class="muted">副作用：係数の大小で光沢と積層線が別方向に変わる場合がある。速度を揃えると時間が増える。機能名・既定のON/OFF・利用可能性はBambu Studioの版と機種による。<a href="https://csm.bblcdn.com/hub/9425242c00344b0e801b6179f9a243aa.pdf" target="_blank" rel="noopener">Bambu Lab P2S公式マニュアル：光沢差の原因</a>も参照。</p>
+ </details>
+ <details><summary>④ サポート接触面が荒れる：対応機器なら異素材の界面を試す</summary>
+  <p><strong>症状：</strong>サポートを取ると裏面が傷んでいる。<strong>まず見る：</strong>サポートが必要な造形方向か、同一素材のSupport interface・Top Z distanceで改善できるかを検討。</p>
+  <p><strong>応用策：</strong>対応するマルチマテリアル環境では、<strong>Support/Raft Interface</strong>だけに相性を確認した別素材（PLA造形に適合する専用サポート材、または検証済みのPETG等）を割り当てる。界面だけを変え、本体とサポート本体は必要に応じて従来材料のままにする。</p>
+  <p class="muted">条件・副作用：材料切替え対応、パージ量、材料間の混入・接着不良、温度・ベッド適合、追加時間と廃材を要確認。PLAとPETGを合わせれば必ず成功するわけではなく、ベッド温度を一律に片方へ合わせない。<a href="https://csm.bblcdn.com/hub/9425242c00344b0e801b6179f9a243aa.pdf" target="_blank" rel="noopener">P2S公式マニュアル：サポート界面</a>。</p>
+ </details>
+ <details><summary>⑤ 小さな複数部品を効率よく作る：オブジェクト順の印刷</summary>
+  <p><strong>症状・目的：</strong>色や設定の異なる小物を、1枚のプレートで順番に完成させたい。<strong>まず見る：</strong>Others → Special mode → <strong>Print sequence: By object</strong>（対応版の名称）を確認し、By layerとの違いを理解する。</p>
+  <p><strong>小変更：</strong>By objectへ切り替え、スライサーに表示される印刷順・各部品の必要間隔・高さ・衝突領域を確認してからスライスする。</p>
+  <p class="muted">副作用：完成済みの部品へツールヘッドやガントリーが衝突する危険がある。プレビュー・スライサーの警告・機種固有のクリアランスを優先し、無理に配置しない。高い物は順番や配置で制限が変わる。</p>
+ </details>
+ <div class="note"><strong>この5つに共通するコツ：</strong>「とりあえず全部変える」はしない。失敗が再現する形状を小さく試し、Previewの変化と実物の結果を別々に記録する。問題の種類によってはモデル設計の修正のほうが早い。</div>
+</section>
 <section class="section" id="before">
- <h2>6. 印刷開始前の6項目</h2>
+ <h2>7. 印刷開始前の6項目</h2>
  <figure class="comparison" data-visual="before">
  <svg viewBox="0 0 940 207" role="img" aria-labelledby="viz-before-title viz-before-desc" xmlns="http://www.w3.org/2000/svg">
   <title id="viz-before-title">STLの外形だけを見て判断する例と、スライサーで断面と積層を確認する例の比較</title><desc id="viz-before-desc">STLの外観に加え、スライサーのプレビューで内部・支持・材料・配置を確認する。</desc>
@@ -211,6 +260,8 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
  <li><a href="https://forum.bambulab.com/t/bambu-studio-modifier-operation-guide/100352" target="_blank" rel="noopener">Bambu Studio Modifier Operation Guideの紹介</a>：部分的な充填率・速度の変更</li>
  <li><a href="https://wiki.bambulab.com/en/software/bambu-studio/parameter/ironing" target="_blank" rel="noopener">Bambu Lab Wiki：Ironing</a>：トップ面の平滑化（リンク先は版によって閲覧条件あり）</li>
  <li><a href="https://wiki.bambulab.com/en/software/bambu-studio/parameter/fuzzy-skin" target="_blank" rel="noopener">Bambu Lab Wiki：Fuzzy Skin</a>：ランダムな外壁テクスチャ</li>
+ <li><a href="https://www.youtube.com/watch?v=rsleccn3eqM" target="_blank" rel="noopener">Age of 3DP / ウノケン：3Dプリントの小技5選</a>：症状と改善の事例（映像に示された条件での観察）</li>
+ <li><a href="https://csm.bblcdn.com/hub/9425242c00344b0e801b6179f9a243aa.pdf" target="_blank" rel="noopener">Bambu Lab P2S公式ユーザーマニュアル</a>：Quality、Seam、Support、光沢差の説明。P2S以外の操作仕様は別確認</li>
  <li><a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/3d-print-practical/SKILL.md" target="_blank" rel="noopener">AD&amp;C：3Dモデルづくり汎用Playbook</a>：設計・公差・現物評価の手順</li>
  </ol>
  <p class="muted">ライセンス：このHTML本文の独自記述は、AD&amp;C共有KBのライセンスに従います。リンク先の各メーカー資料・ソフトウェアは各権利者に帰属します。</p>
@@ -242,7 +293,7 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
  </details>
  <p class="muted">GitHub公式案内：<a href="https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files" target="_blank" rel="noopener">Editing files</a> ／ <a href="https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request" target="_blank" rel="noopener">Creating a pull request</a></p>
 </section>
-<footer>AD&amp;C / Printing field guide · v1.0.1 · 2026-11-19<br>メーカーの公式マニュアルではありません。印刷品質と強度は実際のプリンター・材料・造形方向で検証してください。</footer>
+<footer>AD&amp;C / Printing field guide · v1.1.0 · 2026-11-19<br>メーカーの公式マニュアルではありません。印刷品質と強度は実際のプリンター・材料・造形方向で検証してください。</footer>
 </main>
 <script>
 (function(){
@@ -287,6 +338,7 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
    "H. 公式ソース集、未確認・機種依存事項を分離した注記",
    "I. 主要な設定項目には、AS-ISからTO-BEへの変化を示す白黒＋変更点のみ緑の小さなインラインSVG模式図を置く。数値や物理的形状を誤認させない。",
    "J. GitHubでHTMLの修正案をFork・PR提出できる改善導線を追加（GitHubの認証・承認を省略した自動PR送信を偽装しない）。",
+   "K. 症状から探す小技：内部ブリッジによる外壁の筋／象の足とシームによる嵌合不良／外壁速度差の光沢縞／異素材サポート界面／オブジェクト順印刷。各項目を症状→原因候補→Preview→設定一つの比較→副作用の順で短く説明し、機種非対応・未実測は分ける。",
    "",
    "【HTML納品条件】",
    "スマホでも読める単一HTML（CSSとJavaScriptを内蔵し外部ライブラリ不要）。文字化け防止・見出し・表・アクセシビリティを確保。比較SVGは文字を極端に縮小せず、狭い画面では左右スクロールと操作案内で読めるようにする。",
