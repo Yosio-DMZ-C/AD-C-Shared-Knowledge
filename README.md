@@ -30,6 +30,8 @@
 
 **近傍配置・最小中央管理**：LinuxのREADME／設定ファイルと同様、**Playbookを基本単位**とし、人間用ガイド・実行ツール・Designer’s Noteは必要な場合だけ対象の近くに付ける。中央は発見用リンクと共通契約だけにし、ガイド未付属を不備と見なさない。全PlaybookのPython一括適用や設計理由の毎回読込はしない。
 
+**人間用ガイド（必要な場面だけ）**：【人間用ガイドあり】[Cloudflare製MCPをChatGPTへ接続する初心者ガイド](guides/cloudflare/mcp-chatgpt-first-connection.html) — 既存Workerの確認後、本人がPlugins画面の登録・OAuth認可・ツール選択で迷う場合に提示。既存接続・AIの自動実行で済む場合は読ませない。CloudflareのWorkerデプロイとSecret管理はAPIトークン経由が標準で、古いダッシュボード手順へ戻さない。【人間用ガイド検討・条件付き】Cloudflareの初回APIトークン発行（権限・対象アカウント選択が複雑な場合）は[Cloudflare公式案内](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)を優先し、まずチャット1操作案内を使う。【人間用ガイド検討・条件付き】[OS／UEFI／ディスクの環境構築](skills/development-research/playbooks/ENVIRONMENT_SETUP.md)は既存の1操作ずつの案内で足りない機種固有の操作のみ候補。新しい台帳や一律ガイド作成義務は設けない。
+
 
 <!-- ADNC-CENTRAL-MINIMAL-Q4-20261111 -->
 **Q4採用｜中央を軽く保つ（2026-11-11）**：AD&C利用者が常時触れる中央の役割は**理念／KB内の情報ナビとPlaybook発見／基本のふるまい／秘書への入口**に絞る。共通の優先順位・安全/権限・状態事実とcatalogは、迷わず正本へ辿るための**最小案内**として保持する。大きな改訂・開発・復旧時だけ、目立たない[Playbook作成・更新プラクティス](docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)／[テンプレート](templates/PLAYBOOK_TEMPLATE.md)／[開発リーダー用ワークシート](docs/templates/LEADER_WORKSHEET.md)へ進む。**秘書の具体的な業務・個人設定・予定は本人の非公開KB/既存秘書タスクを正本**とし、公開READMEへ複製しない。
