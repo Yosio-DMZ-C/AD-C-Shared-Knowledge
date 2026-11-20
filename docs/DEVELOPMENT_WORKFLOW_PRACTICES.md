@@ -135,6 +135,8 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 **作成側の結果確認をワークシートに接続**：閲覧用URLを実際の利用画面（可能ならPC／スマホ）で開き、**本文・変更後の図・ボタンが読者に見えるか**を確認する。ソースの保存・SHA照合と閲覧画面の反映を別記し、`PASS / FAIL / NOT_RUN` を実測した範囲だけに付ける。閲覧できなければソースURLを「完成表示」として出さず、代替表示・画像プレビュー・ローカルHTMLを渡す。制作者用[Playbookテンプレートの作成・更新ワークシート](../templates/PLAYBOOK_TEMPLATE.md#作成更新ワークシート編集担当専用必要なときだけ)の「表示URL・実視認」欄でこの出口を確かめる。**利用者へGitHub・閲覧検収の作業を強制しない。** 同じ「誰が何を見る→正しい入口→見えた結果」のナビを人にもAIにも適用する。
 
+**非公開HTML・社内ダッシュボードへの表示URL適用（2026-11-20）**：上記の「閲覧用URLとソースURLを区別する」原則は、公開ガイドに限らず、本人または組織が許可した範囲の非公開HTMLダッシュボードにも適用する。ただし**公開する義務はない**。許可された認証付きHTML表示先・権限内の会話プレビュー等を使い、表示画面を直接開けると実測できたリンクだけを「ブラウザーで見る」と案内する。Driveのファイル保存リンク、GitHub `blob`／`raw`、ダウンロード専用URLは**保存先・原本**として示し、実描画URLと同列に扱わない。描画URLが用意できない場合はHTMLファイルとローカルブラウザーでの開き方を返し、直開きURL・実描画は`NOT_RUN`または`FAIL`として区別する。非公開HTMLやその私的参照先をGitHub Pages／GitHack／外部プレビューへ無断転載しない。閲覧機能のために新規タスク・台帳・承認儀式を作らない。
+
 **実装例**：[人間向け3Dプリント設定ガイド（GitHub Pagesで描画）](https://yosio-dmz-c.github.io/AD-C-Shared-Knowledge/guides/3d-print/bambu-studio-print-guide.html)（[HTML原本](../guides/3d-print/bambu-studio-print-guide.html)）／[人間向けAD&C導入ガイド](https://github.com/Yosio-DMZ-C/AI-DODAI-Continuity/blob/main/docs/wiki/Getting-Started.md)。定型文を物理的に全ガイドへ一斉反映せず、今回のように改訂する対象へ最小差分で入れる。
 
 **5W2Hの配置**：資料／図解／ブログ／動画など**人間が読む・見る・聴く成果物**の専門Playbookには、下記の小表を直接置く。新しいシリーズでは基礎設定を既存Area／カスタムPlaybookに記録し、個別作品では継承して**変更した項目だけ**扱う。依頼・既存KBからAIが先に埋め、完成に重要な不足だけ一問ずつ確認する。表は質問票でも7項目すべての必須検査でもない。作品本文に5W2Hの全項目を書く義務ではなく、**Whatで情報の採用範囲を選ぶ**。どの行にどの媒体の設定を対応させるかは対象Playbookに短く記載する。通常のデータ抽出・システム操作等には適用しない。
