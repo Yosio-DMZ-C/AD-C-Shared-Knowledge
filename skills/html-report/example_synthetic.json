@@ -9,7 +9,7 @@
   "summary":"試験用。正本ではありません。\nPJと定例の結果は別分母で集計します。",
   "handoff":"架空の同じPJ ID・TASK IDの正本へ戻って作業を再開。",
   "items":[
-    {"id":"PJ-EXAMPLE/TASK-1","title":"架空のデータ集計","priority":"P0","status":"UNKNOWN","owner":"未確認","next_action":"既存の証拠を照合","evidence":"試験ケースのためなし","source_url":"https://example.com/task-1"},
+    {"id":"PJ-EXAMPLE/TASK-1","title":"架空のデータ集計","priority":"P0","due":"2026-11-30","status":"UNKNOWN","owner":"未確認","next_action":"既存の証拠を照合","evidence":"試験ケースのためなし","source_url":"https://example.com/task-1"},
     {"id":"PJ-EXAMPLE/TASK-2","title":"架空のレビュー","priority":"P2","status":"DONE","owner":"レビュアー","next_action":"なし","evidence":"架空"}
   ]
 }
