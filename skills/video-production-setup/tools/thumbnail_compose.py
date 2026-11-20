@@ -68,7 +68,30 @@ def run(spec_file, background_file, output_dir):
         'creative_quality':'HUMAN_REVIEW_REQUIRED','image_generation':'EXTERNAL_NOT_CALLED_BY_SCRIPT'}
     (out/'qa.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return report
+
+def prepare_guide(spec_file, output_dir):
+    """Create a spatial reference only. No AI generation, no altered official source files."""
+    cfg=json.loads(Path(spec_file).read_text(encoding='utf-8'))
+    for k in ('host','mascot','logo'):
+        if k not in cfg.get('assets',{}): raise ValueError('Missing official asset '+k)
+    out=Path(output_dir);out.mkdir(parents=True,exist_ok=True)
+    base=Image.new('RGBA',(W,H),(223,247,250,255));d=ImageDraw.Draw(base)
+    d.rounded_rectangle((247,105,1032,638),radius=43,fill=(250,254,255,255),outline=(37,132,153,255),width=6)
+    d.rounded_rectangle((265,123,1016,448),radius=20,outline=(175,207,212,255),width=3)
+    d.rounded_rectangle((281,477,1003,631),radius=18,outline=(175,207,212,255),width=3)
+    originals={}
+    for role,rect in [('host',(-35,25,260,737)),('mascot',(1016,255,1310,710))]:
+        src=Path(cfg['assets'][role]);originals[role]=sha(src)
+        figure,pos=resize_keep(Image.open(src).convert('RGBA'),rect)
+        base.alpha_composite(figure,dest=pos)
+    src=Path(cfg['assets']['logo']);originals['logo']=sha(src)
+    logo,pos=resize_keep(Image.open(src).convert('RGBA'),(1066,654,1260,710))
+    base.alpha_composite(logo,dest=pos)
+    path=out/'guide_1280x720.png';base.save(path)
+    return {'status':'GUIDE_CREATED','image':str(path),'size':[W,H],
+            'source_sha_unchanged':all(sha(cfg['assets'][k])==v for k,v in originals.items())}
+
 if __name__=='__main__':
     p=argparse.ArgumentParser()
-    p.add_argument('--manifest',required=True);p.add_argument('--background',required=True);p.add_argument('--outdir',required=True)
-    a=p.parse_args();print(json.dumps(run(a.manifest,a.background,a.outdir),ensure_ascii=False,indent=2))
+    p.add_argument('--manifest',required=True);p.add_argument('--background');p.add_argument('--outdir',required=True);p.add_argument('--guide-only',action='store_true')
+    a=p.parse_args();print(json.dumps(prepare_guide(a.manifest,a.outdir) if a.guide_only else run(a.manifest,a.background or p.error('--background required for composition'),a.outdir),ensure_ascii=False,indent=2))
