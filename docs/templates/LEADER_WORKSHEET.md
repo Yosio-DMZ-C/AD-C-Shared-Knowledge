@@ -108,7 +108,7 @@
 
 ## 専門の詳細へ進む入口（必要な時だけ）
 
-- **開発実行・反復・承認モード**：[開発プラクティス v0.1.17](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)へ統合。旧11,226文字の経緯は[整理前のGit履歴](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md#L283-L327)。リーダーの普通の相談で長い計画インタビュー・複数承認UIを開始しない。
+- **開発実行・反復・承認モード**：[開発プラクティス（現行版）](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)へ統合。旧11,226文字の経緯は[整理前のGit履歴](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md#L283-L327)。リーダーの普通の相談で長い計画インタビュー・複数承認UIを開始しない。
 - **定時巡回の実行契約**：**実動の正本＝既存の有効な定期巡回Taskと非公開Context/OPERATING_RULES**。旧3回/日の時代の詳細は[整理前のGit履歴](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md#L264-L278)で議論のときだけ参照。Task現行設定を旧文章へ戻さない。リーダーは成果の実取得・採否を続ける。
 - **Work60配送の全文**：現行非公開Work60契約・運行票・5時間提示Task。過去の1行生成例と責任境界は[整理前のGit履歴](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md#L88-L114)。現在の送信UNKNOWNや権限は必ず最新実証を優先。
 - **委任／引継ぎ／本人向けUI**：[標準コミュニケーション](../../skills/communication-navigation/SKILL.md)と[チャット引継ぎ](../../skills/chat-handoff/SKILL.md)。このファイルにコピー用カード・決定集約画面・古いQ3移管済み見出しを重複保持しない。
