@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3.0",
-  "catalog_version": "0.3.14",
+  "catalog_version": "0.3.15",
   "updated_at": "2026-11-20",
   "status": "design_only",
   "distribution_ready": false,
@@ -217,6 +217,23 @@
       "scope": "組織KBのPJ／定例業務を実行・更新するときの計画正本参照を標準必須とし、PJは1 WBS、定例は1定義と回ごとの実績を再利用する。根拠付き貢献と組織長向け派生ビュー。自動タスク増設・自動人事採点・無断外部転送はしない",
       "review_status": "user_requested_2026-11-20; markdown_readback=PASS; project_and_recurring_rule_examples=DESIGN_ONLY; real_organizational_KB=NOT_RUN; recurring_execution_idempotency=NOT_RUN; cross_AI_concurrency=NOT_RUN; individual_contributions_runtime=NOT_RUN; formal_distribution_review=NOT_RUN",
       "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/project-management/SKILL.md",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "id": "PB-HTML-REPORT-001",
+      "title": "秘書・PJ・定例のHTMLレポート制作：正本からの安全な単一HTML表示と引継ぎ",
+      "kind": "playbook",
+      "domain_id": "ai-operations",
+      "version": "0.1.0",
+      "path": "skills/html-report/SKILL.md",
+      "status": "user_adopted_active",
+      "visibility": "public_manual_reference",
+      "distribution_ready": false,
+      "auto_install": false,
+      "risk": "nonpublic_data_exposure_unsafe_html_links_snapshot_staleness_rendering_permissions",
+      "scope": "秘書の日次・PJ進捗・定例実行回の閲覧用VIEW/SNAPSHOT。Python標準ライブラリでオフライン生成、非公開情報は認可済み保存先にのみ配置。社内承認・自動実務・本番E2Eは対象外",
+      "review_status": "user_adopted_2026-11-20; generic_python_runtime=PASS; kind_3_samples=PASS; html_escape_https_csp=PASS; native_previous_secretary_and_pj_source=NOT_GENERATED_BY_TOOL; organization_deployment=NOT_RUN; real_browser_click=NOT_RUN; formal_auto_distribution=NOT_RUN",
+      "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/html-report/SKILL.md",
       "license": "CC-BY-SA-4.0"
     }
   ],
