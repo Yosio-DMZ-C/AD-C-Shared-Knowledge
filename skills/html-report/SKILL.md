@@ -22,7 +22,7 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 
 1. 今回の権限で閲覧できる**既存の正本**から、対象期間・ID・現行状態・根拠・次の一手だけを取得。秘書は当日の日次記録と採用済み秘書Playbook、PJは採用された1つのWBSと既存タスク管理先、定例は既存の定義正本と**各回の実行記録**を使う。チャット内の未検証要約から最新状態を補完しない。
 2. 個人・社内のURL、職員名、進捗などを**公開GitHubや第三者プレビュー、外部AIへ自動転送しない**。社内情報は社内承認済みのツールと保存先だけで処理する。外部公開用サンプルには架空データだけを使う。
-3. 入力はUTF-8 JSON。必須：`kind`、`title`、`snapshot_date`、`source_checked_at`、`source_label`。任意：`source_url`（HTTPSのみ）、`visibility`（既定private）、`summary`、`handoff`、`items`（配列）。各itemは`title`必須、`id / priority(P0,P1,P2,OTHER) / status / owner / next_action / evidence / source_url`を任意指定。既存の元IDを入れ、新IDを採番しない。欠落は未確認と記す。
+3. 入力はUTF-8 JSON。必須：`kind`、`title`、`snapshot_date`、`source_checked_at`、`source_label`。任意：`source_url`（HTTPSのみ）、`visibility`（既定private）、`summary`、`handoff`、`items`（配列）。各itemは`title`必須、`id / priority(P0,P1,P2,OTHER) / period（定例の対象期間） / due（PJの期限） / status / owner / next_action / evidence / source_url`を任意指定。既存の元IDを入れ、新IDを採番しない。欠落は未確認と記す。
 4. **分母の区別**：PJ＝対象のTASK_ID、定例＝予定された実行回ID。欠損・遅延・UNKNOWNとDONEを混同しない。進捗率を資料が提供していなければ推測計算しない。
 
 ## 2. 作成（Pythonが使える場合）
