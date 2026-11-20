@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3.0",
-  "catalog_version": "0.3.13",
+  "catalog_version": "0.3.14",
   "updated_at": "2026-11-20",
   "status": "design_only",
   "distribution_ready": false,
@@ -204,18 +204,18 @@
     },
     {
       "id": "PB-ORG-PROJECT-001",
-      "title": "組織PJ進捗・貢献可視化：1 PJ・1 WBS正本、KB成果履歴連携",
+      "title": "組織業務計画・進捗・貢献可視化：PJ・定例の一意な計画正本とKB実績連携",
       "kind": "playbook",
       "domain_id": "work-learning",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/project-management/SKILL.md",
       "status": "user_adopted_trial",
       "visibility": "public_manual_reference",
       "distribution_ready": false,
       "auto_install": false,
-      "risk": "duplicate_wbs_organizational_access_personnel_attribution",
-      "scope": "組織PJの正本WBSの再利用、タスクIDとKB活動・成果の根拠付き貢献関連付け、組織長向け派生ビュー。自動人事採点・他組織や外部AIへの無断転送をしない",
-      "review_status": "user_requested_2026-11-20; markdown_readback=PASS; rule_examples=DESIGN_ONLY; organizational_live_WBS=NOT_RUN; multi_AI_concurrency=NOT_RUN; individual_contributions_runtime=NOT_RUN; formal_distribution_review=NOT_RUN",
+      "risk": "duplicate_wbs_or_recurring_tasks_conflicting_writes_organizational_access_personnel_attribution",
+      "scope": "組織KBのPJ／定例業務を実行・更新するときの計画正本参照を標準必須とし、PJは1 WBS、定例は1定義と回ごとの実績を再利用する。根拠付き貢献と組織長向け派生ビュー。自動タスク増設・自動人事採点・無断外部転送はしない",
+      "review_status": "user_requested_2026-11-20; markdown_readback=PASS; project_and_recurring_rule_examples=DESIGN_ONLY; real_organizational_KB=NOT_RUN; recurring_execution_idempotency=NOT_RUN; cross_AI_concurrency=NOT_RUN; individual_contributions_runtime=NOT_RUN; formal_distribution_review=NOT_RUN",
       "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/project-management/SKILL.md",
       "license": "CC-BY-SA-4.0"
     }
