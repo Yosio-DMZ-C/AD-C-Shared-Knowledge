@@ -31,7 +31,13 @@
 }
 ```
 
-**注意**：`headline_lines`・`subtitle_lines`を連結した文字列は確定文面と完全一致させる。改行以外の変更は禁止。後合成の例：
+**注意**：`headline_lines`・`subtitle_lines`を連結した文字列は確定文面と完全一致させる。改行以外の変更は禁止。先に非生成の構図ガイドを実画像として作り、画像生成ツールに実際に参照画像として渡す（画像参照できない場合は未実施と記録する）。
+
+```bash
+python thumbnail_compose.py --manifest recipe.json --guide-only --outdir result
+```
+
+出力された `result/guide_1280x720.png` を参照して中央背景だけを画像生成し、公式人物・ロゴや文字をモデルに描かせない。生成背景を保存した後、同じ後合成器で文字と公式素材を戻す：
 
 ```bash
 python thumbnail_compose.py --manifest recipe.json --background central_art.png --outdir result
