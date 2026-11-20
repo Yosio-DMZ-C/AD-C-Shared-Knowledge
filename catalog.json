@@ -1,7 +1,7 @@
 {
   "schema_version": "0.3.0",
-  "catalog_version": "0.3.12",
-  "updated_at": "2026-11-19",
+  "catalog_version": "0.3.13",
+  "updated_at": "2026-11-20",
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
@@ -200,6 +200,23 @@
       "scope": "外部Playbook・MCP・AIツール・フリーウェアの利用時だけ作者・実績・権限・外部送信・最小試用・撤退方法を評価。自由投稿の審査や自動導入には使わない",
       "review_status": "user_requested_2026-11-19; markdown_readback=PASS; hypothetical_cases=DESIGN_ONLY; independent_ai=NOT_RUN; real_product_trial=NOT_RUN; formal_distribution_review=NOT_RUN",
       "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/third-party-selection/SKILL.md",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "id": "PB-ORG-PROJECT-001",
+      "title": "組織PJ進捗・貢献可視化：1 PJ・1 WBS正本、KB成果履歴連携",
+      "kind": "playbook",
+      "domain_id": "work-learning",
+      "version": "0.1.0",
+      "path": "skills/project-management/SKILL.md",
+      "status": "user_adopted_trial",
+      "visibility": "public_manual_reference",
+      "distribution_ready": false,
+      "auto_install": false,
+      "risk": "duplicate_wbs_organizational_access_personnel_attribution",
+      "scope": "組織PJの正本WBSの再利用、タスクIDとKB活動・成果の根拠付き貢献関連付け、組織長向け派生ビュー。自動人事採点・他組織や外部AIへの無断転送をしない",
+      "review_status": "user_requested_2026-11-20; markdown_readback=PASS; rule_examples=DESIGN_ONLY; organizational_live_WBS=NOT_RUN; multi_AI_concurrency=NOT_RUN; individual_contributions_runtime=NOT_RUN; formal_distribution_review=NOT_RUN",
+      "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/project-management/SKILL.md",
       "license": "CC-BY-SA-4.0"
     }
   ],
