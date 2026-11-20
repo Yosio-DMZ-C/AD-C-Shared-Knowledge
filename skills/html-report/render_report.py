@@ -72,10 +72,12 @@ def render(data):
         if priority not in PRIORITIES:
             priority = 'OTHER'
         url = approved_href(item.get('source_url', ''))
+        period = str(item.get('period') or item.get('due') or '').strip()
+        period_html = f'<div><dt>対象期間／期限</dt><dd>{h(period)}</dd></div>' if period else ''
         link = (f'<a class="source" href="{h(url)}" target="_blank" rel="noopener noreferrer">元記録へ</a>' if url else '')
         cards.append(f'''<article class="item" data-priority="{priority}">
           <div class="item-top"><span class="priority">{priority}</span><span class="id">{h(item.get('id', ''))}</span></div>
-          <h3>{h(name)}</h3><dl>
+          <h3>{h(name)}</h3><dl>{period_html}
           <div><dt>状態</dt><dd>{h(item.get('status', '未確認'))}</dd></div>
           <div><dt>担当</dt><dd>{h(item.get('owner', '未確認'))}</dd></div>
           <div><dt>次の一手</dt><dd>{h(item.get('next_action', '未確認'))}</dd></div>
