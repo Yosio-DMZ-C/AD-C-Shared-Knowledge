@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3.0",
-  "catalog_version": "0.3.16",
+  "catalog_version": "0.3.17",
   "updated_at": "2026-11-21",
   "status": "design_only",
   "distribution_ready": false,
@@ -241,15 +241,15 @@
       "title": "AD&Cガイド・報告の統一HTML/PDF体裁：公開ガイドと一時PDFの二系統",
       "kind": "playbook",
       "domain_id": "ai-operations",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "path": "skills/visual-docs/SKILL.md",
       "status": "user_adopted_active",
       "visibility": "public_manual_reference",
       "distribution_ready": false,
       "auto_install": false,
       "risk": "private_report_publication_leak_unverified_pages_url_css_print_regressions_information_ownership",
-      "scope": "共通デザイン・縦読み・A4 PDF。公開ガイドはGit原本を許可リストで専用静的サイトに配布し、GitHubナビを見せない。秘書/PJ/定例の個人・社内報告は権限内一時HTML→一時PDFの1リンクで、公開Git/Pagesには出さない。",
-      "review_status": "user_adopted_2026-11-21; git_css_template_workflow_readback=PASS; report_palette_git_readback=PASS; Pages_actions_allowlist_deployment_run_44850596489=PASS; Pages_deployment_env_url_from_logs=PASS; direct_browser_visual=NOT_RUN; existing_PJ_html_local_pdf_10pages_12cards_19links_http0=PASS; canonical_repo_pdf_cli=NOT_RUN; next_secretary_automation_pdf=NOT_RUN; private_data_public_upload=NONE",
+      "scope": "共通デザイン・AD&C公式ロゴ・縦読み・A4 PDF。標準Playbookに紐づく公開可能なガイドはGit原本を許可リストで専用静的サイトに配布し、PRを受入（自動マージはしない）。標準外は任意。秘書/PJ/定例等の報告は一時HTML→PDFで公開Git/Pagesには出さない。",
+      "review_status": "user_adopted_2026-11-21; official_logo_drive_sha256=PASS; local_optimized_logo_svg_commit=PASS; unified_css_index_example_allowlist=PASS; Pages_actions_run_44852614807=PASS; direct_browser_page_render=NOT_RUN; repo_snapshot_pdf_10pages_text_links19=PASS; optimized_pdf_10pages_text_links19=PASS; next_secretary_pdf=NOT_RUN",
       "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/visual-docs/SKILL.md",
       "license": "CC-BY-SA-4.0"
     }
