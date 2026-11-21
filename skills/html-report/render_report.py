@@ -93,15 +93,15 @@ def render(data):
          for i in items])
     # Textareas store escaped text; no source content is interpolated into JavaScript.
     css = '''
-:root{font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;color:#192d43;background:#f6fafd}
-*{box-sizing:border-box}body{margin:0}header{background:#11243e;color:#fff;padding:25px 5vw}main{max-width:1150px;margin:auto;padding:20px}
+:root{--adnc-ink:#192d43;--adnc-navy:#11243e;--adnc-teal:#087f7b;--adnc-link:#0b6d92;--adnc-bg:#f6fafd;--adnc-line:#d2e5e9;font-family:"Noto Sans JP",system-ui,-apple-system,sans-serif;color:var(--adnc-ink);background:var(--adnc-bg)}
+*{box-sizing:border-box}body{margin:0}header{background:var(--adnc-navy);color:#fff;padding:25px 5vw}main{max-width:1150px;margin:auto;padding:20px}
 h1{font-size:clamp(1.35rem,3.3vw,2.3rem);margin:9px 0}h2{font-size:1.24rem}h3{font-size:1.05rem;margin:9px 0 15px}
 .eyebrow{font-size:.85rem;color:#8fe4d8;letter-spacing:.04em}.status{font-weight:700}.panel{background:#fff;border:1px solid #d2e5e9;border-radius:16px;padding:18px;margin:15px 0;box-shadow:0 3px 14px #1b36400b}
 .summary{white-space:pre-wrap;line-height:1.7}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:12px}
 .item{border:1px solid #cfe5ea;background:#fff;border-radius:13px;padding:16px}.item-top{display:flex;justify-content:space-between;gap:7px;color:#53687c;font-size:.8rem}
 .priority{background:#e6f7f3;color:#155c57;border-radius:8px;padding:2px 8px;font-weight:700}.id{overflow-wrap:anywhere}dl{margin:0}dl div{margin:7px 0;line-height:1.5}dt{color:#53687c;font-size:.78rem}dd{margin:0;overflow-wrap:anywhere}
 a{color:#0b6d92;overflow-wrap:anywhere}.source{display:inline-block;margin-top:8px}button{cursor:pointer;border:1px solid #b6d8dc;border-radius:11px;background:#fff;color:#11243e;padding:9px 13px;font-size:.94rem;margin:4px}
-button[aria-pressed=true]{background:#078b85;color:#fff}button:focus-visible,a:focus-visible{outline:3px solid #078b85;outline-offset:2px}
+button[aria-pressed=true]{background:var(--adnc-teal);color:#fff}button:focus-visible,a:focus-visible{outline:3px solid var(--adnc-teal);outline-offset:2px}
 fieldset{border:0;padding:0;margin:0}legend{font-weight:700;margin:7px 0}.muted{color:#53687c;font-size:.9rem}.hide{display:none!important}
 pre{white-space:pre-wrap;overflow-wrap:anywhere}textarea{width:100%;min-height:130px}footer{padding:18px 5vw;color:#53687c}
 @media(max-width:440px){header{padding:17px 5vw}main{padding:10px}.panel{padding:13px}.grid{grid-template-columns:1fr}}
@@ -128,7 +128,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere}textarea{width:100%;min-height:1
  });});
 })();'''
     filters = ''.join(f'<button type="button" data-filter="{level}" aria-pressed="{str(level=="all").lower()}">{level if level != "all" else "全件"}</button>' for level in ('all','P0','P1','P2','OTHER'))
-    return f'''<!doctype html><html lang="ja" data-report-kind="{kind}" data-view-kind="snapshot"><head>
+    return f'''<!doctype html><html lang="ja" data-report-kind="{kind}" data-view-kind="snapshot" data-adnc-design="visual-docs-v0.1"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
