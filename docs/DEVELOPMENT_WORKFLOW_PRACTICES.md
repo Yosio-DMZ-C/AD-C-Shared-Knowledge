@@ -12,7 +12,7 @@ EDIT_REF_DESIGNER_NOTE=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob
 EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/docs/DEVELOPMENT_WORKFLOW_PRACTICES.md
 ```
 
-- 版：0.1.20（2026-11-19：人間向けカード／HTMLガイドの用途別選択を局所追補。0.1.19の制作実例の重複排除と実測整合、0.1.18のMCP接続原則を維持）
+- 版：0.1.21（2026-11-21：公開ガイドと一時PDF報告の体裁・公開境界を既存視覚制作Playbookへ接続。0.1.20の人間向けカード／HTMLガイド用途別選択を維持）
 - 追補：2026-11-10／Playbookの道具化に関するWHYを既存Designer’s Noteへ移し、本文には発見・選択・取得・利用の操作だけを維持。
 - 状態：**共有KBの運用ルールとして公開。個別SkillのActive認定ではない**
 - 対象：開発調査、実装支援、KB整備、成果物レビュー
