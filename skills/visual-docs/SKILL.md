@@ -25,7 +25,7 @@
 
 1. **Git原本**：一般公開が認められたガイドの `.html`、共通CSS、必要な図・画像、編集履歴を本リポジトリ `guides/` 以下で管理。社内資料・認証情報・個人の報告データ・非公開URLを置かない。
 2. **独立した閲覧画面**：読者のリンク先は、認可された静的ホスト上の**レンダリング済みHTML**とする。GitHub `blob`・`raw`は制作側の原本閲覧であり、人間用のHTML表示URLとして提示しない。GitHubのヘッダー・ナビ・ファイルツリーを読者に見せない。ただしガイド自身のページ内目次は残してよい。
-3. **配置方式**：[公開ガイド専用GitHub Pagesワークフロー](../../.github/workflows/publish-human-guides.yml)は`guides/`だけを明示的にサイト成果物へ複写し、`skills/`・`reports/`・`private/`・KB・一時ファイルを公開成果物へ含めない。通常のGit差分履歴はGitHubに残す。リポジトリのPagesソースを**GitHub Actions**として設定できる権限が必要。Pages URL・実表示は**公開後のブラウザーで初めて確定**する。 `has_pages=true` やworkflow存在だけで公開PASSとしない。
+3. **配置方式**：[公開ガイド専用GitHub Pagesワークフロー](../../.github/workflows/publish-human-guides.yml)は`guides/`内の**公開許可済みファイルだけを個別許可リストで選んで**サイト成果物へ複写し、`skills/`・`reports/`・`private/`・KB・一時ファイルを公開成果物へ含めない。通常のGit差分履歴はGitHubに残す。リポジトリのPagesソースを**GitHub Actions**として設定できる権限が必要。Pages URL・実表示は**公開後のブラウザーで初めて確定**する。 `has_pages=true` やworkflow存在だけで公開PASSとしない。
 4. **ガイドPDF**：閲覧・印刷・持ち帰り用に同じHTMLから任意でA4縦PDFを生成。元HTML・CSSはGit原本。PDFをGit管理するかは本人・専門Playbookの明示判断。必要がなければPDF成果物は利用時の一時ファイルでよい。
 5. **過去のガイド**：現行 `guides/3d-print/`・`guides/cloudflare/` の表記や動作を自動で一括変更しない。改訂時に、本文や採用済み図を壊さず**共通CSS・章構成を局所採用**する。
 
