@@ -1,0 +1,47 @@
+name: Publish public AD&C human guides only
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'guides/**'
+      - '.github/workflows/publish-human-guides.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: adnc-public-guides-pages
+  cancel-in-progress: false
+jobs:
+  publish-public-guides:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build an allowlisted public guides site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p site
+          cp -R guides site/guides
+          touch site/.nojekyll
+          cat > site/index.html <<'HTML'
+          <!doctype html><html lang="ja"><head><meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <meta http-equiv="refresh" content="0;url=guides/">
+          <title>AD&C ガイドブック</title></head>
+          <body><a href="guides/">ガイドブックを開く</a></body></html>
+          HTML
+          test -f site/guides/index.html
+          test -f site/guides/assets/adnc-unified.css
+          # Only allowlisted guides are published. Never upload KB, report inputs or private snapshots.
+          if find site -type f | grep -E '/(skills|tmp|reports|private)/'; then exit 1; fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
