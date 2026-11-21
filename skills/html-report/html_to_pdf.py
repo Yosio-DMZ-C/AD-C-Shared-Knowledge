@@ -84,7 +84,7 @@ def optional_logo_bytes(path: Path | None, try_web: bool) -> tuple[bytes | None,
     except (OSError, urllib.error.URLError, TimeoutError):
         return None, "unavailable_web_logo"
 
-def convert(html: Path, output: Path, logo: bytes | None) -> list[str]:
+def convert(html: Path, output: Path, logo: bytes | None, css_file: Path | None = None) -> list[str]:
     try:
         from playwright.sync_api import sync_playwright
     except ImportError as exc:
@@ -110,6 +110,9 @@ def convert(html: Path, output: Path, logo: bytes | None) -> list[str]:
             page.set_content(html.read_text(encoding="utf-8"),
                              wait_until="load", timeout=20000)
             page.evaluate("document.querySelectorAll('details').forEach(el => el.open = true)")
+            # Explicitly local stylesheet for versioned public guides. Reports remain single-file.
+            if css_file is not None:
+                page.add_style_tag(content=css_file.read_text(encoding='utf-8'))
             if logo:
                 data = base64.b64encode(logo).decode("ascii")
                 page.evaluate("""b64 => {
@@ -137,6 +140,7 @@ def main() -> int:
     cli.add_argument("--output", type=Path, help="temporary PDF file path")
     cli.add_argument("--logo-file", type=Path, help="optional verified official PNG")
     cli.add_argument("--no-web-logo", action="store_true")
+    cli.add_argument("--css-file", type=Path, help="optional local guide CSS; never fetched from the web")
     args = cli.parse_args()
     if not args.html.is_file() or args.html.suffix.lower() != ".html":
         print(json.dumps({"status": "FAIL", "reason": "HTML input not found"}))
@@ -147,9 +151,12 @@ def main() -> int:
     if output.suffix.lower() != ".pdf":
         print(json.dumps({"status": "FAIL", "reason": "Output must end in .pdf"}))
         return 2
+    if args.css_file and (not args.css_file.is_file() or args.css_file.suffix.lower() != '.css'):
+        print(json.dumps({"status": "FAIL", "reason": "Local CSS input not found"}))
+        return 2
     logo, logo_state = optional_logo_bytes(args.logo_file, not args.no_web_logo)
     try:
-        blocked = convert(args.html, output, logo)
+        blocked = convert(args.html, output, logo, args.css_file)
         result = {"status": "PASS", "pdf": str(output),
                   "logo": logo_state, "blocked_external_requests": len(blocked),
                   "bytes": output.stat().st_size}
