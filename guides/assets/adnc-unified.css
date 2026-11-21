@@ -19,9 +19,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .adnc-hero{background:var(--adnc-navy);color:var(--adnc-white);padding:35px max(18px,calc((100vw - 960px)/2))}
 .adnc-hero .eyebrow{font-size:.84rem;letter-spacing:.08em;color:#8fe4d8}
 /* Official AD&C mark, packaged locally: no runtime request to WordPress/Drive. */
-.adnc-brand{display:flex;align-items:center;gap:14px;max-width:1000px;margin:0 auto 14px}
-.adnc-brand .adnc-logo{display:block;width:240px;max-width:55vw;height:auto;flex:0 0 auto;padding:5px;border:1px solid #d8e4e8;border-radius:11px;background:#fff}
-.adnc-brand-note{font-size:.86rem;line-height:1.5;color:#d7edef}
+.adnc-brand{display:flex;align-items:center;gap:8px;max-width:1000px;margin:0 auto 7px}
+.adnc-brand .adnc-logo{display:block;width:112px;max-width:30vw;height:auto;flex:0 0 auto;padding:2px;border:1px solid #d8e4e8;border-radius:6px;background:#fff}
+.adnc-brand-note{font-size:.76rem;line-height:1.4;color:#d7edef}
 
 .adnc-hero h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.35;margin:10px 0}
 .adnc-hero p{margin:7px 0;color:#e7f0f5}
@@ -54,7 +54,7 @@ summary{cursor:pointer;font-weight:700}
 .adnc-footer{font-size:.85rem;text-align:center;color:var(--adnc-muted);padding:0 18px 35px}
 @media(max-width:600px){
   .adnc-hero{padding:24px 18px}.adnc-wrap{padding:12px 10px 36px}
-  .adnc-brand{gap:8px;flex-wrap:wrap}.adnc-brand .adnc-logo{width:195px;max-width:65vw}
+  .adnc-brand{gap:6px;flex-wrap:nowrap}.adnc-brand .adnc-logo{width:94px;max-width:27vw}.adnc-brand-note{font-size:.68rem}
   .adnc-panel{padding:16px;border-radius:12px}.adnc-grid{grid-template-columns:1fr}
   .adnc-table{display:block;overflow-x:auto}
 }
@@ -64,7 +64,7 @@ summary{cursor:pointer;font-weight:700}
   body{font-size:11pt;line-height:1.6}
   .adnc-hero{background:#11243e!important;color:#fff!important;padding:18px!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
   .adnc-hero p{color:#fff!important}
-  .adnc-brand .adnc-logo{width:178px;max-width:none;background:#fff!important}
+  .adnc-brand .adnc-logo{width:92px;max-width:none;background:#fff!important}
   .adnc-wrap{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
   .adnc-panel,.adnc-card{border:1px solid #cfdee3;box-shadow:none!important;border-radius:0}
   .adnc-grid{display:block!important;columns:auto!important}
