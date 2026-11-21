@@ -25,8 +25,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p site
-          cp -R guides site/guides
+          # Explicit allowlist: new public guides require adding a path here.
+          mkdir -p site/guides/assets site/guides/3d-print site/guides/cloudflare
+          install -m644 guides/index.html site/guides/index.html
+          install -m644 guides/guide-layout-example.html site/guides/guide-layout-example.html
+          install -m644 guides/assets/adnc-unified.css site/guides/assets/adnc-unified.css
+          install -m644 guides/3d-print/first-steps-guide.html site/guides/3d-print/first-steps-guide.html
+          install -m644 guides/3d-print/bambu-studio-print-guide.html site/guides/3d-print/bambu-studio-print-guide.html
+          install -m644 guides/cloudflare/mcp-chatgpt-first-connection.html site/guides/cloudflare/mcp-chatgpt-first-connection.html
           touch site/.nojekyll
           cat > site/index.html <<'HTML'
           <!doctype html><html lang="ja"><head><meta charset="utf-8">
