@@ -30,6 +30,7 @@ jobs:
           install -m644 guides/index.html site/guides/index.html
           install -m644 guides/guide-layout-example.html site/guides/guide-layout-example.html
           install -m644 guides/assets/adnc-unified.css site/guides/assets/adnc-unified.css
+          install -m644 guides/assets/adnc-official-logo.svg site/guides/assets/adnc-official-logo.svg
           install -m644 guides/3d-print/first-steps-guide.html site/guides/3d-print/first-steps-guide.html
           install -m644 guides/3d-print/bambu-studio-print-guide.html site/guides/3d-print/bambu-studio-print-guide.html
           install -m644 guides/cloudflare/mcp-chatgpt-first-connection.html site/guides/cloudflare/mcp-chatgpt-first-connection.html
@@ -43,6 +44,7 @@ jobs:
           HTML
           test -f site/guides/index.html
           test -f site/guides/assets/adnc-unified.css
+          test -f site/guides/assets/adnc-official-logo.svg
           # Only allowlisted guides are published. Never upload KB, report inputs or private snapshots.
           if find site -type f | grep -E '/(skills|tmp|reports|private)/'; then exit 1; fi
       - uses: actions/configure-pages@v5
