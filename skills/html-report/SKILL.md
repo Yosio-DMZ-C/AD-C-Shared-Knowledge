@@ -16,6 +16,7 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 - **カスタム優先**：社内では当該組織の正式情報分類・表示・保存・承認・配布規則、個人秘書では本人の採用済み秘書Playbookを先に適用。取得不能な非公開ルールを推測しない。
 - **HTML/PDF共通体裁（2026-11-21本人採用）**：人間向け公開ガイドとの配色・印刷レイアウトは[統一制作Playbook](../visual-docs/SKILL.md)を参照。公開ガイドはGit→レンダリング済み公開HTML／任意PDFだが、秘書/PJ/定例の実データ報告は**一時HTML→一時PDF→その回の1リンク**を優先し、公開GitHub/Pages、外部プレビュー、恒久Driveに自動保存しない。画面内の「PRIVATE」表示だけで秘密保護とはみなさない。
 - `AI_NAV_PY_PATH=NONE`（このPythonはナビではなく**レポート生成器**）。`REPORT_RENDER_PY_PATH=./render_report.py`、`REPORT_PDF_PY_PATH=./html_to_pdf.py`（閲覧用PDFの一時出力ツール。AI_NAVではない）。
+- **秘書の決定論的前処理（2026-11-22 実装）**：既存の本ディレクトリに `SECRETARY_RUNTIME_PY_PATH=./secretary_runtime.py` を追加。`python secretary_runtime.py --state /private/verified_state.json`（状態未取得なら `--state` 省略）でJSTの当日/7日間のCalendar時刻範囲、半月期H1/H2、月次40日/30日・既回答、未決定UI有無、案件状態数をJSON出力。**接続・保存・PDF生成は行わず**、値が欠ける場合はUNKNOWN。ChatGPT等の連携AIはこの出力を使って実サービスの読取・書込を別途実行する。本人情報を公開リポジトリに置かない。秘書の実行操作と保存先は非公開の統合秘書Playbookを唯一の業務正本とする。
 - **発動条件**：「秘書の今日の報告をHTMLで」「このPJをカード化」「定例業務の週報・巡回状況をHTMLで」。専門固定出力やユーザー明示の別媒体がある場合はそちらを優先する。
 - **生成対象**：`kind=secretary`（予定・判断待ち・引継ぎ）、`kind=project`（既存PJ_ID/TASK_ID・優先度・実績）、`kind=routine`（既存ROUTINE_ID/EXECUTION_ID・対象期間・例外）。PJと定例はそれぞれの管理正本・分母を保ち、単純に混ぜない。
 
