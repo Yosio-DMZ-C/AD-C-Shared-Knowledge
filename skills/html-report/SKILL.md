@@ -1,4 +1,4 @@
-# AD&C｜秘書・PJ・定例の表示レポート制作Playbook v0.1.2
+# AD&C｜秘書・PJ・定例の表示レポート制作Playbook v0.1.3
 
 <!-- ADNC-HTML-REPORT-20261120 -->
 **適用状態**：本人正式採用（単一HTMLの人間向けVIEW/SNAPSHOTと共通オフラインPython生成ツール）。**公開されている手順・ツールの採用**と、組織内での受入・配備・利用承認は別。組織が定めた利用権限と保存先が優先。既存の秘書専用UI／PJの正本／定例の実行結果は変更しない。
@@ -19,6 +19,8 @@ EDIT_REF_UPDATE_PLAYBOOK=https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/bl
 - **秘書の決定論的前処理（2026-11-22 実装）**：既存の本ディレクトリに `SECRETARY_RUNTIME_PY_PATH=./secretary_runtime.py` を追加。`python secretary_runtime.py --state /private/verified_state.json`（状態未取得なら `--state` 省略）でJSTの当日/7日間のCalendar時刻範囲、半月期H1/H2、月次40日/30日・既回答、未決定UI有無、案件状態数をJSON出力。**接続・保存・PDF生成は行わず**、値が欠ける場合はUNKNOWN。ChatGPT等の連携AIはこの出力を使って実サービスの読取・書込を別途実行する。本人情報を公開リポジトリに置かない。秘書の実行操作と保存先は非公開の統合秘書Playbookを唯一の業務正本とする。
 - **発動条件**：「秘書の今日の報告をHTMLで」「このPJをカード化」「定例業務の週報・巡回状況をHTMLで」。専門固定出力やユーザー明示の別媒体がある場合はそちらを優先する。
 - **生成対象**：`kind=secretary`（予定・判断待ち・引継ぎ）、`kind=project`（既存PJ_ID/TASK_ID・優先度・実績）、`kind=routine`（既存ROUTINE_ID/EXECUTION_ID・対象期間・例外）。PJと定例はそれぞれの管理正本・分母を保ち、単純に混ぜない。
+
+**統一ヘッダー（2026-11-23 本人採用）**：秘書・PJ・定例のHTML/PDFは共通配色・書体・余白・ヘッダー階層を維持し、管理対象の違いを明示する。上から組織名、PJ名または業務名、報告タイトル、担当責任、管理範囲、情報取得時点（タイムゾーン付き）を表示する。個人業務も組織／業務の実際の範囲を記す。入力JSONの任意追加キーは organization、project_or_work、responsibility、scope とし、既存 title、source_checked_at を再利用する。欠落は未確認と表示し、名称・責任・範囲を推測しない。既存入力との互換性、専門別の分母・正本、単一列PDF、PDFリンク1本の出口を維持する。生成器未対応時は人間向け出力に同じ項目を補い、コード対応済みとは扱わない。重要な出力契約の変更は[重要設計変更Playbook](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md#重要設計変更playbook2026-11-23-本人採用)に従う。
 
 ## 1. 観測と入力
 
