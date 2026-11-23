@@ -100,3 +100,7 @@ When a human changes the natural-language part: (1) compare it against a verifie
 **Scope:** This is a **single-Playbook design/pilot**, not a mass rewrite of existing Playbooks. The separate runner and SHA gate remain bounded tools; a Python file's existence does not mean the Markdown executes it automatically. Structural migration, local human-edit detection, semantic alignment and independent cold-start behavior must each be separately tested before claiming production PASS.
 
 
+
+## 2026-11-23 本人採用：重要設計変更と表示範囲の継承
+
+設計の柔軟性と採用済み判断の継続性を両立するため、重要設計の変更前だけ必要性・利害・現状維持案を人間に示すL1〜L3分類を採用。隔離試作は自由、通常改善は追加承認なし。共通ダッシュボードは書式を揃え、組織・PJ/業務・責任・管理範囲・取得時点を明示する。正本や専門業務の責任を統合する意図ではない。採用判断の実行正本は[開発基準](../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)と[共通レポート](../skills/html-report/SKILL.md)。生成器・定時環境での実装検証は別途必要。
