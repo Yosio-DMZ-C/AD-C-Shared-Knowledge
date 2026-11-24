@@ -40,7 +40,7 @@
 
 **担当は実装 → 既存正本へ保存・読戻し → 同じ親IDへ結果と残問題を報告。リーダーは事後回収して採否・優先順位・衝突解消を担当。** 内製のSTOP/HOLD・全PASS・形式不備・事前再承認で全作業を止めない。外部サービスの実制限・安全・権限・不可逆操作は別に守る。進行状態は実際の証拠に従いDONE／DONE_WITH_ISSUES／NOT_EXECUTED等を区別する。
 
-**役割境界（2026-11-11本人決定）**：AD&Cの利用者向け標準そのものではない開発・運営設備の障害（巡回実行経路、Work60配送経路、関連ツール接続等）は**既存サブリーダーが一次切分け・修復・再試験**。リーダーはその報告を同じ既存親IDから回収し、全体への影響と本人判断だけ扱う。役割を記しただけでは依頼の送信・受領・修復完了にはならない。UNKNOWNを未送信と見なさず再配送しない。
+**役割境界（2026-11-11本人決定）**：AD&Cの利用者向け標準そのものではない開発・運営設備の障害（巡回実行経路、Work60配送経路、関連ツール接続等）は**既存サブリーダーが一次切分け・修復・再試験**。リーダーはその報告を同じ既存親IDから回収し、全体への影響と本人判断だけ扱う。役割を記しただけでは依頼の送信・受領・修復完了にはならない。Work60配送状態は下記の現行契約に従い、肯定証拠のない未完了IDはREADY、SENT／DONEは配送対象外とする。旧UNKNOWNは履歴として保持し、READYでも認可拒否の迂回や同一起動内の再送はしない。
 
 ## 開発PJダッシュボード｜HTML標準ビューを正式採用（2026-11-20）
 
@@ -88,12 +88,12 @@
 
 ### 未解決の分母・今回の分子（巡回開始時の最小ダッシュボード）
 
-**最初に数で全体を把握する。** 既存のIssue #13（OPEN親）、現行Work60運行票（配送UNKNOWN）、既存KBレビュー（review_due未消込）、ORCH80/ORCH20（既存子作業）から**カテゴリ別に分母**を取る。未完了全件の本文を毎巡読まず、最初は既存の状態集計と差分だけを確認する。詳細取得は今回選んだIDだけ。実数と最新時刻は**非公開の既存リーダーレビュー・運行票**へ記録し、公開ワークシートに個人の件数・非公開内容を複製しない。
+**最初に数で全体を把握する。** 既存のIssue #13（OPEN親）、現行Work60運行票（配送READY／SENTの未完了ID、内訳を別表示）、既存KBレビュー（review_due未消込）、ORCH80/ORCH20（既存子作業）から**カテゴリ別に分母**を取る。未完了全件の本文を毎巡読まず、最初は既存の状態集計と差分だけを確認する。詳細取得は今回選んだIDだけ。実数と最新時刻は**非公開の既存リーダーレビュー・運行票**へ記録し、公開ワークシートに個人の件数・非公開内容を複製しない。
 
 | カテゴリ／既存の数え方 | 未解決の分母 | 調査・確認（分子） | 修正 | 実装改善 | 解決・消込 |
 |---|---:|---:|---:|---:|---:|
 | Issue #13のOPEN親（親ID単位） | 正本で算出 | 当巡に確認した親ID | 既存の問題を実修復した親ID | 新機能・改善手順を実装した親ID | 完了確定した親ID |
-| Work60配送UNKNOWN（JOB_ID＋個別ID単位） | 運行票で算出 | 当巡に確認したID | 配送経路の故障修正ID | 復旧機能を新たに実装したID | 肯定証拠で送信/受領を確定したID |
+| Work60配送・成果未完了（JOB_ID＋個別ID単位） | 運行票・既存REPORT_TOの証拠からREADY＋SENTを重複なく算出し、内訳を別表示。DONEと旧UNKNOWN履歴は分母に加えない | 当巡に確認したID | 配送経路の故障修正ID | 復旧機能を新たに実装したID | READY→SENTは配送確定、DONEは成果完了として区別（未完了分母からの消込はDONEのみ） |
 | KB review_due未消込（レコードID単位） | 現行registryで算出 | 当巡に確認したID | 誤記・参照を実修正したID | レビュー自動化等を実装したID | 内容判断と期限状態更新を終えたID |
 | ORCH80/ORCH20未完了子（JOB＋個別ID） | 現行成果で算出 | 当巡に確認したID | 既存成果の修正ID | 新たに利用可能にした成果ID | 検収済みID |
 | 今回の改善内容（既存案件ID単位） | — | 調査IDと結果 | 何を直したか・現物URL・読戻し | **何を使えるようにしたか・現物URL・実測・未検収** | 完了根拠と残課題 |
@@ -134,7 +134,7 @@
 
 - **開発実行・反復・承認モード**：[開発プラクティス（現行版）](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)へ統合。旧11,226文字の経緯は[整理前のGit履歴](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md#L283-L327)。リーダーの普通の相談で長い計画インタビュー・複数承認UIを開始しない。
 - **定時巡回の実行契約**：**実動の正本＝既存の有効な定期巡回Taskと非公開Context/OPERATING_RULES**。旧3回/日の時代の詳細は[整理前のGit履歴](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md#L264-L278)で議論のときだけ参照。Task現行設定を旧文章へ戻さない。リーダーは成果の実取得・採否を続ける。
-- **Work60配送の全文**：現行非公開Work60契約・運行票・5時間提示Task。過去の1行生成例と責任境界は[整理前のGit履歴](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md#L88-L114)。現在の送信UNKNOWNや権限は必ず最新実証を優先。
+- **Work60配送の全文**：現行非公開Work60契約・運行票・5時間提示Task。過去の1行生成例と責任境界は[整理前のGit履歴](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md#L88-L114)。現在の配送READY／SENT／DONEと権限は必ず最新実証を優先し、旧UNKNOWNは試行履歴として参照する。
 - **委任／引継ぎ／本人向けUI**：[標準コミュニケーション](../../skills/communication-navigation/SKILL.md)と[チャット引継ぎ](../../skills/chat-handoff/SKILL.md)。このファイルにコピー用カード・決定集約画面・古いQ3移管済み見出しを重複保持しない。
 - **Playbook・Python・素材制作**：[作成・更新テンプレート](../../templates/PLAYBOOK_TEMPLATE.md)／[開発プラクティス](../../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md)／[既存単一runner](../../skills/markdown-auto-pilot/runner.py)。外部Designer’s NoteとQ1〜Q7の採用済み標準はその対象の局所正本を優先。
 - **リーダー固有の思想・判断の由来**：[局所Designer’s Note](DESIGNER_NOTE.md)と[整理前全文](https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/824565f201dad52dc9509d128308823d127fb509/docs/templates/LEADER_WORKSHEET.md)。通常読むのは上記クレドだけ。
