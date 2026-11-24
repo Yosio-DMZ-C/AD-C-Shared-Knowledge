@@ -54,12 +54,12 @@ def section(content: str, key: str, require_hash: bool):
     return left, right, body
 
 
-KEY_RE = re.compile(r"<!-- ADNC:SHARED:([A-Z][A-Z0-9_]*):BEGIN -->")
+MARKER_RE = re.compile(r"<!-- ADNC:SHARED:([A-Z][A-Z0-9_]*):(BEGIN|END) -->")
 
 
 def selected_targets(root: Path, source: str, names: list[str]):
     """Use explicit paths and existing markers; never search/alter unmarked prose."""
-    source_keys = set(KEY_RE.findall(source))
+    source_keys = {key for key, boundary in MARKER_RE.findall(source) if boundary == "BEGIN"}
     jobs = {}
     for name in names:
         relative = Path(name)
@@ -69,18 +69,15 @@ def selected_targets(root: Path, source: str, names: list[str]):
         if path.is_symlink() or not path.is_file() or not path.resolve().is_relative_to(root):
             raise ValueError(f"missing, symlinked or outside-root target: {name}")
         content = path.read_text(encoding="utf-8")
-        target_keys = KEY_RE.findall(content)
-        if not target_keys or len(target_keys) != len(set(target_keys)):
-            raise ValueError(f"missing or duplicate shared BEGIN markers: {name}")
+        markers = MARKER_RE.findall(content)
+        target_keys = [key for key, boundary in markers if boundary == "BEGIN"]
+        expected_markers = [(key, boundary) for key in target_keys for boundary in ("BEGIN", "END")]
+        if not target_keys or len(target_keys) != len(set(target_keys)) or markers != expected_markers:
+            raise ValueError(f"missing, duplicate or overlapping shared markers: {name}")
         unknown = set(target_keys) - source_keys
         if unknown:
             raise ValueError(f"no canonical source for {sorted(unknown)} in {name}")
         for key in target_keys:
-            # Both BEGIN and END markers must appear exactly once.
-            start = f"<!-- ADNC:SHARED:{key}:BEGIN -->\n"
-            end = f"<!-- ADNC:SHARED:{key}:END -->"
-            if content.count(start) != 1 or content.count(end) != 1:
-                raise ValueError(f"missing or duplicated shared marker: {key} in {name}")
             jobs.setdefault(key, []).append(relative.as_posix())
     return jobs
 
