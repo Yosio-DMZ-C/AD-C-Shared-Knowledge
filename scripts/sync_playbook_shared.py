@@ -4,8 +4,12 @@
 Run from a repository checkout:
   python scripts/sync_playbook_shared.py --check
   python scripts/sync_playbook_shared.py --apply
+  python scripts/sync_playbook_shared.py --check --target skills/example/SKILL.md
+  python scripts/sync_playbook_shared.py --apply --target skills/example/SKILL.md
 
-The script never commits or pushes. Review git diff before committing.
+Default mode covers existing registered targets. --target selects an existing file
+by its ADNC:SHARED markers; empty marker pairs can be initialized explicitly.
+No unmarked prose is changed. The script never commits or pushes. Review git diff.
 """
 import argparse
 import hashlib
@@ -43,17 +47,49 @@ def section(content: str, key: str, require_hash: bool):
     if require_hash and not match:
         raise ValueError(f"{key}: missing integrity hash")
     body = raw[match.end():] if match else raw
-    if not body.endswith("\n"):
+    if body and not body.endswith("\n"):
         raise ValueError(f"{key}: block must end with newline")
     if match and hashlib.sha256(body.encode("utf-8")).hexdigest() != match.group(1):
         raise ValueError(f"{key}: common block changed manually; review before syncing")
     return left, right, body
 
 
-def sync(root: Path, apply: bool):
+KEY_RE = re.compile(r"<!-- ADNC:SHARED:([A-Z][A-Z0-9_]*):BEGIN -->")
+
+
+def selected_targets(root: Path, source: str, names: list[str]):
+    """Use explicit paths and existing markers; never search/alter unmarked prose."""
+    source_keys = set(KEY_RE.findall(source))
+    jobs = {}
+    for name in names:
+        relative = Path(name)
+        if relative.is_absolute() or ".." in relative.parts or relative.suffix != ".md":
+            raise ValueError(f"unsafe target path: {name}")
+        path = root / relative
+        if path.is_symlink() or not path.is_file() or not path.resolve().is_relative_to(root):
+            raise ValueError(f"missing, symlinked or outside-root target: {name}")
+        content = path.read_text(encoding="utf-8")
+        target_keys = KEY_RE.findall(content)
+        if not target_keys or len(target_keys) != len(set(target_keys)):
+            raise ValueError(f"missing or duplicate shared BEGIN markers: {name}")
+        unknown = set(target_keys) - source_keys
+        if unknown:
+            raise ValueError(f"no canonical source for {sorted(unknown)} in {name}")
+        for key in target_keys:
+            # Both BEGIN and END markers must appear exactly once.
+            start = f"<!-- ADNC:SHARED:{key}:BEGIN -->\\n".replace("\\n", "\n")
+            end = f"<!-- ADNC:SHARED:{key}:END -->"
+            if content.count(start) != 1 or content.count(end) != 1:
+                raise ValueError(f"missing or duplicated shared marker: {key} in {name}")
+            jobs.setdefault(key, []).append(relative.as_posix())
+    return jobs
+
+
+def sync(root: Path, apply: bool, targets: list[str] | None = None):
     src = (root / SOURCE).read_text(encoding="utf-8")
+    jobs = selected_targets(root, src, targets) if targets else TARGETS
     plans = {}  # path -> (original bytes, accumulated edited text)
-    for key, target_paths in TARGETS.items():
+    for key, target_paths in jobs.items():
         _, _, canonical = section(src, key, require_hash=False)
         stamp = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
         replacement = f"<!-- ADNC:SYNC_SHA256:{stamp} -->\n" + canonical
@@ -63,8 +99,14 @@ def sync(root: Path, apply: bool):
                 before = path.read_bytes()
                 plans[path] = (before, before.decode("utf-8"))
             before, text = plans[path]
-            left, right, current = section(text, key, require_hash=True)
-            if current == canonical:
+            # Explicit targets may bootstrap an EMPTY marker pair. Existing
+            # stamped blocks keep their tamper-detection contract.
+            explicit = targets is not None
+            left, right, current = section(text, key, require_hash=not explicit)
+            stamped = HASH_RE.match(text[left:right]) is not None
+            if explicit and not stamped and current.strip() and current != canonical:
+                raise ValueError(f"{relative} [{key}]: unstamped content must be empty or match source")
+            if current == canonical and stamped:
                 print(f"OK      {relative} [{key}]")
                 continue
             print(f"STALE   {relative} [{key}]")
@@ -101,9 +143,11 @@ def main():
     group.add_argument("--check", action="store_true", help="read-only drift check")
     group.add_argument("--apply", action="store_true", help="replace verified common blocks")
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent.parent)
+    parser.add_argument("--target", action="append", metavar="RELATIVE_MD",
+                        help="sync only this marked Playbook (repeatable; no registry edit)")
     args = parser.parse_args()
     try:
-        return sync(args.root.resolve(), args.apply)
+        return sync(args.root.resolve(), args.apply, args.target)
     except (OSError, UnicodeError, ValueError, RuntimeError) as exc:
         print(f"CONFLICT: {exc}", file=sys.stderr)
         return 2
