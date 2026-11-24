@@ -174,11 +174,13 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
   <tr><td>上面の筋やザラつき</td><td>Top shell layers、Top surface pattern、Ironing</td><td>Ironingは平らな上面向き。細い刻印・凹部では悪化の可能性</td></tr>
   <tr><td>小さな装飾が潰れる</td><td>Layer height、ノズル径、外壁速度、モデル実寸</td><td>スライサーにない細線は印刷できない。プレビューで線幅と経路を確認</td></tr>
   <tr><td>柱が折れやすい</td><td>Wall loops、実肉厚、造形方向、材料</td><td>充填率だけで強度は決まらない</td></tr>
+  <tr><td>ジョイントが積層面で割れる</td><td>荷重方向、モデルを置く向き（0°／45°／90°など）、Preview</td><td>45°傾斜は候補の一つ。直立より改善しても平置きより弱いことがある。サポートと嵌合精度も比較</td></tr>
   <tr><td>差し込みで引っ掛かる</td><td>Fuzzy Skinの適用面、Elephant Foot Compensation、クリアランス</td><td>設計上干渉ゼロでも造形誤差がある。最終形だけでなく挿入途中も見る</td></tr>
   <tr><td>底が剥がれる／反る</td><td>ベッド清掃、素材とプレート適合、Brim</td><td>Brimが差込面へ残ると誤差になる。除去後に測る</td></tr>
   <tr><td>縫い目（Zシーム）が目立つ</td><td>Seam position、Seam painting</td><td>Random seamはFuzzy Skinではない</td></tr>
  </tbody></table>
  <details><summary>Ironingはどんなときに使う？</summary><p>ノズルを最上面に再走査させ、平滑さを改善する選択肢です。上面の小さな文字や繊細な凹凸がある部分では、まず無効で比較してください。流量・間隔・速度は素材と表面形状に依存し、標準値を一律に増減させません。</p></details>
+ <details><summary>強度を高めるには45°で印刷する？</summary><p><strong>モデルをビルドプレートに対して45°傾ける</strong>と、ジョイントやフックで層間剥離が起きやすい姿勢を改善できる場合があります。しかし、万能ではありません。CNC KitchenのPLA引張試験では平置き0°=63 MPa、傾斜45°=40 MPa、直立90°=31 MPaで、実際のフックでは傾斜による改善が見られない例もあります。まず使うときの荷重方向と破断想定面を調べ、Previewで積層方向・サポート・嵌合面を比較。必要なら局所試作して確認します。<strong>造形姿勢45°とインフィル角度45°は別設定</strong>です。<a href="https://www.cnckitchen.com/blog/stop-printing-flat-the-45-secret-for-stronger-parts" target="_blank" rel="noopener">出典：CNC Kitchenの引張試験と反例</a>。</p></details>
  <details><summary>Variable Layer Heightは充填率と違う？</summary><p>はい。レイヤーの高さを部分的に変えて曲面や段差の見た目を調整します。内部充填率を上げる機能とは別です。小さなR面などに効果がある場合もありますが、印刷時間とのトレードオフを確認します。</p></details>
  <details><summary>Fuzzy Skinと細かいロゴは両立する？</summary><p>可能性はありますが、ロゴ面を滑らかに残すのが優先。凹凸の境界を塗り分け、ロゴの溝や線が実際のノズル幅に対して細すぎないか確認します。画像上の高解像度とSTL・印刷解像度は別です。</p></details>
 </section>
@@ -262,6 +264,8 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
  <li><a href="https://wiki.bambulab.com/en/software/bambu-studio/parameter/ironing" target="_blank" rel="noopener">Bambu Lab Wiki：Ironing</a>：トップ面の平滑化（リンク先は版によって閲覧条件あり）</li>
  <li><a href="https://wiki.bambulab.com/en/software/bambu-studio/parameter/fuzzy-skin" target="_blank" rel="noopener">Bambu Lab Wiki：Fuzzy Skin</a>：ランダムな外壁テクスチャ</li>
  <li><a href="https://www.youtube.com/watch?v=rsleccn3eqM" target="_blank" rel="noopener">Age of 3DP / ウノケン：3Dプリントの小技5選</a>：症状と改善の事例（映像に示された条件での観察）</li>
+ <li><a href="https://www.cnckitchen.com/blog/stop-printing-flat-the-45-secret-for-stronger-parts" target="_blank" rel="noopener">CNC Kitchen：45°造形姿勢と強度の引張試験（2025年）</a>：45°は直立より強いが平置きより弱い例、フックで改善しない反例</li>
+ <li><a href="https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135" target="_blank" rel="noopener">Prusa Knowledge Base：造形方向を考慮したモデリング</a>：積層方向・サポートとの関係</li>
  <li><a href="https://csm.bblcdn.com/hub/9425242c00344b0e801b6179f9a243aa.pdf" target="_blank" rel="noopener">Bambu Lab P2S公式ユーザーマニュアル</a>：Quality、Seam、Support、光沢差の説明。P2S以外の操作仕様は別確認</li>
  <li><a href="https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/3d-print-practical/SKILL.md" target="_blank" rel="noopener">AD&amp;C：3Dモデルづくり汎用Playbook</a>：設計・公差・現物評価の手順</li>
  </ol>
@@ -294,7 +298,7 @@ footer{padding:22px 8px;color:var(--sub);font-size:.87rem}
  </details>
  <p class="muted">GitHub公式案内：<a href="https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files" target="_blank" rel="noopener">Editing files</a> ／ <a href="https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request" target="_blank" rel="noopener">Creating a pull request</a></p>
 </section>
-<footer>AD&amp;C / Printing field guide · v1.1.1 · 2026-11-19<br>メーカーの公式マニュアルではありません。印刷品質と強度は実際のプリンター・材料・造形方向で検証してください。</footer>
+<footer>AD&amp;C / Printing field guide · v1.1.2 · 2026-11-25<br>メーカーの公式マニュアルではありません。印刷品質と強度は実際のプリンター・材料・造形方向で検証してください。</footer>
 </main>
 <script>
 (function(){
