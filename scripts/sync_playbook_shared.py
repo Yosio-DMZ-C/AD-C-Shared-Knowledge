@@ -4,8 +4,8 @@
 Run from a repository checkout:
   python scripts/sync_playbook_shared.py --check
   python scripts/sync_playbook_shared.py --apply
-  python scripts/sync_playbook_shared.py --check --target skills/example/SKILL.md
-  python scripts/sync_playbook_shared.py --apply --target skills/example/SKILL.md
+  python scripts/sync_playbook_shared.py --check --target skills/document-authoring/SKILL.md
+  python scripts/sync_playbook_shared.py --apply --target skills/document-authoring/SKILL.md
 
 Default mode covers existing registered targets. --target selects an existing file
 by its ADNC:SHARED markers; empty marker pairs can be initialized explicitly.
@@ -77,7 +77,7 @@ def selected_targets(root: Path, source: str, names: list[str]):
             raise ValueError(f"no canonical source for {sorted(unknown)} in {name}")
         for key in target_keys:
             # Both BEGIN and END markers must appear exactly once.
-            start = f"<!-- ADNC:SHARED:{key}:BEGIN -->\\n".replace("\\n", "\n")
+            start = f"<!-- ADNC:SHARED:{key}:BEGIN -->\n"
             end = f"<!-- ADNC:SHARED:{key}:END -->"
             if content.count(start) != 1 or content.count(end) != 1:
                 raise ValueError(f"missing or duplicated shared marker: {key} in {name}")
