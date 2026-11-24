@@ -154,7 +154,7 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 <h2>7. 仕上がり・速度・強度を調整する設定</h2>
 <div class="group"><h3>見た目・時間・強さ</h3>
 <details><summary>レイヤー高さ（Layer height）</summary><p>1層の厚み。小さくすると曲面や斜面の段差が減りやすい一方、時間は延びる。真っ直ぐな箱では違いが小さいこともある。必要な高さだけ薄くするVariable/Adaptive Layer Heightも選択肢。</p></details>
-<details><summary>壁の周回数（Wall loops / Perimeters）</summary><p>外壁を何周作るか。荷重のかかる実用品では、内部充填率だけでなく壁厚や造形方向が重要。壁を増やせば必ず十分な強度になるわけではない。</p></details>
+<details><summary>壁の周回数（Wall loops / Perimeters）</summary><p>外壁を何周作るか。荷重のかかる実用品では、内部充填率だけでなく壁厚や造形方向が重要。壁を増やせば必ず十分な強度になるわけではない。<a href="#strength-orientation">強度を高める印刷姿勢は後半の設計コラムへ</a>。</p></details>
 <details><summary>内部充填（Infill）と局所Modifier</summary><p>内部の網目の密度と形。動画中の「装飾なら5%」「強度なら15〜20%」は一人の経験例で、薄肉・支え・荷重によって変わる。必要な領域だけModifierで増やす方法もある。<a href="./bambu-studio-print-guide.html#local">図解：上側だけ充填を変える</a>。</p></details>
 <details><summary>線幅（Line width）とノズル径</summary><p>ノズル径と、実際に押し出す線の幅は別の設定。厚めの線幅で壁を少ない周回数にする工夫はあるが、流量限界・寸法・隙間・細部と交換条件になる。動画の0.75mm線幅は特定製品・設定の例。</p></details>
 </div>
@@ -172,7 +172,12 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 <h2>8. 自分で設計するときのコツ</h2>
 <p>設計まで始める場合は、印刷姿勢と組立方法から逆算します。以下は添付動画で紹介された多数の工夫を、用途別にまとめ直したものです。</p>
 <details><summary>底面の面取りと角丸を使い分ける</summary><p>底に接した大きなフィレット（角丸）は急なオーバーハングになることがある。まず底面の小さな面取り（Chamfer）で印刷しやすくし、必要なら上側で曲面へつなぐ。どんな形でも45°なら成功するという意味ではない。<a href="https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135" target="_blank" rel="noopener">Prusaの設計ガイド</a>。</p></details>
-<details><summary>印刷方向と積層の向きを考える</summary><p>同じモデルでも、寝かせるか立てるかで強さ・表面・サポート量が大きく変わる。引張力が層間の接合を剥がす向きに集中しないように置く。高荷重や安全に関わる部品は実測・適切な設計が必要。</p></details>
+<details id="strength-orientation"><summary>強度を高める方法：45°に傾けると丈夫になる？</summary>
+<p>3Dプリント品は薄い層を何枚も重ねて作ります。<strong>横方向につながった層より、層と層の境目が剥がれる方向が弱くなりやすい</strong>ため、ジョイントやフックでは「使うときにどちらへ力がかかるか」を先に考えます。</p>
+<p>部品を斜め45°に置くと、直立した状態より荷重が層の境目に集中しにくくなり、強くなる場合があります。ただし<strong>45°が常に最強とは限りません</strong>。同じPLA試験片の実験では平置き0°＝63MPa、45°＝40MPa、直立90°＝31MPaでした。実際のフックでは45°に傾けても改善しない例もあります。</p>
+<p><strong>試す順番：</strong>①接合部にかかる力の向きを考える → ②寝かせる／傾ける候補をスライサーのPreviewで比較 → ③支持材や嵌合面への影響を見る → ④必要な部位だけ試作・荷重確認。傾けるとサポートが増え、寸法精度や表面が悪化することがあります。</p>
+<p class="small">参考：<a href="https://www.cnckitchen.com/blog/stop-printing-flat-the-45-secret-for-stronger-parts" target="_blank" rel="noopener">CNC Kitchen「Stop Printing Flat: The 45° Secret for Stronger Parts」</a>、<a href="https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135" target="_blank" rel="noopener">Prusaの造形方向と設計ガイド</a>。これは<strong>モデル全体を傾ける姿勢</strong>の話で、内部充填の角度45°とは違います。</p>
+</details>
 <details><summary>必要な部分だけ試作する</summary><p>大きな部品の寸法や嵌合が心配なら、問題のある端・穴・差込部だけを切り出して試すと時間と材料を節約しやすい。単なる測定だけのために不要なゲージ印刷はしない。</p></details>
 <details><summary>市販のねじ・ナット・木ダボと組み合わせる</summary><p>樹脂だけで複雑な機構を作るより、市販のボルト・ナット・位置決めピン等を使うと簡単なことがある。横から挿入するナット用ポケットや熱圧入インサートも候補。穴寸法、工具の入る空間、印刷方向、金具の適合を必ず確認する。熱圧入は高温工具とメーカーの指示が必要。</p></details>
 <details><summary>ねじ穴・横向き穴は円以外も考える</summary><p>側面に水平な円穴を開けると、穴上側の印刷が宙に浮きやすい。涙滴（teardrop）型・上部を斜面にした形状が有効な場合があるが、ボルト軸や適合が必要な穴の寸法を勝手に変えない。後加工の穴仕上げも選択肢。</p></details>
@@ -208,12 +213,13 @@ footer{color:var(--sub);padding:15px 6px;font-size:.85rem}
 <li><a href="https://help.prusa3d.com/ja/article/1%E5%B1%A4%E7%9B%AE%E3%81%AE%E5%95%8F%E9%A1%8C_1804" target="_blank" rel="noopener">Prusa：1層目の問題</a>：清掃・接着・のりの注意。</li>
 <li><a href="https://help.prusa3d.com/ja/article/print-surface-preparation_686951" target="_blank" rel="noopener">Prusa：印刷面の準備</a>：材料とプレート適合。</li>
 <li><a href="https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135" target="_blank" rel="noopener">Prusa：3Dプリントを考慮したモデリング</a>：サポートや角の設計。</li>
+<li><a href="https://www.cnckitchen.com/blog/stop-printing-flat-the-45-secret-for-stronger-parts" target="_blank" rel="noopener">CNC Kitchen：45°の造形姿勢と強度実験</a>：荷重に対する積層の方向、0°／45°／90°比較、改善しないフックの反例。</li>
 <li><a href="https://help.prusa3d.com/article/infill_42" target="_blank" rel="noopener">Prusa：内部充填の役割</a>。</li>
 <li><a href="./bambu-studio-print-guide.html">AD&amp;C：きれいに・正確に印刷するためのコツ</a>：機種・設定の詳細例。</li>
 </ul>
 <p class="small">動画の「毎回のり」「PETGの耐熱数値」「全てのPLA以外は必ず乾燥」「固定の公差・充填率」等は、条件付き経験則として扱い、全機種共通の確定仕様にはしていません。字幕・自動文字起こしにはノズル径、寸法などの誤認識があり得ます。このガイドはメーカー公式マニュアルの代わりではありません。2026-11-19制作。</p>
 </section>
-<footer>AD&amp;C｜はじめての3Dプリント v1.0.2 · 2026-11-19。学習・実行・改善のための初回案内です。</footer>
+<footer>AD&amp;C｜はじめての3Dプリント v1.0.3 · 2026-11-25。学習・実行・改善のための初回案内です。</footer>
 </main>
 <script>
 (function(){
