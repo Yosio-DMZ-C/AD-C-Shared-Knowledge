@@ -199,20 +199,12 @@ def main():
                               f'{item.get("status", "未確認")} | 次の一手: {item.get("next_action", "未確認")}')
     out_txt.write_text("\n".join(text_lines) + "\n", encoding="utf-8")
     if args.pdf:
-        converter = Path(__file__).with_name("html_to_pdf.py")
-        if not converter.exists():
-            raise SystemExit("PDF NOT_RUN: sibling html_to_pdf.py is absent")
-        import subprocess
         try:
-            result = subprocess.run(["python", str(converter), str(out_html), "--output", str(stem.with_suffix(".pdf")), "--no-web-logo"],
-                                    check=False, capture_output=True, text=True)
-            if result.returncode:
-                detail = result.stdout.strip() or result.stderr.strip() or f"exit={result.returncode}"
-                print(f"PDF=FAIL ({detail[:300]}); HTML/JSON/TXT remain available")
-            else:
-                print(f"PDF={stem.with_suffix('.pdf')}")
-        except OSError as exc:
-            print(f"PDF=NOT_RUN ({exc}); HTML/JSON/TXT remain available")
+            from leader_dashboard_pdf import render as render_pdf
+            result = render_pdf(data, stem.with_suffix(".pdf"))
+            print(f"PDF={result['pdf']} ({result['bytes']} bytes; ReportLab/CID Japanese)")
+        except (ImportError, OSError, ValueError) as exc:
+            print(f"PDF=FAIL ({str(exc)[:300]}); HTML/JSON/TXT remain available")
     print(f"HTML={out_html} JSON={out_json} TXT={out_txt}")
 
 
