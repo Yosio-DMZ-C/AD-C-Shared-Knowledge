@@ -8,7 +8,7 @@ This CLI converts an authorized local JSON extract into an offline HTML snapshot
 python leader_dashboard.py example_leader_dashboard.synthetic.json /tmp/leader-view
 ```
 
-Outputs: `/tmp/leader-view.html`, `.json`, and `.txt`. With the existing `html_to_pdf.py` alongside this file, add `--pdf` to attempt the optional local PDF conversion. The HTML is a snapshot: source acquisition, freshness, and correctness remain the caller's responsibility.
+Outputs: `/tmp/leader-view.html`, `.json`, and `.txt`. Add `--pdf` to create a Japanese PDF using ReportLab's built-in CID font. This avoids a local Chromium dependency. The PDF contains the summary, category totals, items, and source links; interactive HTML filters and copy buttons are HTML-only. The HTML is a snapshot: source acquisition, freshness, and correctness remain the caller's responsibility.
 
 ## Input contract
 
