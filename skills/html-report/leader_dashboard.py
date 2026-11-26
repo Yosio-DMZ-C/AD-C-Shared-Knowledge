@@ -185,9 +185,16 @@ def main():
     out_txt = stem.with_suffix(".txt")
     out_html.write_text(render(data), encoding="utf-8")
     out_json.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    out_txt.write_text("\n".join([f'{data["meta"]["organization"]}｜{data["meta"]["project_or_work"]}',
-                                   f'取得時点: {data["meta"]["retrieved_at"]}', data["summary"],
-                                   f'次の1操作: {data["next_action"]}']) + "\n", encoding="utf-8")
+    text_lines = [f'{data["meta"]["organization"]}｜{data["meta"]["project_or_work"]}',
+                  f'責任: {data["meta"]["responsibility"]}', f'管理範囲: {data["meta"]["scope"]}',
+                  f'取得時点: {data["meta"]["retrieved_at"]}', data["summary"],
+                  f'次の1操作: {data["next_action"]}', "カテゴリ別の分母・実績"]
+    for category in data["categories"]:
+        achievement = ", ".join(f'{key}={_denominator(value)}' for key, value in category["achievement"].items())
+        states = ", ".join(f'{key.upper()}={value}' for key, value in category["states"].items())
+        text_lines.append(f'{category["label"]}: 分母={_denominator(category["denominator"])}; 実績={achievement}' +
+                          (f'; 状態内訳={states}' if states else ""))
+    out_txt.write_text("\n".join(text_lines) + "\n", encoding="utf-8")
     if args.pdf:
         converter = Path(__file__).with_name("html_to_pdf.py")
         if not converter.exists():
