@@ -194,6 +194,9 @@ def main():
         states = ", ".join(f'{key.upper()}={value}' for key, value in category["states"].items())
         text_lines.append(f'{category["label"]}: 分母={_denominator(category["denominator"])}; 実績={achievement}' +
                           (f'; 状態内訳={states}' if states else ""))
+        for item in category["items"]:
+            text_lines.append(f'  {item.get("id", "")} | {item.get("title", "未確認")} | '
+                              f'{item.get("status", "未確認")} | 次の一手: {item.get("next_action", "未確認")}')
     out_txt.write_text("\n".join(text_lines) + "\n", encoding="utf-8")
     if args.pdf:
         converter = Path(__file__).with_name("html_to_pdf.py")
