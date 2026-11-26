@@ -1,0 +1,14 @@
+{
+  "schema": "adnc-rdra-observe/v1",
+  "source_as_of": "synthetic",
+  "relations": [
+    {"id":"ui-heading","expected":"😊 秘書の日次業務","observed":"本日の秘書ダッシュボード","evidence":["synthetic-contract-check"]},
+    {"id":"direct-fetch","expected":"attempted","observed":null,"evidence":[]},
+    {"id":"normal","expected":"success","observed":"success","evidence":["synthetic"]}
+  ],
+  "events": [
+    {"id":"cli","state":"not_run","completed":false,"next_action":"try authorized UTF-8 source placement","evidence":["synthetic-log"]},
+    {"id":"false-done","state":"waiting","completed":true,"next_action":null,"evidence":[]},
+    {"id":"admin-step","state":"done","completed":false,"work_type":"management","purpose_contribution":false,"evidence":["synthetic"]}
+  ]
+}
