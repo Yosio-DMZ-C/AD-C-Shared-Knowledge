@@ -1,0 +1,27 @@
+{
+  "schema": "adnc-leader-dashboard/v1",
+  "meta": {
+    "organization": "架空組織",
+    "project_or_work": "サンプルPJ",
+    "responsibility": "架空リーダー",
+    "scope": "合成データのみ",
+    "retrieved_at": "2026-11-26T00:00:00+09:00"
+  },
+  "source": {"公開サンプル": "https://example.com/source"},
+  "summary": "合成データ。カテゴリごとの分母と今回実績を別表示します。",
+  "next_action": "不足情報を正本から取得する",
+  "categories": [
+    {"id": "issue13", "label": "OPEN親案件", "denominator": 3,
+     "achievement": {"checked": 1, "repaired": 0, "improved": 1, "resolved": 0, "recorded": 1},
+     "items": [{"id": "FAKE-1", "title": "架空案件", "status": "OPEN", "next_action": "架空の次手", "source_url": "https://example.com/issue"}]},
+    {"id": "work60", "label": "Work60", "denominator": 2,
+     "achievement": {"checked": 2, "repaired": 0, "improved": 0, "resolved": 1, "recorded": 2},
+     "items": [{"id": "FAKE-JOB", "parent_id": "FAKE-PARENT", "status": "READY"}, {"id": "FAKE-JOB", "parent_id": "FAKE-PARENT", "status": "READY"}, {"id": "FAKE-OLD", "parent_id": "FAKE-PARENT", "status": "UNKNOWN", "historical": true}]},
+    {"id": "kb_review_due", "label": "KB review_due", "denominator": null,
+     "achievement": {"checked": 0, "repaired": 0, "improved": 0, "resolved": 0, "recorded": 0}, "items": []},
+    {"id": "orch", "label": "ORCH子", "denominator": 4,
+     "achievement": {"checked": 1, "repaired": 0, "improved": 0, "resolved": 0, "recorded": 1}, "items": []},
+    {"id": "patrol", "label": "巡回実績", "denominator": 1,
+     "achievement": {"checked": 1, "repaired": 0, "improved": 0, "resolved": 0, "recorded": 1}, "items": []}
+  ]
+}
