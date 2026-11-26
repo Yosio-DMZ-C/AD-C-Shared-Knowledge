@@ -1,9 +1,11 @@
 import importlib.util
 import json
 import unittest
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent if Path(__file__).parent.name == "tests" else Path(__file__).parent
+sys.path.insert(0, str(ROOT))
 spec = importlib.util.spec_from_file_location("leader_dashboard", ROOT / "leader_dashboard.py")
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
