@@ -3,13 +3,14 @@
 
 Usage:
   python check.py --state .adnc-common-rule-state.json
-  python check.py --state .adnc-common-rule-state.json --acknowledge
+  python check.py --state .adnc-common-rule-state.json --acknowledge-sha KEY=SHA
   python check.py --self-test
 
-Exit: 0 SAME; 10 CHANGED or FIRST_USE (fetch and read full rule before continuing);
-      20 UNKNOWN (network/parse error, fail closed); 30 invalid local state.
---acknowledge is permitted ONLY AFTER the caller has fetched and reviewed the
-full content at the returned blob SHA; it records the fetched SHA in local state.
+Optional diagnostic for maintainers, not a routine execution gate.
+Exit: 0 SAME; 10 CHANGED (including first use); 20 UNKNOWN (network/parse error);
+      30 invalid local state. Unknown means unverified, not a stop on unrelated work.
+Review only affected rules; --acknowledge-sha KEY=SHA records a SHA only after
+reviewing its full content. Keep actual safety and permission boundaries.
 """
 import argparse
 import hashlib
