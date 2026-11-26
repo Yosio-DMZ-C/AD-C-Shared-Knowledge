@@ -77,5 +77,20 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("https://example.com/issue", out)
 
 
+    def test_reportlab_pdf_has_japanese_text_and_clickable_sources(self):
+        try:
+            import fitz
+            from leader_dashboard_pdf import render as render_pdf
+        except ImportError:
+            self.skipTest("ReportLab and PyMuPDF are optional")
+        with __import__("tempfile").TemporaryDirectory() as temp:
+            path = Path(temp) / "dashboard.pdf"
+            result = render_pdf(mod.normalize(SAMPLE), path)
+            pdf = fitz.open(path)
+            self.assertGreater(result["bytes"], 1000)
+            self.assertGreaterEqual(len(pdf), 1)
+            self.assertIn("リーダーダッシュボード", pdf[0].get_text())
+            self.assertGreater(sum(len(page.get_links()) for page in pdf), 0)
+
 if __name__ == "__main__":
     unittest.main()
