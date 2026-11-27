@@ -62,6 +62,27 @@ AI_NAV_PY_PATH=NONE
 | 初期スタイル（必要なときだけ） | **新しいカスタムPlaybookに継続使用する作風・ブランド見本が必要／大幅刷新する場合のみ**、[採用済み任意Style Bootstrap](../skills/style-bootstrap/SKILL.md)へ。実際の代表作→使える素材・短いスタイルカード→必要な編集原本／画像→別題材1件再利用を既存個人KB・シリーズ正本へ接続。既存採用スタイルや通常制作はN/A。個別Runbook・CASE Aを上書きしない |
 | 再利用素材（該当時のみ） | **今回素材を新規作成・変更する場合だけ**、[開発プラクティスの任意検証](../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md#playbookワークシートの作成更新作り込みは濃く運用は軽く2026-11-08-本人採用方針)を参照。原本・採用状態・必要な実ファイル確認を既存専門手順に接続。素材なし／変更なしならN/Aで追加検査しない |
 
+### 設計・分解・振り返りの実動補助（2026-11-27・本人採用の任意試用／作成更新AIだけ）
+
+**使う時だけ呼ぶ1ファイル3機能**：[playbook_workshop.py](./playbook_workshop.py)（Python 3.10+・標準ライブラリのみ）。この作成・更新ワークシートの「変更したい結果」「保持する部分・疑問点」「修正と道具」「実用性検収」を**AIが既存原本の事実で埋めるとき**の補助であり、別のPlaybook・審査票・正本・管理台帳ではない。**本人の初回制作・通常の専門業務には必須でない。** `AI_NAV_PY_PATH` を置換せず、既存の `runner.py`／日本語本文保護にも介入しない。
+
+| 機能 | 発動条件・入力（AIが取得済みの事実だけで一時JSONを作成） | 実行して得られるもの |
+|---|---|---|
+| **設計** `design` | 初回の改善か、既存資産の変更。必須：`goal` と `existing`（真偽）。任意：`source_ref`, `preserve`（文字列配列）, `change`, `questions`, `satisfied`, `reuse_intent` | 初回の反復／初版候補／既存改訂を区別。**保持する原文**と疑問点を削らずに返す。既存正本・保持条件欠落を警告。採用は決定しない |
+| **分解** `decompose` | 既存の設計結果から必要な時だけ。`goal`, `items`（各 `id`, `deliverable`, `acceptance`; 任意 `blocked_by`, `branches`, `estimated_tokens`）、任意の案件固有 `context_budget` | 自立した成果単位の入力チェック、依存関係の**循環／未知ID検出**、今実行できる工程と依存階層、分岐／文脈負荷の再分割候補。単純な複数工程も一人で完走できる候補として扱う（ヒントであり保証ではない） |
+| **振り返り** `retro` | 利用者が満足したとき、または実測上の反復失敗。`stage`（`first` / `revision`）, `satisfied`, `valued_results`, `failures`（`observed`, `count`, `evidence_ref`, `candidate`） | 発動条件・評価された点・実観測に紐づく改善候補を返す。根拠がない提案は `NOT_VERIFIED`、`REVIEW_UNDER_EXISTING_L1_L3` として既存の採否権限へ接続し、自動改造しない。L1/L2に新しい人間承認は課さない |
+
+**使い方（AI編集担当の実行入口）**：
+
+```sh
+python3 templates/playbook_workshop.py --self-test
+python3 templates/playbook_workshop.py design /tmp/adnc_work_input.json
+python3 templates/playbook_workshop.py decompose /tmp/adnc_work_input.json
+python3 templates/playbook_workshop.py retro /tmp/adnc_work_input.json
+```
+
+**動作契約**：入力一時JSONを読んで標準出力にJSONを返す。**成果物やKBへは書き込まず、外部送信・課金・公開・Task作成・PRマージもしない。** AIが返却JSONをこのワークシートの該当欄と照合し、採用した判断と完成した成果だけ既存正本へ保存・読戻す。人間だけが答えられる疑問は推論で埋めない。Python不在なら**既存の日本語ワークシートを直接使う**。`--self-test` は3つの架空利用場面と依存循環検出を検査するだけで、別AIの初見実務・外部サービスE2E・品質改善の証明ではない。失敗したモードだけ `FAIL/NOT_RUN` とし、別の実務を止めない。
+
 **URL選択の実例（HTML成果物のときだけ）**：閲覧用は正式Webページがあればそれを優先。GitHub Pagesの例は[AD&C 3Dプリント設定ガイド](https://yosio-dmz-c.github.io/AD-C-Shared-Knowledge/guides/3d-print/bambu-studio-print-guide.html)（2026-11-18 Pagesデプロイ成功、独立ブラウザ表示は別確認）。GitHubしかない場合は表示用 `raw.githack.com/<owner>/<repo>/main/<file>.html`（反映に遅延）または版固定 `rawcdn.githack.com/<owner>/<repo>/<commitSHA>/<file>.html`（後日の更新は反映しない）を選択。ソース確認用は `github.com/.../blob/...`、AI読み込み用は `raw.githubusercontent.com/...` を使い、**表示URL・ソースURLを取り違えない**。外部プレビューは非公式であることを短く明記し、読者が実際に見えない場合はHTMLファイル／描画画像を代替する。
 
 **使い方**：①現行本文と局所Noteを取得 → ②変更・維持の意図と疑問点を整理し、未解決の原文・機能は保持して本文に反映 → ③Python領域がある場合だけ依存定義を整合（人間本文は上書きしない） → ④対象限定で検証し同じ正本へ保存・読戻し。既存 `runner.py` は単一ワークシートのAUTO領域限定であり、自由な自然言語→Python自動変換ではない。必要な新承認と実権限は別途守る。記入欄の空欄や全件検査を通常作業の停止理由にしない。
