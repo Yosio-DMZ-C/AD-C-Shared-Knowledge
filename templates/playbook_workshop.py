@@ -117,7 +117,8 @@ def decompose(data):
                    "blocked_by": i.get("blocked_by") or []} for ident, i in by_id.items()],
         "ready_frontier": layers[0], "execution_layers": layers,
         "split_cautions": cautions,
-        "one_worker_possible": len(items) == 1 and not cautions,
+        # Multiple simple units can be handled by one worker; this is a hint, not a guarantee.
+        "one_worker_possible": not cautions,
         "automatic_dispatch": False,
     }
 
@@ -130,25 +131,26 @@ def retro(data):
     events = seq(data.get("failures"), "failures")
     if any(not text_value(v) for v in successes):
         raise ValueError("valued_results must contain text")
-    recurrent = any(isinstance(e, dict) and isinstance(e.get("count"), int) and
-                    not isinstance(e.get("count"), bool) and e["count"] >= 2 for e in events)
+    for e in events:
+        if not isinstance(e, dict):
+            raise ValueError("failures must contain objects")
+        count = e.get("count", 1)
+        if isinstance(count, bool) or not isinstance(count, int) or count < 1:
+            raise ValueError("failure count must be a positive integer")
+    recurrent = any(e.get("count", 1) >= 2 for e in events)
     satisfied = data.get("satisfied") is True
     triggered = satisfied or recurrent
     candidates = []
     if triggered:
         for e in events:
-            if not isinstance(e, dict):
-                raise ValueError("failures must contain objects")
             count = e.get("count", 1)
-            if isinstance(count, bool) or not isinstance(count, int) or count < 1:
-                raise ValueError("failure count must be a positive integer")
             if count >= 2 or satisfied:
                 candidates.append({
                     "observed": text_value(e.get("observed")) or "未記録",
                     "evidence_ref": text_value(e.get("evidence_ref")) or None,
                     "suggestion": text_value(e.get("candidate")) or "原因確認が必要",
                     "evidence_status": "RECORDED" if text_value(e.get("evidence_ref")) else "NOT_VERIFIED",
-                    "decision": "HUMAN_REVIEW_REQUIRED",
+                    "decision": "REVIEW_UNDER_EXISTING_L1_L3",
                 })
     return {
         "mode": "retro", "triggered": triggered,
@@ -194,8 +196,18 @@ def self_test():
                       "failures": [{"observed": "同じ誤配送が2回", "count": 2,
                                     "evidence_ref": "case3/log", "candidate": "実際の起動器を独立検査"}]})
     assert repeated["triggered"] and not repeated["automatic_changes"]
-    assert repeated["improvement_candidates"][0]["decision"] == "HUMAN_REVIEW_REQUIRED"
+    assert repeated["improvement_candidates"][0]["decision"] == "REVIEW_UNDER_EXISTING_L1_L3"
     assert not retro({"stage": "first", "satisfied": False, "failures": []})["triggered"]
+    # Simple sequential work need not be delegated; invalid events are rejected even without a trigger.
+    simple = decompose({"goal": "一人で完走", "items": [{"id": "A", "deliverable": "A", "acceptance": "A"},
+        {"id": "B", "deliverable": "B", "acceptance": "B", "blocked_by": ["A"]}]})
+    assert simple["one_worker_possible"] and simple["execution_layers"] == [["A"], ["B"]]
+    try:
+        retro({"stage": "revision", "satisfied": False, "failures": [{"count": 0}]})
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("invalid event not rejected")
     # Fail closed for bad dependency graph.
     try:
         decompose({"goal": "壊れた依存", "items": [{"id": "A", "deliverable": "A",
@@ -212,7 +224,7 @@ def self_test():
          "split_cautions": len(parts["split_cautions"])},
         {"case": "repeated_failure", "triggered": repeated["triggered"],
          "candidate_count": len(repeated["improvement_candidates"]), "automatic_changes": False}],
-        "negative_tests": ["nontrigger_first", "cyclic_dependency"]}
+        "negative_tests": ["nontrigger_first", "cyclic_dependency", "invalid_event_without_trigger", "simple_sequential_one_worker"]}
 
 
 def main(argv=None):
