@@ -62,15 +62,15 @@ AI_NAV_PY_PATH=NONE
 | 初期スタイル（必要なときだけ） | **新しいカスタムPlaybookに継続使用する作風・ブランド見本が必要／大幅刷新する場合のみ**、[採用済み任意Style Bootstrap](../skills/style-bootstrap/SKILL.md)へ。実際の代表作→使える素材・短いスタイルカード→必要な編集原本／画像→別題材1件再利用を既存個人KB・シリーズ正本へ接続。既存採用スタイルや通常制作はN/A。個別Runbook・CASE Aを上書きしない |
 | 再利用素材（該当時のみ） | **今回素材を新規作成・変更する場合だけ**、[開発プラクティスの任意検証](../docs/DEVELOPMENT_WORKFLOW_PRACTICES.md#playbookワークシートの作成更新作り込みは濃く運用は軽く2026-11-08-本人採用方針)を参照。原本・採用状態・必要な実ファイル確認を既存専門手順に接続。素材なし／変更なしならN/Aで追加検査しない |
 
-### 設計・分解・振り返りの実動補助（2026-11-27・PR #66 試作／作成更新AIだけ）
+### 設計・分解・振り返りの実動補助（2026-11-27・本人採用の任意試用／作成更新AIだけ）
 
 **使う時だけ呼ぶ1ファイル3機能**：[playbook_workshop.py](./playbook_workshop.py)（Python 3.10+・標準ライブラリのみ）。この作成・更新ワークシートの「変更したい結果」「保持する部分・疑問点」「修正と道具」「実用性検収」を**AIが既存原本の事実で埋めるとき**の補助であり、別のPlaybook・審査票・正本・管理台帳ではない。**本人の初回制作・通常の専門業務には必須でない。** `AI_NAV_PY_PATH` を置換せず、既存の `runner.py`／日本語本文保護にも介入しない。
 
 | 機能 | 発動条件・入力（AIが取得済みの事実だけで一時JSONを作成） | 実行して得られるもの |
 |---|---|---|
 | **設計** `design` | 初回の改善か、既存資産の変更。必須：`goal` と `existing`（真偽）。任意：`source_ref`, `preserve`（文字列配列）, `change`, `questions`, `satisfied`, `reuse_intent` | 初回の反復／初版候補／既存改訂を区別。**保持する原文**と疑問点を削らずに返す。既存正本・保持条件欠落を警告。採用は決定しない |
-| **分解** `decompose` | 既存の設計結果から必要な時だけ。`goal`, `items`（各 `id`, `deliverable`, `acceptance`; 任意 `blocked_by`, `branches`, `estimated_tokens`）、任意の案件固有 `context_budget` | 自立した成果単位の入力チェック、依存関係の**循環／未知ID検出**、今実行できる工程と依存階層、分岐／文脈負荷の再分割候補。一人で完走できる場合は単独を維持 |
-| **振り返り** `retro` | 利用者が満足したとき、または実測上の反復失敗。`stage`（`first` / `revision`）, `satisfied`, `valued_results`, `failures`（`observed`, `count`, `evidence_ref`, `candidate`） | 発動条件・評価された点・実観測に紐づく改善候補を返す。根拠がない提案は `NOT_VERIFIED`、判断は必ず `HUMAN_REVIEW_REQUIRED` とし、自動改造しない |
+| **分解** `decompose` | 既存の設計結果から必要な時だけ。`goal`, `items`（各 `id`, `deliverable`, `acceptance`; 任意 `blocked_by`, `branches`, `estimated_tokens`）、任意の案件固有 `context_budget` | 自立した成果単位の入力チェック、依存関係の**循環／未知ID検出**、今実行できる工程と依存階層、分岐／文脈負荷の再分割候補。単純な複数工程も一人で完走できる候補として扱う（ヒントであり保証ではない） |
+| **振り返り** `retro` | 利用者が満足したとき、または実測上の反復失敗。`stage`（`first` / `revision`）, `satisfied`, `valued_results`, `failures`（`observed`, `count`, `evidence_ref`, `candidate`） | 発動条件・評価された点・実観測に紐づく改善候補を返す。根拠がない提案は `NOT_VERIFIED`、`REVIEW_UNDER_EXISTING_L1_L3` として既存の採否権限へ接続し、自動改造しない。L1/L2に新しい人間承認は課さない |
 
 **使い方（AI編集担当の実行入口）**：
 
