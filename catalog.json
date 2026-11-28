@@ -1,7 +1,7 @@
 {
   "schema_version": "0.3.0",
-  "catalog_version": "0.3.17",
-  "updated_at": "2026-11-21",
+  "catalog_version": "0.3.18",
+  "updated_at": "2026-11-28",
   "status": "design_only",
   "distribution_ready": false,
   "license_status": "adopted",
@@ -95,6 +95,23 @@
     "playbook"
   ],
   "preview_items": [
+    {
+      "id": "PB-DESIGN-INTERVIEW-001",
+      "title": "設計・要件定義インタビュー",
+      "kind": "playbook",
+      "domain_id": "work-learning",
+      "version": "0.1.0",
+      "path": "skills/design-interview/SKILL.md",
+      "status": "user_adopted_trial",
+      "visibility": "public_manual_reference",
+      "distribution_ready": false,
+      "auto_install": false,
+      "risk": "misinterpreted_intent_or_unnecessary_questions",
+      "scope": "本格設計の開始・明示インタビュー・重要な人間固有の不明点。既知で十分なら質問0件。既存ワークシートと専門担当を再利用",
+      "review_status": "user_adopted_2026-11-28; markdown_readback=PASS; actual_request_replay=LIMITED; independent_cold_start=NOT_RUN; formal_distribution_review=NOT_RUN",
+      "evidence_url": "https://github.com/Yosio-DMZ-C/AD-C-Shared-Knowledge/blob/main/skills/design-interview/SKILL.md",
+      "license": "CC-BY-SA-4.0"
+    },
     {
       "id": "PB-HIKING-ROUTE-001",
       "title": "山歩きルート検索・交通3方式・服装ワークシート",
