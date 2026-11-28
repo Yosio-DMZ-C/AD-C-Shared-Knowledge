@@ -88,3 +88,7 @@ When presenting a prompt or instruction that the user should paste into another 
 **Independent-test chat naming (2026-11-03; user-directed):** Never start a copy/paste independent-test instruction with the generic label `独立試験`. Start its first line with the specific subject, project, or Playbook being tested and put `独立試験` at the **end of that title**, e.g. `AD&C 開発リーダーPlaybook 独立試験`, `AD&C 山歩きPlaybook 独立試験`. This applies to the first line of the copyable prompt and any proposed chat title so distinct tests are distinguishable in conversation lists. Do not use a generic `独立試験｜...` prefix. Preserve existing test content and acceptance criteria.
 
 
+
+
+### DESIGNER’S NOTE追補｜人間の判断時間（2026-11-28本人採用）
+AIの処理量が増えるほど人間の確認が律速になり得る。既存の実動UI・図解・差分表示の目的は装飾でなく、人間が短時間で意味のある判断・検収をできるようにすること。実行本文へ短い出力原則を追加した。時間短縮効果は未実測。専門固定UIを上書きせず、計測は既存実例の改善時だけ行う。
